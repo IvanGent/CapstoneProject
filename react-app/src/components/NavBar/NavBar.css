@@ -1,0 +1,45 @@
+nav {
+    background-color: rgb(141, 0, 0);
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    color: whitesmoke;
+    box-shadow: 0px 5px 15px 5px black;
+}
+
+ul {
+    display: flex;
+
+}
+
+li {
+    padding: 0 10px;
+    list-style-type: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+nav button {
+    padding: 5px 10px;
+    background-color: rgb(141, 0, 0);
+    border: none;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 15px;
+    outline: none;
+    transition-duration: 500ms;
+}
+
+nav button:target {
+    box-shadow: 0px 1px 1px 1px black;
+    /* background-color: teal; */
+}
+
+.navMenu {
+    margin-right: 150px;
+}

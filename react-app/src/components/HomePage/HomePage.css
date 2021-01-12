@@ -1,0 +1,17 @@
+.homepage strong {
+    background-color: cyan;
+    font-size: 80px;
+}
+
+.homepage div {
+    font-size: 70px;
+    cursor: pointer;
+}
+
+.homepage img {
+    width: 300px;
+    height: 300px;
+    /* background-color: blue; */
+    z-index: 20;
+    position: relative;
+}
