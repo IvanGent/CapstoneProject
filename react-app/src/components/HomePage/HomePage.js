@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import RandomRoller from '../RandomRoller/RandomRoller';
 // import { NavLink } from 'react-router-dom';
 import './HomePage.css'
-// import BackgroundImage from './StockSnap_N0KS0SFLO2.jpg'
 
 const HomePage = () => {
     const [zipcode, setZipcode] = useState('');
@@ -10,17 +9,45 @@ const HomePage = () => {
     const [data, setData] = useState([]);
     
 // Getting the website for every place found to get the logo.
-    const gettingDetails = async (placeId) => {
-        const res = await fetch(`/api/restaurants/details/${placeId}`)
-        const {result} = await res.json()
-        console.log(result)
-        if(result.website) {
-            result.website = '//logo.clearbit.com/' + result.website.split('.')[1] + '.com'
-        } else {
-            result.website = require('../../images/McLogo.png')
+    const gettingDetails = async (placeId, name) => {
+        const res2 = await fetch(`/api/restaurants/single/${name}`)
+        const result2 = await res2.json()
+        console.log(result2)
+        if ('errors' in result2) {
+            const res = await fetch(`/api/restaurants/details/${placeId}`)
+            const {result} = await res.json()
+            console.log(result)
+            if(result.website) {
+                result.logo = '//logo.clearbit.com/' + result.website.split('.')[1] + '.com'
+            } else {
+                result.logo = require('../../images/McLogo.png')
+            }
+            console.log('HERE')
+            console.log(result.name)
+            await addingRestaurant(result.name, result.logo)
+            console.log('HERE AFTER')
+            return result
         }
-        console.log(result)
-        return result
+        // console.log(result2)
+        return result2
+    }
+
+
+// POSTs a new restaurant to make lookups faster.
+    const addingRestaurant = async (name, logo) => {
+        const newRes = await fetch('/api/restaurants/single', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "name": name,
+                "logo": logo
+            })
+        })
+        console.log(newRes)
+        let last = await newRes.json()
+        console.log(last)
     }
 
 // Getting all the nearby restaurants and filtering out the gas stations and also 
@@ -42,7 +69,7 @@ const HomePage = () => {
         console.log(newData)
         let arrayData = []
         for (let key in newData) {
-            arrayData.push(await gettingDetails(newData[key].place_id));
+            arrayData.push(await gettingDetails(newData[key].place_id, newData[key].name));
         };
 
         setData(arrayData)
@@ -55,24 +82,6 @@ const HomePage = () => {
             })
             const data = await coords.json()
             await gettingResturants(data.location.lat, data.location.lng)
-            // const res2 = await fetch(`/api/resturants/${data.location.lat}/${data.location.lng}`)
-            // const restData = await res2.json()
-            // const results = restData.results
-            // let newData = {}
-
-            // results.filter(ele => {
-            //     if(!ele.types.includes('gas_station')){
-            //         newData[ele.name] = ele;
-            //     }
-            // });
-
-            // console.log(newData)
-            // let arrayData = []
-            // for(let key in newData) {
-            //     arrayData.push(newData[key]);
-            // };
-
-            // setData(arrayData)
     }
 
     const updateZipCode = (e) => {
@@ -98,12 +107,6 @@ const HomePage = () => {
 
     return (
         <div className='homepage'>
-            {/* {errors ? (
-                <div>{errors}</div>
-            ) : (
-                null
-            )} */}
-
             {zipError ? (
                 <div>{zipError}</div>
             ) : (
@@ -111,20 +114,13 @@ const HomePage = () => {
             )}
             <div>
             {data.length ? (
-                // data.map((ele, i) => {
-                //     return (
-                //         <div key={i}>
-                //             <img src={ele.website} />
-                //             <h5 >{ele.name}</h5>
-                //         </div>
-                //     )
-                // }) 
-                <RandomRoller restaurants={data} />
+                    <RandomRoller restaurants={data} />
             ): (
-                <div>
+                <div className='choices'>
                     <strong onClick={handleClick}>Use current location?</strong>
+                    <h5>OR</h5>
                     <form onSubmit={handleZipCode}>
-                        <label>Or use zipcode</label>
+                        <label>use zipcode</label>
                         <input 
                         type='numbers'
                         placeholder='Zipcode'
@@ -133,10 +129,8 @@ const HomePage = () => {
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
-                
             )}
             </div>
-            {/* <img src={BackgroundImage} alt='Background'/> */}
         </div>
     )
 }

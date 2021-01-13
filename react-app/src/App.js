@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
-import BackgroundImage from './components/HomePage/StockSnap_N0KS0SFLO2.jpg';
+import BackgroundImage from './components/HomePage/back.jpg';
 import Main from './images/mainPage.jpg';
 
 const OpenModalButton = styled(motion.button)`
@@ -52,7 +52,7 @@ function App() {
     <BrowserRouter>
       <NavBar authenticated={authenticated} setAuthenticated={setAuthenticated} />
       {/* {show && !authenticated ? ( */}
-        <img src={Main} alt='Background' />
+        <img id='background' src={Main} alt='Background' />
       {/* ) : null
       } */}
       <Route path='/' exact={true} >

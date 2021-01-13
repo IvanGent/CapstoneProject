@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-img {
+#background {
     position: fixed;
     top: 0;
     left: 0;
