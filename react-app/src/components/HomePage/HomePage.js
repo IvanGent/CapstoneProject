@@ -18,12 +18,28 @@ const HomePage = () => {
             const {result} = await res.json()
             console.log(result)
             if(result.website) {
-                result.logo = '//logo.clearbit.com/' + result.website.split('.')[1] + '.com'
+                console.log('IN WEBSITE')
+                let web = result.website.split('.')
+                console.log(web)
+                for (let i = 0; i < web.length; i++) {
+                    console.log("IN THE LOOP")
+                    if (web[i].startsWith('com')) {
+                        console.log(web[i])
+                        result.logo = '//logo.clearbit.com/' + web[i - 1] + '.com'
+                        return;
+                    }
+                }
+                result.logo = require('../../images/Restaurant.png')
+                // result.logo = '//logo.clearbit.com/' + result.website.split('.')[1] + '.com
+                // await addingRestaurant(result.name, result.logo)
             } else {
-                result.logo = require('../../images/McLogo.png')
+                result.logo = require('../../images/Restaurant.png')
+                // await addingRestaurant(result.name, result.logo)
+
             }
-            console.log('HERE')
+            // console.log('HERE')
             console.log(result.name)
+            console.log(result.logo)
             await addingRestaurant(result.name, result.logo)
             console.log('HERE AFTER')
             return result

@@ -19,9 +19,11 @@ const RollButton = styled(motion.button)`
 function RandomRoller({ restaurants }) {
     const [res, setRes] = useState(restaurants);
     const [checks, setChecks] = useState(new Array(res.length).fill('checked'));
+    const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [logo, setLogo] = useState('');
     const [name, setName] = useState('');
+    const [showReroll, setShowReroll] = useState(false);
 
 
     useEffect(() => {
@@ -37,11 +39,13 @@ function RandomRoller({ restaurants }) {
             }
         })
         if (newSet.length <= 1) {
-            Random(newSet)
+            setResPicked(newSet)
             setShowSelect(false)
+            Random(newSet)
             return;
         }
         setShowSelect(false)
+        setResPicked(newSet)
         Random(newSet);
         return;
     }
@@ -64,9 +68,16 @@ function RandomRoller({ restaurants }) {
 
         setTimeout(() => {
             clearInterval(interval);
+            setShowReroll(true)
         }, 3000)
 
         return
+    }
+
+
+    const handleReRoll = () => {
+        setShowReroll(false)
+        Random(resPicked)
     }
 
     return (
@@ -102,6 +113,9 @@ function RandomRoller({ restaurants }) {
                         <img src={logo} alt='logo' />
                         <h5>{name}</h5>
                     </div>
+                    {showReroll ? (
+                    <button onClick={handleReRoll} >Reroll</button>
+                    ) : null }
                 </div>
             )}
         </div>
