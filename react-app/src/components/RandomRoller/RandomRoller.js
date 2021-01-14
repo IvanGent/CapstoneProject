@@ -12,7 +12,8 @@ const RollButton = styled(motion.button)`
     width: 60px;
     border: none;
     outline: none;
-     box-shadow: 0px 0px 10px 7px gray;
+    box-shadow: 0px 0px 10px 7px gray;
+    margin-top: 40px;
 `
 
 
@@ -86,8 +87,9 @@ function RandomRoller({ restaurants }) {
             <form onSubmit={handleSelection}>
                 <fieldset>
                 {res.map((ele, i) => {
+                    console.log(res);
                     return (
-                        <div key={i}>
+                        <div key={i} className='mainHolder'>
                             <div className='labels'>
                                 <img src={ele.logo} alt='logo' />
                                 <h5 >{ele.name}</h5>

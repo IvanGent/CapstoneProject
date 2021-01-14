@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RandomRoller from '../RandomRoller/RandomRoller';
 // import { NavLink } from 'react-router-dom';
 import './HomePage.css'
+// import RestaurantImage from '../../images/Restaurant.png'
 
 const HomePage = () => {
     const [zipcode, setZipcode] = useState('');
@@ -12,29 +13,38 @@ const HomePage = () => {
     const gettingDetails = async (placeId, name) => {
         const res2 = await fetch(`/api/restaurants/single/${name}`)
         const result2 = await res2.json()
-        console.log(result2)
         if ('errors' in result2) {
             const res = await fetch(`/api/restaurants/details/${placeId}`)
             const {result} = await res.json()
             console.log(result)
             if(result.website) {
-                console.log('IN WEBSITE')
                 let web = result.website.split('.')
-                console.log(web)
                 for (let i = 0; i < web.length; i++) {
-                    console.log("IN THE LOOP")
                     if (web[i].startsWith('com')) {
-                        console.log(web[i])
+                        console.log(web)
                         result.logo = '//logo.clearbit.com/' + web[i - 1] + '.com'
-                        return;
+                        console.log(result);
+                        console.log('LOGO SET UP')
+                        console.log(`https:${result.logo}`)
+                        const logoRes = await fetch(`http:${result.logo}`, {
+                            mode: 'no-cors',
+                            method: "GET"
+                        })
+                        console.log(logoRes)
+                        if (!logoRes.ok) {
+                            console.log('NO ZONE')
+                            result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
+                        }
+                        console.log('AFTER THE LOGO')
+                        console.log(logoRes.ok);
+                        console.log("CHECKING RES")
+                        console.log(result.logo)
                     }
                 }
-                result.logo = require('../../images/Restaurant.png')
-                // result.logo = '//logo.clearbit.com/' + result.website.split('.')[1] + '.com
-                // await addingRestaurant(result.name, result.logo)
+                // console.log("HIT THIS TOO")
+                // result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
             } else {
-                result.logo = require('../../images/Restaurant.png')
-                // await addingRestaurant(result.name, result.logo)
+                result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
 
             }
             // console.log('HERE')
@@ -61,9 +71,9 @@ const HomePage = () => {
                 "logo": logo
             })
         })
-        console.log(newRes)
+        // console.log(newRes)
         let last = await newRes.json()
-        console.log(last)
+        // console.log(last)
     }
 
 // Getting all the nearby restaurants and filtering out the gas stations and also 
