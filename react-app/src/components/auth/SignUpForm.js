@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from 'react-router-dom';
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
 import { signUp } from '../../services/auth';
+import Forms from './Forms'
 import './SignUpForm.css';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin}) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -43,74 +46,97 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   const handleLoginClick = () => {
-    return history.push('/login')
+    setShowSignUp(false)
+    setShowLogin(true)
+    return <Forms
+      authenticated={authenticated}
+      setAuthenticated={setAuthenticated}
+      setShowLogin={setShowLogin}
+      showSignUp={showSignUp}
+      setShowSignUp={setShowSignUp}
+    />
+    // return history.push('/login')
   }
 
   if (authenticated) {
     return <Redirect to="/" />;
   }
 
-  return (
-    <div className='formContainer'>
+  const background ={
+    visible: { opacity: 1},
+    hidden: { opacity: 0}
+  }
 
-    <form  className='signupForm' onSubmit={onSignUp}>
-      <div className='innerSignup'>
-      <div>
-        {/* <label>Username</label> */}
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-          placeholder='Username'
-        ></input>
-      </div>
-      <div>
-        {/* <label>First Name</label> */}
-        <input
-          type="text"
-          name="first_name"
-          onChange={updateFirstName}
-          value={firstName}
-          placeholder='First Name'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Email</label> */}
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-          placeholder='Email'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Password</label> */}
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-          placeholder='Password'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Confirm Password</label> */}
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-          placeholder='Confirm Password'
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
-    <div id='loginClick' onClick={handleLoginClick}>Have an account? Login</div>
-      </div>
-    </form>
-    </div>
+  return (
+    <AnimatePresence exitBeforeEnter>
+      {showSignUp && (
+      <motion.div className='formContainer'
+        variants={background}
+        initial='hidden'
+        animate='visible'
+      >
+        <motion.div className='signupModal'>
+          <form  className='signupForm' onSubmit={onSignUp}>
+            <div className='innerSignup'>
+            <div>
+              {/* <label>Username</label> */}
+              <input
+                type="text"
+                name="username"
+                onChange={updateUsername}
+                value={username}
+                placeholder='Username'
+              ></input>
+            </div>
+            <div>
+              {/* <label>First Name</label> */}
+              <input
+                type="text"
+                name="first_name"
+                onChange={updateFirstName}
+                value={firstName}
+                placeholder='First Name'
+              ></input>
+            </div>
+            <div>
+              {/* <label>Email</label> */}
+              <input
+                type="text"
+                name="email"
+                onChange={updateEmail}
+                value={email}
+                placeholder='Email'
+              ></input>
+            </div>
+            <div>
+              {/* <label>Password</label> */}
+              <input
+                type="password"
+                name="password"
+                onChange={updatePassword}
+                value={password}
+                placeholder='Password'
+              ></input>
+            </div>
+            <div>
+              {/* <label>Confirm Password</label> */}
+              <input
+                type="password"
+                name="repeat_password"
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                placeholder='Confirm Password'
+              ></input>
+            </div>
+            <button type="submit">Sign Up</button>
+          <div id='loginClick' onClick={handleLoginClick}>Have an account? Login</div>
+            </div>
+          </form>
+        </motion.div>
+      </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

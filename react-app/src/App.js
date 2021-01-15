@@ -5,17 +5,18 @@ import styled from "styled-components";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+// import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
 import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
 import BackgroundImage from './components/HomePage/back.jpg';
 import Main from './images/mainPage.jpg';
+import Forms from "./components/auth/Forms";
 
 const OpenModalButton = styled(motion.button)`
-  // position: absolute;
-  // margin-left: %;
-  // margin-top: 35%;
+  position: absolute;
+  margin-left: 44%;
+  margin-top: 30%;
   font-size: 1.2rem;
   padding: 20px;
   border-radius: 20px;
@@ -29,7 +30,9 @@ const OpenModalButton = styled(motion.button)`
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -45,6 +48,7 @@ function App() {
 
   const handleLogin = () => {
     setShow(false)
+    setShowLogin(true)
   }
 
 
@@ -56,7 +60,7 @@ function App() {
     <BrowserRouter>
       <NavBar authenticated={authenticated} setAuthenticated={setAuthenticated} />
       {/* {show && !authenticated ? ( */}
-        <img id='background' src={Main} alt='Background' />
+        {/* <img id='background' src={Main} alt='Background' /> */}
       {/* ) : null
       } */}
       <Route path='/' exact={true} >
@@ -65,28 +69,39 @@ function App() {
         <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}} onClick={handleLogin}>Don't Know Where To Eat?</OpenModalButton>
         </>
       ) 
-      : (
-        <LoginForm
+      : null }
+        <Forms 
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
+          showLogin={showLogin}
+          setShowLogin={setShowLogin}
+          setShowSignUp={setShowSignUp}
+          showSignUp={showSignUp}
+          setShowSignUp={setShowSignUp}
+          />
+        {/* <LoginForm
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+          showLogin={showLogin}
+          setShowLogin={setShowLogin}
+          setShowSignUp={setShowSignUp}
         />
-      )
-      }
-      </Route>
-      <Route path="/login" exact={true}>
-      </Route>
-      <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        <SignUpForm 
+          authenticated={authenticated} 
+          setAuthenticated={setAuthenticated} 
+          showSignUp={showSignUp}
+          setShowSignUp={setShowSignUp}
+          /> */}
       </Route>
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
         <User authenticated={authenticated}/>
       </Route>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+      {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}> */}
         {/* <h1>My Home Page</h1> */}
         {authenticated ? (
           <HomePage />
         ) : null }
-      </ProtectedRoute>
+      {/* </ProtectedRoute> */}
     </BrowserRouter>
   );
 }
