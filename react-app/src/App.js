@@ -13,9 +13,9 @@ import BackgroundImage from './components/HomePage/back.jpg';
 import Main from './images/mainPage.jpg';
 
 const OpenModalButton = styled(motion.button)`
-  position: absolute;
-  margin-left: 47%;
-  margin-top: 35%;
+  // position: absolute;
+  // margin-left: %;
+  // margin-top: 35%;
   font-size: 1.2rem;
   padding: 20px;
   border-radius: 20px;
@@ -43,6 +43,10 @@ function App() {
   }, []);
 
 
+  const handleLogin = () => {
+    setShow(false)
+  }
+
 
   if (!loaded) {
     return null;
@@ -58,18 +62,18 @@ function App() {
       <Route path='/' exact={true} >
       {show && !authenticated ? (
         <>
-      <NavLink to='/login'>
-        <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}}>Don't Know Where To Eat?</OpenModalButton>
-      </NavLink>
+        <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}} onClick={handleLogin}>Don't Know Where To Eat?</OpenModalButton>
         </>
       ) 
-      : null}
-      </Route>
-      <Route path="/login" exact={true}>
+      : (
         <LoginForm
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         />
+      )
+      }
+      </Route>
+      <Route path="/login" exact={true}>
       </Route>
       <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />

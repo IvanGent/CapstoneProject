@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 import './User.css'
+
+// const 
 
 function User() {
   const [user, setUser] = useState({});
