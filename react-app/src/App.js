@@ -31,6 +31,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [show, setShow] = useState(false);
+  const [showForms, setShowForms] = useState(false)
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
 
@@ -48,6 +49,7 @@ function App() {
 
   const handleLogin = () => {
     setShow(false)
+    setShowForms(true)
     setShowLogin(true)
   }
 
@@ -73,6 +75,8 @@ function App() {
         <Forms 
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
+          showForms={showForms}
+          setShowForms={setShowForms}
           showLogin={showLogin}
           setShowLogin={setShowLogin}
           setShowSignUp={setShowSignUp}
@@ -99,7 +103,7 @@ function App() {
       {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}> */}
         {/* <h1>My Home Page</h1> */}
         {authenticated ? (
-          <HomePage />
+          <HomePage setShowForms={setShowForms} />
         ) : null }
       {/* </ProtectedRoute> */}
     </BrowserRouter>

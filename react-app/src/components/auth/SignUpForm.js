@@ -6,7 +6,7 @@ import { signUp } from '../../services/auth';
 import Forms from './Forms'
 import './SignUpForm.css';
 
-const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin}) => {
+const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms}) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -20,6 +20,7 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
       const user = await signUp(username, firstName, email, password);
       if (!user.errors) {
         setAuthenticated(true);
+        setShowForms(false)
         localStorage.setItem("userId", user.id)
       }
     }
@@ -68,14 +69,18 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
   }
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter>÷
+      {/* <> */}
       {showSignUp && (
-      <motion.div className='formContainer'
-        variants={background}
-        initial='hidden'
-        animate='visible'
-      >
-        <motion.div className='signupModal'>
+      // <motion.div className='formContainer'
+      //   variants={background}
+      //   initial='hidden'
+      //   animate='visible'
+      // >
+        <motion.div className='signupModal'
+          variants={background}
+          initial='hidden'
+          animate='visible'>
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
             <div>
@@ -134,9 +139,10 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
             </div>
           </form>
         </motion.div>
-      </motion.div>
+      // </motion.div>
       )}
     </AnimatePresence>
+    // {/* </> */}
   );
 };
 

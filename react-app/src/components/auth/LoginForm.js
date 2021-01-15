@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { login } from "../../services/auth";
 import './LoginForm.css'
 import Forms from "./Forms";
+import SignUpForm from "./SignUpForm";
 
-const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp }) => {
+const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms}) => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      setShowForms(false)
       localStorage.setItem("userId", user.id)
     } else {
       setErrors(user.errors);
@@ -52,17 +54,20 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
     hidden: { opacity: 0}
   }
 
-
-
   return (
     <AnimatePresence exitBeforeEnter>
+    {/* <> */}
       {showLogin && (
-        <motion.div className='formContainer'
-          variants={background}
-          initial='hidden'
-          animate='visible'
-        >
-          <motion.div className='loginModal'>
+        // <motion.div className='formContainer'
+        //   variants={background}
+        //   initial='hidden'
+        //   animate='visible'
+        // >
+          <motion.div className='loginModal'
+            variants={background}
+            initial='hidden'
+            animate='visible'
+          >
             <form className='loginForm' onSubmit={onLogin}>
               <div className='innerLogin'>
               <div className='errors'>
@@ -95,9 +100,18 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
               </div>
             </form>
           </motion.div>
-        </motion.div>
+        // </motion.div>
       )}
-    </AnimatePresence>
+      {/* {showSignUp && (
+      <SignUpForm 
+        authenticated={authenticated}
+        setAuthenticated={setAuthenticated}
+        showSignUp={showSignUp}
+        setShowSignUp={setShowSignUp}
+        setShowLogin={setShowLogin}/>
+      )} */}
+    {/* </> */}
+    // </AnimatePresence>
   );
 };
 

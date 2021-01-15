@@ -18,13 +18,13 @@ const NavBar = ({ authenticated,setAuthenticated }) => {
     setUser(localStorage.getItem('userId'))
   })
 
-  const handleClick = () => {
-    show ? setShow(false) : setShow(true);
-    return show ? (
-    <ProfileMenu user={user} setAuthenticated={setAuthenticated} />
-    ) 
-      : null
-  }
+  // const handleClick = () => {
+  //   show ? setShow(false) : setShow(true);
+  //   return show ? (
+  //   <ProfileMenu user={user} setAuthenticated={setAuthenticated} />
+  //   ) 
+  //     : null
+  // }
 
   return (
     <nav>
@@ -54,7 +54,7 @@ const NavBar = ({ authenticated,setAuthenticated }) => {
               {/* <NavLink to={`/users/${user}`} exact={true} activeClassName="active">
                 Profile
               </NavLink> */}
-              <ProfileMenu />
+              <ProfileMenu  user={user} setAuthenticated={setAuthenticated} />
             </li>
           </>
         )}

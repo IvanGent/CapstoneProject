@@ -6,7 +6,7 @@ import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 // import LogoutButton from '../auth/LogoutButton';
 
-function ProfileMenu ( {setAuthenticated}) {
+function ProfileMenu({ setAuthenticated }) {
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 

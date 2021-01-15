@@ -28,7 +28,7 @@ export function CircularIndeterminate() {
     );
 }
 
-const HomePage = () => {
+const HomePage = ({setShowForms}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
@@ -137,8 +137,8 @@ const HomePage = () => {
     }
         
     useEffect(() => {
-
-    }, [])
+        setShowForms(false)
+    }, [setShowForms])
 
 
     return (
