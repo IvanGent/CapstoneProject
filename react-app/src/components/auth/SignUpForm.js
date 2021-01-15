@@ -6,6 +6,11 @@ import { signUp } from '../../services/auth';
 import Forms from './Forms'
 import './SignUpForm.css';
 
+const background ={
+  visible: { opacity: 1},
+  hidden: { opacity: 0}
+}
+
 const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms}) => {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -63,10 +68,6 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
     return <Redirect to="/" />;
   }
 
-  const background ={
-    visible: { opacity: 1},
-    hidden: { opacity: 0}
-  }
 
   return (
     <AnimatePresence exitBeforeEnter>÷

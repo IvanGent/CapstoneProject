@@ -39,12 +39,14 @@ function App() {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
+        setShowForms(false)
         setAuthenticated(true);
       }
       setLoaded(true);
       setShow(true)
+      setShowForms(false)
     })();
-  }, []);
+  }, [setShowForms]);
 
 
   const handleLogin = () => {
@@ -71,7 +73,12 @@ function App() {
         <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}} onClick={handleLogin}>Don't Know Where To Eat?</OpenModalButton>
         </>
       ) 
-      : null }
+      : (
+        <>
+        {authenticated && <HomePage setShowForms={setShowForms} /> } 
+        </>
+            
+      ) }
         <Forms 
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
@@ -83,28 +90,15 @@ function App() {
           showSignUp={showSignUp}
           setShowSignUp={setShowSignUp}
           />
-        {/* <LoginForm
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-          showLogin={showLogin}
-          setShowLogin={setShowLogin}
-          setShowSignUp={setShowSignUp}
-        />
-        <SignUpForm 
-          authenticated={authenticated} 
-          setAuthenticated={setAuthenticated} 
-          showSignUp={showSignUp}
-          setShowSignUp={setShowSignUp}
-          /> */}
       </Route>
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
         <User authenticated={authenticated}/>
       </Route>
       {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}> */}
         {/* <h1>My Home Page</h1> */}
-        {authenticated ? (
-          <HomePage setShowForms={setShowForms} />
-        ) : null }
+        {/* {authenticated ? (
+       <HomePage setShowForms={setShowForms} />
+        ) : null } */}
       {/* </ProtectedRoute> */}
     </BrowserRouter>
   );

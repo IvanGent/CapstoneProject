@@ -5,6 +5,14 @@ import { login } from "../../services/auth";
 import './LoginForm.css'
 import Forms from "./Forms";
 import SignUpForm from "./SignUpForm";
+import HomePage from "../HomePage/HomePage";
+
+
+const background = {
+  visible: { opacity: 1},
+  hidden: { opacity: 0}
+}
+
 
 const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms}) => {
   const history = useHistory();
@@ -42,17 +50,14 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
       setShowLogin={setShowLogin}
       setShowSignUp={setShowSignUp}
       />
-    // return history.push('/sign-up')
   }
 
   if (authenticated) {
+    // setShowForms(false)
+    // return <HomePage authenticated={authenticated} setShowForms={setShowForms} />
     return <Redirect to="/" />;
   }
 
-  const background = {
-    visible: { opacity: 1},
-    hidden: { opacity: 0}
-  }
 
   return (
     <AnimatePresence exitBeforeEnter>

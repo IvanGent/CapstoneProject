@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginForm from './LoginForm';
@@ -31,6 +31,9 @@ const background = {
 }
 
 const Forms = ({authenticated, setAuthenticated, showLogin, setShowLogin, showSignUp, setShowSignUp, showForms, setShowForms}) => {
+  useEffect(() => {
+
+  }, [setShowForms])
   return (
     <AnimatePresence exitBeforeEnter>
       {showForms && (
