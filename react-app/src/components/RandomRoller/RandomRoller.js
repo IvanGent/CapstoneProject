@@ -8,8 +8,9 @@ const RollButton = styled(motion.button)`
     background-color: red;
     border: thin solid black;
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    font-size: 24px;
+    width: 80px;
     border: none;
     outline: none;
     box-shadow: 0px 0px 10px 7px gray;
