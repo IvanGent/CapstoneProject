@@ -27,6 +27,7 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
       setAuthenticated(true);
       setShowForms(false)
       localStorage.setItem("userId", user.id)
+      // return <HomePage authenticated={authenticated} setShowForms={setShowForms} />
     } else {
       setErrors(user.errors);
     }

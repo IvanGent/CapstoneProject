@@ -30,7 +30,8 @@ const OpenModalButton = styled(motion.button)`
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const [showHomePage, setShowHomePage] = useState(false);
   const [showForms, setShowForms] = useState(false)
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -39,18 +40,21 @@ function App() {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
+        console.log("here")
         setShowForms(false)
         setAuthenticated(true);
+        setShowHomePage(true)
+
       }
       setLoaded(true);
-      setShow(true)
+      setShowButton(true)
       setShowForms(false)
     })();
-  }, [setShowForms]);
+  }, []);
 
 
   const handleLogin = () => {
-    setShow(false)
+    setShowButton(false)
     setShowForms(true)
     setShowLogin(true)
   }
@@ -62,23 +66,26 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar authenticated={authenticated} setAuthenticated={setAuthenticated} />
+      <NavBar 
+        authenticated={authenticated} 
+        setAuthenticated={setAuthenticated} 
+        setShowButton={setShowButton}
+        showForms={showForms}
+        setShowForms={setShowForms}
+        showLogin={showLogin}
+        setShowLogin={setShowLogin}
+        setShowSignUp={setShowSignUp}
+        showSignUp={showSignUp}
+        />
       {/* {show && !authenticated ? ( */}
         {/* <img id='background' src={Main} alt='Background' /> */}
       {/* ) : null
       } */}
       <Route path='/' exact={true} >
-      {show && !authenticated ? (
-        <>
+      {showButton && !authenticated ? (
         <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}} onClick={handleLogin}>Don't Know Where To Eat?</OpenModalButton>
-        </>
       ) 
-      : (
-        <>
-        {authenticated && <HomePage setShowForms={setShowForms} /> } 
-        </>
-            
-      ) }
+      : null }
         <Forms 
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
@@ -88,12 +95,14 @@ function App() {
           setShowLogin={setShowLogin}
           setShowSignUp={setShowSignUp}
           showSignUp={showSignUp}
-          setShowSignUp={setShowSignUp}
           />
       </Route>
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
         <User authenticated={authenticated}/>
       </Route>
+      {authenticated && showHomePage ? (
+        <HomePage setShowForms={setShowForms} />
+      ): null}
       {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}> */}
         {/* <h1>My Home Page</h1> */}
         {/* {authenticated ? (

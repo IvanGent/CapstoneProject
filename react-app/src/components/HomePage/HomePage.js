@@ -78,9 +78,7 @@ const HomePage = ({setShowForms}) => {
                 "logo": logo
             })
         })
-        // console.log(newRes)
-        let last = await newRes.json()
-        // console.log(last)
+        await newRes.json()
     }
 
 // Getting all the nearby restaurants and filtering out the gas stations and also 
@@ -97,6 +95,7 @@ const HomePage = ({setShowForms}) => {
 
                 newData[ele.name] = ele;
             }
+            return ele;
         });
 
         console.log(newData)

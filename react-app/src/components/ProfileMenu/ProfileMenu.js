@@ -6,21 +6,23 @@ import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 // import LogoutButton from '../auth/LogoutButton';
 
+const Menu = styled(motion.ul)`
+    background-color: burlywood;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    margin-top: 22px;
+    margin-left: 20px;
+`;
+
+
 function ProfileMenu({ setAuthenticated }) {
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
-    const Menu = styled(motion.ul)`
-        background-color: burlywood;
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding: 15px;
-        margin-top: 22px;
-        margin-left: 20px;
-    `;
 
     const openMenu = (e) => {
         if (showMenu) return;
