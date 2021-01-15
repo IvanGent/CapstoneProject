@@ -35,5 +35,6 @@ class User(db.Model, UserMixin):
       "username": self.username,
       "first_name": self.first_name,
       "avatar": self.avatar,
-      "email": self.email
+      "email": self.email,
+      "visitedRestaurant": [visitedRestaurant.to_dict() for restaurant in self.visitedRestaurant]
     }

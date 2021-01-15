@@ -100,9 +100,11 @@ function App() {
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
         <User authenticated={authenticated}/>
       </Route>
-      {authenticated && showHomePage ? (
-        <HomePage setShowForms={setShowForms} />
-      ): null}
+      <Route path='/' exact={true}>
+        {authenticated && showHomePage ? (
+          <HomePage setShowForms={setShowForms} />
+        ): null}
+      </Route>
       {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}> */}
         {/* <h1>My Home Page</h1> */}
         {/* {authenticated ? (

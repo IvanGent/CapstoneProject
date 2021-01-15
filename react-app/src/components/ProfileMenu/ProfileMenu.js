@@ -7,7 +7,7 @@ import './ProfileMenu.css'
 // import LogoutButton from '../auth/LogoutButton';
 
 const Menu = styled(motion.ul)`
-    background-color: burlywood;
+    background-color: black;
     position: absolute;
     display: flex;
     flex-direction: column;
