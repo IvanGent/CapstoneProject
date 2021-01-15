@@ -12,8 +12,8 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='user', lazy=True)
-
+  visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='user', lazy=True, cascade="all, delete-orphan")
+  # activities = db.relationship('Activity', back_populates='user', lazy=True)
 
   @property
   def password(self):
@@ -36,5 +36,5 @@ class User(db.Model, UserMixin):
       "first_name": self.first_name,
       "avatar": self.avatar,
       "email": self.email,
-      "visitedRestaurant": [visitedRestaurant.to_dict() for restaurant in self.visitedRestaurant]
+      "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant]
     }

@@ -40,7 +40,6 @@ function App() {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
-        console.log("here")
         setShowForms(false)
         setAuthenticated(true);
         setShowHomePage(true)

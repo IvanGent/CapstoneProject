@@ -55,4 +55,5 @@ def adding_restaurant():
     )
     db.session.add(res)
     db.session.commit()
-    return {'message': 'Success'}, 201
+    return jsonify(res.to_dict())
+    # return {'message': 'Success'}, 201

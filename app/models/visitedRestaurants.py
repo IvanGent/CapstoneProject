@@ -16,7 +16,7 @@ class VisitedRestaurant(db.Model):
             "id": self.id,
             "res_id": self.res_id,
             "user_id": self.user_id,
-            "created_at": self.createdAt
+            "created_at": self.created_at
         }
 
     def to_joined_dict(self):

@@ -22,6 +22,7 @@ function User() {
       console.log(user)
       setUser(user);
     })();
+    console.log(user)
   }, [userId]);
 
   if (!user) {

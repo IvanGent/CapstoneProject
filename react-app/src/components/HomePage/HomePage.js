@@ -59,8 +59,8 @@ const HomePage = ({setShowForms}) => {
                 result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
 
             }
-            await addingRestaurant(result.name, result.logo)
-            return result
+            const addedRes = await addingRestaurant(result.name, result.logo)
+            return addedRes
         }
         return result2
     }
@@ -78,7 +78,8 @@ const HomePage = ({setShowForms}) => {
                 "logo": logo
             })
         })
-        await newRes.json()
+        const res = await newRes.json()
+        return res
     }
 
 // Getting all the nearby restaurants and filtering out the gas stations and also 
@@ -98,7 +99,6 @@ const HomePage = ({setShowForms}) => {
             return ele;
         });
 
-        console.log(newData)
         let arrayData = []
         for (let key in newData) {
             arrayData.push(await gettingDetails(newData[key].place_id, newData[key].name));

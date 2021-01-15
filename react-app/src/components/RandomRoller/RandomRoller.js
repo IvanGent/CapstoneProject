@@ -23,10 +23,11 @@ function RandomRoller({ restaurants }) {
     const [checks, setChecks] = useState(new Array(res.length).fill('checked'));
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
+    const [currRes, setCurrRes] = useState({})
     const [logo, setLogo] = useState('');
     const [name, setName] = useState('');
     const [showReroll, setShowReroll] = useState(false);
-
+    const user = localStorage.getItem('userId')
 
     useEffect(() => {
         console.log(res)
@@ -63,8 +64,9 @@ function RandomRoller({ restaurants }) {
             if (num === roller.length - 1) {
                 num = 0;
             }
-            setLogo(roller[num].logo)
-            setName(roller[num].name)
+            setCurrRes(roller[num])
+            // setLogo(roller[num].logo)
+            // setName(roller[num].name)
             num+=1
         }, 100);
 
@@ -82,13 +84,27 @@ function RandomRoller({ restaurants }) {
         Random(resPicked)
     }
 
+    const handleAddRes = async () => {
+        const res = await fetch(`/api/visited/`, {
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "res_id": currRes.id,
+                "user_id": user
+            })
+        })
+        const result = await res.json()
+        console.log(result)
+    }
+
     return (
         <div className='randomRollerCont'>
             {showSelect ? (
             <form onSubmit={handleSelection}>
                 <fieldset>
                 {res.map((ele, i) => {
-                    console.log(res);
                     return (
                         <div key={i} className='mainHolder'>
                             <div className='labels'>
@@ -113,11 +129,14 @@ function RandomRoller({ restaurants }) {
             ) : (
                 <div className='randomCont'>
                     <div className='randomSelect'>
-                        <img src={logo} alt='logo' />
-                        <h5>{name}</h5>
+                        <img src={currRes.logo} alt='logo' />
+                        <h5>{currRes.name}</h5>
                     </div>
                     {showReroll ? (
-                    <button onClick={handleReRoll} >Reroll</button>
+                        <>
+                        <button onClick={handleReRoll} >Reroll</button>
+                        <button onClick={handleAddRes} >Accept</button>
+                        </>
                     ) : null }
                 </div>
             )}
