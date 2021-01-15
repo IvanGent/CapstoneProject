@@ -3,11 +3,36 @@ import RandomRoller from '../RandomRoller/RandomRoller';
 // import { NavLink } from 'react-router-dom';
 import './HomePage.css'
 // import RestaurantImage from '../../images/Restaurant.png'
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+    },
+}));
+
+export function CircularIndeterminate() {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.root}>
+            {/* <CircularProgress /> */}
+            <CircularProgress color="secondary" />
+        </div>
+    );
+}
 
 const HomePage = () => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
+    const [showLoader, setShowLoader] = useState(false);
+
     
 // Getting the website for every place found to get the logo.
     const gettingDetails = async (placeId, name) => {
@@ -16,45 +41,26 @@ const HomePage = () => {
         if ('errors' in result2) {
             const res = await fetch(`/api/restaurants/details/${placeId}`)
             const {result} = await res.json()
-            console.log(result)
             if(result.website) {
                 let web = result.website.split('.')
                 for (let i = 0; i < web.length; i++) {
                     if (web[i].startsWith('com')) {
-                        console.log(web)
                         result.logo = '//logo.clearbit.com/' + web[i - 1] + '.com'
-                        console.log(result);
-                        console.log('LOGO SET UP')
-                        console.log(`https:${result.logo}`)
-                        const logoRes = await fetch(`http:${result.logo}`, {
-                            mode: 'no-cors',
-                            method: "GET"
-                        })
-                        console.log(logoRes)
-                        if (!logoRes.ok) {
-                            console.log('NO ZONE')
+                        const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
+                        const data = await logoRes.json();
+                        if (!data.length) {
+                            // console.log('NO ZONE')
                             result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
                         }
-                        console.log('AFTER THE LOGO')
-                        console.log(logoRes.ok);
-                        console.log("CHECKING RES")
-                        console.log(result.logo)
                     }
                 }
-                // console.log("HIT THIS TOO")
-                // result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
             } else {
                 result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
 
             }
-            // console.log('HERE')
-            console.log(result.name)
-            console.log(result.logo)
             await addingRestaurant(result.name, result.logo)
-            console.log('HERE AFTER')
             return result
         }
-        // console.log(result2)
         return result2
     }
 
@@ -103,6 +109,7 @@ const HomePage = () => {
     
 // Handling the current location with an api call to googles geolocation api.
     const handleClick = async () => {
+        setShowLoader(true)
             const coords = await fetch('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB0kFjSrYYNIkFvEDGcn4RaFgLm-HsXStc', {
                 method: "POST"
             })
@@ -117,7 +124,9 @@ const HomePage = () => {
 // Getting latitude and longitude for a zipcode entry if current location doesn't want to be used.
     const handleZipCode = async (e) => {
         e.preventDefault()
+
         if (zipcode.length > 4) {
+            setShowLoader(true);
             const coords = await fetch(`/api/restaurants/${zipcode}`)
             const { results } = await coords.json()
             await gettingResturants(results[0].geometry.location.lat, results[0].geometry.location.lng)
@@ -139,22 +148,30 @@ const HomePage = () => {
                 null
             )}
             <div>
+            
             {data.length ? (
                     <RandomRoller restaurants={data} />
             ): (
-                <div className='choices'>
-                    <strong onClick={handleClick}>Use current location?</strong>
-                    <h5>OR</h5>
-                    <form onSubmit={handleZipCode}>
-                        <label>use zipcode</label>
-                        <input 
-                        type='numbers'
-                        placeholder='Zipcode'
-                        onChange={updateZipCode}
-                        ></input>
-                        <button type='submit'>Submit</button>
-                    </form>
+                <div>
+                    {!showLoader ? (
+                    <div className='choices'>
+                        <strong onClick={handleClick}>Use current location?</strong>
+                        <h5>OR</h5>
+                        <form onSubmit={handleZipCode}>
+                            <label>use zipcode</label>
+                            <input 
+                            type='numbers'
+                            placeholder='Zipcode'
+                            onChange={updateZipCode}
+                            ></input>
+                            <button type='submit'>Submit</button>
+                        </form>
+                    </div>
+                    ): (
+                        <CircularIndeterminate />
+                    )}
                 </div>
+                
             )}
             </div>
         </div>
