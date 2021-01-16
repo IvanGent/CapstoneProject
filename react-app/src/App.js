@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+// import LoginForm from "./components/auth/LoginForm";
+// import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 // import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
-import BackgroundImage from './components/HomePage/back.jpg';
-import Main from './images/mainPage.jpg';
+// import BackgroundImage from './components/HomePage/back.jpg';
+// import Main from './images/mainPage.jpg';
 import Forms from "./components/auth/Forms";
 
 const OpenModalButton = styled(motion.button)`
