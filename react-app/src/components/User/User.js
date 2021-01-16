@@ -1,127 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import styled from "styled-components";
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import {Tabs, Tab, Typography, Box, duration} from '@material-ui/core';
+import VerticalTabs from '../Tabs/Tabs'
 import './User.css'
 
-const FriendButton = motion.button
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    height: 600,
-    marginTop: 100,
-  },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
-  },
-}));
-
-function VerticalTabs() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const TabsInfo = {
-    visible: {
-      y: 0,
-      transition: {
-        delay: 2
-      }
-    },
-    hidden: {
-      y: -50
-    }
-  }
-
-  return (
-    <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
-      >
-        <Tab label="Previous Restaurants" {...a11yProps(0)} />
-        <Tab label="Friends" {...a11yProps(1)} />
-        {/* <Tab label="Item Three" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} /> */}
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        Item One 
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel> */}
-    </div>
-  );
-}
-// const 
 
 function User() {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
+  const [visitedRestaurants, setVisitedRestaurants] = useState([]);
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -135,9 +22,12 @@ function User() {
       const user = await response.json();
       console.log(user)
       setUser(user);
+      // setVisitedRestaurants(user.visitedRestaurants)
       user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
+      // console.log(user.visitedRestaurants)
+      // console.log(user.visitedRestaurants)
     })();
-    console.log(user)
+  
   }, [userId]);
 
   if (!user) {
@@ -168,7 +58,7 @@ function User() {
       }
     },
     hidden: {
-      width: 0
+      width: 0,
     }
   }
 
