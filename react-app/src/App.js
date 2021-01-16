@@ -6,7 +6,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 // import ProtectedRoute from "./components/auth/ProtectedRoute";
-import User from "./components/User";
+import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
 import BackgroundImage from './components/HomePage/back.jpg';

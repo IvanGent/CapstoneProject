@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import styled from "styled-components";
+
 import './User.css'
+
 
 // const 
 
 function User() {
   const [user, setUser] = useState({});
+  const [avatar, setAvatar] = useState();
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -21,6 +24,7 @@ function User() {
       const user = await response.json();
       console.log(user)
       setUser(user);
+      user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
     })();
     console.log(user)
   }, [userId]);
@@ -30,17 +34,25 @@ function User() {
   }
 
   return (
-    <ul className='profile'>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
+    <div className='profile'>
+      <div className='profileInfo'>
+          <img src={avatar} alt='avatar' />
+        <ul className='userInfo'>
+          <li>
+            <strong>Username:</strong> {user.username}
+          </li>
+          <li>
+            <strong>Name:</strong> {user.first_name}
+          </li>
+          <li>
+            <strong>Email:</strong> {user.email}
+          </li>
+        </ul>
+      </div>
+      <div>
+        
+      </div>
+    </div>
   );
 }
 export default User;

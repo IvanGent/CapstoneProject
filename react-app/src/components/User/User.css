@@ -1,0 +1,28 @@
+.profile{
+    background-color: blue;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.profileInfo {
+    background-color: slateblue;
+    
+}
+
+.profileInfo li {
+    list-style-type: none;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.profileInfo img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    /* border: thin solid #113311; */
+    box-shadow: 10px 6px 8px 3px rgba(0, 0, 0, 0.6);
+}
