@@ -1,0 +1,14 @@
+.listing li {
+ list-style-type: none;
+ font-size: 20px;
+ padding: 5px 20px;
+ /* background-color: purple; */
+}
+
+.listing li img {
+    margin-right: 20px;
+}
+
+.listing li span {
+    margin-left: 20px;
+}

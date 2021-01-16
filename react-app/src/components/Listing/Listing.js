@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { AnimatePresence, motion } from 'framer-motion'
+import './Listing.css'
 
 const liInfo = {
     visible: (i) => ({
         opacity: 1,
         y: 0,
         transition: {
-            delay: i * 0.5,
+            delay: i * .07,
         }
     }),
     hidden: {
@@ -21,8 +22,10 @@ const liInfo = {
 }
 
 
-function Friends({title, list, show, setShow  }) {
+function Listing({title, show, setShow  }) {
     const [res, setRes] = useState([])
+    const [dates, setDates] = useState([]);
+    const [friends, setFriends] = useState([])
     const { userId } = useParams()
 
     useEffect(() => {
@@ -31,28 +34,48 @@ function Friends({title, list, show, setShow  }) {
             const user = await response.json();
             console.log(user)
             // console.log()
+            setFriends(user.Friends)
+            let newDate;
+            user.visitedRestaurants.forEach((ele) => {
+                console.log(ele)
+                newDate = ele.created_at.split(' ').splice(0, 4).join(' ')
+                if (!dates.includes(newDate)){
+                    console.log('here')
+                    console.log(dates)
+                    setDates([...dates, newDate])
+                }
+            })
             setRes(user.visitedRestaurants)
+            console.log(dates)
+            // console.log(user.visitedRestaurants)
         })()
-        console.log(ReadableStream)
+        // console.log(ReadableStream)
     }, [res.length])
 
     return (
-        <>
+        <div className='listing'>
         {show ? (
             <AnimatePresence>
-            <motion.div>
-                <h1>{title}</h1>
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
+                {dates.map((ele) => {
+                    <div>{ele}this is working</div>
+                })}
+                <ul>
                 {res.map((ele, i) => (
                     <motion.li
                       variants={liInfo}
                       initial='hidden'
                       animate='visible'
+                      custom={i}
                       exit='exit'
                       key={ele.id}
                     >
-                        {ele.restaurant.name}
+                        <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2>
+                        <img src={ele.restaurant.logo} />
+                        - <span>{ele.restaurant.name}</span>
                     </motion.li>
                 ))}
+                </ul>
             </motion.div>
             </AnimatePresence>
         ) : (
@@ -66,8 +89,8 @@ function Friends({title, list, show, setShow  }) {
             </motion.div>
             </AnimatePresence>
         )}
-        </>
+        </div>
     )
 }
 
-export default Friends
+export default Listing
