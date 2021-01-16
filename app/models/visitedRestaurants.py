@@ -16,7 +16,8 @@ class VisitedRestaurant(db.Model):
             "id": self.id,
             "res_id": self.res_id,
             "user_id": self.user_id,
-            "created_at": self.created_at
+            "created_at": self.created_at,
+            "restaurant": self.restaurant.to_dict()
         }
 
     def to_joined_dict(self):
@@ -28,3 +29,4 @@ class VisitedRestaurant(db.Model):
             "user": self.user.to_dict(),
             "restaurant": self.restaruant.to_dict()
         }
+
