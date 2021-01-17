@@ -84,7 +84,15 @@ function User() {
 
         const srcEncoded = ctx.canvas.toDataURL(event.target, 'image/jpeg');
         (async() => {
-            
+            const res = fetch(`/api/users/${userId}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  "avatar": srcEncoded
+                })
+            })
         })()
       }
     }

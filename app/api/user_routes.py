@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 import requests
 import os
@@ -21,3 +21,15 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+
+@user_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def user(id):
+    try:
+        data = request.json
+        user = User.query.get(id)
+        user.avatar = data['avatar']
+        db.session.commit()
+        return {'message': 'Success'}
+    except:
+        return {'errors': 'Problem updating avatar.'}
