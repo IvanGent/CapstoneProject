@@ -59,12 +59,12 @@ function ProfileMenu({ setAuthenticated }) {
                         <li>
                             <NavLink to={`/users/${user}`} activeClassName="active">Profile</NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
                         </li>
                         <li>
                             <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
-                        </li>
+                        </li> */}
                         <li>
                             <div id='logout' onClick={onLogout}>Logout</div>
                         </li>

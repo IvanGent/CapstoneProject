@@ -9,7 +9,7 @@
 }
 
 .profileInfo {
-    background-color: slateblue;
+    /* background-color: slateblue; */
     display: flex;
     flex-direction: column;
     padding: 70px;
@@ -61,12 +61,32 @@
     box-shadow: none;
 } */
 
-#editIcon {
+.editCont {
+    width: 50px;
+    /* margin-bottom: 20px; */
+    /* background-color: purple; */
     position: absolute;
-    margin-top: 180px;
-    margin-left: 160px;
+    /* margin-top: 180px;
+    margin-left: 160px; */
+}
+
+#editIcon {
+    /* background-color: purple; */
+    position: absolute;
+    margin-top: 190px;
+    margin-left: 170px;
     box-shadow: none;
     border-radius: 0;
-    width: 50px;
-    height: auto;
+    width: 25px;
+    height: 25px;
+    /* z-index: -1; */
+}
+
+#newPhoto {
+    background-color: purple;
+    /* z-index: 10; */
+    width: 22px;
+    margin-top: 195px;
+    margin-left: 175px;
+    opacity: 0;
 }

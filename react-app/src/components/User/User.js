@@ -60,7 +60,7 @@ function User() {
   }
 
   const handleEdit = async () => {
-    
+
   }
 
   return (
@@ -72,13 +72,14 @@ function User() {
           animate='visible'
           className='profileInfo'>
             <img id='avatar' src={avatar} alt='avatar' />
-            <motion.img
-              src={process.env.PUBLIC_URL + '/EditIcon.png'}
-              id='editIcon'
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleEdit}
-            />
+            <div className='editCont'>
+              <img
+                src={process.env.PUBLIC_URL + '/EditIcon.png'}
+                alt='edit'
+                id='editIcon'
+              />
+              <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
+            </div>
           <motion.ul className='userInfo'>
             <li initial='hidden'
               animate='visible'>
