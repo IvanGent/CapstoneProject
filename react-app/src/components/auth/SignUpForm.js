@@ -6,9 +6,18 @@ import { signUp } from '../../services/auth';
 import Forms from './Forms'
 import './SignUpForm.css';
 
-const background ={
-  visible: { opacity: 1},
-  hidden: { opacity: 0}
+const background = {
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: .5,
+    }
+  },
+  hidden: {
+    opacity: 0,
+    x: -1100,
+  }
 }
 
 const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms}) => {
@@ -81,7 +90,9 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
         <motion.div className='signupModal'
           variants={background}
           initial='hidden'
-          animate='visible'>
+          animate='visible'
+          exit={{ y: -1100, opacity: 0}}
+          >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
             <div>

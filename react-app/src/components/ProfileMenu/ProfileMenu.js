@@ -51,11 +51,20 @@ function ProfileMenu({ setAuthenticated }) {
 
     return (
         <div className='profileMenu'>
-            <div onClick={openMenu}>Profile</div>
+            {/* <div onClick={openMenu}>Profile</div> */}
+            <AnimatePresence>
+                <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.8 }}
+                    src={process.env.PUBLIC_URL + '/NavProfile.png'}
+                    onClick={openMenu}
+                    className='NavImg'
+                />
+            </AnimatePresence>
             {showMenu && (
                 <AnimatePresence>
                     {/* <ul className={`${fade}`}> */}
-                    <Menu initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0.5}} className='innerProfile'>
+                    <Menu initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className='innerProfile'>
                         <li>
                             <NavLink to={`/users/${user}`} activeClassName="active">Profile</NavLink>
                         </li>

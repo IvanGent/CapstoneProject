@@ -1,31 +1,19 @@
 
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import Forms from '../auth/Forms';
 import './NavBar.css'
 
+
 const NavBar = ({ authenticated, setAuthenticated, setShowButton, showLogin, setShowLogin, showSignUp, setShowSignUp, showForms, setShowForms}) => {
   const [user, setUser] = useState("");
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    // let user = localStorage.getItem('userId');
-    // setUser(user);
-  }, [])
+  
 
   useEffect(() => {
     setUser(localStorage.getItem('userId'))
-  })
+  }, [])
 
-  // const handleClick = () => {
-  //   show ? setShow(false) : setShow(true);
-  //   return show ? (
-  //   <ProfileMenu user={user} setAuthenticated={setAuthenticated} />
-  //   ) 
-  //     : null
-  // }
 
   const theStart = () => {
     setShowButton(false)

@@ -12,3 +12,11 @@
 #logout {
     cursor: pointer;
 }
+
+.NavImg {
+    background-color: whitesmoke;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    /* border: thin white solid */
+}

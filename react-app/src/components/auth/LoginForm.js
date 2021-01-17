@@ -9,8 +9,17 @@ import HomePage from "../HomePage/HomePage";
 
 
 const background = {
-  visible: { opacity: 1},
-  hidden: { opacity: 0}
+  visible: {
+     opacity: 1,
+     x: 0,
+     transition: {
+       duration: .5,
+     }
+    },
+  hidden: { 
+    opacity: 0,
+    x: -1100,
+  }
 }
 
 
@@ -73,6 +82,7 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
             variants={background}
             initial='hidden'
             animate='visible'
+            exit={{ y: -1100, opacity: 0}}
           >
             <form className='loginForm' onSubmit={onLogin}>
               <div className='innerLogin'>
