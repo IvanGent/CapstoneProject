@@ -13,7 +13,8 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
 
   visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='user', lazy=True, cascade="all, delete-orphan")
-  # activities = db.relationship('Activity', back_populates='user', lazy=True)
+
+  # friends = db.relationship("Friend", back_populates='user', 'senderId' )
 
   @property
   def password(self):

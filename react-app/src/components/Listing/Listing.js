@@ -57,9 +57,9 @@ function Listing({title, show, setShow  }) {
         {show ? (
             <AnimatePresence>
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
-                {dates.map((ele) => {
+                {/* {dates.map((ele) => {
                     <div>{ele}this is working</div>
-                })}
+                })} */}
                 <ul>
                 {res.map((ele, i) => (
                     <motion.li
@@ -70,7 +70,7 @@ function Listing({title, show, setShow  }) {
                       exit='exit'
                       key={ele.id}
                     >
-                        <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2>
+                        {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
                         <img src={ele.restaurant.logo} />
                         - <span>{ele.restaurant.name}</span>
                     </motion.li>
