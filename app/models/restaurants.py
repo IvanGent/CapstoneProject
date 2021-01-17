@@ -7,7 +7,7 @@ class Restaurant(db.Model):
     name = db.Column(db.String(255), nullable = False)
     logo = db.Column(db.Text, nullable = True)
 
-    visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='restaurant')
+    visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='restaurant', lazy=True)
 
     
 

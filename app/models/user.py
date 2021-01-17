@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
 
   visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='user', lazy=True, cascade="all, delete-orphan")
-
+  favsList = db.relationship('FavList', backref='favsLists', lazy=True)
   # friends = db.relationship("Friend", back_populates='user', 'senderId' )
 
   @property
@@ -37,5 +37,6 @@ class User(db.Model, UserMixin):
       "first_name": self.first_name,
       "avatar": self.avatar,
       "email": self.email,
-      "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant]
+      "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
+      "favsList": [fav.to_dict() for fav in self.favsList]
     }
