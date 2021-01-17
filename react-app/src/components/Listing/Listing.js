@@ -22,10 +22,11 @@ const liInfo = {
 }
 
 
-function Listing({title, show, setShow  }) {
-    const [res, setRes] = useState([])
-    const [dates, setDates] = useState([]);
-    const [friends, setFriends] = useState([])
+function Listing({ showTab1, showTab2  }) {
+    const [res, setRes] = useState([]);
+    // const [dates, setDates] = useState([]);
+    const [favs, setFavs] = useState([]);
+
     const { userId } = useParams()
 
     useEffect(() => {
@@ -33,62 +34,89 @@ function Listing({title, show, setShow  }) {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
             console.log(user)
-            // console.log()
-            setFriends(user.Friends)
-            let newDate;
-            user.visitedRestaurants.forEach((ele) => {
-                console.log(ele)
-                newDate = ele.created_at.split(' ').splice(0, 4).join(' ')
-                if (!dates.includes(newDate)){
-                    console.log('here')
-                    console.log(dates)
-                    setDates([...dates, newDate])
-                }
-            })
+            setFavs(user.favsList)
             setRes(user.visitedRestaurants)
-            console.log(dates)
-            // console.log(user.visitedRestaurants)
         })()
-        // console.log(ReadableStream)
     }, [res.length])
 
     return (
         <div className='listing'>
-        {show ? (
-            <AnimatePresence>
-            <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
-                {/* {dates.map((ele) => {
-                    <div>{ele}this is working</div>
-                })} */}
-                <ul>
-                {res.map((ele, i) => (
-                    <motion.li
-                      variants={liInfo}
-                      initial='hidden'
-                      animate='visible'
-                      custom={i}
-                      exit='exit'
-                      key={ele.id}
-                    >
-                        {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
-                        <img src={ele.restaurant.logo} />
-                        - <span>{ele.restaurant.name}</span>
-                    </motion.li>
-                ))}
-                </ul>
-            </motion.div>
-            </AnimatePresence>
-        ) : (
-            <AnimatePresence>
-            <motion.div 
-              initial={{opacity: 0}}
-              animate={{opacity: 1}}
-              exit={{opacity: 0}}
-            >
-                You don't have any visited restaurants
-            </motion.div>
-            </AnimatePresence>
-        )}
+            {showTab1 ? (
+                <div>
+                    {res.length ? (
+                        <AnimatePresence>
+                        <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
+                            {/* {dates.map((ele) => {
+                                <div>{ele}this is working</div>
+                            })} */}
+                            <ul>
+                            {res.map((ele, i) => (
+                                // setShowTab2(false)
+                                <motion.li
+                                  variants={liInfo}
+                                  initial='hidden'
+                                  animate='visible'
+                                  custom={i}
+                                  exit='exit'
+                                  key={ele.id}
+                                >
+                                    {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
+                                    <img src={ele.restaurant.logo} alt='logo' />
+                                    - <span>{ele.restaurant.name}</span>
+                                </motion.li>
+                            ))}
+                            </ul>
+                        </motion.div>
+                        </AnimatePresence>
+                    ) : (
+                        <AnimatePresence>
+                        <motion.div 
+                          initial={{opacity: 0}}
+                          animate={{opacity: 1}}
+                          exit={{opacity: 0}}
+                        >
+                            You don't have any visited restaurants
+                        </motion.div>
+                        </AnimatePresence>
+                    )}
+                </div>
+            ) : null }
+            {showTab2 ? (
+                <div>
+                {favs.length ? (
+                    <AnimatePresence>
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                            <ul>
+                                {favs.map((ele, i) => (
+                                    <motion.li
+                                        variants={liInfo}
+                                        initial='hidden'
+                                        animate='visible'
+                                        custom={i}
+                                        exit='exit'
+                                        key={ele.id}
+                                    >
+                                        {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
+                                        <img src={ele.restaurant.logo} alt='logo' />
+                                        - <span>{ele.restaurant.name}</span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    </AnimatePresence>
+                ) : (
+                    <AnimatePresence>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            No Favorites currently
+                        </motion.div>
+                    </AnimatePresence>
+                )}
+                </div>
+            ): null }
         </div>
     )
 }

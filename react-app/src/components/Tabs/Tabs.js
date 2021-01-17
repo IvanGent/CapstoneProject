@@ -54,10 +54,18 @@ const useStyles = makeStyles((theme) => ({
 function VerticalTabs() {
     const classes = useStyles();
     const [value, setValue] = useState(0);
-    const [showVisited, setShowVisited] = useState(true);
+    const [showTab1, setShowTab1] = useState(true);
+    const [showTab2, setShowTab2] = useState(false);
 
     const handleChange = (event, newValue) => {
-        // console.log(newValue)
+        console.log(newValue)
+        if (newValue === 0) {
+            setShowTab1(true)
+            setShowTab2(false)
+        } else {
+            setShowTab1(false)
+            setShowTab2(true)
+        }
         setValue(newValue);
     };
 
@@ -72,7 +80,7 @@ function VerticalTabs() {
                 className={classes.tabs}
             >
                 <Tab label="Previous Restaurants" {...a11yProps(0)} />
-                <Tab label="Friends" {...a11yProps(1)} />
+                <Tab label="Favorites" {...a11yProps(1)} />
                 {/* <Tab label="Item Three" {...a11yProps(2)} />
         <Tab label="Item Four" {...a11yProps(3)} />
         <Tab label="Item Five" {...a11yProps(4)} />
@@ -82,7 +90,7 @@ function VerticalTabs() {
             <TabPanel value={value} index={0}>
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-                        <Listing title='Visited Restaurants' show={showVisited} setShow={setShowVisited} />
+                        <Listing showTab1={showTab1} />
                     </motion.div>
                 </AnimatePresence>
                 {/* Item One  */}
@@ -90,7 +98,7 @@ function VerticalTabs() {
             <TabPanel value={value} index={1}>
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-                        <Listing title='' show={showVisited} setShow={setShowVisited} />
+                        <Listing showTab2={showTab2} />
                     </motion.div>
                 </AnimatePresence>
                 {/* Item Two */}
