@@ -38,6 +38,7 @@ function User() {
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
+  const currUser = localStorage.getItem('userId')
 
   useEffect(() => {
     if (!userId) {
@@ -46,7 +47,7 @@ function User() {
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
-      console.log(user)
+      // console.log(user)
       setUser(user);
       // setVisitedRestaurants(user.visitedRestaurants)
       user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
@@ -93,6 +94,9 @@ function User() {
                   "avatar": srcEncoded
                 })
             })
+            // const results = await res.json()
+            // console.log(results)
+            setAvatar(srcEncoded)
         })()
       }
     }
@@ -108,6 +112,7 @@ function User() {
           animate='visible'
           className='profileInfo'>
             <img id='avatar' src={avatar} alt='avatar' />
+            {currUser === userId ? (
             <div className='editCont'>
               <img
                 src={process.env.PUBLIC_URL + '/EditIcon.png'}
@@ -116,6 +121,7 @@ function User() {
               />
               <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
             </div>
+            ) : null}
           <motion.ul className='userInfo'>
             <li initial='hidden'
               animate='visible'>

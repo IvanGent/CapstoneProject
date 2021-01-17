@@ -1,4 +1,5 @@
 import os
+import logging
 from flask import Flask, render_template, request, session
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -17,6 +18,8 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 # Setup login manager
 login = LoginManager(app)

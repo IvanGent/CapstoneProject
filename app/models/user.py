@@ -16,6 +16,11 @@ class User(db.Model, UserMixin):
   favsList = db.relationship('FavList', backref='favsLists', lazy=True)
   # friends = db.relationship("Friend", back_populates='user', 'senderId' )
 
+
+  def __repr__(self):
+    return '<User %r>' % self.username
+
+
   @property
   def password(self):
     return self.hashed_password
