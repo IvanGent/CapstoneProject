@@ -1,5 +1,5 @@
 .profile{
-    font-family: "Staatliches";
+    font-family: "Staatliches", cursive;;
     /* background-color: blue; */
     width: 100vw;
     height: 100vh;
@@ -7,6 +7,18 @@
     display: flex;
     justify-content: space-around;
 
+}
+ 
+.profile li {
+    font-family: "Lato", sans-serif;;
+}
+
+.profile strong {
+    font-family: "Staatliches", cursive;;
+}
+
+.MuiTab-wrapper {
+    font-family: "Staatliches", cursive;;
 }
 
 .profileInfo {
