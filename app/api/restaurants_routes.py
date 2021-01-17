@@ -42,18 +42,20 @@ def get_a_restaurant(name):
         return res_json
     except:
         # error = str(e.__dict__['orig'])
-        return {'errors': ['An error occured while retrieving the data']}
+        return {'errors': ['An error occurred while retrieving the data']}
 
 
 # adding a restaurant to the database.
 @restaurant_routes.route('/single', methods=["POST"])
 def adding_restaurant():
-    data = request.json
-    res = Restaurant(
-        name=data['name'],
-        logo=data['logo']
-    )
-    db.session.add(res)
-    db.session.commit()
-    return jsonify(res.to_dict())
-    # return {'message': 'Success'}, 201
+    try:
+        data = request.json
+        res = Restaurant(
+            name=data['name'],
+            logo=data['logo']
+        )
+        db.session.add(res)
+        db.session.commit()
+        return jsonify(res.to_dict())
+    except:
+        return {'errors': ['An error occurred while posting the data']}
