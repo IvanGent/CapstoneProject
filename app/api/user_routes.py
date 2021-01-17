@@ -27,21 +27,9 @@ def user(id):
 def update_user(id):
     try:
         data = request.json
-        print('THIS IS PRINTING')
-        print(data)
         user = User.query.get(id)
-        # user = user.to_dict()
         user.avatar = data['avatar']
-        print('LINE 35: THIS IS THE USER', user.to_dict())
-        print('LINE 36: THIS IS A TEST LINE TO SEE')
-        # User.query.filter(User.id == id). \
-        #     update({"avatar": data['avatar'], synchronize_session='fetch'})
-        # db.session.add(user)
-        # db.session.commit()
-        userCheck = User.query.get(id)
         db.session.commit()
-        print("LINE 42: THIS IS THE USER AFTER THE COMMIT", userCheck.to_dict())
         return {'message': 'Success'}
     except Exception as e:
-        print(str(e))
         return {'errors': 'Problem updating avatar.'}

@@ -94,8 +94,8 @@ function User() {
                   "avatar": srcEncoded
                 })
             })
-            // const results = await res.json()
-            // console.log(results)
+            const results = await res.json()
+            console.log(results)
             setAvatar(srcEncoded)
         })()
       }
@@ -120,6 +120,7 @@ function User() {
                 id='editIcon'
               />
               <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
+              Profile Photo
             </div>
             ) : null}
           <motion.ul className='userInfo'>

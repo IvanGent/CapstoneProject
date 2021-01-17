@@ -42,19 +42,19 @@
 }
 
 .editCont {
-    width: 50px;
-    /* margin-bottom: 20px; */
-    /* background-color: purple; */
+    display: flex;
+    justify-items: end;
+    flex-direction: column;
+    align-items: flex-end;
     position: absolute;
-    /* margin-top: 180px;
-    margin-left: 160px; */
+    width: 180px;
 }
 
 #editIcon {
     /* background-color: purple; */
     position: absolute;
     margin-top: 190px;
-    margin-left: 170px;
+    margin-left: 100px;
     box-shadow: none;
     border-radius: 0;
     width: 25px;
@@ -69,4 +69,8 @@
     margin-top: 195px;
     margin-left: 175px;
     opacity: 0;
+}
+
+.userInfo {
+    margin-top: 30px;
 }
