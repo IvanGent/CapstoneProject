@@ -15,5 +15,5 @@ class FavList(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "res_id": self.res_id,
-            "restaurant": self.restaruant.to_dict()
+            "restaurant": self.restaurant.to_dict()
         }
