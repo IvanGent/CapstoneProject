@@ -33,6 +33,7 @@ const Tabs = {
 function User() {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
+  const [errors, setErrors] = useState([]);
   // const [visitedRestaurants, setVisitedRestaurants] = useState([]);
   // Notice we use useParams here instead of getting the params
   // From props.
@@ -59,8 +60,35 @@ function User() {
     return null;
   }
 
-  const handleEdit = async () => {
+  const handleEdit = (e) => {
+    const reader = new FileReader()
+    let file = e.target.files[0]
+    if(!file.type.match(/image.*/)) {
+      setErrors(['Needs to be an image']);
+      return;
+    }
 
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result
+
+      img.onload = async function(event) {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 200;
+        const scaleSize = MAX_WIDTH / event.target.width;
+        canvas.width = MAX_WIDTH;
+        canvas.height = event.target.height * scaleSize;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(event.target, 0, 0, canvas.width, canvas.height);
+
+        const srcEncoded = ctx.canvas.toDataURL(event.target, 'image/jpeg');
+        (async() => {
+            
+        })()
+      }
+    }
+    reader.readAsDataURL(file);
   }
 
   return (
