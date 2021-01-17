@@ -1,14 +1,46 @@
+/* .listing ul {
+    display: flex;
+    flex-direction: column;
+
+} */
+
 .listing li {
- list-style-type: none;
- font-size: 20px;
- padding: 5px 20px;
+    display: flex;
+    list-style-type: none;
+    font-size: 20px;
+    padding: 5px 20px;
+    width: 320px;
  /* background-color: purple; */
 }
 
+#line {
+    /* background-color: purple; */
+    /* height: 5px; */
+    display: flex;
+    align-items: center;
+    margin: 0;
+    /* margin-top: 20px; */
+} 
+
 .listing li img {
-    margin-right: 20px;
+    margin-right: 30px;
+    margin-left: 10px;
+    max-width: 128px;
+    max-height: 128px;
 }
 
 .listing li span {
-    margin-left: 20px;
+    margin-left: 30px;
+}
+
+.message {
+    /* background-color: purple; */
+    font-size: 20px;
+}
+
+.Tab {
+    display: flex;
+    justify-content: center;
+    /* background-color: red; */
+    width: 300px;
 }

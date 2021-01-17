@@ -4,6 +4,31 @@ import { AnimatePresence, motion } from "framer-motion";
 import VerticalTabs from '../Tabs/Tabs'
 import './User.css'
 
+// Framer-motion props
+const ProfileInfo = {
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: .05
+    }
+  },
+  hidden: {
+    opacity: 0,
+  }
+}
+
+const Tabs = {
+  visible: {
+    width: 700,
+    transition: {
+      delay: .025
+    }
+  },
+  hidden: {
+    width: 0,
+  }
+}
+
 
 function User() {
   const [user, setUser] = useState({});
@@ -34,32 +59,8 @@ function User() {
     return null;
   }
 
-  const handleFriend = async () => {
-
-  }
-
-  const ProfileInfo = {
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: .05
-      }
-    },
-    hidden: {
-      opacity: 0,
-    }
-  }
-
-  const Tabs = {
-    visible: {
-      width: 700,
-      transition: {
-        delay: .025
-      }
-    },
-    hidden: {
-      width: 0,
-    }
+  const handleEdit = async () => {
+    
   }
 
   return (
@@ -70,7 +71,14 @@ function User() {
           initial='hidden'
           animate='visible'
           className='profileInfo'>
-            <img src={avatar} alt='avatar' />
+            <img id='avatar' src={avatar} alt='avatar' />
+            <motion.img
+              src={process.env.PUBLIC_URL + '/EditIcon.png'}
+              id='editIcon'
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleEdit}
+            />
           <motion.ul className='userInfo'>
             <li initial='hidden'
               animate='visible'>
@@ -80,12 +88,13 @@ function User() {
               <strong>Name:</strong> {user.first_name}
             </li>
           </motion.ul>
-          {userId === localStorage.getItem('userId') ? null : (
+          {/* For adding a friend */}
+          {/* {userId === localStorage.getItem('userId') ? null : (
             <div onClick={handleFriend} className='addFriend'>
               <img src={process.env.PUBLIC_URL + '/AddFriend.png'} />
               Add Friend
             </div>
-          )}
+          )} */}
         </motion.div>
       <motion.div 
         variants={Tabs}

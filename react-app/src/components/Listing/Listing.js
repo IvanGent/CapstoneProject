@@ -42,7 +42,7 @@ function Listing({ showTab1, showTab2  }) {
     return (
         <div className='listing'>
             {showTab1 ? (
-                <div>
+                <div className='Tab'>
                     {res.length ? (
                         <AnimatePresence>
                         <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
@@ -62,7 +62,7 @@ function Listing({ showTab1, showTab2  }) {
                                 >
                                     {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
                                     <img src={ele.restaurant.logo} alt='logo' />
-                                    - <span>{ele.restaurant.name}</span>
+                                    <span id='line'>-</span><span>{ele.restaurant.name}</span>
                                 </motion.li>
                             ))}
                             </ul>
@@ -74,15 +74,16 @@ function Listing({ showTab1, showTab2  }) {
                           initial={{opacity: 0}}
                           animate={{opacity: 1}}
                           exit={{opacity: 0}}
+                          className='message'
                         >
-                            You don't have any visited restaurants
+                            No Visited Restaurants
                         </motion.div>
                         </AnimatePresence>
                     )}
                 </div>
             ) : null }
             {showTab2 ? (
-                <div>
+                <div className='Tab'>
                 {favs.length ? (
                     <AnimatePresence>
                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -110,8 +111,9 @@ function Listing({ showTab1, showTab2  }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
+                            className='message'
                         >
-                            No Favorites currently
+                            No Favorites
                         </motion.div>
                     </AnimatePresence>
                 )}
