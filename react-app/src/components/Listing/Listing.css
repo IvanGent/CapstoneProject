@@ -4,7 +4,7 @@
     list-style-type: none;
     font-size: 20px;
     padding: 5px 20px;
-    /* width: 480px; */
+    width: 480px;
     min-height: 140px;
     overflow: scroll;
     /* background-color: purple; */
