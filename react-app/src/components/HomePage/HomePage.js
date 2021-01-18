@@ -3,6 +3,7 @@ import RandomRoller from '../RandomRoller/RandomRoller';
 import './HomePage.css'
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { AnimatePresence, motion } from 'framer-motion';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -145,9 +146,11 @@ const HomePage = () => {
             ): (
                 <div className='homeCont'>
                     {!showLoader ? (
+                    <>
+                    <h2>Choose One To Search For Restaurants</h2>
                     <div className='choices'>
-                        <strong onClick={handleClick}>Use current location?</strong>
-                        <h5>OR</h5>
+                        <strong onClick={handleClick}>{'Use current location?'}</strong>
+                        {/* <h5>OR</h5> */}
                         <div>
                             <form onSubmit={handleZipCode}>
                                 {zipError ? (
@@ -155,16 +158,26 @@ const HomePage = () => {
                                 ) : (
                                     null
                                 )}
-                                <label>use zipcode</label>
+                                <label>use zipcode:</label>
                                 <input 
                                 type='numbers'
                                 placeholder='Zipcode'
                                 onChange={updateZipCode}
                                 ></input>
-                                <button type='submit'>Submit</button>
+                                <AnimatePresence>
+                                    <motion.button
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.3 }}
+                                        type='submit'
+                                    >
+                                        Submit
+                                    </motion.button>
+                                </AnimatePresence>
+                                {/* <button type='submit'>Submit</button> */}
                             </form>
                         </div>
                     </div>
+                    </>
                     ): (
                         <CircularIndeterminate />
                     )}
