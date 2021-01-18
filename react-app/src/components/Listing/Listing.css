@@ -5,9 +5,23 @@
     font-size: 20px;
     padding: 5px 20px;
     /* width: 480px; */
-    /* max-height: 400px; */
+    min-height: 140px;
     overflow: scroll;
     /* background-color: purple; */
+}
+
+.innerLi {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+}
+
+.innerLi div{
+    display: flex;
+    align-items: center;
+    width: 168px;
 }
 
 #line {
@@ -22,9 +36,9 @@
 .listing li img {
     margin-right: 30px;
     margin-left: 10px;
-    max-width: 128px;
-    max-height: 128px;
-    opacity: 1;
+    /* max-width: 128px;
+    max-height: 128px; */
+    /* opacity: 1; */
 }
 
 .listing li span {
@@ -58,6 +72,7 @@
 .makeStyles-root-1 {
     border-radius: 20px;
     background-color: rgba(0, 0, 0, .1);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
     opacity: .8;
 }
 
@@ -65,6 +80,7 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: rgba(0, 0, 0, .1);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
 }
 
 .MuiBox-root {

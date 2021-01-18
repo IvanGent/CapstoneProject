@@ -64,7 +64,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
             {showMenu && (
                 <AnimatePresence>
                     {/* <ul className={`${fade}`}> */}
-                    <Menu initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className='innerProfile'>
+                    <motion.Menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, y: -20}} className='innerProfileMenu'>
                         <li>
                             <NavLink to={`/users/${user}`} activeClassName="active">Profile</NavLink>
                         </li>
@@ -77,7 +77,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
                         <li>
                             <div id='logout' onClick={onLogout}>Logout</div>
                         </li>
-                    </Menu>
+                    </motion.Menu>
                     {/* </ul> */}
                 </AnimatePresence>
             )}

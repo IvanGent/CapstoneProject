@@ -54,8 +54,12 @@ function Listing({ showTab1, showTab2  }) {
                                   exit='exit'
                                   key={ele.id}
                                 >
-                                    <img src={ele.restaurant.logo} alt='logo' />
+                                <div className='innerLi'>
+                                    <div>
+                                        <img src={ele.restaurant.logo} alt='logo' />
+                                    </div>
                                     <span id='line'>-</span><span>{ele.restaurant.name}</span>
+                                </div>
                                 </motion.li>
                             ))}
                             </ul>

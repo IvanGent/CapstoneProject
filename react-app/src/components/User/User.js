@@ -33,7 +33,7 @@ const Tabs = {
 function User() {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   // Notice we use useParams here instead of getting the params
   // From props.
@@ -105,7 +105,12 @@ function User() {
   return (
       <AnimatePresence>
     <div className='profile'>
-      <div className='innerProfile'>
+      <motion.div 
+        variants={ProfileInfo}
+        initial='hidden'
+        animate='visible'
+        className='innerProfile'
+      >
         <motion.div
           variants={ProfileInfo}
           initial='hidden'
@@ -132,13 +137,6 @@ function User() {
               <strong>Name:</strong> {user.first_name}
             </li>
           </motion.ul>
-          {/* For adding a friend */}
-          {/* {userId === localStorage.getItem('userId') ? null : (
-            <div onClick={handleFriend} className='addFriend'>
-              <img src={process.env.PUBLIC_URL + '/AddFriend.png'} />
-              Add Friend
-            </div>
-          )} */}
         </motion.div>
       <motion.div 
         variants={Tabs}
@@ -147,7 +145,7 @@ function User() {
         className='tabs'>
         <VerticalTabs />
       </motion.div>
-      </div>
+      </motion.div>
     </div>
       </AnimatePresence>
   );
