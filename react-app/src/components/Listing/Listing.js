@@ -33,7 +33,7 @@ function Listing({ showTab1, showTab2  }) {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
             setFavs(user.favsList)
-            setRes(user.visitedRestaurants)
+            setRes(user.visitedRestaurants.reverse())
         })()
     }, [userId])
 
