@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
-// import LogoutButton from '../auth/LogoutButton';
 
 const Menu = styled(motion.ul)`
     background-color: black;
@@ -19,7 +18,7 @@ const Menu = styled(motion.ul)`
 `;
 
 
-function ProfileMenu({ setAuthenticated }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage }) {
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
@@ -45,13 +44,13 @@ function ProfileMenu({ setAuthenticated }) {
     const onLogout = async (e) => {
         await logout();
         setAuthenticated(false);
+        setShowHomePage(false);
         localStorage.removeItem('userId')
         return <Redirect to='/' />
     };
 
     return (
         <div className='profileMenu'>
-            {/* <div onClick={openMenu}>Profile</div> */}
             <AnimatePresence>
                 <motion.img
                     whileHover={{ scale: 1.1 }}

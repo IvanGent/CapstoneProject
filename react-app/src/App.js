@@ -68,6 +68,7 @@ function App() {
         setShowLogin={setShowLogin}
         setShowSignUp={setShowSignUp}
         showSignUp={showSignUp}
+        setShowHomePage={setShowHomePage}
         />
         <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' />
       <Route path='/' exact={true} >
