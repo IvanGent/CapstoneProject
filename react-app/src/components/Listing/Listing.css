@@ -4,8 +4,10 @@
     list-style-type: none;
     font-size: 20px;
     padding: 5px 20px;
-    width: 320px;
- /* background-color: purple; */
+    /* width: 480px; */
+    /* max-height: 400px; */
+    overflow: scroll;
+    /* background-color: purple; */
 }
 
 #line {
@@ -22,10 +24,13 @@
     margin-left: 10px;
     max-width: 128px;
     max-height: 128px;
+    opacity: 1;
 }
 
 .listing li span {
     margin-left: 30px;
+    font-family: "Staatliches";
+    opacity: 1;
 }
 
 .message {
@@ -37,5 +42,36 @@
     display: flex;
     justify-content: center;
     /* background-color: red; */
-    width: 300px;
+    width: 480px;
+    max-height: 560px;
+    overflow: scroll;
+    background-color: rgba(0, 0, 0, .0);
+}
+
+.MuiTabs-scroller {
+    /* color: white; */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.makeStyles-root-1 {
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, .1);
+    opacity: .8;
+}
+
+.MuiTabs-root {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.MuiBox-root {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#vertical-tabpanel-0 {
+    background-color: rgba(0, 0, 0, .1);
+    /* background-color: red */
 }

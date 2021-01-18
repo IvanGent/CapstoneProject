@@ -72,6 +72,7 @@ function VerticalTabs() {
     return (
         <div className={classes.root}>
             <Tabs
+                id='ProTabs'
                 orientation="vertical"
                 variant="scrollable"
                 value={value}

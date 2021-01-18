@@ -33,11 +33,10 @@ function Listing({ showTab1, showTab2  }) {
         (async () => {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
-            console.log(user)
             setFavs(user.favsList)
             setRes(user.visitedRestaurants)
         })()
-    }, [res.length])
+    }, [userId])
 
     return (
         <div className='listing'>
