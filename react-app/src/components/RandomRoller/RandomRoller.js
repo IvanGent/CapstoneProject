@@ -1,21 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom'
 import './RandomRoller.css';
 import { AnimatePresence, motion} from 'framer-motion';
-import styled from "styled-components";
 
-
-const RollButton = styled(motion.button)`
-    background-color: red;
-    border: thin solid black;
-    border-radius: 50%;
-    height: 80px;
-    font-size: 24px;
-    width: 80px;
-    border: none;
-    outline: none;
-    box-shadow: 0px 0px 10px 7px gray;
-    margin-top: 40px;
-`
 
 const resLis = {
     visible: (i) => ({
@@ -58,6 +45,23 @@ const lis = {
     }
 }
 
+const RandomCont = {
+    visible: {
+        opacity: 1
+    },
+    hidden: {
+        opacity: 0
+    }
+}
+
+const shift = {
+    'visible': {
+        opacity: 1,
+    },
+    'hidden': {
+        opacity: 0,
+    },
+}
 
 function RandomRoller({ restaurants }) {
     const res = restaurants;
@@ -125,6 +129,10 @@ function RandomRoller({ restaurants }) {
         return
     }
 
+    useEffect(() => {
+
+    })
+
 
     const handleReRoll = () => {
         setShowReroll(false)
@@ -142,8 +150,9 @@ function RandomRoller({ restaurants }) {
                 "user_id": user
             })
         })
-        const result = await res.json()
-        return result;
+        await res.json()
+        return <Redirect to={`/users/${user}`} /> 
+        // return result;
     }
 
     return (
@@ -182,21 +191,47 @@ function RandomRoller({ restaurants }) {
                   animate={{ opacity: 1, transition: { duration: .5 } }}
                   whileHover={{scale: 1.2}} 
                   whileTap={{ scale: 0.8, rotate: 360 }} 
-                  type='submit'>ROLL</motion.button>
+                  type='submit'
+                  id='MainButton'
+                  >
+                    ROLL
+                  </motion.button>
             </form>
             ) : (
-                <div className='randomCont'>
-                    <div className='randomSelect'>
+                <motion.div 
+                    variants={RandomCont}
+                    initial='hidden'
+                    animate='visible'
+                    exit={{ opacity: 0 }}
+                    className='randomCont'
+                >
+                    <div className='randomSelect1'>
+                    <motion.div 
+                        variants={shift}
+                        initial='hidden'
+                        animate='visible'
+                        className='labels randomSelect'
+                    >
                         <img src={currRes.logo} alt='logo' />
                         <h5>{currRes.name}</h5>
-                    </div>
+                    </motion.div>
                     {showReroll ? (
                         <>
-                        <button onClick={handleReRoll} >Reroll</button>
-                        <button onClick={handleAddRes} >Add to Visited</button>
+                        <motion.button
+                            onClick={handleReRoll} 
+                        >
+                            Reroll
+                        </motion.button>
+                        <motion.button 
+                            variants
+                            onClick={handleAddRes} 
+                        >
+                            Add to Visited
+                        </motion.button>
                         </>
                     ) : null }
-                </div>
+                    </div>
+                </motion.div>
             )}
         </motion.div>
         </AnimatePresence>
