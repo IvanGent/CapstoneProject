@@ -44,3 +44,7 @@ nav button:target {
 .navMenu {
     margin-right: 150px;
 }
+
+nav h3 {
+    cursor: pointer;
+}

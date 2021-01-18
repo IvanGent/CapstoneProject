@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
-import styled from "styled-components";
 import { signUp } from '../../services/auth';
 import Forms from './Forms'
 import './SignUpForm.css';
@@ -11,7 +10,7 @@ const background = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: .5,
+      duration: .25,
     }
   },
   hidden: {
@@ -21,9 +20,9 @@ const background = {
 }
 
 const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms}) => {
-  const history = useHistory();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -36,7 +35,14 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
         setAuthenticated(true);
         setShowForms(false)
         localStorage.setItem("userId", user.id)
+        return <Redirect to='/' />
+      } else {
+        setErrors(user.errors);
+        console.log(user.errors)
       }
+    } else {
+      console.log(errors)
+      setErrors(['Password and Confirm Password need to match'])
     }
   };
 
@@ -70,7 +76,6 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
       showSignUp={showSignUp}
       setShowSignUp={setShowSignUp}
     />
-    // return history.push('/login')
   }
 
   if (authenticated) {
@@ -95,6 +100,11 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
+            <div className='errors'>
+              {errors.map((error, i) => (
+                <div key={i}>{error}</div>
+              ))}
+            </div>
             <div>
               {/* <label>Username</label> */}
               <input

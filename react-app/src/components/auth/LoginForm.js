@@ -13,7 +13,7 @@ const background = {
      opacity: 1,
      x: 0,
      transition: {
-       duration: .5,
+       duration: .25,
      }
     },
   hidden: { 
@@ -24,7 +24,7 @@ const background = {
 
 
 const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms}) => {
-  const history = useHistory();
+  // const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,6 +37,7 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
       setShowForms(false)
       localStorage.setItem("userId", user.id)
       // return <HomePage authenticated={authenticated} setShowForms={setShowForms} />
+      return <Redirect to='/' />
     } else {
       setErrors(user.errors);
     }
@@ -87,8 +88,10 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
             <form className='loginForm' onSubmit={onLogin}>
               <div className='innerLogin'>
               <div className='errors'>
-                {errors.map((error) => (
-                  <div>{error}</div>
+                {errors.map((error, i) => (
+                  // console.log(error)
+                  <div key={i}>{error}</div>
+                  
                 ))}
               </div>
                 {/* <label htmlFor="email">Email</label> */}
@@ -127,7 +130,7 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
         setShowLogin={setShowLogin}/>
       )} */}
     {/* </> */}
-    // </AnimatePresence>
+    </AnimatePresence>
   );
 };
 
