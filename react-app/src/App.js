@@ -37,12 +37,11 @@ function App() {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
-        setShowHomePage(true)
-
+        setShowHomePage(true);
       }
-      setLoaded(true);
-      setShowButton(true)
     })();
+    setLoaded(true);
+    setShowButton(true);
   }, []);
 
 

@@ -56,6 +56,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                 user={user} 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
+                setShowButton={setShowButton}
                 />
             </li>
           </>

@@ -18,7 +18,7 @@ const Menu = styled(motion.ul)`
 `;
 
 
-function ProfileMenu({ setAuthenticated, setShowHomePage }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
@@ -45,6 +45,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage }) {
         await logout();
         setAuthenticated(false);
         setShowHomePage(false);
+        setShowButton(true);
         localStorage.removeItem('userId')
         return <Redirect to='/' />
     };
