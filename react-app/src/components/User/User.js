@@ -136,6 +136,13 @@ function User() {
             <li>
               <strong>Name:</strong> {user.first_name}
             </li>
+            <li>
+              <motion.button
+                
+              >
+                Roll With Favorites
+              </motion.button>
+            </li>
           </motion.ul>
         </motion.div>
       <motion.div 
