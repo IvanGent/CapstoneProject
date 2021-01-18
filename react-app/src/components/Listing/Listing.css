@@ -94,3 +94,18 @@
 #vertical-tabpanel-1 {
     background-color: rgba(0, 0, 0, .1);
 }
+
+.notFav {
+}
+
+.Fav {
+
+}
+
+svg {
+    width: 25px;
+    height: 25px;
+    /* fill: red; */
+    /* color: red; */
+    /* background-color: red; */
+}
