@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RandomRoller.css';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import styled from "styled-components";
 
 
@@ -17,21 +17,48 @@ const RollButton = styled(motion.button)`
     margin-top: 40px;
 `
 
+const resLis = {
+    visible: (i) => ({
+        y: 0,
+        x: 0,
+        opacity: 1,
+        rotate: 360,
+        transition: {
+            duration: .5,
+            delay: 0.25 * i
+        }
+    }),
+    hidden: {
+        y: 500,
+        x: 500,
+        opacity: 0,
+    },
+
+}
+
+
+const lis = {
+    visible: {
+
+    },
+    hidden: {
+        
+    }
+}
+
 
 function RandomRoller({ restaurants }) {
-    const [res, setRes] = useState(restaurants);
-    const [checks, setChecks] = useState(new Array(res.length).fill('checked'));
+    const res = restaurants;
+    const checks = new Array(res.length).fill('checked');
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
-    const [logo, setLogo] = useState('');
-    const [name, setName] = useState('');
     const [showReroll, setShowReroll] = useState(false);
     const user = localStorage.getItem('userId')
 
-    useEffect(() => {
-        console.log(res)
-    }, [])
+    // useEffect(() => {
+    //     console.log(res)
+    // }, [])
 
     const handleSelection = (e) => {
         e.preventDefault()
@@ -65,8 +92,6 @@ function RandomRoller({ restaurants }) {
                 num = 0;
             }
             setCurrRes(roller[num])
-            // setLogo(roller[num].logo)
-            // setName(roller[num].name)
             num+=1
         }, 100);
 
@@ -99,18 +124,30 @@ function RandomRoller({ restaurants }) {
     }
 
     return (
-        <div className='randomRollerCont'>
+        <AnimatePresence>
+        <motion.div className='randomRollerCont'>
             {showSelect ? (
             <form onSubmit={handleSelection}>
                 <fieldset>
                 {res.map((ele, i) => {
                     return (
-                        <div key={i} className='mainHolder'>
-                            <div className='labels'>
+                        <motion.div
+                          variants={resLis}
+                          initial='hidden'
+                          animate='visible'
+                          custom={i}
+                          key={i} 
+                          className='mainHolder'
+                         >
+                            <motion.div
+                              variants={lis}
+                              
+                              className='labels'
+                             >
                                 <img src={ele.logo} alt='logo' />
                                 <h5 >{ele.name}</h5>
-                            </div>
-                            <input  
+                            </motion.div>
+                            <motion.input  
                                 type="checkbox"
                                 id={i}
                                 name={ele.name}
@@ -118,7 +155,7 @@ function RandomRoller({ restaurants }) {
                                 defaultChecked
                                 onChange={handleChecks}
                             />
-                        </div>
+                        </motion.div>
                     )
                 })}
                 </fieldset>
@@ -139,7 +176,8 @@ function RandomRoller({ restaurants }) {
                     ) : null }
                 </div>
             )}
-        </div>
+        </motion.div>
+        </AnimatePresence>
     )
 };
 
