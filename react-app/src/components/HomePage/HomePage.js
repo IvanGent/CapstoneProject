@@ -11,8 +11,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         '& > * + *': {
             marginLeft: theme.spacing(2),
+            position: 'absolute',
         },
-        marginTop: '500px'
+        // marginTop: '500px'
+        position: 'absolute',
+
     },
 }));
 
@@ -49,7 +52,6 @@ const HomePage = () => {
                         const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
                         const data = await logoRes.json();
                         if (!data.length) {
-                            // console.log('NO ZONE')
                             result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
                         }
                     }
@@ -140,14 +142,14 @@ const HomePage = () => {
 
     return (
         <div className='homepage'>
-            <div className='innerHome'>
             {data.length ? (
-                    <RandomRoller restaurants={data} />
+                <RandomRoller restaurants={data} />
             ): (
-                <div className='homeCont'>
-                    <div>
+                <div>
                     {!showLoader ? (
-                    <>
+                        <>
+                    <div className='innerHome'>
+                        <div className='homeCont'>
                     <h2>Choose One To Search For Restaurants</h2>
                     <div className='choices'>
                         <strong onClick={handleClick}>{'Use current location?'}</strong>
@@ -178,14 +180,14 @@ const HomePage = () => {
                             </form>
                         </div>
                     </div>
+                    </div>
+                    </div>
                     </>
                     ): (
                         <CircularIndeterminate />
                     )}
                     </div>
-                </div>
             )}
-            </div>
         </div>
     )
 }
