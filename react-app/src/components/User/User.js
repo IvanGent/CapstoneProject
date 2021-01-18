@@ -51,8 +51,6 @@ function User() {
       setUser(user);
       // setVisitedRestaurants(user.visitedRestaurants)
       user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
-      // console.log(user.visitedRestaurants)
-      // console.log(user.visitedRestaurants)
     })();
   
   }, [userId]);
@@ -65,7 +63,8 @@ function User() {
     const reader = new FileReader()
     let file = e.target.files[0]
     if(!file.type.match(/image.*/)) {
-      setErrors(['Needs to be an image']);
+      // setErrors(['Needs to be an image']);
+      alert('Needs To Be An Image')
       return;
     }
 
@@ -106,6 +105,7 @@ function User() {
   return (
       <AnimatePresence>
     <div className='profile'>
+      <div className='innerProfile'>
         <motion.div
           variants={ProfileInfo}
           initial='hidden'
@@ -147,6 +147,7 @@ function User() {
         className='tabs'>
         <VerticalTabs />
       </motion.div>
+      </div>
     </div>
       </AnimatePresence>
   );

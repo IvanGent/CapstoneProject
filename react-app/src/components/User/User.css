@@ -6,15 +6,34 @@
     z-index: 20;
     display: flex;
     justify-content: space-around;
+    background-color: rgba(0, 0, 0, .4);
 
+}
+
+.innerProfile {
+    display: flex;
+    justify-content: space-around;
+    /* background-color: blue; */
+    min-width: 1200px;
+    height: 800px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, .4);
+    box-shadow: rgba(0, 0, 0, .9);
 }
  
 .profile li {
-    font-family: "Lato", sans-serif;;
+    font-family: "Lato", sans-serif;
+    /* color: white */
 }
 
 .profile strong {
-    font-family: "Staatliches", cursive;;
+    font-family: "Staatliches", cursive;
+    color: gray
+}
+
+.userInfo {
+    color: white;
 }
 
 .MuiTab-wrapper {
