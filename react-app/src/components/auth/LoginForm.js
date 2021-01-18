@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { login } from "../../services/auth";
 import './LoginForm.css'
@@ -26,8 +25,16 @@ const background = {
   }
 }
 
+const LoginButton = {
+  hover: {
+    scale: 1.1
+  },
+  tap: {
+    scale: 0.8
+  }
+}
 
-const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
+const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,10 +66,15 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
     setShowSignUp(true)
   }
 
-  // if (authenticated) {
-  //   return <Redirect to="/" />;
-  // }
-
+  const LoginDemo = async (e) => {
+    e.preventDefault();
+    const user = await login('demo@aa.io', 'password')
+    setAuthenticated(true);
+    setShowLogin(false)
+    setShowForms(false)
+    setShowHomePage(true)
+    localStorage.setItem("userId", user.id)
+  }
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -103,7 +115,25 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
                   onChange={updatePassword}
                 />
               </div>
-                <button type="submit">Login</button>
+                  <motion.button
+                    variants={LoginButton}
+                    whileHover='hover'
+                    whileTap='tap'
+                    type='submit'
+                  >
+                    Login
+                  </motion.button>
+                  <motion.button
+                    variants={LoginButton}
+                    whileHover='hover'
+                    whileTap='tap'
+                    type='submit'
+                    id='demo'
+                    onClick={LoginDemo}
+                  >
+                    Login Demo
+                  </motion.button>
+                {/* <button type="submit">Login</button> */}
               <div id='signupClick' onClick={handleSignupClick}>Don't have an account? Sign Up</div>
               </div>
             </form>

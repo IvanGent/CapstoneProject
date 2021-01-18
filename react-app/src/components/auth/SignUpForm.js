@@ -26,7 +26,7 @@ const background = {
   }
 }
 
-const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
+const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -77,11 +77,6 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
     setShowSignUp(false)
     setShowLogin(true)
   }
-
-  if (authenticated) {
-    return <Redirect to="/" />;
-  }
-
 
   return (
     <AnimatePresence exitBeforeEnter>
