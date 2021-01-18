@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './RandomRoller.css';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion} from 'framer-motion';
 import styled from "styled-components";
 
 
@@ -39,34 +39,44 @@ const resLis = {
 
 const lis = {
     visible: {
-
+        opacity: 1
     },
-    hidden: {
-        
+    unchecked: {
+        scale: .5,
+        opacity: 0
+    },
+    checked: {
+        scale: 1,
+        opacity: 1
+    },
+    tap: {
+        scale: .9,
+        opacity: 0.5
+    },
+    hover: {
+        scale: 1.05,
     }
 }
 
 
 function RandomRoller({ restaurants }) {
     const res = restaurants;
-    const checks = new Array(res.length).fill('checked');
+    const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
     const user = localStorage.getItem('userId')
 
-    // useEffect(() => {
-    //     console.log(res)
-    // }, [])
 
     const handleSelection = (e) => {
         e.preventDefault()
         const newSet = []
         checks.filter((ele, i) => {
-            if (ele !== 'unchecked') {
+            if (ele !== false) {
                 newSet.push(res[i])
             }
+            return ele;
         })
         if (newSet.length <= 1) {
             setResPicked(newSet)
@@ -81,14 +91,26 @@ function RandomRoller({ restaurants }) {
     }
 
     const handleChecks = (e) => {
-        checks[e.target.id] = 'unchecked'
+        const res = document.getElementById(e.target.id);
+        if (res.classList.contains('unchecked')) {
+            res.classList.remove('unchecked');
+            res.classList.add('labels')
+        } else {
+            res.classList.add('unchecked');
+            res.classList.remove('labels')
+        }
+        return checks[e.target.id] ? (
+            checks[e.target.id] = false 
+            ) : (
+            checks[e.target.id] = true
+            );
     }
 
     const Random = (roller) => {
         let num = Math.floor(Math.random() * Math.floor(roller.length - 1))
 
         const interval = setInterval(() => {
-            if (num === roller.length - 1) {
+            if (num === roller.length) {
                 num = 0;
             }
             setCurrRes(roller[num])
@@ -121,6 +143,7 @@ function RandomRoller({ restaurants }) {
             })
         })
         const result = await res.json()
+        return result;
     }
 
     return (
@@ -140,27 +163,21 @@ function RandomRoller({ restaurants }) {
                           className='mainHolder'
                          >
                             <motion.div
+                              id={i}
                               variants={lis}
-                              
+                              whileTap='tap'
+                              whileHover='hover'
                               className='labels'
+                              onClick={handleChecks}
                              >
-                                <img src={ele.logo} alt='logo' />
-                                <h5 >{ele.name}</h5>
+                                <img id={i} src={ele.logo} alt='logo' />
+                                <h5 id={i} >{ele.name}</h5>
                             </motion.div>
-                            <motion.input  
-                                type="checkbox"
-                                id={i}
-                                name={ele.name}
-                                value={ele.logo}
-                                defaultChecked
-                                onChange={handleChecks}
-                            />
                         </motion.div>
                     )
                 })}
                 </fieldset>
                 <RollButton whileHover={{scale: 1.2}} whileTap={{ scale: 0.8}} type='submit'>ROLL</RollButton>
-                {/* <button type='submit'>Roll</button> */}
             </form>
             ) : (
                 <div className='randomCont'>

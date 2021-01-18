@@ -20,7 +20,8 @@
 }
 
 .randomRollerCont > div{
-    background-color: red;
+    /* background-color: red; */
+    background-color: white;
 }
 
 .randomRollerCont fieldset {
@@ -53,17 +54,15 @@
     padding-bottom: 30px;
 }
 
-.homepage {
-    background-color: black;
-}
-
 .mainHolder {
-    background-color: red;
+    /* background-color: red; */
+    background-color: white;
     width: 200px;
     height: 250px;
     padding: 20px;
     margin: 10px;
     padding: 10px;
+    border-radius: 10px;
 }
 
 /* .labels {
@@ -76,6 +75,7 @@
     font-size: 20px;
     width: 180px;
     height: 60px;
+
 }
 
 .randomRollerCont .labels {
@@ -125,4 +125,28 @@
     background-image: url('../HomePage/back.jpg');
     background-size: 100%;
     /* z-index: -1; */
+}
+
+.unchecked {
+    /* scale: .8; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 100px; */
+    margin-top: 10px;
+    /* background-color: red; */
+    opacity: 0.5;
+}
+
+.unchecked img {
+    opacity: 0.5;
+}
+
+.unchecked h5 {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    opacity: 0.5;
 }
