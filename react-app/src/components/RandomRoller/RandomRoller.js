@@ -33,7 +33,6 @@ const resLis = {
         x: 500,
         opacity: 0,
     },
-
 }
 
 
@@ -50,8 +49,9 @@ const lis = {
         opacity: 1
     },
     tap: {
-        scale: .9,
-        opacity: 0.5
+        scale: .7,
+        opacity: 0.5,
+        rotate: 20,
     },
     hover: {
         scale: 1.05,
@@ -177,7 +177,12 @@ function RandomRoller({ restaurants }) {
                     )
                 })}
                 </fieldset>
-                <RollButton whileHover={{scale: 1.2}} whileTap={{ scale: 0.8}} type='submit'>ROLL</RollButton>
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: .5 } }}
+                  whileHover={{scale: 1.2}} 
+                  whileTap={{ scale: 0.8, rotate: 360 }} 
+                  type='submit'>ROLL</motion.button>
             </form>
             ) : (
                 <div className='randomCont'>
@@ -188,7 +193,7 @@ function RandomRoller({ restaurants }) {
                     {showReroll ? (
                         <>
                         <button onClick={handleReRoll} >Reroll</button>
-                        <button onClick={handleAddRes} >Accept</button>
+                        <button onClick={handleAddRes} >Add to Visited</button>
                         </>
                     ) : null }
                 </div>

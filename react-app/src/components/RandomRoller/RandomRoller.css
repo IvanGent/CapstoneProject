@@ -118,6 +118,7 @@
 }
 
 .randomSelect h5 {
+    font-family: "Lato";
     font-size: 20px;
 }
 
@@ -143,10 +144,24 @@
 }
 
 .unchecked h5 {
+    font-family: "Lato";
     display: flex;
     justify-content: center;
     font-size: 15px;
     width: 150px;
     height: 50px;
     opacity: 0.5;
+}
+
+.randomRollerCont button {
+    background-color: red;
+    border: thin solid black;
+    border-radius: 50%;
+    height: 80px;
+    font-size: 24px;
+    width: 80px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 5px 7px black;
+    margin-top: 40px;
 }
