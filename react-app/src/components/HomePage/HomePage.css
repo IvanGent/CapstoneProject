@@ -50,6 +50,10 @@
 
 .choices button {
     margin-top: 20px;
+    width: 100px;
+    background-color: rgba(12, 190, 255, 0.939);
+    outline: none;
+    border-radius: 20px;
 }
 
 .homeCont {
@@ -65,4 +69,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+}
+
+.zipError {
+    font-family: "Staatliches";
 }

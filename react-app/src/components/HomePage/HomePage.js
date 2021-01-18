@@ -154,11 +154,11 @@ const HomePage = () => {
                         <div>
                             <form onSubmit={handleZipCode}>
                                 {zipError ? (
-                                    <div>{zipError}</div>
+                                    <div className='zipError'>{zipError}</div>
                                 ) : (
                                     null
                                 )}
-                                <label>use zipcode:</label>
+                                <label>Use Zipcode:</label>
                                 <input 
                                 type='numbers'
                                 placeholder='Zipcode'
@@ -167,7 +167,7 @@ const HomePage = () => {
                                 <AnimatePresence>
                                     <motion.button
                                         whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.3 }}
+                                        whileTap={{ scale: 0.9 }}
                                         type='submit'
                                     >
                                         Submit
