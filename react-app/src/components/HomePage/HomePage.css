@@ -57,11 +57,13 @@
 }
 
 .homeCont {
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 0.8);
     width: 500px;
     height: 300px;
     padding: 50px;
     border-radius: 50px;
+    box-shadow: 0px 1px 50px 20px black;
 }
 
 .homeCont h2 {
@@ -73,4 +75,15 @@
 
 .zipError {
     font-family: "Staatliches";
+}
+
+.innerHome {
+    /* background-color: teal; */
+    width: 510px;
+    height: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 55px;
+    box-shadow: 0px 1px 50px 20px black;
 }

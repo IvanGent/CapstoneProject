@@ -140,11 +140,12 @@ const HomePage = () => {
 
     return (
         <div className='homepage'>
-            <div>
+            <div className='innerHome'>
             {data.length ? (
                     <RandomRoller restaurants={data} />
             ): (
                 <div className='homeCont'>
+                    <div>
                     {!showLoader ? (
                     <>
                     <h2>Choose One To Search For Restaurants</h2>
@@ -181,6 +182,7 @@ const HomePage = () => {
                     ): (
                         <CircularIndeterminate />
                     )}
+                    </div>
                 </div>
             )}
             </div>
