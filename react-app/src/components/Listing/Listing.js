@@ -24,7 +24,6 @@ const liInfo = {
 
 function Listing({ showTab1, showTab2  }) {
     const [res, setRes] = useState([]);
-    // const [dates, setDates] = useState([]);
     const [favs, setFavs] = useState([]);
 
     const { userId } = useParams()
@@ -45,12 +44,8 @@ function Listing({ showTab1, showTab2  }) {
                     {res.length ? (
                         <AnimatePresence>
                         <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
-                            {/* {dates.map((ele) => {
-                                <div>{ele}this is working</div>
-                            })} */}
                             <ul>
                             {res.map((ele, i) => (
-                                // setShowTab2(false)
                                 <motion.li
                                   variants={liInfo}
                                   initial='hidden'
@@ -59,7 +54,6 @@ function Listing({ showTab1, showTab2  }) {
                                   exit='exit'
                                   key={ele.id}
                                 >
-                                    {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
                                     <img src={ele.restaurant.logo} alt='logo' />
                                     <span id='line'>-</span><span>{ele.restaurant.name}</span>
                                 </motion.li>
@@ -96,7 +90,6 @@ function Listing({ showTab1, showTab2  }) {
                                         exit='exit'
                                         key={ele.id}
                                     >
-                                        {/* <h2>{ele.created_at.split(' ').splice(0,4).join(' ')}</h2> */}
                                         <img src={ele.restaurant.logo} alt='logo' />
                                         - <span>{ele.restaurant.name}</span>
                                     </motion.li>
