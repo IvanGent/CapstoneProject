@@ -139,36 +139,36 @@ const HomePage = () => {
 
     return (
         <div className='homepage'>
-            {zipError ? (
-                <div>{zipError}</div>
-            ) : (
-                null
-            )}
             <div>
-            
             {data.length ? (
                     <RandomRoller restaurants={data} />
             ): (
-                <div>
+                <div className='homeCont'>
                     {!showLoader ? (
                     <div className='choices'>
                         <strong onClick={handleClick}>Use current location?</strong>
                         <h5>OR</h5>
-                        <form onSubmit={handleZipCode}>
-                            <label>use zipcode</label>
-                            <input 
-                            type='numbers'
-                            placeholder='Zipcode'
-                            onChange={updateZipCode}
-                            ></input>
-                            <button type='submit'>Submit</button>
-                        </form>
+                        <div>
+                            <form onSubmit={handleZipCode}>
+                                {zipError ? (
+                                    <div>{zipError}</div>
+                                ) : (
+                                    null
+                                )}
+                                <label>use zipcode</label>
+                                <input 
+                                type='numbers'
+                                placeholder='Zipcode'
+                                onChange={updateZipCode}
+                                ></input>
+                                <button type='submit'>Submit</button>
+                            </form>
+                        </div>
                     </div>
                     ): (
                         <CircularIndeterminate />
                     )}
                 </div>
-                
             )}
             </div>
         </div>

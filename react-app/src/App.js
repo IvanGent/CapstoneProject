@@ -38,10 +38,12 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
         setShowHomePage(true);
+        setShowButton(false)
+      } else {
+        setShowButton(true);
       }
     })();
     setLoaded(true);
-    setShowButton(true);
   }, []);
 
 
