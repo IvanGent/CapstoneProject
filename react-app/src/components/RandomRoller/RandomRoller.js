@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import './RandomRoller.css';
 import { AnimatePresence, motion} from 'framer-motion';
 
@@ -64,6 +64,7 @@ const shift = {
 }
 
 function RandomRoller({ restaurants }) {
+    const history = useHistory();
     const res = restaurants;
     const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
@@ -151,7 +152,8 @@ function RandomRoller({ restaurants }) {
             })
         })
         await res.json()
-        return <Redirect to={`/users/${user}`} /> 
+        history.push(`/users/${user}`)
+        // return <Redirect to={`/users/${user}`} /> 
         // return result;
     }
 
@@ -216,19 +218,31 @@ function RandomRoller({ restaurants }) {
                         <h5>{currRes.name}</h5>
                     </motion.div>
                     {showReroll ? (
-                        <>
+                        <div className='buttonHolder'>
                         <motion.button
+                            variants={Reroll}
+                            initial='hidden'
+                            animate='visible'
+                            whileHover='hover'
+                            whileTap='tap'
+                            exit={{ opacity: 0 }}
+                            id='reroll'
                             onClick={handleReRoll} 
                         >
                             Reroll
                         </motion.button>
                         <motion.button 
-                            variants
+                            variants={Reroll}
+                            initial='hidden'
+                            animate='visible'
+                            whileHover='hover'
+                            whileTap='tap'
+                            id='addToVis'
                             onClick={handleAddRes} 
                         >
                             Add to Visited
                         </motion.button>
-                        </>
+                        </div>
                     ) : null }
                     </div>
                 </motion.div>
@@ -238,4 +252,24 @@ function RandomRoller({ restaurants }) {
     )
 };
 
+
+const Reroll = {
+    visible: {
+        scale: 1,
+        opacity: 1
+    },
+    hidden: {
+        scale: 0,
+        opacity: 0
+    },
+    now: {
+        rotate: 300
+    },
+    hover: {
+        scale: 1.1
+    },
+    tap: {
+        scale: 0.8
+    }
+}
 export default RandomRoller;
