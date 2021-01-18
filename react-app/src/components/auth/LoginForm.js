@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { login } from "../../services/auth";
 import './LoginForm.css'
-import Forms from "./Forms";
-import SignUpForm from "./SignUpForm";
-import HomePage from "../HomePage/HomePage";
-
 
 const background = {
   visible: {
@@ -14,17 +10,24 @@ const background = {
      x: 0,
      transition: {
        duration: .25,
+       delay: .5,
      }
     },
   hidden: { 
     opacity: 0,
-    x: -1100,
+    x: -1000,
+  },
+  exit: {
+    opacity: 0,
+    x: -1000,
+    transition: {
+      duration: .25,
+    }
   }
 }
 
 
-const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms}) => {
-  // const history = useHistory();
+const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,10 +37,10 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      setShowLogin(false)
       setShowForms(false)
+      setShowHomePage(true)
       localStorage.setItem("userId", user.id)
-      // return <HomePage authenticated={authenticated} setShowForms={setShowForms} />
-      return <Redirect to='/' />
     } else {
       setErrors(user.errors);
     }
@@ -54,36 +57,22 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
   const handleSignupClick = () => {
     setShowLogin(false)
     setShowSignUp(true)
-    return <Forms 
-      authenticated={authenticated}
-      setAuthenticated={setAuthenticated}
-      showLogin={showLogin}
-      setShowLogin={setShowLogin}
-      setShowSignUp={setShowSignUp}
-      />
   }
 
-  if (authenticated) {
-    // setShowForms(false)
-    // return <HomePage authenticated={authenticated} setShowForms={setShowForms} />
-    return <Redirect to="/" />;
-  }
+  // if (authenticated) {
+  //   return <Redirect to="/" />;
+  // }
 
 
   return (
     <AnimatePresence exitBeforeEnter>
     {/* <> */}
       {showLogin && (
-        // <motion.div className='formContainer'
-        //   variants={background}
-        //   initial='hidden'
-        //   animate='visible'
-        // >
           <motion.div className='loginModal'
             variants={background}
             initial='hidden'
             animate='visible'
-            exit={{ y: -1100, opacity: 0}}
+            exit='exit'
           >
             <form className='loginForm' onSubmit={onLogin}>
               <div className='innerLogin'>
@@ -121,15 +110,6 @@ const LoginForm = ({ authenticated, setAuthenticated, showLogin, setShowLogin, s
           </motion.div>
         // </motion.div>
       )}
-      {/* {showSignUp && (
-      <SignUpForm 
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-        showSignUp={showSignUp}
-        setShowSignUp={setShowSignUp}
-        setShowLogin={setShowLogin}/>
-      )} */}
-    {/* </> */}
     </AnimatePresence>
   );
 };

@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
-import Forms from '../auth/Forms';
 import './NavBar.css'
 
 
-const NavBar = ({ authenticated, setAuthenticated, setShowButton, showLogin, setShowLogin, showSignUp, setShowSignUp, showForms, setShowForms}) => {
+const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms }) => {
   const [user, setUser] = useState("");
   
 
@@ -18,34 +17,18 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, showLogin, set
   const theStart = () => {
     setShowButton(false)
     setShowForms(true)
-
   }
 
   const handleSignupClick = () => {
     theStart()
     setShowLogin(false)
     setShowSignUp(true)
-    return <Forms
-      authenticated={authenticated}
-      setAuthenticated={setAuthenticated}
-      showLogin={showLogin}
-      setShowLogin={setShowLogin}
-      setShowSignUp={setShowSignUp}
-    />
   }
 
   const handleLoginClick = () => {
     theStart()
     setShowSignUp(false)
     setShowLogin(true)
-    return <Forms
-      authenticated={authenticated}
-      setAuthenticated={setAuthenticated}
-      setShowLogin={setShowLogin}
-      showSignUp={showSignUp}
-      setShowSignUp={setShowSignUp}
-    />
-    // return history.push('/login')
   }
 
   return (

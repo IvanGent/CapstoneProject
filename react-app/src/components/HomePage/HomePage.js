@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RandomRoller from '../RandomRoller/RandomRoller';
-// import { NavLink } from 'react-router-dom';
 import './HomePage.css'
-// import RestaurantImage from '../../images/Restaurant.png'
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -134,11 +132,10 @@ const HomePage = ({setShowForms}) => {
             setZipError('Invalid ZipCode')
         }
     }
-        
+    
     useEffect(() => {
-        setShowForms(false)
-    }, [setShowForms])
-
+        
+    }, [])
 
     return (
         <div className='homepage'>

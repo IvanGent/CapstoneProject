@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
 import { signUp } from '../../services/auth';
-import Forms from './Forms'
 import './SignUpForm.css';
 
 const background = {
@@ -11,15 +10,23 @@ const background = {
     x: 0,
     transition: {
       duration: .25,
+      delay: .5,
     }
   },
   hidden: {
     opacity: 0,
-    x: -1100,
+    x: 1000,
+  },
+  exit: {
+    opacity: 0,
+    x: 1000,
+    transition: {
+      duration: .25,
+    }
   }
 }
 
-const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms}) => {
+const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -33,12 +40,12 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
       const user = await signUp(username, firstName, email, password);
       if (!user.errors) {
         setAuthenticated(true);
-        setShowForms(false)
-        localStorage.setItem("userId", user.id)
-        return <Redirect to='/' />
+        setShowSignUp(false);
+        setShowForms(false);
+        setShowHomePage(true);
+        localStorage.setItem("userId", user.id);
       } else {
         setErrors(user.errors);
-        console.log(user.errors)
       }
     } else {
       console.log(errors)
@@ -69,13 +76,6 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
   const handleLoginClick = () => {
     setShowSignUp(false)
     setShowLogin(true)
-    return <Forms
-      authenticated={authenticated}
-      setAuthenticated={setAuthenticated}
-      setShowLogin={setShowLogin}
-      showSignUp={showSignUp}
-      setShowSignUp={setShowSignUp}
-    />
   }
 
   if (authenticated) {
@@ -84,19 +84,14 @@ const SignUpForm = ({authenticated, setAuthenticated, showSignUp, setShowSignUp,
 
 
   return (
-    <AnimatePresence exitBeforeEnter>÷
+    <AnimatePresence exitBeforeEnter>
       {/* <> */}
       {showSignUp && (
-      // <motion.div className='formContainer'
-      //   variants={background}
-      //   initial='hidden'
-      //   animate='visible'
-      // >
         <motion.div className='signupModal'
           variants={background}
           initial='hidden'
           animate='visible'
-          exit={{ y: -1100, opacity: 0}}
+          exit='exit'
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
