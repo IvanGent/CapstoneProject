@@ -65,9 +65,9 @@ function User({ authenticated, showRoll, setShowRoll }) {
 
   
   useEffect(() => {
-    if(!authenticated) {
-      return;
-    } else {
+    if(!currUser) {
+      return <Redirect to='/' />
+    }
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
@@ -77,16 +77,15 @@ function User({ authenticated, showRoll, setShowRoll }) {
         })
         user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
       })();
-    }
     if (!userId) {
       return
     }
     
-  }, [userId, setFavs, favs, authenticated]);
+  }, [userId, setFavs, favs, currUser]);
   
-  if (!authenticated) {
-    return <Redirect to='/' />;
-  }
+  // if (!authenticated) {
+  //   return <Redirect to='/' />;
+  // }
 
   if (!user) {
     return null;
@@ -136,6 +135,13 @@ function User({ authenticated, showRoll, setShowRoll }) {
 
 
   const handleFavsRoll = () => {
+    if (favs.length === 0) {
+      alert('No Favorites To Roll');
+      return;
+    } else if(favs.length < 3) {
+      alert('Not Enough Favorites')
+      return;
+    }
     setShowRoll(true)
   }
   

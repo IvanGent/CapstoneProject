@@ -40,14 +40,14 @@ const liInfo = {
 // }
 
 
-function Listing({ authenticated, showTab1, showTab2  }) {
+function Listing({ showTab1, showTab2  }) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
     const curr = localStorage.getItem('userId')
     const { userId } = useParams()
 
     useEffect(() => {
-        if(!authenticated) {
+        if(!curr) {
             return <Redirect to='/' />
         }
         (async () => {
@@ -59,7 +59,7 @@ function Listing({ authenticated, showTab1, showTab2  }) {
             })
             setRes(user.visitedRestaurants.reverse())
         })()
-    }, [userId, res.length, authenticated])
+    }, [userId, res.length, curr])
 
     const favHandle = async (event) => {
         // console.log(event.target.id)
