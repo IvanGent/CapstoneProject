@@ -32,10 +32,10 @@ const Tabs = {
 
 const FavsRoll = {
   visible: {
-    width: 150,
+    width: 750,
     opacity: 1,
     transition: {
-      delay: 1,
+      delay: .5,
       // duration: .5
     }
   },
@@ -53,7 +53,7 @@ const FavsRoll = {
 }
 
 
-function User({ authenticated, showRoll, setShowRoll }) {
+function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
@@ -143,6 +143,9 @@ function User({ authenticated, showRoll, setShowRoll }) {
   
   return (
     <>
+    {!mobileSize ? (
+
+    <>
     {!showRoll ? (
     <AnimatePresence>
     <div className='profile'>
@@ -207,6 +210,73 @@ function User({ authenticated, showRoll, setShowRoll }) {
       <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
     )}
       </>
+    ) : (
+      <>
+            {!showRoll ? (
+              <AnimatePresence>
+                <div className='profile'>
+                  <motion.div
+                    variants={ProfileInfo}
+                    initial='hidden'
+                    animate='visible'
+                    className='innerProfile'
+                  >
+                    <motion.div
+                      variants={ProfileInfo}
+                      initial='hidden'
+                      animate='visible'
+                      className='profileInfo'>
+                      <img id='avatar' src={avatar} alt='avatar' />
+                      {currUser === userId ? (
+                        <div className='editCont'>
+                          <img
+                            src={process.env.PUBLIC_URL + '/EditIcon.png'}
+                            alt='edit'
+                            id='editIcon'
+                          />
+                          <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
+                        </div>
+                      ) : null}
+                      <motion.ul className='userInfo'>
+                        <li initial='hidden'
+                          animate='visible'>
+                          <strong>Username:</strong> {user.username}
+                        </li>
+                        <li>
+                          <strong>Name:</strong> {user.first_name}
+                        </li>
+                        <li>
+                          <motion.button
+                            id='FavsRoll'
+                            variants={FavsRoll}
+                            initial='hidden'
+                            animate='visible'
+                            whileTap='tap'
+                            whileHover='hover'
+                            onClick={handleFavsRoll}
+                          >
+                            Roll With Favorites
+                        </motion.button>
+                        </li>
+                      </motion.ul>
+                    </motion.div>
+                    <motion.div
+                      variants={Tabs}
+                      initial='hidden'
+                      animate='visible'
+                      className='tabs'>
+                      {/* <VerticalTabs authenticated={authenticated} /> */}
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </AnimatePresence>
+            ) : (
+
+                <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
+              )}
+      </>
+    )}
+    </>
   );
 }
 export default User;

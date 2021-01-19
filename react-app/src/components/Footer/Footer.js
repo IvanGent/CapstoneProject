@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 import './Footer.css';
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const profile = {
     visible: {
@@ -16,6 +16,7 @@ const profile = {
 }
 
 function Footer({ mobileSize }) {
+    const history = useHistory();
     const user = localStorage.getItem('userId')
     const [currUser, setCurrUser] = useState('');
     useEffect(() => {
@@ -26,7 +27,12 @@ function Footer({ mobileSize }) {
     }, [user])
 
     const handleProfile = () => {
-        <Redirect to={`/users/${user}`}
+        history.push(`/users/${user}`)
+        // return <Redirect to={`/users/${user}`} />
+    }
+
+    const handleFavs = () => {
+
     }
 
     return (
@@ -39,7 +45,9 @@ function Footer({ mobileSize }) {
                         animate='visible'
                         whileTap='tap'
                         id='a' 
-                        className='footerBoxes'>
+                        className='footerBoxes'
+                        onClick={handleProfile}
+                        >
                         <img src={process.env.PUBLIC_URL + '/NavProfile.png'} alt='profile' />
                     </motion.div>
                     <motion.div 
@@ -48,7 +56,11 @@ function Footer({ mobileSize }) {
                         animate='visible'
                         whileTap='tap'
                         id='b' 
-                        className='footerBoxes'> this 2</motion.div>
+                        className='footerBoxes'
+                        onClick={handleFavs}
+                        > 
+                        <img src={process.env.PUBLIC_URL + '/Fav.png'} alt='favs' />
+                        </motion.div>
                     <motion.div 
                         variants={profile}
                         initial='hidden'
