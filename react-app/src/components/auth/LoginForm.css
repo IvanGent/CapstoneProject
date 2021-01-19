@@ -1,95 +1,181 @@
-.formContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-device-width: 901px) {
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 330px;
+        height: 350px;
+        border-radius: 10px;
+        box-shadow: 0px 1px 50px 20px black;
+    }
+
+    .loginForm button {
+        margin-top: 20px;
+        padding: 5px 30px;
+        border-radius: 50px;
+        font-size: 15px;
+        cursor: pointer;
+        width: 240px;
+        box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.6);
+        background-color: rgba(12, 190, 255, 0.939);
+        border: thin black solid;
+        outline: none;
+        font-family: "Lato";
+    }
+
+    .loginForm div {
+        padding: 5px;
+    }
+
+    .loginform label {
+        font-size: 25px;
+        padding: 5px 0px;
+        /* margin-bottom: 20px; */
+    }
+
+    .loginModal input {
+        border-radius: 50px;
+        font-size: 15px;
+        outline: none;
+        width: 240px;
+        height: 25px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: none;
+        /* background-color: rgb(150, 8, 8); */
+        border-bottom: thin solid black;
+        box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.2)
+    }
+
+    .errors {
+        font-size: 17px;
+        padding: 3px;
+        font-family: "Staatliches";
+    }
+
+    .errors div {
+        padding: 3px;
+    }
+
+    .innerLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        width: 315px;
+        height: 335px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        box-shadow: 0px 1px 20px 5px rgba(0, 0, 0, 0.9)
+    }
+
+    #signupClick {
+        margin-top: 10px;
+        cursor: pointer;
+        color: white;
+        font-family: "Lato";
+    }
+
+    #demo {
+        background-color: red;
+        font-family: "Lato";
+    }
 }
 
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 330px;
-    height: 350px;
-    border-radius: 10px;
-    box-shadow: 0px 1px 50px 20px black;
-}
+@media screen and (max-device-width: 900px) {
 
-.loginForm button {
-    margin-top: 20px;
-    padding: 5px 30px;
-    border-radius: 50px;
-    font-size: 15px;
-    cursor: pointer;
-    width: 240px;
-    box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.6);
-    background-color: rgba(12, 190, 255, 0.939);
-    border: thin black solid;
-    outline: none;
-    font-family: "Lato";
-}
+    .formContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 10px;
+        /* background-color: burlywood; */
+        box-shadow: 0px 1px 50px 20px black;
+    }
+    
+    .loginForm button {
+        margin-top: 20px;
+        padding: 5px 30px;
+        border-radius: 50px;
+        font-size: 4em;
+        cursor: pointer;
+        width: 600px;
 
-.loginForm div {
-    padding: 5px;
-}
-
-.loginform label {
-    font-size: 25px;
-    padding: 5px 0px;
-    /* margin-bottom: 20px; */
-}
-
-.loginModal input {
-    border-radius: 50px;
-    font-size: 15px;
-    outline: none;
-    width: 240px;
-    height: 25px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: none;
-    /* background-color: rgb(150, 8, 8); */
-    border-bottom: thin solid black;
-    box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.2)
-}
-
-.loginform input:focus {
-    transition-duration: 500ms;
-    /* background-color: rgba(12, 190, 255, 0.939);
-    box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.4); */
-}
-
-.errors {
-    font-size: 17px;
-    padding: 3px;
-    font-family: "Staatliches";
-}
-
-.errors div {
-    padding: 3px;
-}
-
-.innerLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    width: 315px;
-    height: 335px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    box-shadow: 0px 1px 20px 5px rgba(0, 0, 0, 0.9)
-}
-
-#signupClick {
-    margin-top: 10px;
-    cursor: pointer;
-    color: white;
-    font-family: "Lato";
-}
-
-#demo {
-    background-color: red;
-    font-family: "Lato";
+        box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.6);
+        background-color: rgba(12, 190, 255, 0.939);
+        border: thin black solid;
+        outline: none;
+        font-family: "Lato";
+    }
+    
+    .loginForm div {
+        padding: 5px;
+    }
+    
+    .loginform label {
+        font-size: 25px;
+        padding: 5px 0px;
+        /* margin-bottom: 20px; */
+    }
+    
+    .loginModal input {
+        border-radius: 50px;
+        font-size: 4em;
+        outline: none;
+        width: 700px;
+        /* height: 25px; */
+        padding: 20px;
+        margin-bottom: 20px;
+        border: none;
+        /* background-color: rgb(150, 8, 8); */
+        border-bottom: thin solid black;
+        box-shadow: 0px 1px 10px 5px rgba(0, 0, 0, 0.2)
+    }
+    
+    .errors {
+        font-size: 4em;
+        padding: 3px;
+        font-family: "Staatliches";
+    }
+    
+    .errors div {
+        padding: 3px;
+    }
+    
+    .innerLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        width: 95%;
+        height: 95%;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        box-shadow: 0px 1px 20px 5px rgba(0, 0, 0, 0.9)
+    }
+    
+    #signupClick {
+        margin-top: 10px;
+        cursor: pointer;
+        color: white;
+        font-size: 3em;
+        font-family: "Lato";
+    }
+    
+    #demo {
+        background-color: red;
+        font-family: "Lato";
+    }
 }
