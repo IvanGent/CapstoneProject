@@ -95,7 +95,7 @@
     background-color: rgba(0, 0, 0, .1);
 }
 
-svg {
+svg.list {
     width: 25px;
     height: 25px;
     /* fill: red; */

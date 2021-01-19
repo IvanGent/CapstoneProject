@@ -11,11 +11,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         '& > * + *': {
             marginLeft: theme.spacing(2),
-            position: 'absolute',
+            boxShadow: 'none',
         },
-        // marginTop: '500px'
-        position: 'absolute',
-
+        boxShadow: 'none',
+        background: 'none',
     },
 }));
 
@@ -34,7 +33,7 @@ const HomePage = ({ showRoll, setShowRoll, res=[]}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
-    const [showLoader, setShowLoader] = useState(false);
+    const [showLoader, setShowLoader] = useState(true);
 
     
 // Getting the website for every place found to get the logo.

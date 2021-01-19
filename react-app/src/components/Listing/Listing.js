@@ -141,6 +141,7 @@ function Listing({ authenticated, showTab1, showTab2  }) {
                                     <span id='line'>-</span><span>{ele.restaurant.name}</span>
                                         <motion.svg
                                             id={ele.restaurant.id}
+                                            className='list'
                                             variants={svgVar}
                                             // enable-background="new 0 0 24 24" 
                                             // enableBackground='red'
@@ -196,6 +197,7 @@ function Listing({ authenticated, showTab1, showTab2  }) {
                                             <span id='line'>-</span><span>{ele.restaurant.name}</span>
                                             <motion.svg
                                                 id={ele.restaurant.id}
+                                                className='list'
                                                 variants={svgVar}
                                                 // enable-background="new 0 0 24 24" 
                                                 // enableBackground='red'

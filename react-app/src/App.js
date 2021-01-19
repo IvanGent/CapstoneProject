@@ -10,9 +10,6 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 
 const OpenModalButton = styled(motion.button)`
-  position: absolute;
-  margin-left: 44%;
-  margin-top: 30%;
   font-size: 1.2rem;
   padding: 20px;
   border-radius: 20px;
@@ -20,8 +17,26 @@ const OpenModalButton = styled(motion.button)`
   background-color: rgba(220, 0, 0, 0.9);
   color: white;
   outline: none;
+  width: 200px;
   box-shadow: -3px -5px 20px 10px whitesmoke;
 `;
+
+const main = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: .5,
+    }
+  },
+  hidden: {
+    y: -1000,
+    opacity: 0
+  },
+  exit: {
+    opacity: 0
+  }
+}
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -74,10 +89,27 @@ function App() {
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
         />
-        <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' />
+    <div id='background'>
+        {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
       <Route path='/' exact={true} >
       {showButton && !authenticated ? (
-        <OpenModalButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9}} onClick={handleLogin}>Don't Know Where To Eat?</OpenModalButton>
+        <div className='splash'>
+          <motion.h1
+            variants={main}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+          >
+            Not Sure What To Eat? We'll Pick For You
+          </motion.h1>
+          <OpenModalButton 
+            initial={{ opacity: 0 }}
+            animate={{opacity: 1, transition: {duration: .5} }}
+            exit={{ opacity: 0 }}
+            whileHover={{ scale: 1.1 }} 
+            whileTap={{ scale: 0.9}} 
+            onClick={handleLogin}>Get Started?</OpenModalButton>
+        </div>
       ) : (
         null
       )}
@@ -115,6 +147,7 @@ function App() {
       </Route>
       <Route path='/' exact={true}>
       </Route>
+    </div>
     </BrowserRouter>
   );
 }

@@ -37,7 +37,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
   return (
     <nav>
-      <h1>CapstoneProject</h1>
+      <h1>What-To-Bite</h1>
       <ul className='navMenu'>
         <li>
           <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
