@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from 'framer-motion';
 import './Footer.css';
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Listing from '../Listing/Listing';
 
 const profile = {
     visible: {
@@ -14,15 +15,15 @@ const profile = {
         scale: .8
     }
 }
-
+// Working on the Footer
 function Footer({ mobileSize }) {
     const history = useHistory();
     const user = localStorage.getItem('userId')
-    const [currUser, setCurrUser] = useState('');
+    // const [currUser, setCurrUser] = useState('');
     useEffect(() => {
         (async() => {
-            const curr = fetch(`/api/users/${user}`)
-            setCurrUser(curr);
+            // const curr = fetch(`/api/users/${user}`)
+            // setCurrUser(curr);
         })()
     }, [user])
 
@@ -32,11 +33,12 @@ function Footer({ mobileSize }) {
     }
 
     const handleFavs = () => {
-
+        return <Listing />
     }
 
     return (
         <div className='Footer'>
+            {/* <Listing /> */}
             {mobileSize ? (
                 <div className='holdingBox'>
                     <motion.div 

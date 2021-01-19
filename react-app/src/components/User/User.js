@@ -32,7 +32,7 @@ const Tabs = {
 
 const FavsRoll = {
   visible: {
-    width: 750,
+    width: 140,
     opacity: 1,
     transition: {
       delay: .5,
@@ -47,6 +47,28 @@ const FavsRoll = {
   tap: {
     scale: .9
   },  
+  hover: {
+    scale: 1.2
+  }
+}
+
+const FavsMobile = {
+  visible: {
+    width: 700,
+    opacity: 1,
+    transition: {
+      delay: .5,
+      // duration: .5
+    }
+  },
+  hidden: {
+    // rotate: 360,
+    width: 0,
+    opacity: 0
+  },
+  tap: {
+    scale: .9
+  },
   hover: {
     scale: 1.2
   }
@@ -248,7 +270,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
                         <li>
                           <motion.button
                             id='FavsRoll'
-                            variants={FavsRoll}
+                            variants={FavsMobile}
                             initial='hidden'
                             animate='visible'
                             whileTap='tap'
@@ -265,7 +287,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
                       initial='hidden'
                       animate='visible'
                       className='tabs'>
-                      {/* <VerticalTabs authenticated={authenticated} /> */}
+                      <VerticalTabs authenticated={authenticated} />
                     </motion.div>
                   </motion.div>
                 </div>
