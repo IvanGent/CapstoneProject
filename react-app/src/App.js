@@ -165,6 +165,7 @@ function App() {
       <Route path='/' exact={true}>
       </Route>
     </div>
+    <Footer mobileSize={mobileSize} />
     </BrowserRouter>
   );
 }
