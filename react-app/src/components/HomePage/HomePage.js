@@ -33,7 +33,7 @@ const HomePage = ({ showRoll, setShowRoll, res=[]}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
-    const [showLoader, setShowLoader] = useState(true);
+    const [showLoader, setShowLoader] = useState(false);
 
     
 // Getting the website for every place found to get the logo.
