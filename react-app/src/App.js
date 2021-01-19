@@ -45,6 +45,7 @@ function App() {
       }
     })();
     setLoaded(true);
+    setShowRoll(false)
   }, []);
 
 
