@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route} from "react-router-dom";
 import { motion } from "framer-motion";
-import styled from "styled-components";
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
