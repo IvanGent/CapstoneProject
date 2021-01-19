@@ -141,7 +141,7 @@ function App() {
         null
       )}
       {showHomePage && (
-          <HomePage showRoll={showRoll} setShowRoll={setShowRoll} />
+          <HomePage showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
       )}
       {showForms && (
         <motion.div className='formContainer'>
@@ -170,7 +170,7 @@ function App() {
         ): null} */}
       </Route>
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User authenticated={authenticated} showRoll={showRoll} setShowRoll={setShowRoll} />
+        <User authenticated={authenticated} showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
       </Route>
       <Route path='/' exact={true}>
       </Route>
