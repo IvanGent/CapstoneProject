@@ -5,7 +5,7 @@ import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll}) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, mobileSize }) {
     const history = useHistory();
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
@@ -48,34 +48,70 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
 
     return (
         <div className='profileMenu'>
-            <AnimatePresence>
-                <motion.img
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.8 }}
-                    src={process.env.PUBLIC_URL + '/NavProfile.png'}
-                    onClick={openMenu}
-                    className='NavImg'
-                />
-            </AnimatePresence>
-            {showMenu && (
+            {!mobileSize ? (
+                <>
                 <AnimatePresence>
-                    <ul>
-                    <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, y: -20}} className='innerProfileMenu'>
-                        <li>
-                            <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
-                        </li>
-                        {/* <li>
+                    <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.8 }}
+                        src={process.env.PUBLIC_URL + '/NavProfile.png'}
+                        onClick={openMenu}
+                        className='NavImg'
+                    />
+                </AnimatePresence>
+                {showMenu && (
+                    <AnimatePresence>
+                        <ul>
+                        <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, y: -20}} className='innerProfileMenu'>
+                            <li>
+                                <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
+                            </li>
+                            {/* <li>
+                                <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
+                            </li> */}
+                            <li>
+                                <div id='logout' onClick={onLogout}>Logout</div>
+                            </li>
+                        </motion.menu>
+                        </ul>
+                        </AnimatePresence>
+                )}
+                </>
+            ) : (
+                <>
+                <AnimatePresence>
+                    <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.8 }}
+                        src={process.env.PUBLIC_URL + '/MobileMenu.png'}
+                        onClick={openMenu}
+                        className='NavImg'
+                    />
+                    </AnimatePresence>
+                    {showMenu && (
+                        <AnimatePresence>
+                        <ul>
+                            <motion.menu initial={{ opacity: 0, y: -15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className='innerProfileMenu'>
+                                <li>
+                                    <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
+                                </li>
+                                {/* <li>
                             <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
                         </li>
                         <li>
                             <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
                         </li> */}
-                        <li>
-                            <div id='logout' onClick={onLogout}>Logout</div>
-                        </li>
-                    </motion.menu>
-                    </ul>
+                                <li>
+                                    <div id='logout' onClick={onLogout}>Logout</div>
+                                </li>
+                            </motion.menu>
+                        </ul>
                 </AnimatePresence>
+                    )}
+                </>
             )}
         </div>
     )

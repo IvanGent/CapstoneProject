@@ -1,39 +1,98 @@
-.profileMenu {
+@media screen and (min-device-width: 901px) {
+    .profileMenu {
     /* position: absolute; */
     /* background-color: yellow; */
     /* margin-left: 20px; */
     /* margin-top: 50px; */
+    }
 
+    .profileMenu div{
+        font-size: 20px;
+    }
+
+    .innerProfileMenu {
+        margin-left: 10px;
+        margin-top: 15px;
+        position: absolute;
+        padding: 10px 8px;
+        /* border-radius: thin solid black; */
+        background-color: rgba(0,0, 0, 0.9);
+        z-index: 99;
+    }
+
+    .innerProfileMenu li {
+        padding: 5px;
+        border-bottom: thin solid gray;
+        /* margin-bottom: 5px; */
+    }
+
+    #logout {
+        cursor: pointer;
+    }
+
+    .NavImg {
+        background-color: whitesmoke;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        /* border: thin white solid */
+    }
 }
 
-.profileMenu div{
-    font-size: 20px;
-}
 
-.innerProfileMenu {
-    margin-left: 10px;
-    margin-top: 15px;
-    position: absolute;
-    padding: 10px 8px;
-    border-radius: thin solid black;
-    background-color: rgba(0,0, 0, 0.9);
-    z-index: 99;
-}
+@media screen and (max-device-width: 900px) {
+    .profileMenu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 50vw;
+        height: 100%;
+    }
 
-.innerProfileMenu li {
-    padding: 5px;
-    border-bottom: thin solid gray;
-    /* margin-bottom: 5px; */
-}
+    
+    .profileMenu div{
+        font-size: 20px;
+    }
+    
+    .innerProfileMenu {
+        margin-top: 70px;
+        right: 0;
+        width: 100vw;
+        /* margin-left: 10px;
+        margin-top: 15px; */
+        position: absolute;
+        padding: 30px 20px;
+        /* border-radius: thin solid black; */
+        background-color: rgba(0,0, 0, 0.9);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        z-index: 99;
+    }
+    
+    .innerProfileMenu li {
+        padding: 20px;
+        font-size: 2em;
+        border-bottom: thin solid gray;
+        /* margin-bottom: 5px; */
+    }
 
-#logout {
-    cursor: pointer;
-}
+    .innerProfileMenu li a {
+        font-size: 2em;
+    }
 
-.NavImg {
-    background-color: whitesmoke;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    /* border: thin white solid */
+    
+    #logout {
+        font-size: 2em;
+        cursor: pointer;
+    }
+    
+    .NavImg {
+        /* background-color: whitesmoke; */
+        background-color: rgba(255,255, 255, 0.3);
+        /* border-radius: 50%; */
+        border-radius: 10px;
+        width: 70px;
+        height: 70px;
+        /* border: thin white solid */
+    }
 }

@@ -77,7 +77,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
       </div>
       ) : (
         <div className='nav'>
-          {/* <h1 onClick={goHome}>What-To-Bite</h1> */}
+          <h1 onClick={goHome}>What-To-Bite</h1>
           {/* <ul className='navMenu'> */}
             {/* <li> */}
               {/* <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
@@ -103,6 +103,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                       setShowHomePage={setShowHomePage}
                       setShowButton={setShowButton}
                       setShowRoll={setShowRoll}
+                      mobileSize={mobileSize}
                     />
                   </li>
                 </>
