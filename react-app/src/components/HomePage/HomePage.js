@@ -29,7 +29,7 @@ export function CircularIndeterminate() {
     );
 }
 
-const HomePage = ({ showRoll, setShowRoll, res=[]}) => {
+const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
@@ -135,59 +135,67 @@ const HomePage = ({ showRoll, setShowRoll, res=[]}) => {
         }
     }
     
-    useEffect(() => {
-        if (res.length) {
-            setShowRoll(true)
-        }
-    }, [setShowRoll, res])
+    // useEffect(() => {
+    //     if (res.length) {
+    //         setShowRoll(true)
+    //     }
+    // }, [setShowRoll, res])
 
     return (
         <div className='homepage'>
-            {data.length || showRoll ? (
-                <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
-            ): (
-                <div>
-                    {!showLoader ? (
-                        <>
-                    <div className='innerHome'>
-                        <div className='homeCont'>
-                    <h2>Choose One To Search For Restaurants</h2>
-                    <div className='choices'>
-                        <strong onClick={handleClick}>{'Use current location?'}</strong>
-                        {/* <h5>OR</h5> */}
-                        <div>
-                            <form onSubmit={handleZipCode}>
-                                {zipError ? (
-                                    <div className='zipError'>{zipError}</div>
-                                ) : (
-                                    null
-                                )}
-                                <label>Use Zipcode:</label>
-                                <input 
-                                type='numbers'
-                                placeholder='Zipcode'
-                                onChange={updateZipCode}
-                                ></input>
-                                <AnimatePresence>
-                                    <motion.button
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        type='submit'
-                                    >
-                                        Submit
-                                    </motion.button>
-                                </AnimatePresence>
-                                {/* <button type='submit'>Submit</button> */}
-                            </form>
+            {!mobileSize ? (
+                <>
+                {data.length || showRoll ? (
+                    <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
+                ): (
+                    <div>
+                        {!showLoader ? (
+                            <>
+                        <div className='innerHome'>
+                            <div className='homeCont'>
+                        <h2>Choose One To Search For Restaurants</h2>
+                        <div className='choices'>
+                            <strong onClick={handleClick}>{'Use current location?'}</strong>
+                            {/* <h5>OR</h5> */}
+                            <div>
+                                <form onSubmit={handleZipCode}>
+                                    {zipError ? (
+                                        <div className='zipError'>{zipError}</div>
+                                    ) : (
+                                        null
+                                    )}
+                                    <label>Use Zipcode:</label>
+                                    <input 
+                                    type='numbers'
+                                    placeholder='Zipcode'
+                                    onChange={updateZipCode}
+                                    ></input>
+                                    <AnimatePresence>
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            type='submit'
+                                        >
+                                            Submit
+                                        </motion.button>
+                                    </AnimatePresence>
+                                    {/* <button type='submit'>Submit</button> */}
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                    </div>
-                    </>
-                    ): (
-                        <CircularIndeterminate />
-                    )}
-                    </div>
+                        </div>
+                        </div>
+                        </>
+                        ): (
+                            <CircularIndeterminate />
+                        )}
+                        </div>
+                )}
+                </>
+            ) : (
+                <div>
+                    
+                </div>
             )}
         </div>
     )

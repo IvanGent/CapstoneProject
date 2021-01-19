@@ -35,7 +35,9 @@
     /* margin-top: 500px; */
     height: auto;
     display: flex;
-    min-width: 1108px;
+    /* min-width: 1108px; */
+    /* max-width: ; */
+    width: 1105px;
     flex-wrap: wrap;
     margin: 20px 230px 0px 230px;
     border-radius: 20px;
