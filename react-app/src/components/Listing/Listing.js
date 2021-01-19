@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { Redirect, useParams } from "react-router-dom"
 import { AnimatePresence, motion } from 'framer-motion'
 import './Listing.css'
 
@@ -40,14 +40,16 @@ const liInfo = {
 // }
 
 
-function Listing({ showTab1, showTab2  }) {
+function Listing({ authenticated, showTab1, showTab2  }) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
-    // const [checkingFavs, setCheckingFvs] = useState([]);
     const curr = localStorage.getItem('userId')
     const { userId } = useParams()
 
     useEffect(() => {
+        if(!authenticated) {
+            return <Redirect to='/' />
+        }
         (async () => {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
@@ -57,7 +59,7 @@ function Listing({ showTab1, showTab2  }) {
             })
             setRes(user.visitedRestaurants.reverse())
         })()
-    }, [userId, res.length])
+    }, [userId, res.length, authenticated])
 
     const favHandle = async (event) => {
         // console.log(event.target.id)

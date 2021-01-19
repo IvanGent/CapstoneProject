@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import VerticalTabs from '../Tabs/Tabs'
 import './User.css'
@@ -53,7 +53,7 @@ const FavsRoll = {
 }
 
 
-function User({ showRoll, setShowRoll }) {
+function User({ authenticated, showRoll, setShowRoll }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
@@ -62,23 +62,32 @@ function User({ showRoll, setShowRoll }) {
   // From props.
   const { userId }  = useParams();
   const currUser = localStorage.getItem('userId')
+
   
   useEffect(() => {
+    if(!authenticated) {
+      return;
+    } else {
+      (async () => {
+        const response = await fetch(`/api/users/${userId}`);
+        const user = await response.json();
+        setUser(user);
+        user.favsList.forEach(ele => {
+          favs.push(ele.restaurant)
+        })
+        user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
+      })();
+    }
     if (!userId) {
       return
     }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-      user.favsList.forEach(ele => {
-        favs.push(ele.restaurant)
-      })
-      user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
-    })();
     
-  }, [userId, setFavs, favs]);
+  }, [userId, setFavs, favs, authenticated]);
   
+  if (!authenticated) {
+    return <Redirect to='/' />;
+  }
+
   if (!user) {
     return null;
   }
@@ -186,7 +195,7 @@ function User({ showRoll, setShowRoll }) {
         initial='hidden'
         animate='visible'
         className='tabs'>
-        <VerticalTabs />
+        <VerticalTabs authenticated={authenticated} />
       </motion.div>
       </motion.div>
     </div>

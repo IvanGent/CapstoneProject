@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function VerticalTabs() {
+function VerticalTabs({ authenticated }) {
     const classes = useStyles();
     const [value, setValue] = useState(0);
     const [showTab1, setShowTab1] = useState(true);
@@ -91,7 +91,7 @@ function VerticalTabs() {
             <TabPanel value={value} index={0}>
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-                        <Listing showTab1={showTab1} />
+                        <Listing authenticated={authenticated} showTab1={showTab1} />
                     </motion.div>
                 </AnimatePresence>
                 {/* Item One  */}
@@ -99,7 +99,7 @@ function VerticalTabs() {
             <TabPanel value={value} index={1}>
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-                        <Listing showTab2={showTab2} />
+                        <Listing authenticated={authenticated} showTab2={showTab2} />
                     </motion.div>
                 </AnimatePresence>
                 {/* Item Two */}
