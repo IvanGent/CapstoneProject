@@ -9,17 +9,17 @@ import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 
-const OpenModalButton = styled(motion.button)`
-  font-size: 1.2rem;
-  padding: 20px;
-  border-radius: 20px;
-  border: none;
-  background-color: rgba(220, 0, 0, 0.9);
-  color: white;
-  outline: none;
-  width: 200px;
-  box-shadow: -3px -5px 20px 10px whitesmoke;
-`;
+// const OpenModalButton = styled(motion.button)`
+//   font-size: 1.2rem;
+//   padding: 20px;
+//   border-radius: 20px;
+//   border: none;
+//   background-color: rgba(220, 0, 0, 0.9);
+//   color: white;
+//   outline: none;
+//   width: 200px;
+//   box-shadow: -3px -5px 20px 10px whitesmoke;
+// `;
 
 const main = {
   visible: {
@@ -47,6 +47,7 @@ function App() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
+  const [mobileSize, setMobileSize] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -61,6 +62,10 @@ function App() {
     })();
     setLoaded(true);
     setShowRoll(false)
+    setMobileSize(false)
+    if(Number(window.screen.width) < 900) {
+      setMobileSize(true);
+    }
   }, []);
 
 
@@ -88,11 +93,14 @@ function App() {
         showSignUp={showSignUp}
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
+        mobileSize={mobileSize}
         />
     <div id='background'>
         {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
       <Route path='/' exact={true} >
       {showButton && !authenticated ? (
+        <div>
+          {!mobileSize ? (
         <div className='splash'>
           <motion.h1
             variants={main}
@@ -102,13 +110,33 @@ function App() {
           >
             Not Sure What To Eat? We'll Pick For You
           </motion.h1>
-          <OpenModalButton 
+          <motion.button 
             initial={{ opacity: 0 }}
             animate={{opacity: 1, transition: {duration: .5} }}
             exit={{ opacity: 0 }}
             whileHover={{ scale: 1.1 }} 
             whileTap={{ scale: 0.9}} 
-            onClick={handleLogin}>Get Started?</OpenModalButton>
+            onClick={handleLogin}>Get Started?</motion.button>
+        </div>
+          ) : (
+          <div className='splash'>
+            <motion.h1
+              variants={main}
+              initial='hidden'
+              animate='visible'
+              exit='exit'
+            >
+              Not Sure What To Eat? We'll Pick For You
+          </motion.h1>
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: .5 } }}
+                exit={{ opacity: 0 }}
+                // whileHover={{ scale: 1. }}
+                whileTap={{ scale: 1.5 }}
+                onClick={handleLogin}>Get Started?</motion.button>
+            </div>
+          )}
         </div>
       ) : (
         null
