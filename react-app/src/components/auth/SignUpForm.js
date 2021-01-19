@@ -89,11 +89,13 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
+              {/* {err && ( */}
             <div className='errors'>
               {errors.map((error, i) => (
                 <div key={i}>{error}</div>
               ))}
             </div>
+              {/* )} */}
             <div>
               {/* <label>Username</label> */}
               <input
