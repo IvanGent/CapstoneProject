@@ -190,7 +190,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
             ) : (
                 <>
                         {data.length || showRoll ? (
-                            <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
+                            <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
                         ) : (
                                 <div>
                                     {!showLoader ? (

@@ -111,7 +111,7 @@
     
     .choices strong {
         font-family: "Lato";
-        font-size: 3em;
+        font-size: 4em;
         color: blue;
         cursor: pointer;
         width: 75vw;
@@ -146,7 +146,11 @@
         border: none;
         border-bottom: thin solid black;
         margin-top: 35px;
+        display: flex;
+        justify-items: center;
+        justify-self: center;
         background-color: rgba(255, 255, 255, 0);
+        width: 180px;
     }
     
     .choices button {
@@ -180,6 +184,8 @@
     
     .zipError {
         font-family: "Staatliches";
+        font-size: 3em;
+        color: red;
     }
     
     .innerHome {
