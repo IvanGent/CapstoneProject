@@ -83,9 +83,6 @@ function User({ authenticated, showRoll, setShowRoll }) {
     
   }, [userId, setFavs, favs, currUser]);
   
-  // if (!authenticated) {
-  //   return <Redirect to='/' />;
-  // }
 
   if (!user) {
     return null;
@@ -124,8 +121,7 @@ function User({ authenticated, showRoll, setShowRoll }) {
               "avatar": srcEncoded
             })
           })
-          // const results = await res.json()
-          // console.log(results)
+          await res.json()
           setAvatar(srcEncoded)
         })()
       }
