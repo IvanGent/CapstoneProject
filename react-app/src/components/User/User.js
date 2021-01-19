@@ -124,8 +124,8 @@ function User({ authenticated, showRoll, setShowRoll }) {
               "avatar": srcEncoded
             })
           })
-          const results = await res.json()
-          console.log(results)
+          // const results = await res.json()
+          // console.log(results)
           setAvatar(srcEncoded)
         })()
       }

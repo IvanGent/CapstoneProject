@@ -16,10 +16,10 @@
     /* background-color: blue; */
     min-width: 1200px;
     height: 800px;
-    margin-top: 20px;
+    margin-top: 130px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, .4);
-    box-shadow: rgba(0, 0, 0, .9);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .9);
 }
  
 .profile li {
