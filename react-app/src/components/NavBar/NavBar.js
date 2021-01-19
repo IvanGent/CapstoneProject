@@ -26,9 +26,13 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
   }
 
   const handleLoginClick = () => {
-    theStart()
-    setShowSignUp(false)
-    setShowLogin(true)
+    theStart();
+    setShowSignUp(false);
+    setShowLogin(true);
+  }
+
+  const handleClick = () => {
+    setShowRoll(false);
   }
 
   return (
@@ -36,7 +40,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
       <h1>CapstoneProject</h1>
       <ul className='navMenu'>
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
             Home
           </NavLink>
         </li>
