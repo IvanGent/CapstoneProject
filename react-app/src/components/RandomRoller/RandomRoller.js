@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import './RandomRoller.css';
 import { AnimatePresence, motion} from 'framer-motion';
 
@@ -63,9 +63,9 @@ const shift = {
     },
 }
 
-function RandomRoller({ restaurants }) {
+function RandomRoller({ restaurants, setShowRoll}) {
     const history = useHistory();
-    const res = restaurants;
+    const res = restaurants
     const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
@@ -130,10 +130,6 @@ function RandomRoller({ restaurants }) {
         return
     }
 
-    useEffect(() => {
-
-    })
-
 
     const handleReRoll = () => {
         setShowReroll(false)
@@ -153,8 +149,7 @@ function RandomRoller({ restaurants }) {
         })
         await res.json()
         history.push(`/users/${user}`)
-        // return <Redirect to={`/users/${user}`} /> 
-        // return result;
+        setShowRoll(false)
     }
 
     return (

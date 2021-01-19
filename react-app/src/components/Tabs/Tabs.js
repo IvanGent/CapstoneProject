@@ -58,7 +58,7 @@ function VerticalTabs() {
     const [showTab2, setShowTab2] = useState(false);
 
     const handleChange = (event, newValue) => {
-        console.log(newValue)
+        // console.log(newValue)
         if (newValue === 0) {
             setShowTab1(true)
             setShowTab2(false)

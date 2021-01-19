@@ -31,6 +31,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showForms, setShowForms] = useState(false);
+  const [showRoll, setShowRoll] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -79,7 +80,7 @@ function App() {
         null
       )}
       {showHomePage && (
-          <HomePage />
+          <HomePage showRoll={showRoll} setShowRoll={setShowRoll} />
       )}
       {showForms && (
         <motion.div className='formContainer'>

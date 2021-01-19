@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import VerticalTabs from '../Tabs/Tabs'
 import './User.css'
+import RandomRoller from "../RandomRoller/RandomRoller";
 
 // Framer-motion props
 const ProfileInfo = {
@@ -29,17 +30,41 @@ const Tabs = {
   }
 }
 
+const FavsRoll = {
+  visible: {
+    width: 150,
+    opacity: 1,
+    transition: {
+      delay: 1,
+      // duration: .5
+    }
+  },
+  hidden: {
+    // rotate: 360,
+    width: 0,
+    opacity: 0
+  },
+  tap: {
+    scale: .8
+  },  
+  hover: {
+    scale: 1.2
+  }
+}
+
 
 function User() {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
+  const [showRoll, setShowRoll] = useState(false)
+  const [favs, setFavs] = useState([])
   // const [errors, setErrors] = useState([]);
-
+  
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
   const currUser = localStorage.getItem('userId')
-
+  
   useEffect(() => {
     if (!userId) {
       return
@@ -49,16 +74,20 @@ function User() {
       const user = await response.json();
       // console.log(user)
       setUser(user);
+      user.favsList.forEach(ele => {
+        favs.push(ele.restaurant)
+      })
+      // console.log(user.favsList)
       // setVisitedRestaurants(user.visitedRestaurants)
       user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
     })();
+    
+  }, [userId, setFavs, favs]);
   
-  }, [userId]);
-
   if (!user) {
     return null;
   }
-
+  
   const handleEdit = (e) => {
     const reader = new FileReader()
     let file = e.target.files[0]
@@ -67,43 +96,52 @@ function User() {
       alert('Needs To Be An Image')
       return;
     }
-
+    
     reader.onload = function(e) {
       const img = document.createElement('img');
       img.src = e.target.result
-
+      
       img.onload = async function(event) {
         const canvas = document.createElement('canvas');
         const MAX_WIDTH = 200;
         const scaleSize = MAX_WIDTH / event.target.width;
         canvas.width = MAX_WIDTH;
         canvas.height = event.target.height * scaleSize;
-
+        
         const ctx = canvas.getContext("2d");
         ctx.drawImage(event.target, 0, 0, canvas.width, canvas.height);
-
+        
         const srcEncoded = ctx.canvas.toDataURL(event.target, 'image/jpeg');
         (async() => {
-            const res = fetch(`/api/users/${userId}`, {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                  "avatar": srcEncoded
-                })
+          const res = fetch(`/api/users/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              "avatar": srcEncoded
             })
-            const results = await res.json()
-            console.log(results)
-            setAvatar(srcEncoded)
+          })
+          const results = await res.json()
+          console.log(results)
+          setAvatar(srcEncoded)
         })()
       }
     }
     reader.readAsDataURL(file);
   }
 
+
+  const handleFavsRoll = () => {
+    setShowRoll(true)
+    // return <HomePage res={user.favsList} />
+    // history.push('/')
+  }
+  
   return (
-      <AnimatePresence>
+    <>
+    {!showRoll ? (
+    <AnimatePresence>
     <div className='profile'>
       <motion.div 
         variants={ProfileInfo}
@@ -138,7 +176,13 @@ function User() {
             </li>
             <li>
               <motion.button
-                
+                  id='FavsRoll'
+                  variants={FavsRoll}
+                  initial='hidden'
+                  animate='visible'
+                  whileTap='tap'
+                  whileHover='hover'
+                  onClick={handleFavsRoll}
               >
                 Roll With Favorites
               </motion.button>
@@ -155,6 +199,13 @@ function User() {
       </motion.div>
     </div>
       </AnimatePresence>
+    ): (
+      
+      <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
+    )}
+    {/* {showRoll && (
+    )} */}
+      </>
   );
 }
 export default User;
