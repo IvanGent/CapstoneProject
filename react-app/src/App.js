@@ -7,18 +7,8 @@ import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
+import Footer from "./components/Footer/Footer";
 
-// const OpenModalButton = styled(motion.button)`
-//   font-size: 1.2rem;
-//   padding: 20px;
-//   border-radius: 20px;
-//   border: none;
-//   background-color: rgba(220, 0, 0, 0.9);
-//   color: white;
-//   outline: none;
-//   width: 200px;
-//   box-shadow: -3px -5px 20px 10px whitesmoke;
-// `;
 
 const main = {
   visible: {
