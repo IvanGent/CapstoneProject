@@ -110,7 +110,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
 // Handling the current location with an api call to googles geolocation api.
     const handleClick = async () => {
         setShowLoader(true)
-            const coords = await fetch('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyB0kFjSrYYNIkFvEDGcn4RaFgLm-HsXStc', {
+            const coords = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.API_KEY}`, {
                 method: "POST"
             })
             const data = await coords.json()
