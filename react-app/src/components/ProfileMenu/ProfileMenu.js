@@ -5,7 +5,7 @@ import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll}) {
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
@@ -33,9 +33,14 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
         setAuthenticated(false);
         setShowHomePage(false);
         setShowButton(true);
+        setShowRoll(false)
         localStorage.removeItem('userId')
         return <Redirect to='/' />
     };
+
+    const handleClick = () => {
+        setShowRoll(false);
+    }
 
     return (
         <div className='profileMenu'>
@@ -53,7 +58,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {
                     <ul>
                     <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, y: -20}} className='innerProfileMenu'>
                         <li>
-                            <NavLink to={`/users/${user}`} activeClassName="active">Profile</NavLink>
+                            <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
                         </li>
                         {/* <li>
                             <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>

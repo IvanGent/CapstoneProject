@@ -5,7 +5,7 @@ import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
 
 
-const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage }) => {
+const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll }) => {
   const [user, setUser] = useState("");
   
 
@@ -57,6 +57,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
                 setShowButton={setShowButton}
+                setShowRoll={setShowRoll}
                 />
             </li>
           </>
