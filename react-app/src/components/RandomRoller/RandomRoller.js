@@ -20,6 +20,14 @@ const resLis = {
         x: 500,
         opacity: 0,
     },
+    tap: {
+        scale: .7,
+        opacity: 0.5,
+        // rotate: 20,
+    },
+    hover: {
+        scale: 1.05,
+    }
 }
 
 const lis = {
@@ -115,6 +123,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
     }
 // Taking care of showing what is selected and what is not.
     const handleChecks = (e) => {
+        console.log(e.target.id)
         const res = document.getElementById(e.target.id);
         if (res.classList.contains('unchecked')) {
             res.classList.remove('unchecked');
@@ -270,12 +279,16 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
                                     {res.map((ele, i) => {
                                         return (
                                             <motion.div
+                                                id={i}
                                                 variants={resLis}
                                                 initial='hidden'
                                                 animate='visible'
+                                                // whileTap='tap'
+                                                // whileHover='hover'
                                                 custom={i}
                                                 key={i}
                                                 className='mainHolder'
+                                                // onClick={handleChecks}
                                             >
                                                 <motion.div
                                                     id={i}

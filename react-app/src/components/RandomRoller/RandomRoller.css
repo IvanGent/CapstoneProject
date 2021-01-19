@@ -211,7 +211,8 @@
         /* justify-content: center; */
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
         /* background-color: white; */
         /* background-color: rgba(0, 0, 0, 0.638); */
         padding: 20px 0 70px 0;
@@ -223,29 +224,30 @@
     
     .randomRollerCont fieldset {
         box-shadow: 0px 5px 100px 6px rgba(0, 0, 0, 0.638);
-        /* margin-top: 500px; */
         height: auto;
         display: flex;
-        /* min-width: 1108px; */
-        /* max-width: ; */
-        width: 1105px;
+        width: 91vw;
+        height: 75vh;
+        /* align-content: center; */
+        align-items: center;
         flex-wrap: wrap;
-        margin: 20px 230px 0px 230px;
+        margin-top: 100px;
         border-radius: 20px;
-        /* background-color: white; */
         background-color: rgba(0, 0, 0, 0.8);
+        overflow: scroll;
     }
     
     .randomRollerCont img {
         z-index: 10;
         position: relative;
+
         /* padding: 20px; */
     }
     
     .mainHolder {
         /* background-color: red; */
         background-color: white;
-        width: 200px;
+        width: 420px;
         height: 250px;
         padding: 20px;
         margin: 10px;
@@ -254,15 +256,16 @@
     }
     
     /* .labels {
-        display: flex;
+        width: 100%;
+        height: 100%;
     } */
     
     .labels h5 {
         display: flex;
         justify-content: center;
-        font-size: 20px;
-        width: 180px;
-        height: 60px;
+        font-size: 1.7em;
+
+        /* height: 60px; */
     
     }
     
@@ -346,12 +349,12 @@
         background-color: red;
         border: thin solid black;
         border-radius: 50%;
-        height: 80px;
-        font-size: 24px;
-        width: 80px;
+        height: 130px;
+        font-size: 40px;
+        width: 130px;
         border: none;
         outline: none;
-        box-shadow: 0px 0px 5px 7px black;
+        box-shadow: 0px 5px 20px 7px black;
         margin-top: 40px;
     }
     
@@ -378,4 +381,6 @@
     .buttonHolder {
         padding: 10px
     }
+
+
 }
