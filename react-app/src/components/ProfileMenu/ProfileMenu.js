@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, Redirect } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-// import styled from 'styled-components';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
-
-// const Menu = styled(motion.ul)`
-//     background-color: black;
-//     position: absolute;
-//     display: flex;
-//     flex-direction: column;
-//     border-bottom-left-radius: 5px;
-//     border-bottom-right-radius: 5px;
-//     padding: 15px;
-//     margin-top: 22px;
-//     margin-left: 20px;
-// `;
 
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton }) {

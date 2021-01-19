@@ -45,7 +45,7 @@ const FavsRoll = {
     opacity: 0
   },
   tap: {
-    scale: .8
+    scale: .9
   },  
   hover: {
     scale: 1.2
@@ -53,10 +53,10 @@ const FavsRoll = {
 }
 
 
-function User() {
+function User({ showRoll, setShowRoll }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
-  const [showRoll, setShowRoll] = useState(false)
+  // const [showRoll, setShowRoll] = useState(false)
   const [favs, setFavs] = useState([])
   // const [errors, setErrors] = useState([]);
   
@@ -203,8 +203,6 @@ function User() {
       
       <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
     )}
-    {/* {showRoll && (
-    )} */}
       </>
   );
 }

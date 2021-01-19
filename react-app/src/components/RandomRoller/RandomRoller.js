@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import './RandomRoller.css';
 import { AnimatePresence, motion} from 'framer-motion';
 
-
+// Framer-motion variants
 const resLis = {
     visible: (i) => ({
         y: 0,
@@ -21,7 +21,6 @@ const resLis = {
         opacity: 0,
     },
 }
-
 
 const lis = {
     visible: {
@@ -63,6 +62,26 @@ const shift = {
     },
 }
 
+const Reroll = {
+    visible: {
+        scale: 1,
+        opacity: 1
+    },
+    hidden: {
+        scale: 0,
+        opacity: 0
+    },
+    now: {
+        rotate: 300
+    },
+    hover: {
+        scale: 1.1
+    },
+    tap: {
+        scale: 0.8
+    }
+}
+
 function RandomRoller({ restaurants, setShowRoll}) {
     const history = useHistory();
     const res = restaurants
@@ -94,7 +113,7 @@ function RandomRoller({ restaurants, setShowRoll}) {
         Random(newSet);
         return;
     }
-
+// Taking care of showing what is selected and what is not.
     const handleChecks = (e) => {
         const res = document.getElementById(e.target.id);
         if (res.classList.contains('unchecked')) {
@@ -110,7 +129,7 @@ function RandomRoller({ restaurants, setShowRoll}) {
             checks[e.target.id] = true
             );
     }
-
+// The Random roller
     const Random = (roller) => {
         let num = Math.floor(Math.random() * Math.floor(roller.length - 1))
 
@@ -129,13 +148,12 @@ function RandomRoller({ restaurants, setShowRoll}) {
 
         return
     }
-
-
+// Rerolls the restaurants selected from the first selection
     const handleReRoll = () => {
         setShowReroll(false)
         Random(resPicked)
     }
-
+// Adds to the Users visited and then goes to their profile to show them
     const handleAddRes = async () => {
         const res = await fetch(`/api/visited/`, {
             method:"POST",
@@ -248,23 +266,4 @@ function RandomRoller({ restaurants, setShowRoll}) {
 };
 
 
-const Reroll = {
-    visible: {
-        scale: 1,
-        opacity: 1
-    },
-    hidden: {
-        scale: 0,
-        opacity: 0
-    },
-    now: {
-        rotate: 300
-    },
-    hover: {
-        scale: 1.1
-    },
-    tap: {
-        scale: 0.8
-    }
-}
 export default RandomRoller;

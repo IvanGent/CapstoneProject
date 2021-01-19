@@ -145,7 +145,7 @@ const HomePage = ({ showRoll, setShowRoll, res=[]}) => {
     return (
         <div className='homepage'>
             {data.length || showRoll ? (
-                <RandomRoller restaurants={data} otherRes={res} />
+                <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
             ): (
                 <div>
                     {!showLoader ? (

@@ -109,7 +109,7 @@ function App() {
         ): null} */}
       </Route>
       <Route path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User authenticated={authenticated}/>
+        <User authenticated={authenticated} showRoll={showRoll} setShowRoll={setShowRoll} />
       </Route>
       <Route path='/' exact={true}>
       </Route>
