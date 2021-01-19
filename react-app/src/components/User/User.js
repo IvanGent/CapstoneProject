@@ -56,9 +56,7 @@ const FavsRoll = {
 function User({ showRoll, setShowRoll }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
-  // const [showRoll, setShowRoll] = useState(false)
-  const [favs, setFavs] = useState([])
-  // const [errors, setErrors] = useState([]);
+  const [favs, setFavs] = useState([]);
   
   // Notice we use useParams here instead of getting the params
   // From props.
@@ -72,13 +70,10 @@ function User({ showRoll, setShowRoll }) {
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
-      // console.log(user)
       setUser(user);
       user.favsList.forEach(ele => {
         favs.push(ele.restaurant)
       })
-      // console.log(user.favsList)
-      // setVisitedRestaurants(user.visitedRestaurants)
       user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
     })();
     
@@ -92,7 +87,6 @@ function User({ showRoll, setShowRoll }) {
     const reader = new FileReader()
     let file = e.target.files[0]
     if(!file.type.match(/image.*/)) {
-      // setErrors(['Needs to be an image']);
       alert('Needs To Be An Image')
       return;
     }
@@ -134,8 +128,6 @@ function User({ showRoll, setShowRoll }) {
 
   const handleFavsRoll = () => {
     setShowRoll(true)
-    // return <HomePage res={user.favsList} />
-    // history.push('/')
   }
   
   return (

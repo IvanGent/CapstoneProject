@@ -80,6 +80,7 @@
     align-items: flex-end;
     position: absolute;
     width: 180px;
+    color: white;
 }
 
 #editIcon {
