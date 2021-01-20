@@ -4,8 +4,7 @@ WORKDIR /react-app
 COPY react-app/. .
 
 # You have to set this because it should be set during build time.
-ENV REACT_APP_BASE_URL=postgres://cqkejfxftzwfmd:6a0e12f10af480d1c8f93d8a948049be791299a7fe7f15bb423c5fe1c831335e@ec2-54-237-135-248.compute-1.amazonaws.com:5432/da3g29d8lqh842
-
+ENV REACT_APP_BASE_URL=https://git.heroku.com/what-to-bite.git
 # Build our React App
 RUN npm install
 RUN npm run build
