@@ -59,26 +59,26 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                         className='NavImg'
                     />
                 </AnimatePresence>
+                <AnimatePresence>
                 {showMenu && (
-                    <AnimatePresence>
                         <ul>
-                        <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, y: -20}} className='innerProfileMenu'>
-                            <li>
+                        <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, height: 0, transition: { duration: .5 }}} className='innerProfileMenu'>
+                            <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}>
                                 <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
-                            </li>
+                            </motion.li>
                             {/* <li>
                                 <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
                             </li>
                             <li>
                                 <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
                             </li> */}
-                            <li>
+                            <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}>
                                 <div id='logout' onClick={onLogout}>Logout</div>
-                            </li>
+                            </motion.li>
                         </motion.menu>
                         </ul>
-                        </AnimatePresence>
                 )}
+                        </AnimatePresence>
                 </>
             ) : (
                 <>

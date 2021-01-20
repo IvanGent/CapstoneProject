@@ -1,4 +1,5 @@
 
+import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
@@ -42,6 +43,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
   return (
     <nav>
+      <AnimatePresence>
       {!mobileSize ? (
         <div className='nav'>
       <h1>What-To-Bite</h1>
@@ -111,6 +113,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
           {/* </ul> */}
         </div>
       )}
+      </AnimatePresence>
     </nav>
   );
 }
