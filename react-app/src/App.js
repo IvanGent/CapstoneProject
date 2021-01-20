@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route} from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
@@ -90,7 +90,7 @@ function App() {
       {showButton && !authenticated ? (
         <div>
           {!mobileSize ? (
-        <div className='splash'>
+        <motion.div className='splash'>
           <motion.h1
             variants={main}
             initial='hidden'
@@ -106,7 +106,7 @@ function App() {
             whileHover={{ scale: 1.1 }} 
             whileTap={{ scale: 0.9}} 
             onClick={handleLogin}>Get Started?</motion.button>
-        </div>
+        </motion.div>
           ) : (
           <div className='splash'>
             <motion.h1
@@ -134,7 +134,13 @@ function App() {
           <HomePage showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
       )}
       {showForms && (
-        <motion.div className='formContainer'>
+        <AnimatePresence>
+        <motion.div 
+          initial={{ opacity: 0}}
+          animate={{ opacity: 1}}
+          exit={{ opacity: 0}}
+          className='formContainer'
+        >
           <LoginForm 
             authenticated={authenticated}
             setAuthenticated={setAuthenticated} 
@@ -154,6 +160,7 @@ function App() {
             setShowHomePage={setShowHomePage}
           />
         </motion.div> 
+        </AnimatePresence>
       )}
         {/* {authenticated && showHomePage ? (
           <HomePage />

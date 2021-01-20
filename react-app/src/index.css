@@ -7,7 +7,7 @@
 
 @media screen and (min-width: 1500px) {
     #background {
-        background-image: url('./NewBack.jpg');
+        background-image: url('./images/mainPage.jpg');
         background-size: 100%;
         position: fixed;
         top: 0;
@@ -46,7 +46,7 @@
 
 @media screen and (max-width: 1499px){
     #background {
-        background-image: url('./MobileBack.jpg');
+        background-image: url('./images/MobileBack.jpg');
         background-size: 100%;
         position: fixed;
         top: 0;
@@ -85,7 +85,7 @@
 
 @media screen and (max-device-width: 900px) {
     #background {
-        background-image: url('./Mobile4Back.jpg');
+        background-image: url('./images/Mobile4Back.jpg');
         background-size: 100%;
         position: fixed;
         top: 0;
