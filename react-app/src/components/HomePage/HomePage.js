@@ -34,7 +34,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
-
+    const  API_KEY = process.env.REACT_APP_API_URL;
     
 // Getting the website for every place found to get the logo.
     const gettingDetails = async (placeId, name) => {
@@ -109,8 +109,9 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     
 // Handling the current location with an api call to googles geolocation api.
     const handleClick = async () => {
+        console.log(process.env)
         setShowLoader(true)
-            const coords = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.API_KEY}`, {
+            const coords = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`, {
                 method: "POST"
             })
             const data = await coords.json()
