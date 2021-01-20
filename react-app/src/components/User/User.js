@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import VerticalTabs from '../Tabs/Tabs'
-import './User.css'
+import VerticalTabs from '../Tabs/Tabs';
+import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
+import ProfileAv from "../../images/ProfileAvatar.png";
+import EditIcon from "../../images/EditIcon.png"
 
 // Framer-motion props
 const ProfileInfo = {
@@ -97,7 +99,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
         user.favsList.forEach(ele => {
           favs.push(ele.restaurant)
         })
-        user.avatar ? setAvatar(user.avatar) : setAvatar(process.env.PUBLIC_URL + '/ProfileAvatar.png')
+        user.avatar ? setAvatar(user.avatar) : setAvatar({ProfileAv})
       })();
     if (!userId) {
       return
@@ -186,7 +188,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
             {currUser === userId ? (
             <div className='editCont'>
               <img
-                src={process.env.PUBLIC_URL + '/EditIcon.png'}
+                src={EditIcon}
                 alt='edit'
                 id='editIcon'
               />

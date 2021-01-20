@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
+import NavProfile from '../../images/NavProfile.png'
 
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, mobileSize }) {
@@ -54,7 +55,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                     <motion.img
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.8 }}
-                        src={process.env.PUBLIC_URL + '/NavProfile.png'}
+                        src={NavProfile}
                         onClick={openMenu}
                         className='NavImg'
                     />
