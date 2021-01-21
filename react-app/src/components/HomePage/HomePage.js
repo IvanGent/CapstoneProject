@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { AnimatePresence, motion } from 'framer-motion';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -51,12 +50,12 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
                         const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
                         const data = await logoRes.json();
                         if (!data.length) {
-                            result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
+                            result.logo = '/Restaurant.png'
                         }
                     }
                 }
             } else {
-                result.logo = process.env.PUBLIC_URL + '/Restaurant.png'
+                result.logo = '/Restaurant.png'
 
             }
             const addedRes = await addingRestaurant(result.name, result.logo)
