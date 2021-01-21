@@ -16,14 +16,14 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-@login_required
+# @login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
 
 @user_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
+@login_required
 def update_user(id):
     try:
         data = request.json
@@ -33,3 +33,20 @@ def update_user(id):
         return {'message': 'Success'}
     except Exception as e:
         return {'errors': 'Problem updating avatar.'}
+
+
+@user_routes.route('/friend', methods=["POST"])
+# @login_required
+def add_friend():
+    # try:
+    data = request.json
+    print('THIS IS DATA', data)
+    print('AFTER DATA')
+    user = User.query.get(data['sender_id'])
+    print('USER', user)
+    user.addfriend(data['user_id'])
+    print('THIS IS USER', user)
+    db.session.commit()
+    return {'message': 'Success'}
+    # except Exception as e:
+    #     return {'errors': 'Problem adding friend.'}
