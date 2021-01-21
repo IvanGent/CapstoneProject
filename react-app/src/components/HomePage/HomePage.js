@@ -35,7 +35,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     const [showLoader, setShowLoader] = useState(false);
     const  API_KEY = process.env.REACT_APP_API_URL;
     
-// Getting the website for every place found to get the logo.
+// Getting the website for every place found to make an api call to clearbit to get the logo.
     const gettingDetails = async (placeId, name) => {
         const res2 = await fetch(`/api/restaurants/single/${name}`)
         const result2 = await res2.json()
@@ -150,7 +150,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
                         <h2>Choose One To Search For Restaurants</h2>
                         <div className='choices'>
                             <strong onClick={handleClick}>{'Use current location?'}</strong>
-                            {/* <h5>OR</h5> */}
                             <div>
                                 <form onSubmit={handleZipCode}>
                                     {zipError ? (

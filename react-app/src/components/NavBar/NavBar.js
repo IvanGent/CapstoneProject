@@ -1,9 +1,24 @@
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
+
+const Nav = {
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 1
+    }
+  },
+  hidden: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 1,
+  }
+}
 
 
 const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, mobileSize }) => {
@@ -42,8 +57,13 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
   }
 
   return (
-    <nav>
       <AnimatePresence>
+    <motion.nav
+      variants={Nav}
+      initial='hidden'
+      animate='visible'
+      exit='exit'
+    >
       {!mobileSize ? (
         <div className='nav'>
       <h1>What-To-Bite</h1>
@@ -113,8 +133,8 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
           {/* </ul> */}
         </div>
       )}
+    </motion.nav>
       </AnimatePresence>
-    </nav>
   );
 }
 
