@@ -26,7 +26,7 @@ def unfav():
         data = request.json
         fav = FavList.query.filter(
             FavList.res_id == data['res_id'], 
-            FavList.user_id == data['user_id']).first();
+            FavList.user_id == data['user_id']).first()
         print('IT GOT THE FAV')
         db.session.delete(fav)
         db.session.commit()

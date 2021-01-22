@@ -136,7 +136,8 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     
 
     return (
-        <div className='homepage'>
+        <AnimatePresence>
+        <motion.div className='homepage'>
             {!mobileSize ? (
                 <>
                 {data.length || showRoll ? (
@@ -235,7 +236,8 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
                             )}
                 </>
             )}
-        </div>
+        </motion.div>
+        </AnimatePresence>
     )
 }
 
