@@ -27,6 +27,30 @@ const main = {
   }
 }
 
+const mainButton = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: .5
+    }
+  }, 
+  hidden: {
+    opacity: 0,
+    y: 100
+  },
+  exit: {
+    opacity: 0
+  },
+  tap: {
+    scale: .9
+  },
+  hover: {
+    scale: 1.1,
+    spring: 2
+  }
+}
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -100,11 +124,12 @@ function App() {
             Not Sure What To Eat? We'll Pick For You
           </motion.h1>
           <motion.button 
-            initial={{ opacity: 0 }}
-            animate={{opacity: 1, transition: {duration: .5} }}
-            exit={{ opacity: 0 }}
-            whileHover={{ scale: 1.1 }} 
-            whileTap={{ scale: 0.9}} 
+            variants={mainButton}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            whileHover='hover'
+            whileTap='tap' 
             onClick={handleLogin}>Get Started?</motion.button>
         </motion.div>
           ) : (
