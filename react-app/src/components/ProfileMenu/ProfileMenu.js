@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
@@ -7,7 +7,6 @@ import NavProfile from '../../images/NavProfile.png'
 
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
-    const history = useHistory();
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
@@ -37,14 +36,17 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         setShowHomePage(false);
         setShowButton(true);
         setShowRoll(false);
+        setShowProfilePage(false)
         localStorage.removeItem('userId');
-        history.push('/');
+        localStorage.removeItem('currUser')
+        // history.push('/');
         return;
         // return <Redirect to='/' />
     };
 
     const handleClick = () => {
         setShowRoll(false);
+        setShowHomePage(false)
         setShowProfilePage(true)
     }
 

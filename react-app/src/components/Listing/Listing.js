@@ -44,7 +44,8 @@ function Listing({ showTab1, showTab2  }) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
     const curr = localStorage.getItem('userId')
-    const { userId } = useParams()
+    const userId = localStorage.getItem('currUser')
+    // const { userId } = useParams()
 
     useEffect(() => {
         if(!curr) {

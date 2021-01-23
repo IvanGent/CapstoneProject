@@ -75,6 +75,7 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
     setShowForms(false)
     setShowHomePage(true)
     localStorage.setItem("userId", user.id)
+    localStorage.setItem("currUser", user.id)
   }
 
   return (

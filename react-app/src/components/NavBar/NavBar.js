@@ -50,10 +50,13 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
   const handleClick = () => {
     setShowRoll(false);
+    setShowProfilePage(false)
+    setShowHomePage(true);
   }
 
   const goHome = () => {
-    return <Redirect to='/' />
+    setShowHomePage(true);
+    setShowProfilePage(false);
   }
 
   return (
