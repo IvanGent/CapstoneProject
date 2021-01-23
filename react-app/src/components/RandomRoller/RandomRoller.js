@@ -90,6 +90,38 @@ const Reroll = {
     }
 }
 
+const Roller = {
+    visible: {
+        opacity: 1
+    },
+    hidden: {
+        opacity: 0
+    }
+}
+
+const innerRoller = {
+    visible: {
+        opacity: 1
+    },
+    hidden: {
+        opacity: 0
+    }
+}
+
+const ActualRoller = {
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: 1
+        }
+    },
+    hidden: {
+        opacity: 0,
+        y: 1000
+    }
+}
+
 function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
     const history = useHistory();
     const res = restaurants
@@ -182,10 +214,22 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
     return (
         <AnimatePresence>
             {!mobileSize ? (
-        <motion.div className='randomRollerCont'>
+        <motion.div 
+            variants={Roller}
+            initial='hidden'
+            animate='visible'
+            className='randomRollerCont'>
             {showSelect ? (
-            <form onSubmit={handleSelection}>
-                <fieldset>
+            <motion.form 
+                variants={innerRoller}
+                initial='hidden'
+                animate='visible'
+                onSubmit={handleSelection}>
+                <motion.fieldset
+                    variants={ActualRoller}
+                    initial='hidden'
+                    animate='visible'
+                >
                 {res.map((ele, i) => {
                     return (
                         <motion.div
@@ -210,7 +254,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
                         </motion.div>
                     )
                 })}
-                </fieldset>
+                </motion.fieldset>
                 <motion.button
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1, transition: { duration: .5 } }}
@@ -221,7 +265,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
                   >
                     ROLL
                   </motion.button>
-            </form>
+            </motion.form>
             ) : (
                 <motion.div 
                     variants={RandomCont}
