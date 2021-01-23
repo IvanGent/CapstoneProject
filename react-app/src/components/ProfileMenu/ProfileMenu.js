@@ -3,8 +3,41 @@ import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
-import NavProfile from '../../images/NavProfile.png'
+// import NavProfile from '../../images/NavProfile.png'
 
+
+const Menu = {
+    closed: {
+        // clipPath: "circle(30px at 40px 40px)",
+        x:"-100%",
+        width: "25px",
+        height: "25px",
+        borderRadius: '50%',
+        transition: {
+            delay: 0.5,
+            type: "spring",
+            stiffness: 400,
+            damping: 40
+        }
+    },
+    opened: {
+        // clipPath: `circle(${height * 2 + 200} px at 40px 40px)`,
+        // transition: {
+        //     type: 'spring',
+        //     stiffness: 20,
+        //     restDelta: 2
+        // },
+        x:0,
+        // borderRadius: '0%',
+        position:'absolute',
+        height: "100%",
+        width: "50px"
+    },
+    hover: {
+        scale: 1.1,
+        opacity: 0.9
+    }
+}
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
     const [user, setUser] = useState('');
@@ -51,17 +84,22 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
     }
 
     return (
-        <div className='profileMenu'>
+        <motion.div 
+            variants={Menu}
+            // initial='closed'
+            animate={showMenu ? 'opened' : 'closed'}
+            onClick={() => setShowMenu(!showMenu)}
+            className='profileMenu'>
             {!mobileSize ? (
                 <>
                 <AnimatePresence>
-                    <motion.img
+                    {/* <motion.img
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.8 }}
                         src={NavProfile}
                         onClick={openMenu}
                         className='NavImg'
-                    />
+                    /> */}
                 </AnimatePresence>
                 <AnimatePresence>
                 {showMenu && (
@@ -117,7 +155,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                     )}
                 </>
             )}
-        </div>
+        </motion.div>
     )
 }
 
