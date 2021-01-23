@@ -43,6 +43,7 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
         setShowForms(false);
         setShowHomePage(true);
         localStorage.setItem("userId", user.id);
+        localStorage.setItem("currUser", user.id)
       } else {
         setErrors(user.errors);
       }

@@ -61,6 +61,7 @@ function App() {
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
   const [mobileSize, setMobileSize] = useState(false);
+  const [showProfilePage, setShowProfilePage] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -107,6 +108,7 @@ function App() {
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
         mobileSize={mobileSize}
+        setShowProfilePage={setShowProfilePage}
         />
     <div id='background'>
         {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
@@ -190,12 +192,12 @@ function App() {
         {/* {authenticated && showHomePage ? (
           <HomePage />
         ): null} */}
-      </Route>
-      <Route path="/users/:userId" exact={true} authenticated={authenticated}>
+        {showProfilePage && 
         <User authenticated={authenticated} showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
+        }
       </Route>
-      <Route path='/' exact={true}>
-      </Route>
+      {/* <Route path="/users/:userId" exact={true} authenticated={authenticated}> */}
+      {/* </Route> */}
     </div>
     <Footer mobileSize={mobileSize} />
     </BrowserRouter>

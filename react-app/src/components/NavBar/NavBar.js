@@ -21,7 +21,7 @@ const Nav = {
 }
 
 
-const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, mobileSize }) => {
+const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize }) => {
   const [user, setUser] = useState("");
   
 
@@ -91,6 +91,8 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                 setShowHomePage={setShowHomePage} 
                 setShowButton={setShowButton}
                 setShowRoll={setShowRoll}
+                setShowProfilePage={setShowProfilePage}
+                mobileSize={mobileSize}
                 />
             </li>
           </>
@@ -125,6 +127,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                       setShowHomePage={setShowHomePage}
                       setShowButton={setShowButton}
                       setShowRoll={setShowRoll}
+                      setShowProfilePage={setShowProfilePage}
                       mobileSize={mobileSize}
                     />
                   </li>

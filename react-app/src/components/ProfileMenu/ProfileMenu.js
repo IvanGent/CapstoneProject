@@ -6,7 +6,7 @@ import './ProfileMenu.css'
 import NavProfile from '../../images/NavProfile.png'
 
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, mobileSize }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
     const history = useHistory();
     const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
@@ -45,6 +45,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
 
     const handleClick = () => {
         setShowRoll(false);
+        setShowProfilePage(true)
     }
 
     return (
@@ -65,7 +66,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                         <ul>
                         <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, height: 0, transition: { duration: .5 }}} className='innerProfileMenu'>
                             <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}>
-                                <NavLink to={`/users/${user}`} activeClassName="active" onClick={handleClick}>Profile</NavLink>
+                                <h3 onClick={handleClick}>Profile</h3>
                             </motion.li>
                             {/* <li>
                                 <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>

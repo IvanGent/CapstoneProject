@@ -84,7 +84,8 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
   
   // Notice we use useParams here instead of getting the params
   // From props.
-  const { userId }  = useParams();
+  // const { userId }  = useParams();
+  const userId = localStorage.getItem('currUser')
   const currUser = localStorage.getItem('userId')
 
   
