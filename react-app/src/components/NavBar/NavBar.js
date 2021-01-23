@@ -1,7 +1,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
 

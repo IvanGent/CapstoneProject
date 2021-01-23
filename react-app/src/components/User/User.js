@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import VerticalTabs from '../Tabs/Tabs';
 import './User.css';
