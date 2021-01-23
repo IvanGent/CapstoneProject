@@ -28,6 +28,32 @@ export function CircularIndeterminate() {
     );
 }
 
+const Home = {
+    visible: {
+        opacity: 1
+    },
+    hidden: {
+        opacity: 0
+    },
+    exit: {
+        opacity: 0
+    }
+}
+
+const innerHome = {
+    visible: {
+        x: 0
+        // opacity: 1
+    },
+    hidden: {
+        x: 2000
+        // opacity: 0
+    },
+    exit: {
+        // opacity: 0
+    }
+}
+
 const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
@@ -42,6 +68,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
         if ('errors' in result2) {
             const res = await fetch(`/api/restaurants/details/${placeId}`)
             const {result} = await res.json()
+            console.log(result)
             if(result.website) {
                 let web = result.website.split('.')
                 for (let i = 0; i < web.length; i++) {
@@ -58,6 +85,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
                 result.logo = '/Restaurant.png'
 
             }
+            // console.log(result)
             const addedRes = await addingRestaurant(result.name, result.logo)
             return addedRes
         }
@@ -88,11 +116,12 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
         const res = await fetch(`/api/restaurants/${lat}/${lng}`)
         const { results } = await res.json()
         // const results = restData.results
+        console.log(results)
         let newData = {}
 
         await results.filter(ele => {
-            if (!ele.types.includes('gas_station')) {
-
+            if (!ele.types.includes('gas_station') && ele.business_status !== "CLOSED_TEMPORARILY") {
+                console.log(ele)
                 newData[ele.name] = ele;
             }
             return ele;
@@ -137,13 +166,22 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
 
     return (
         <AnimatePresence>
-        <motion.div className='homepage'>
+        <motion.div 
+        variants={Home}
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        className='homepage'>
             {!mobileSize ? (
                 <>
                 {data.length || showRoll ? (
                     <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
                 ): (
-                    <div>
+                    <motion.div
+                        variants={innerHome}
+                        initial='hidden'
+                        animate='visible'
+                    >
                         {!showLoader ? (
                             <>
                         <div className='innerHome'>
@@ -183,7 +221,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
                         ): (
                             <CircularIndeterminate />
                         )}
-                        </div>
+                        </motion.div>
                 )}
                 </>
             ) : (
