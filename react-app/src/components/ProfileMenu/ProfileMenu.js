@@ -4,6 +4,7 @@ import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 // import NavProfile from '../../images/NavProfile.png'
 import MenuIcon from  '../../images/MobileMenu.png'
+import Cross from '../../images/Cross.png'
 
 
 const Menu = {
@@ -23,7 +24,7 @@ const Menu = {
         x: 0,
         borderRadius: '25px',
         position:'absolute',
-        height: "50vh",
+        height: "35vh",
         width: '300px'
     },
     exit: {
@@ -52,9 +53,6 @@ const Button = {
     visible: {
         width: '100px',
         height: '100px',
-        transition: {
-            // delay: .5
-        }
     },
     initial: {
         width: '50px',
@@ -152,11 +150,17 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         <div className='outerMenu'>
         <motion.img 
             // initial={{opacity: 1}} 
-            animate={showMenu ? {opacity: 0, x: -150, y: 90, transition: {delay: .05}}: {opacity: 1, transition: {delay: .4}} } 
+            animate={showMenu ? {opacity: 0, transition: {delay: .05}}: {opacity: 1, transition: {delay: .4}} } 
             src={MenuIcon} 
             alt='menu' 
             onClick={() => setShowMenu(!showMenu)} 
             />
+        <motion.img 
+            src={Cross}
+            alt='menu'
+            animate={showMenu ? {opacity: 1, transition: {delay: .3}} : {opacity: 0}}
+            onClick={() => setShowMenu(!showMenu)}
+        />  
         <motion.div 
             variants={Button}
             // initial='closed'
