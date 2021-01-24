@@ -147,18 +147,26 @@ function Listing({ showVisited, showFaves  }) {
                                     <div>
                                         <img src={ele.restaurant.logo} alt='logo' />
                                     </div>
-                                    <span id='line'>-</span>
-                                    <span>
+                                    <div className='holdingName'>
+                                        <span>
                                         {ele.restaurant.name}
-                                    <motion.button
-                                        variants={RemoveBut}
+                                        </span>
+                                        <motion.button
+                                            variants={RemoveBut}
+                                            initial='hidden'
+                                            animate='visible'
+                                        >
+                                            Remove From Visited
+                                        </motion.button>
+                                    </div>
+                                    <motion.div 
+                                        variants={svgVar}
                                         initial='hidden'
                                         animate='visible'
+                                        whileTap='tap'
+                                        whileHover='hover'
+                                        className='AddFavs'
                                     >
-                                        Remove From Visited
-                                    </motion.button>
-                                        </span>
-                                </div>
                                     <motion.svg
                                         id={ele.restaurant.id}
                                         className='list'
@@ -175,6 +183,10 @@ function Listing({ showVisited, showFaves  }) {
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
                                     </motion.svg>
+                                    <p id='add' 
+                                        >Add To Favorites</p>
+                                    </motion.div>
+                                </div>
                                 </motion.li>
                             )})}
                             </ul>

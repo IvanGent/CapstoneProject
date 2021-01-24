@@ -1,9 +1,11 @@
 .listing {
     overflow: scroll;
     /* background-color: red; */
-    min-height: 500px;
+    width: 560px;
+    height: 700px;
     padding: 10px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+    border-radius: 5px;
 }
 
 .listing li {
@@ -12,11 +14,11 @@
     background-color: white;
     font-size: 20px;
     padding: 5px 20px;
-    width: 100%;
+    width: 500px;
     min-height: 140px;
     border-radius: 10px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
-    margin: 5px;
+    margin: 15px 0;
     /* overflow: scroll; */
     /* background-color: purple; */
 }
@@ -26,18 +28,18 @@
     background-color: white;
     width: 100%;
     border-radius: 10px;
-    /* box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5); */
 }
 
 .innerLi button {
     background-color: blue;
-    /* position: absolute; */
+    bottom: 1;
     position: relative;
-
-    bottom: 0;
-    width: 100px;
+    width: 140px;
     height: 40px;
-   border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, .5);
+    outline: none;
+    margin-bottom: 10px;
 }
 
 .innerLi div{
@@ -56,7 +58,7 @@
 } 
 
 .listing li img {
-    margin-right: 30px;
+    margin-right: 10px;
     margin-left: 10px;
     /* max-width: 128px;
     max-height: 128px; */
@@ -64,7 +66,7 @@
 }
 
 .listing li span {
-    margin-left: 30px;
+    /* margin-left: 30px; */
     font-family: "Staatliches";
     opacity: 1;
 }
@@ -78,8 +80,8 @@
     display: flex;
     justify-content: center;
     /* background-color: red; */
-    width: 520px;
-    max-height: 560px;
+    width: 100%;
+    height: 100%;
     overflow: scroll;
     background-color: rgba(0, 0, 0, .0);
 }
@@ -123,4 +125,23 @@ svg.list {
     /* fill: red; */
     /* color: red; */
     /* background-color: red; */
+}
+
+.holdingName {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.innerLi p {
+    font-size: 15px;
+}
+
+#add {
+    font-size: 13px;;
+}
+
+.AddFavs {
+    margin-left: 10px;
 }
