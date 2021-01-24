@@ -40,7 +40,7 @@ const liInfo = {
 // }
 
 
-function Listing({ showTab1, showTab2  }) {
+function Listing({ showVisited, showFaves  }) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
     const curr = localStorage.getItem('userId')
@@ -113,7 +113,7 @@ function Listing({ showTab1, showTab2  }) {
 
     return (
         <div className='listing'>
-            {showTab1 ? (
+            {showVisited ? (
                 <div className='Tab'>
                     {res.length ? (
                         <AnimatePresence>
@@ -176,7 +176,7 @@ function Listing({ showTab1, showTab2  }) {
                     )}
                 </div>
             ) : null }
-            {showTab2 ? (
+            {showFaves ? (
                 <div className='Tab'>
                 {favs.length ? (
                     <AnimatePresence>

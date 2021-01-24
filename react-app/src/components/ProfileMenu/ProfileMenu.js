@@ -96,7 +96,7 @@ const Item = {
     })
 }
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
     const [showMenu, setShowMenu] = useState(false);
 
 
@@ -127,21 +127,32 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         setShowProfilePage(false)
         localStorage.removeItem('userId');
         localStorage.removeItem('currUser')
-        // history.push('/');
         return;
-        // return <Redirect to='/' />
     };
 
     const handleClick = () => {
         setShowRoll(false);
         setShowHomePage(false)
         setShowProfilePage(true)
+        setShowVisited(true)
     }
 
     const goHome = () => {
         setShowRoll(false);
         setShowProfilePage(false);
         setShowHomePage(true);
+    }
+
+    const handleFriends = () => {
+        setShowHomePage(false);
+        setShowProfilePage(true);
+        setShowFriends(true);
+    }
+
+    const handleFaves = () => {
+        setShowHomePage(false);
+        setShowProfilePage(true);
+        setShowFaves(true);
     }
 
     return (
@@ -161,10 +172,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         />  
         <motion.div 
             variants={Button}
-            // initial='closed'
             animate={showMenu ? 'visible' : 'initial'}
-            // whileTap={!showMenu ? 'tap' : null}
-            // whileHover={!showMenu ? 'hover' : null}
             onClick={() => setShowMenu(!showMenu)}
             className='profileMenu'>
             
@@ -203,10 +211,10 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                                 <h3 onClick={handleClick}>Profile</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={3}>
-                                <h3 onClick={handleClick}>Friends</h3>
+                                <h3 onClick={handleFriends}>Friends</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
-                                <h3 onClick={handleClick}>Favorites List</h3>
+                                <h3 onClick={handleFaves}>Favorites List</h3>
                             </motion.li>
                             
                             {/* <li>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import VerticalTabs from '../Tabs/Tabs';
+import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
 import ProfileAv from "../../images/ProfileAvatar.png";
@@ -77,7 +78,7 @@ const FavsMobile = {
 }
 
 
-function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
+function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
@@ -225,7 +226,12 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize }) {
         initial='hidden'
         animate='visible'
         className='tabs'>
-        <VerticalTabs authenticated={authenticated} />
+        {/* <VerticalTabs authenticated={authenticated} /> */}
+                    <AnimatePresence>
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
+                        <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} />
+                      </motion.div>
+                    </AnimatePresence>
       </motion.div>
       </motion.div>
     </div>

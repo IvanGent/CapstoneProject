@@ -62,6 +62,10 @@ function App() {
   const [showRoll, setShowRoll] = useState(false);
   const [mobileSize, setMobileSize] = useState(false);
   const [showProfilePage, setShowProfilePage] = useState(false);
+  const [showFriends, setShowFriends] = useState(false);
+  const [showVisited, setShowVisited] = useState(false);
+  const [showFaves, setShowFaves] = useState(false);
+
 
   useEffect(() => {
     (async() => {
@@ -109,6 +113,9 @@ function App() {
         setShowRoll={setShowRoll}
         mobileSize={mobileSize}
         setShowProfilePage={setShowProfilePage}
+        setShowFriends={setShowFriends}
+        setShowFaves={setShowFaves}
+        setShowVisited={setShowVisited}
         />
     <div id='background'>
         {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
@@ -193,7 +200,18 @@ function App() {
           <HomePage />
         ): null} */}
         {showProfilePage && 
-        <User authenticated={authenticated} showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
+        <User 
+          authenticated={authenticated} 
+          showRoll={showRoll} 
+          setShowRoll={setShowRoll} 
+          mobileSize={mobileSize} 
+          showFriends={showFriends}
+          showVisited={showVisited}
+          showFaves={showFaves}
+          setShowFriends={setShowFriends}
+          setShowFaves={setShowFaves}
+          setShowVisited={setShowVisited}
+          />
         }
       </Route>
       {/* <Route path="/users/:userId" exact={true} authenticated={authenticated}> */}
