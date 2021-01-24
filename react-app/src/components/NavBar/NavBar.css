@@ -10,6 +10,9 @@
         z-index: 20;
         font-family: 'Staatliches';
     }
+    .nav h1 {
+        cursor: pointer;
+    }
     
     .nav ul {
         display: flex;

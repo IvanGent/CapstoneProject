@@ -97,7 +97,6 @@ const Item = {
 }
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
-    const [user, setUser] = useState('');
     const [showMenu, setShowMenu] = useState(false);
 
 
@@ -108,7 +107,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
     }
 
     useEffect(() => {
-        setUser(localStorage.getItem('userId'));
         if (!showMenu) return;
 
         const closeMenu = () => {

@@ -1,7 +1,6 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
 
@@ -54,10 +53,10 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
     setShowHomePage(true);
   }
 
-  const goHome = () => {
-    setShowHomePage(true);
-    setShowProfilePage(false);
-  }
+  // const goHome = () => {
+  //   setShowHomePage(true);
+  //   setShowProfilePage(false);
+  // }
 
   return (
       <AnimatePresence>
@@ -69,7 +68,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
     >
       {!mobileSize ? (
         <div className='nav'>
-      <h1>What-To-Bite</h1>
+      <h1 onClick={handleClick}>What-To-Bite</h1>
       <ul className='navMenu'>
         {!authenticated ? (
           <>
@@ -99,7 +98,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
       </div>
       ) : (
         <div className='nav'>
-          <h1 onClick={goHome}>What-To-Bite</h1>
+          <h1 onClick={handleClick}>What-To-Bite</h1>
           {/* <ul className='navMenu'> */}
             {/* <li> */}
               {/* <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
@@ -108,7 +107,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
             {/* </li> */}
             {!authenticated ? (
               <>
-                  <h1 onClick={goHome}>What-To-Bite</h1>
+                  <h1 onClick={handleClick}>What-To-Bite</h1>
                 {/* <li>
                   <h3 onClick={handleLoginClick}>Login</h3>
                 </li>
