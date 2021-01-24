@@ -159,12 +159,13 @@ function Listing({ showVisited, showFaves  }) {
                                             Remove From Visited
                                         </motion.button>
                                     </div>
-                                    <motion.div 
-                                        variants={svgVar}
-                                        initial='hidden'
-                                        animate='visible'
-                                        whileTap='tap'
-                                        whileHover='hover'
+                                    <motion.div
+                                        // id={ele.restaurant.id}
+                                        // variants={svgVar}
+                                        // initial='hidden'
+                                        // animate='visible'
+                                        // whileTap='tap'
+                                        // whileHover='hover'
                                         className='AddFavs'
                                     >
                                     <motion.svg
@@ -181,7 +182,8 @@ function Listing({ showVisited, showFaves  }) {
                                         onClick={favHandle}
                                         version="1.0" viewBox="0 0 24 24" 
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
+                                            <path d="M8.612,2.347L8,2.997l-0.612-0.65c-1.69-1.795-4.43-1.795-6.12,0c-1.69,1.795-1.69,4.706,0,6.502l0.612,0.65L8,16  l6.12-6.502l0.612-0.65c1.69-1.795,1.69-4.706,0-6.502C13.042,0.551,10.302,0.551,8.612,2.347z" />
+                                        {/* <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" /> */}
                                     </motion.svg>
                                     <p id='add' 
                                         >Add To Favorites</p>
