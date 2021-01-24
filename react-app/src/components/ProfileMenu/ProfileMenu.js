@@ -9,34 +9,68 @@ import './ProfileMenu.css'
 const Menu = {
     closed: {
         // clipPath: "circle(30px at 40px 40px)",
-        x:"-100%",
-        width: "25px",
-        height: "25px",
+        // x:"100%",
+        x: 0,
+        width: "50px",
+        height: "50px",
         borderRadius: '50%',
-        transition: {
-            delay: 0.5,
-            type: "spring",
-            stiffness: 400,
-            damping: 40
-        }
+        // transition: {
+        //     delay: 0.5,
+        //     type: "spring",
+        //     stiffness: 400,
+        //     damping: 40
+        // }
+
     },
     opened: {
         // clipPath: `circle(${height * 2 + 200} px at 40px 40px)`,
-        // transition: {
-        //     type: 'spring',
-        //     stiffness: 20,
-        //     restDelta: 2
-        // },
-        x:0,
-        // borderRadius: '0%',
+        transition: {
+            type: 'spring',
+            stiffness: 100,
+            // restDelta: 2
+        },
+        x: 0,
+        borderRadius: '25px',
         position:'absolute',
-        height: "100%",
-        width: "50px"
+        height: "50vh",
+        width: '300px'
     },
-    hover: {
-        scale: 1.1,
-        opacity: 0.9
+    exit: {
+        // borderRadius: '50%',
+        width: "50px",
+        height: "50px",
+        borderRadius: '50%',
+        // transition: {
+        //     delay: 0.5,
+        //     type: "spring",
+        //     stiffness: 400,
+        //     damping: 40
+        // }
     }
+}
+
+const MenuChilds = {
+    visible: {
+
+    },
+    hidden: {
+
+    },
+}
+
+const Button = {
+    // visible: {
+    //     width: '100px',
+    //     height: '100px',
+    //     transition: {
+    //         delay: .1
+    //     }
+    // },
+    // initial: {
+    //     width: '50px',
+    //     height: '50px'
+
+    // }
 }
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize }) {
@@ -85,9 +119,11 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
 
     return (
         <motion.div 
-            variants={Menu}
+            variants={Button}
             // initial='closed'
-            animate={showMenu ? 'opened' : 'closed'}
+            animate={showMenu ? 'visible' : 'initial'}
+            // whileTap={!showMenu ? 'tap' : null}
+            // whileHover={!showMenu ? 'hover' : null}
             onClick={() => setShowMenu(!showMenu)}
             className='profileMenu'>
             {!mobileSize ? (
@@ -103,22 +139,40 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                 </AnimatePresence>
                 <AnimatePresence>
                 {showMenu && (
-                        <ul>
-                        <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, height: 0, transition: { duration: .5 }}} className='innerProfileMenu'>
-                            <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}>
+                    <motion.div
+                        variants={Menu}
+                        animate={showMenu ? 'opened' : 'closed'}
+                        // whileTap={!showMenu ? 'tap' : null}
+                        // whileHover={!showMenu ? 'hover' : null}
+                        exit='exit'
+                        className='menu'
+                    >
+                        <motion.ul
+                            variants={MenuChilds}
+                            initial='hidden'
+                            animate='visible'
+                            className='menuHolder'
+                        >
+                        {/* <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, height: 0, transition: { duration: .5 }}} className='innerProfileMenu'> */}
+                            {/* <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}> */}
+                                <li>
                                 <h3 onClick={handleClick}>Profile</h3>
-                            </motion.li>
+                                </li>
+                            {/* </motion.li> */}
                             {/* <li>
                                 <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
                             </li>
                             <li>
                                 <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
                             </li> */}
-                            <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}>
+                            {/* <motion.li exit={{opacity: 0, y: -30, transition: { duration: .35 }}}> */}
+                                <li>
                                 <div id='logout' onClick={onLogout}>Logout</div>
-                            </motion.li>
-                        </motion.menu>
-                        </ul>
+                                </li>
+                            {/* </motion.li> */}
+                        {/* </motion.menu> */}
+                        </motion.ul>
+                    </motion.div>
                 )}
                         </AnimatePresence>
                 </>

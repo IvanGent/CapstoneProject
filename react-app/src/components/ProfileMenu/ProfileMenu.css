@@ -3,14 +3,39 @@
     position: absolute;
     /* background-color: yellow; */
     /* margin-left: 20px; */
-    margin-top: 15px;
+    /* margin-top: 15px; */
     /* width: 50px;
     height: 50px; */
     /* width: 300px; */
-    background-color: blue;
+    background-color: #fff;
     /* z-index: 99; */
+    top:15px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* width: 300px; */
+    z-index: 999;
 
     }
+
+    .menu {
+        position: absolute;
+        /* top: 0; */
+        right: 0;
+        /* bottom: 0; */
+        /* width: 300px; */
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        color: black;
+    }
+
+    .menuHolder {
+        /* background-color: red; */
+        margin-top: 100px;
+    }
+
 
     .profileMenu div{
         font-size: 20px;
