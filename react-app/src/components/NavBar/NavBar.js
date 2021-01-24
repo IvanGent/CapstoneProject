@@ -71,11 +71,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
         <div className='nav'>
       <h1>What-To-Bite</h1>
       <ul className='navMenu'>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
-            Home
-          </NavLink>
-        </li>
         {!authenticated ? (
           <>
         <li>
