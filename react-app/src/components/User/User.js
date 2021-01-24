@@ -188,13 +188,18 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             <img id='avatar' src={avatar} alt='avatar' />
             {currUser === userId ? (
             <div className='editCont'>
-              <img
+              {/* <img
                 src={EditIcon}
                 alt='edit'
                 id='editIcon'
-              />
+              /> */}
+              <motion.label 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: .9 }}
+                className='photoInput'>
+                Update Profile Photo
               <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
-              Profile Photo
+              </motion.label>
             </div>
             ) : null}
           <motion.ul className='userInfo'>

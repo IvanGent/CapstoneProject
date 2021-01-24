@@ -63,47 +63,55 @@
         box-shadow: 0px 6px 8px 3px rgba(0, 0, 0, 0.6);
     }
 
-    .profileInfo div {
-        font-size: 15px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
+
 
     .tabs {
         /* background-color: red; */
         width: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .editCont {
-        display: flex;
+        /* display: flex;
         justify-items: end;
         flex-direction: column;
         align-items: flex-end;
         position: absolute;
         width: 180px;
+        color: white; */
+        /* background-color: rgba(0, 0, 0, 0.1); */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .editCont input {
+        background-color: burlywood;
+        display: none;
+    }
+
+    .editCont label {
+        width: 130px;
+    }
+
+    .photoInput {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 200;
+        width: 180px;
+        height: 30px;
+        background-color: rgb(75, 155, 233);
         color: white;
+        border-radius: 5px;
+        /* margin-bottom: 8px; */
     }
 
-    #editIcon {
-        /* background-color: purple; */
-        position: absolute;
-        margin-top: 190px;
-        margin-left: 100px;
-        box-shadow: none;
-        border-radius: 0;
-        width: 25px;
-        height: 25px;
-        /* z-index: -1; */
-    }
-
-    #newPhoto {
-        background-color: purple;
-        /* z-index: 10; */
-        width: 22px;
-        margin-top: 195px;
-        margin-left: 175px;
-        opacity: 0;
-    }
 
     .userInfo {
         margin-top: 30px;

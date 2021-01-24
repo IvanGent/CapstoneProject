@@ -1,12 +1,23 @@
+.listing {
+    overflow: scroll;
+    /* background-color: red; */
+    min-height: 500px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+}
 
 .listing li {
     display: flex;
     list-style-type: none;
+    background-color: white;
     font-size: 20px;
     padding: 5px 20px;
-    width: 480px;
+    width: 100%;
     min-height: 140px;
-    overflow: scroll;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+    margin: 5px;
+    /* overflow: scroll; */
     /* background-color: purple; */
 }
 
@@ -15,7 +26,18 @@
     background-color: white;
     width: 100%;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
+    /* box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5); */
+}
+
+.innerLi button {
+    background-color: blue;
+    /* position: absolute; */
+    position: relative;
+
+    bottom: 0;
+    width: 100px;
+    height: 40px;
+   border-radius: 5px;
 }
 
 .innerLi div{
@@ -56,7 +78,7 @@
     display: flex;
     justify-content: center;
     /* background-color: red; */
-    width: 480px;
+    width: 520px;
     max-height: 560px;
     overflow: scroll;
     background-color: rgba(0, 0, 0, .0);

@@ -39,6 +39,17 @@ const liInfo = {
 //     }
 // }
 
+const RemoveBut = {
+    hidden: {
+        opacity: 0
+    },
+    visible: {
+        opacity: 1
+    },  
+    exit: {
+
+    }
+}
 
 function Listing({ showVisited, showFaves  }) {
     const [res, setRes] = useState([]);
@@ -63,7 +74,6 @@ function Listing({ showVisited, showFaves  }) {
     }, [userId, res.length, curr])
 
     const favHandle = async (event) => {
-        // console.log(event.target.id)
         if(event.target.style.fill === 'red') {
             event.target.style.fill = null
             const res = await fetch('/api/favs/del', {
@@ -77,7 +87,6 @@ function Listing({ showVisited, showFaves  }) {
                 })
             })
             await res.json()
-            // console.log(data);
 
         } else {
             event.target.style.fill = 'red'
@@ -92,7 +101,6 @@ function Listing({ showVisited, showFaves  }) {
                 })
             })
             await res.json();
-            // console.log(data)
         }
     }
 
@@ -139,24 +147,34 @@ function Listing({ showVisited, showFaves  }) {
                                     <div>
                                         <img src={ele.restaurant.logo} alt='logo' />
                                     </div>
-                                    <span id='line'>-</span><span>{ele.restaurant.name}</span>
-                                        <motion.svg
-                                            id={ele.restaurant.id}
-                                            className='list'
-                                            variants={svgVar}
-                                            // enable-background="new 0 0 24 24" 
-                                            // enableBackground='red'
-                                            initial='hidden'
-                                            animate='visible'
-                                            whileTap='tap'
-                                            whileHover='hover'
-                                            style={{fill: fill}}
-                                            onClick={favHandle}
-                                            version="1.0" viewBox="0 0 24 24" 
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
-                                        </motion.svg>
+                                    <span id='line'>-</span>
+                                    <span>
+                                        {ele.restaurant.name}
+                                    <motion.button
+                                        variants={RemoveBut}
+                                        initial='hidden'
+                                        animate='visible'
+                                    >
+                                        Remove From Visited
+                                    </motion.button>
+                                        </span>
                                 </div>
+                                    <motion.svg
+                                        id={ele.restaurant.id}
+                                        className='list'
+                                        variants={svgVar}
+                                        // enable-background="new 0 0 24 24" 
+                                        // enableBackground='red'
+                                        initial='hidden'
+                                        animate='visible'
+                                        whileTap='tap'
+                                        whileHover='hover'
+                                        style={{fill: fill}}
+                                        onClick={favHandle}
+                                        version="1.0" viewBox="0 0 24 24" 
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
+                                    </motion.svg>
                                 </motion.li>
                             )})}
                             </ul>
