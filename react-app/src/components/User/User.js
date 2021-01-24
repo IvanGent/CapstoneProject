@@ -76,6 +76,17 @@ const FavsMobile = {
   }
 }
 
+const tabs = {
+  show: {
+    // scale: 1.002,
+    style: {
+      borderBottom: 'thick solid red'
+    }
+  },
+  close: {
+  }
+}
+
 
 function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited }) {
   const [user, setUser] = useState({});
@@ -165,6 +176,24 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     }
     setShowRoll(true)
   }
+
+  const handleVisited = () => {
+    setShowFaves(false)
+    setShowFriends(false)
+    setShowVisited(true)
+  }
+
+  const handleFaves = () => {
+    setShowFriends(false)
+    setShowVisited(false)
+    setShowFaves(true)
+  }
+
+  const handleFriends = () => {
+    setShowVisited(false)
+    setShowFaves(false)
+    setShowFriends(true)
+  }
   
   return (
     <>
@@ -231,11 +260,39 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         animate='visible'
         className='tabs'>
         {/* <VerticalTabs authenticated={authenticated} /> */}
-                    <AnimatePresence>
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-                        <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} />
-                      </motion.div>
-                    </AnimatePresence>
+        <div>
+          <ul className='tabLabels'>
+            <motion.li
+              variants={tabs}
+              // animate={showVisited ? 'show':'close'}
+              style={showVisited ? {borderBottom: 'thick solid red' } : {borderBottom: 'none'}}
+              onClick={handleVisited}
+            >
+              Visited Restaurants
+            </motion.li>
+            <motion.li
+              variants={tabs}
+              // animate={showFaves ? 'show' : 'close'}
+              style={showFaves ? { borderBottom: 'thick solid red' } : { borderBottom: 'none' }}
+              onClick={handleFaves}
+            >
+              Favorites List
+            </motion.li>
+            <motion.li
+              variants={tabs}
+              // animate={showFriends ? 'show' : 'close'}
+              style={showFriends ? { borderBottom: 'thick solid red', backgroundColor: 'rgb(75, 155,233)' } : { borderBottom: 'none', backgroundColor: 'none' }}
+              onClick={handleFriends}
+            >
+              Friends
+            </motion.li>
+          </ul>
+        </div>
+          <AnimatePresence>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
+              <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} />
+            </motion.div>
+          </AnimatePresence>
       </motion.div>
       </motion.div>
     </div>

@@ -46,9 +46,27 @@ const RemoveBut = {
     visible: {
         opacity: 1
     },  
-    exit: {
-
+    hover: {
+        scale: 1.1
+    },
+    tap: {
+        scale: .9
     }
+}
+
+const svgVar = {
+    visible: {
+        opacity: 1
+    },
+    hidden: {
+        opacity: 0
+    },
+    hover: {
+        scale: 1.2
+    },
+    tap: {
+        scale: .8,
+    },
 }
 
 function Listing({ showVisited, showFaves  }) {
@@ -71,9 +89,10 @@ function Listing({ showVisited, showFaves  }) {
             })
             setRes(user.visitedRestaurants.reverse())
         })()
-    }, [userId, res.length, curr])
+    }, [userId, res.length, curr, favs.length])
 
     const favHandle = async (event) => {
+        console.log(event.target.id)
         if(event.target.style.fill === 'red') {
             event.target.style.fill = null
             const res = await fetch('/api/favs/del', {
@@ -90,6 +109,7 @@ function Listing({ showVisited, showFaves  }) {
 
         } else {
             event.target.style.fill = 'red'
+            // const find = await fetch(`/api/${name}`)
             const res = await fetch('/api/favs/', {
                 method: "POST",
                 headers: {
@@ -100,24 +120,16 @@ function Listing({ showVisited, showFaves  }) {
                     user_id: curr
                 })
             })
-            await res.json();
+            const newRes = await res.json();
+            console.log(newRes)
+            favs.push(newRes)
         }
     }
 
-    const svgVar = {
-        visible: {
-            opacity: 1
-        },
-        hidden: {
-            opacity: 0
-        },
-        hover: {
-            scale: 1.2
-        },
-        tap: {
-            scale: .8,
-        },
+    const removeRes = async (e) => {
+        console.log(e.target.id)
     }
+
 
     return (
         <div className='listing'>
@@ -152,20 +164,18 @@ function Listing({ showVisited, showFaves  }) {
                                         {ele.restaurant.name}
                                         </span>
                                         <motion.button
+                                            id={ele.restaurant.id}
                                             variants={RemoveBut}
                                             initial='hidden'
                                             animate='visible'
+                                            whileTap='tap'
+                                            whileHover='hover'
+                                            onClick={removeRes}
                                         >
                                             Remove From Visited
                                         </motion.button>
                                     </div>
                                     <motion.div
-                                        // id={ele.restaurant.id}
-                                        // variants={svgVar}
-                                        // initial='hidden'
-                                        // animate='visible'
-                                        // whileTap='tap'
-                                        // whileHover='hover'
                                         className='AddFavs'
                                     >
                                     <motion.svg
@@ -182,8 +192,8 @@ function Listing({ showVisited, showFaves  }) {
                                         onClick={favHandle}
                                         version="1.0" viewBox="0 0 24 24" 
                                         xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.612,2.347L8,2.997l-0.612-0.65c-1.69-1.795-4.43-1.795-6.12,0c-1.69,1.795-1.69,4.706,0,6.502l0.612,0.65L8,16  l6.12-6.502l0.612-0.65c1.69-1.795,1.69-4.706,0-6.502C13.042,0.551,10.302,0.551,8.612,2.347z" />
-                                        {/* <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" /> */}
+                                                 {/* <path id={ele.restaurant.id} d="M8.612,2.347L8,2.997l-0.612-0.65c-1.69-1.795-4.43-1.795-6.12,0c-1.69,1.795-1.69,4.706,0,6.502l0.612,0.65L8,16  l6.12-6.502l0.612-0.65c1.69-1.795,1.69-4.706,0-6.502C13.042,0.551,10.302,0.551,8.612,2.347z" /> */}
+                                        <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
                                     </motion.svg>
                                     <p id='add' 
                                         >Add To Favorites</p>

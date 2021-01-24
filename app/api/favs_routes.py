@@ -8,6 +8,10 @@ favs_routes = Blueprint('favs', __name__)
 @favs_routes.route('/', methods=["POST"])
 def get_favs():
     try:
+        # check = FavList.query.filter(FavList.res_id == data['res_id'], FavList.user_id == data['user_id']).first()
+        # print('THIS IS THE CHECK', check);
+        # if check:
+        #     return jsonify(check.to_dict())
         data = request.json
         fav = FavList(
             user_id=data['user_id'],
@@ -15,7 +19,9 @@ def get_favs():
         )
         db.session.add(fav)
         db.session.commit()
-        return { 'message': 'Success'}
+        # return { 'message': 'Success'}
+        print('THIS IS FAVES', fav.to_dict())
+        return jsonify(fav.to_dict())
     except:
         return { 'errors': ['An error occurred while posting the data']}
     

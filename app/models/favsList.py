@@ -6,6 +6,7 @@ class FavList(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     res_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable = False)
+    db.UniqueConstraint('user_id', 'res_id', name='unique_favs')
 
     # user = db.relationship("User", backref='users')   
     restaurant = db.relationship('Restaurant', backref='restaurants', lazy=True)

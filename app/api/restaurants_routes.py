@@ -35,9 +35,7 @@ def get_place_details(placeId):
 @restaurant_routes.route('/single/<name>')
 def get_a_restaurant(name):
     try:
-        print('NAME:', name)
         res = Restaurant.query.filter(Restaurant.name == name).first()
-        print(res)
         res_json = jsonify(res.to_dict())
         return res_json
     except:
