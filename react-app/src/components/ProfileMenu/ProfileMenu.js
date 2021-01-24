@@ -24,7 +24,7 @@ const Menu = {
         x: 0,
         borderRadius: '25px',
         position:'absolute',
-        height: "35vh",
+        height: "30vh",
         width: '300px'
     },
     exit: {
@@ -133,6 +133,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
     const handleClick = () => {
         setShowRoll(false);
         setShowHomePage(false)
+        setShowFaves(false)
         setShowProfilePage(true)
         setShowVisited(true)
     }
@@ -146,12 +147,14 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
     const handleFriends = () => {
         setShowHomePage(false);
         setShowProfilePage(true);
+        setShowVisited(false);
         setShowFriends(true);
     }
 
     const handleFaves = () => {
         setShowHomePage(false);
         setShowProfilePage(true);
+        setShowVisited(false)
         setShowFaves(true);
     }
 
@@ -159,7 +162,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         <div className='outerMenu'>
         <motion.img 
             // initial={{opacity: 1}} 
-            animate={showMenu ? {opacity: 0, transition: {delay: .05}}: {opacity: 1, transition: {delay: .4}} } 
+            animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
             src={MenuIcon} 
             alt='menu' 
             onClick={() => setShowMenu(!showMenu)} 
@@ -167,7 +170,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         <motion.img 
             src={Cross}
             alt='menu'
-            animate={showMenu ? {opacity: 1, transition: {delay: .3}} : {opacity: 0}}
+                animate={showMenu ? { opacity: 1, transition: { delay: .3 } } : { opacity: 0}}
             onClick={() => setShowMenu(!showMenu)}
         />  
         <motion.div 

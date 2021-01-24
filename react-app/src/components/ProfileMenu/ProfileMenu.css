@@ -11,6 +11,10 @@
     cursor: pointer;
     }
 
+    .menuHolder h3 {
+        padding: 3px
+    }
+
     .outerMenu img {
         position: absolute;
         width: 30px;
