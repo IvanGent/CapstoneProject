@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, VisitedRestaurant
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -7,7 +7,9 @@ from sqlalchemy.exc import SQLAlchemyError
 visitedRestaurant_routes = Blueprint('visitedRestaurant', __name__)
 
 @visitedRestaurant_routes.route('/', methods=["POST"])
+# @login_required
 def add_a_restaurant():
+    print('THIS IS CURRENT USER', current_user.get_id())
     data = request.json
     res = VisitedRestaurant(
         res_id=data['res_id'],

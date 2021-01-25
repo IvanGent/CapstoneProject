@@ -172,6 +172,7 @@ function App() {
             setShowHomePage={setShowHomePage}
             setShowProfilePage={setShowProfilePage}
             setShowVisited={setShowVisited}
+            setShowFriends={setShowFriends}
             />
       )}
       {showForms && (

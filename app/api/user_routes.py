@@ -16,7 +16,7 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-# @login_required
+@login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
@@ -36,7 +36,7 @@ def update_user(id):
 
 
 @user_routes.route('/friend', methods=["POST"])
-# @login_required
+@login_required
 def add_friend():
     # try:
     data = request.json

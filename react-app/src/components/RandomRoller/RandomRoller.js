@@ -121,7 +121,7 @@ const ActualRoller = {
     }
 }
 
-function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited}) {
+function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited, setShowFriends}) {
     const res = restaurants
     const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
@@ -208,6 +208,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
         setShowHomePage(false)
         setShowRoll(false)
         setShowProfilePage(true)
+        setShowFriends(false)
         setShowVisited(true)
     }
 

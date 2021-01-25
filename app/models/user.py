@@ -57,7 +57,6 @@ class User(db.Model, UserMixin):
   def to_original_dict(self):
     return {
       "id": self.id,
-      "id": self.id,
       "username": self.username,
       "first_name": self.first_name,
       "avatar": self.avatar,
@@ -76,6 +75,5 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
       "favsList": [fav.to_dict() for fav in self.favsList],
-      # "friends": self.friendships,
       "friends": [friend.to_original_dict() for friend in self.friendships]
     }

@@ -3,8 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import FavIcon from '../../images/Fav.png'
 
 
-function FavsList({userId, curr, liInfo, svgVar}) {
+function FavsList({curr, liInfo, svgVar}) {
     const [favs, setFavs] = useState([]);
+    const userId = localStorage.getItem('userId')
     
     //favsList is fetched and set to a piece of state
     useEffect(() => {
