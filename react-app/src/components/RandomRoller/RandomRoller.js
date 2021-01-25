@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import './RandomRoller.css';
 import { AnimatePresence, motion} from 'framer-motion';
+import './RandomRoller.css';
 
 // Framer-motion variants
 const resLis = {
@@ -122,8 +121,7 @@ const ActualRoller = {
     }
 }
 
-function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
-    const history = useHistory();
+function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited}) {
     const res = restaurants
     const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
@@ -207,8 +205,10 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize}) {
             })
         })
         await res.json()
-        history.push(`/users/${user}`)
+        setShowHomePage(false)
         setShowRoll(false)
+        setShowProfilePage(true)
+        setShowVisited(true)
     }
 
     return (

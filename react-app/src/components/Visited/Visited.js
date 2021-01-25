@@ -2,59 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import FavIcon from '../../images/Fav.png';
 
-const liInfo = {
-    visible: (i) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            delay: i * .15,
-        }
-    }),
-    hidden: {
-        opacity: 0,
-        y: -50,
-    },
-    exit: {
-        y: -50,
-        opacity: 0,
-    }
-}
-
-const RemoveBut = {
-    hidden: {
-        opacity: 0
-    },
-    visible: {
-        opacity: 1
-    },
-    hover: {
-        scale: 1.1
-    },
-    tap: {
-        scale: .9
-    }
-}
-
-const svgVar = {
-    visible: {
-        opacity: 1
-    },
-    hidden: {
-        opacity: 0
-    },
-    hover: {
-        scale: 1.2
-    },
-    tap: {
-        scale: .8,
-    },
-}
 
 
-function Visited({userId, curr}) {
+function Visited({userId, curr, liInfo, svgVar, RemoveBut}) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
 
+    // favsList and visitedRestaurants are fetched and set to pieces of state
     useEffect(() => {
         (async () => {
             const response = await fetch(`/api/users/${userId}`);
@@ -112,7 +66,7 @@ function Visited({userId, curr}) {
 
     const removeRes = async (e) => {
         console.log(e.target.id)
-        const result = fetch(`/api/visited/`, {
+        const result = await fetch(`/api/visited/`, {
             method: "DELETE",
             headers: { "Content-Type": 'application/json' },
             body: JSON.stringify({
@@ -120,8 +74,7 @@ function Visited({userId, curr}) {
                 "user_id": curr
             })
         })
-        // const data = await result.json()
-        // console.log(data)
+        await result.json()
         let newRes = []
         for(let i = res.length - 1; i > 0; i--) {
             if(res[i].res_id === e.target.id) {
@@ -129,11 +82,6 @@ function Visited({userId, curr}) {
             }
             newRes.push(res[i]);
         }
-        // res.forEach(ele => {
-        //     if(ele.res_id !== e.target.id) {
-        //         newRes.push(ele);
-        //     }
-        // })
         setRes(newRes);
     }
 

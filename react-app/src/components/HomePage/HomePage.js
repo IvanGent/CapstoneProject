@@ -54,7 +54,7 @@ const innerHome = {
     }
 }
 
-const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
+const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
@@ -175,7 +175,14 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize}) => {
             {!mobileSize ? (
                 <>
                 {data.length || showRoll ? (
-                    <RandomRoller restaurants={data} showRoll={showRoll} setShowRoll={setShowRoll} />
+                    <RandomRoller 
+                        restaurants={data} 
+                        showRoll={showRoll} 
+                        setShowRoll={setShowRoll} 
+                        setShowHomePage={setShowHomePage}
+                        setShowProfilePage={setShowProfilePage}
+                        setShowVisited={setShowVisited}
+                        />
                 ): (
                     <motion.div
                         variants={innerHome}

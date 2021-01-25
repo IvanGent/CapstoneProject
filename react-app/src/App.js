@@ -165,7 +165,14 @@ function App() {
         null
       )}
       {showHomePage && (
-          <HomePage showRoll={showRoll} setShowRoll={setShowRoll} mobileSize={mobileSize} />
+          <HomePage 
+            showRoll={showRoll} 
+            setShowRoll={setShowRoll} 
+            mobileSize={mobileSize} 
+            setShowHomePage={setShowHomePage}
+            setShowProfilePage={setShowProfilePage}
+            setShowVisited={setShowVisited}
+            />
       )}
       {showForms && (
         <AnimatePresence>
