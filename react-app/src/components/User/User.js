@@ -112,6 +112,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
       })();
     
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, favs.length]);
   
 

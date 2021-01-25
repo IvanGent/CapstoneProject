@@ -128,6 +128,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
+    const curr = localStorage.getItem('currUser')
     const user = localStorage.getItem('userId')
 
 
@@ -207,8 +208,9 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
         await res.json()
         setShowHomePage(false)
         setShowRoll(false)
-        setShowProfilePage(true)
         setShowFriends(false)
+        localStorage.setItem('userId', curr)
+        setShowProfilePage(true)
         setShowVisited(true)
     }
 
