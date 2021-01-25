@@ -77,13 +77,13 @@ const FavsMobile = {
 
 const tabs = {
   show: {
-   scale: 1.2
+   scale: 1.5
   },
   close: {
     scale: 0.9
   },
   hover: {
-    scale: 1.2
+    scale: 1.5
   },
 }
 
@@ -282,7 +282,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         </div>
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-              <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} />
+              <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} showFriends={showFriends} />
             </motion.div>
           </AnimatePresence>
       </motion.div>

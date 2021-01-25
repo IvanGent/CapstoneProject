@@ -83,8 +83,9 @@
 
     .tabLabels li {
         list-style-type: none;
-        padding: 10px 20px;
+        padding: 10px 30px;
         cursor: pointer;
+        color: rgb(75, 155, 233);
     }
 
     .editCont {

@@ -2,6 +2,7 @@ import React from "react";
 // import { AnimatePresence, motion } from 'framer-motion'
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
+import Friends from '../Friends/Friends';
 import './Listing.css'
 // import FavIcon from '../../images/Fav.png'
 
@@ -53,7 +54,7 @@ const svgVar = {
     },
 }
 
-function Listing({ showVisited, showFaves  }) {
+function Listing({ showVisited, showFaves, showFriends  }) {
     // curr is the user that is signed in
     const curr = localStorage.getItem('userId')
     // userId is the user you're looking at
@@ -68,6 +69,9 @@ function Listing({ showVisited, showFaves  }) {
             {showFaves ? (
                 <FavsList userId={userId} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             ): null }
+            {showFriends && 
+                <Friends curr={curr} userId={userId} />
+            }
         </div>
     )
 }
