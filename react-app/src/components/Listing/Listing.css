@@ -121,9 +121,11 @@
     background-color: rgba(0, 0, 0, .1);
 }
 
-svg.list {
+img.list {
     width: 25px;
     height: 25px;
+    border-radius: 50%;
+    border: thin solid black;
     /* fill: red; */
     /* color: red; */
     /* background-color: red; */

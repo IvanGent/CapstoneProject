@@ -92,11 +92,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
-  
-  // Notice we use useParams here instead of getting the params
-  // From props.
-  // const { userId }  = useParams();
+  // userId is the user you're looking at
   const userId = localStorage.getItem('currUser')
+  // currUser is the user that is signed in
   const currUser = localStorage.getItem('userId')
 
   

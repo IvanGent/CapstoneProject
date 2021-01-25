@@ -27,6 +27,6 @@ def delete_a_restaurant():
             VisitedRestaurant.user_id == data['user_id']).first()
         db.session.delete(res)
         db.session.commit()
-        return { 'message': 'Success'}
+        return {'message': 'Success'}
     except:
         return { 'errors': ['An error occurred while posting the data']}
