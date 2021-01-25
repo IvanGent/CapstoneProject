@@ -60,10 +60,6 @@ function Listing({ showVisited, showFaves, showFriends, setShowFriends, setShowV
     // userId is the user you're looking at
     const userId = localStorage.getItem('currUser')
 
-    useEffect(() => {
-
-    }, [userId])
-
 
     return (
         <div className='listing'>

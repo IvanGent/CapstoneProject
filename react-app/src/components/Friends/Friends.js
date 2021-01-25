@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import ProfileAv from "../../images/ProfileAvatar.png";
 import './Friends.css'
 
-function Friends({ curr, userId, setShowFriends, setShowVisited, setShowProfilePage}) {
+function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {
     const [friendsList, setFriendsList] = useState([]);
     const [user, setUser] = useState();
-
+    const userId = localStorage.getItem('userId');
     useEffect(() => {
         (async () => {
             const response = await fetch(`/api/users/${userId}`);
@@ -20,11 +20,8 @@ function Friends({ curr, userId, setShowFriends, setShowVisited, setShowProfileP
 
     const handleUserClick = (e) => {
         console.log(e.target)
-        // localStorage.removeItem('userId');
         localStorage.setItem('userId', e.target.id);
         setShowFriends(false);
-        // setShowProfilePage(false)
-        // setShowProfilePage(true)
         setShowVisited(true);
     }
 
