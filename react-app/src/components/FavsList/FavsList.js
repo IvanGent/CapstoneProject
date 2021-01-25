@@ -42,7 +42,6 @@ function FavsList({userId, curr, liInfo, svgVar}) {
 
         } else {
             event.target.style['background-color'] = 'red'
-            // const find = await fetch(`/api/${name}`)
             const res = await fetch('/api/favs/', {
                 method: "POST",
                 headers: {
@@ -78,20 +77,24 @@ function FavsList({userId, curr, liInfo, svgVar}) {
                                         <div>
                                             <img src={ele.restaurant.logo} alt='logo' />
                                         </div>
-                                        <span id='line'>-</span><span>{ele.restaurant.name}</span>
-                                        <motion.img
-                                            id={ele.restaurant.id}
-                                            className='list'
-                                            variants={svgVar}
-                                            style={{ backgroundColor: 'red' }}
-                                            initial='hidden'
-                                            animate='visible'
-                                            whileTap='tap'
-                                            whileHover='hover'
-                                            src={FavIcon}
-                                            alt='Fav Icon'
-                                            onClick={favHandle}
-                                        />
+                                            <span id='line'>-</span>
+                                        <div className='FavListInfo'>
+                                            <span>{ele.restaurant.name}</span>
+                                            <motion.img
+                                                id={ele.restaurant.id}
+                                                className='list'
+                                                variants={svgVar}
+                                                style={{ backgroundColor: 'red' }}
+                                                initial='hidden'
+                                                animate='visible'
+                                                whileTap='tap'
+                                                whileHover='hover'
+                                                src={FavIcon}
+                                                alt='Fav Icon'
+                                                onClick={favHandle}
+                                            />
+                                            {/* {document.getElementById(ele.restaurant.id).style['background-color'] === 'red' ? <div>Remove From Favorites</div> : <div>Add To Favorites</div>} */}
+                                        </div>
                                     </div>
                                 </motion.li>
                             ))}

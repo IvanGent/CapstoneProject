@@ -122,8 +122,8 @@
 }
 
 img.list {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     border: thin solid black;
     /* fill: red; */
@@ -148,4 +148,8 @@ img.list {
 
 .AddFavs {
     margin-left: 10px;
+}
+
+.FavListInfo {
+    margin-left: 20px;
 }
