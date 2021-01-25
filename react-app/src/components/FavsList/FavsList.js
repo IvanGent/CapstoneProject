@@ -93,6 +93,8 @@ function FavsList({userId, curr, liInfo, svgVar}) {
                                                 alt='Fav Icon'
                                                 onClick={favHandle}
                                             />
+                                            <p id='add'
+                                            >Favorite</p>
                                             {/* {document.getElementById(ele.restaurant.id).style['background-color'] === 'red' ? <div>Remove From Favorites</div> : <div>Add To Favorites</div>} */}
                                         </div>
                                     </div>

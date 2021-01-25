@@ -126,9 +126,7 @@ img.list {
     height: 35px;
     border-radius: 50%;
     border: thin solid black;
-    /* fill: red; */
-    /* color: red; */
-    /* background-color: red; */
+    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, .5);
 }
 
 .holdingName {
