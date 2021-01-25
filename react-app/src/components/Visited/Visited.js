@@ -65,6 +65,7 @@ function Visited({userId, curr, liInfo, svgVar, RemoveBut}) {
     }
 
     const removeRes = async (e) => {
+        e.persist()
         console.log(e.target.id)
         const result = await fetch(`/api/visited/`, {
             method: "DELETE",
