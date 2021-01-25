@@ -77,13 +77,14 @@ const FavsMobile = {
 
 const tabs = {
   show: {
-    // scale: 1.002,
-    style: {
-      borderBottom: 'thick solid red'
-    }
+   scale: 1.2
   },
   close: {
-  }
+    scale: 0.9
+  },
+  hover: {
+    scale: 1.2
+  },
 }
 
 
@@ -252,24 +253,27 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
           <ul className='tabLabels'>
             <motion.li
               variants={tabs}
-              // animate={showVisited ? 'show':'close'}
-              style={showVisited ? {borderBottom: 'thick solid red' } : {borderBottom: 'none'}}
+              animate={showVisited ? 'show':'close'}
+              whileHover='hover'
+              // style={showVisited ? {borderBottom: 'thick solid red' } : {borderBottom: 'none'}}
               onClick={handleVisited}
             >
               Visited Restaurants
             </motion.li>
             <motion.li
               variants={tabs}
-              // animate={showFaves ? 'show' : 'close'}
-              style={showFaves ? { borderBottom: 'thick solid red' } : { borderBottom: 'none' }}
+              animate={showFaves ? 'show' : 'close'}
+              whileHover='hover'
+              // style={showFaves ? { borderBottom: 'thick solid red' } : { borderBottom: 'none' }}
               onClick={handleFaves}
             >
               Favorites List
             </motion.li>
             <motion.li
               variants={tabs}
-              // animate={showFriends ? 'show' : 'close'}
-              style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
+              animate={showFriends ? 'show' : 'close'}
+              whileHover='hover'
+              // style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
               onClick={handleFriends}
             >
               Friends
