@@ -218,6 +218,7 @@ function App() {
           setShowFriends={setShowFriends}
           setShowFaves={setShowFaves}
           setShowVisited={setShowVisited}
+          setShowProfilePage={setShowProfilePage}
           />
         }
       </Route>

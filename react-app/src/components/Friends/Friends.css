@@ -1,7 +1,26 @@
 .friendsContainer {
-    background-color: red
+    background-color: red;
+    width: 100%;
+    height: 100%;
+
 }
 
 .friendsContainer h3 {
     font-size: 25px;
+}
+
+.friends {
+    display: flex;
+    background-color: #fff;
+    width: 50%;
+    justify-content: space-around;
+    border-radius: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.friends img {
+    width: 35px;
+    height: 35px;
+    /* margin-right: 10px; */
 }

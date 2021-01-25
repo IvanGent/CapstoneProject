@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import ProfileAv from "../../images/ProfileAvatar.png";
+import './Friends.css'
 
-function Friends({ curr, userId}) {
+function Friends({ curr, userId, setShowFriends, setShowVisited, setShowProfilePage}) {
     const [friendsList, setFriendsList] = useState([]);
     const [user, setUser] = useState();
 
@@ -13,24 +14,35 @@ function Friends({ curr, userId}) {
             setUser(user);
             setFriendsList(user.friends);
             // user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
-            console.log(user.friends)
+            // console.log(user.friends)
         })();
     }, [userId])
+
+    const handleUserClick = (e) => {
+        console.log(e.target)
+        // localStorage.removeItem('userId');
+        localStorage.setItem('userId', e.target.id);
+        setShowFriends(false);
+        // setShowProfilePage(false)
+        // setShowProfilePage(true)
+        setShowVisited(true);
+    }
 
     return (
         <AnimatePresence>
             <motion.div className='friendsContainer'>
-                HELLO
                 {friendsList.length ? (
                 <div>
-                    {friendsList.forEach(ele => (
-                        <div key={ele.id}>
-                            <img src={ele.avatar ? ele.avatar : ProfileAv} alt='avatar' />
-                            <h3>{ele.username}</h3>
+                    {friendsList.map(ele => {
+                            console.log(ele)
+                        return (
+                        <div key={ele.id} id={ele.id} className='friends' onClick={handleUserClick}>
+                            <img src={ele.avatar ? ele.avatar : ProfileAv} alt='avatar' id={ele.id}/>
+                            <h3 id={ele.id} >Username: {ele.username}</h3>
                         </div>
-                    ))}
+                    )})}
                 </div>
-                ): null}
+                ): <div>No Friends</div>}
             </motion.div>
         </AnimatePresence>
     )

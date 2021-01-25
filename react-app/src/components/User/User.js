@@ -88,10 +88,10 @@ const tabs = {
 }
 
 
-function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited }) {
+function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited, setShowProfilePage }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
-  const [favs, setFavs] = useState([]);
+  const favs = [];
   // userId is the user you're looking at
   const userId = localStorage.getItem('userId')
   // currUser is the user that is signed in
@@ -99,6 +99,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
 
   
   useEffect(() => {
+    if (!userId) {
+      return
+    }
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
@@ -108,11 +111,8 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         })
         user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
       })();
-    if (!userId) {
-      return
-    }
     
-  }, [userId, setFavs, favs, currUser]);
+  }, [userId, favs.length]);
   
 
   if (!user) {
@@ -282,7 +282,16 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         </div>
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-              <Listing authenticated={authenticated} showVisited={showVisited} showFaves={showFaves} showFriends={showFriends} />
+              <Listing 
+                authenticated={authenticated} 
+                showVisited={showVisited} 
+                showFaves={showFaves} 
+                showFriends={showFriends} 
+                // setShowFaves={setShowFaves}
+                setShowFriends={setShowFriends}
+                setShowVisited={setShowVisited}
+                setShowProfilePage={setShowProfilePage}
+                />
             </motion.div>
           </AnimatePresence>
       </motion.div>

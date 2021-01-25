@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { AnimatePresence, motion } from 'framer-motion'
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
@@ -54,11 +54,15 @@ const svgVar = {
     },
 }
 
-function Listing({ showVisited, showFaves, showFriends  }) {
+function Listing({ showVisited, showFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
     // curr is the user that is signed in
     const curr = localStorage.getItem('userId')
     // userId is the user you're looking at
     const userId = localStorage.getItem('currUser')
+
+    useEffect(() => {
+
+    }, [userId])
 
 
     return (
@@ -70,7 +74,13 @@ function Listing({ showVisited, showFaves, showFriends  }) {
                 <FavsList userId={userId} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             ): null }
             {showFriends && 
-                <Friends curr={curr} userId={userId} />
+                <Friends 
+                    curr={curr} 
+                    userId={userId} 
+                    setShowFriends={setShowFriends} 
+                    setShowVisited={setShowVisited} 
+                    setShowProfilePage={setShowProfilePage}
+                    />
             }
         </div>
     )
