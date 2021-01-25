@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 // import VerticalTabs from '../Tabs/Tabs';
 import Listing from '../Listing/Listing'
@@ -93,15 +92,12 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
   // userId is the user you're looking at
-  const userId = localStorage.getItem('currUser')
+  const userId = localStorage.getItem('userId')
   // currUser is the user that is signed in
-  const currUser = localStorage.getItem('userId')
+  const currUser = localStorage.getItem('currUser')
 
   
   useEffect(() => {
-    if(!currUser) {
-      return <Redirect to='/' />
-    }
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
@@ -215,11 +211,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             <img id='avatar' src={avatar} alt='avatar' />
             {currUser === userId ? (
             <div className='editCont'>
-              {/* <img
-                src={EditIcon}
-                alt='edit'
-                id='editIcon'
-              /> */}
               <motion.label 
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: .9 }}
@@ -257,7 +248,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         initial='hidden'
         animate='visible'
         className='tabs'>
-        {/* <VerticalTabs authenticated={authenticated} /> */}
         <div>
           <ul className='tabLabels'>
             <motion.li

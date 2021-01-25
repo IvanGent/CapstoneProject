@@ -77,6 +77,8 @@
     .tabLabels {
         display: flex;
         flex-direction: row;
+        /* position: absolute; */
+        margin-bottom: 20px;
         /* box-shadow: 0px 6px 8px 3px rgba(0, 0, 0, 0.6); */
     }
 
@@ -84,9 +86,9 @@
         list-style-type: none;
         padding: 10px;
         border: thin solid black;
-        border-bottom: none;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        /* border-bottom: none; */
+        /* border-top-left-radius: 10px;
+        border-top-right-radius: 10px; */
         box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.6);
         
     }
