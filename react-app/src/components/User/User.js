@@ -6,7 +6,7 @@ import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
 import ProfileAv from "../../images/ProfileAvatar.png";
-import EditIcon from "../../images/EditIcon.png";
+
 // Framer-motion props
 const ProfileInfo = {
   visible: {
@@ -281,7 +281,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             <motion.li
               variants={tabs}
               // animate={showFriends ? 'show' : 'close'}
-              style={showFriends ? { borderBottom: 'thick solid red', backgroundColor: 'rgb(75, 155,233)' } : { borderBottom: 'none', backgroundColor: 'none' }}
+              style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
               onClick={handleFriends}
             >
               Friends

@@ -20,7 +20,6 @@ def get_favs():
         db.session.add(fav)
         db.session.commit()
         # return { 'message': 'Success'}
-        print('THIS IS FAVES', fav.to_dict())
         return jsonify(fav.to_dict())
     except:
         return { 'errors': ['An error occurred while posting the data']}
