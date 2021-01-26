@@ -21,8 +21,8 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  visitedRestaurant = db.relationship('VisitedRestaurant', back_populates='user', lazy=True, cascade="all, delete-orphan")
-  favsList = db.relationship('FavList', backref='favsLists', lazy=True)
+  visitedRestaurant = db.relationship('VisitedRestaurant', backref='visitedrestaurants', order_by='VisitedRestaurant.created_at.desc()', lazy=True, cascade="all, delete-orphan")
+  favsList = db.relationship('FavList', backref='favsLists', lazy=True, cascade="all, delete-orphan")
   friendships = db.relationship('User', backref='friends', secondary=friend, primaryjoin=id==friend.c.user_id, secondaryjoin=id==friend.c.sender_id)
   
 

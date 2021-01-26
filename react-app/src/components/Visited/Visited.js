@@ -18,7 +18,10 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
             // user.favsList.forEach(ele => {
 
             // })
-            setRes(user.visitedRestaurants.reverse())
+            setRes(user.visitedRestaurants)
+            console.log(user.visitedRestaurants)
+            const use = user.visitedRestaurants
+            console.log(use)
         })()
     }, [userId, res.length])
 
@@ -67,24 +70,37 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
 
     const removeRes = async (e) => {
         e.persist()
-        console.log(e.target.id)
+        // console.log(e.target.id)
+        // console.log(res)
+        // console.log(e.target.id)
+        let id = e.target.id
         const result = await fetch(`/api/visited/`, {
             method: "DELETE",
             headers: { "Content-Type": 'application/json' },
             body: JSON.stringify({
-                "res_id": e.target.id,
-                "user_id": curr
+                "id": id,
+                "user_id": curr,
             })
         })
         await result.json()
-        let newRes = []
-        for(let i = res.length - 1; i > 0; i--) {
-            if(res[i].res_id === e.target.id) {
-                newRes.push(res[i - 1])
-            }
-            newRes.push(res[i]);
-        }
-        setRes(newRes);
+        let del = document.getElementById(id)
+        del.remove()
+        // res.reverse().splice(index, 1).reverse()
+        // let newRes = [];
+        // for(let i = res.length - 1; i > 0; i--) {
+        //     if(res[i].created_at === created_at) {
+        //         newRes.push(res[i - 1])
+        //         continue
+        //     }
+        //     newRes.push(res[i]);
+        // }
+        // console.log(index)a
+        // let newRes = res.filter(ele => ele.id !== id)
+        // res.splice(index, 1)
+        // setRes(newRes)
+        // console.log(newRes)
+        // setRes(res)
+        console.log(res)
     }
 
 
@@ -109,6 +125,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                                         custom={i}
                                         exit='exit'
                                         key={ele.id}
+                                        id={ele.id}
                                     >
                                         <div className='innerLi'>
                                             <div>
@@ -119,7 +136,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                                                     {ele.restaurant.name}
                                                 </span>
                                                 <motion.button
-                                                    id={ele.restaurant.id}
+                                                    id={ele.id}
                                                     variants={RemoveBut}
                                                     initial='hidden'
                                                     animate='visible'

@@ -24,9 +24,9 @@ def add_a_restaurant():
 def delete_a_restaurant():
     try:
         data = request.json
-        res = VisitedRestaurant.query.filter(
-            VisitedRestaurant.res_id == data['res_id'],
-            VisitedRestaurant.user_id == data['user_id']).first()
+        print('THIS IS DATA', data)
+        res = VisitedRestaurant.query.get(data['id'])
+        print('THIS IS THE RES', res)
         db.session.delete(res)
         db.session.commit()
         return {'message': 'Success'}
