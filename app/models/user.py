@@ -24,9 +24,7 @@ class User(db.Model, UserMixin):
 
   visitedRestaurant = db.relationship('VisitedRestaurant', backref='visitedrestaurants', order_by='VisitedRestaurant.created_at.desc()', lazy=True, cascade="all, delete-orphan")
   favsList = db.relationship('FavList', backref='favsLists', lazy=True, cascade="all, delete-orphan")
-  # friendships = db.relationship('User', backref='friends', secondary=Friend, primaryjoin=id==Friend.c.user_id, secondaryjoin=id==Friend.c.sender_id)
-  friendships = db.relationship('User', backref=db.backref('friends', lazy='dynamic'), secondary=Friend, primaryjoin=id==Friend.c.user_id or id==Friend.c.sender_id, secondaryjoin=id==Friend.c.sender_id)
-  # friendships = db.relationship('User', backref='friends', secondary=Friend, primaryjoin=id==Friend.c.user_id,accepted=Friend.c.accepted)
+  friendships = db.relationship('User', backref='friends', secondary=Friend, primaryjoin=id==Friend.c.user_id, secondaryjoin=id==Friend.c.sender_id)
   
 
   def addfriend(self, friend):
@@ -71,7 +69,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
       "favsList": [fav.to_dict() for fav in self.favsList],
-      # 'accepted': accepted
     }
 
 
@@ -84,6 +81,5 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
       "favsList": [fav.to_dict() for fav in self.favsList],
-      # "friends": [friend.to_original_dict() for friend in self.friendships]
       "friends": [friend.to_original_dict() for friend in self.friendships]
     }
