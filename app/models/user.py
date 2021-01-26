@@ -4,11 +4,12 @@ from flask_login import UserMixin
 
 db.metadata.clear()
 
-friend = db.Table(
+Friend = db.Table(
   'friends',
   db.Column('user_id', db.Integer, db.ForeignKey('users.id'), index=True),
   db.Column('sender_id', db.Integer, db.ForeignKey('users.id')),
-  db.UniqueConstraint('user_id', 'sender_id', name='unique_friends')
+  db.Column('accepted', db.Boolean, nullable=False, default=False),
+  db.UniqueConstraint('user_id', 'sender_id','accepted', name='unique_friends')
 )
 
 class User(db.Model, UserMixin):
@@ -23,13 +24,20 @@ class User(db.Model, UserMixin):
 
   visitedRestaurant = db.relationship('VisitedRestaurant', backref='visitedrestaurants', order_by='VisitedRestaurant.created_at.desc()', lazy=True, cascade="all, delete-orphan")
   favsList = db.relationship('FavList', backref='favsLists', lazy=True, cascade="all, delete-orphan")
-  friendships = db.relationship('User', backref='friends', secondary=friend, primaryjoin=id==friend.c.user_id, secondaryjoin=id==friend.c.sender_id)
+  # friendships = db.relationship('User', backref='friends', secondary=Friend, primaryjoin=id==Friend.c.user_id, secondaryjoin=id==Friend.c.sender_id)
+  friendships = db.relationship('User', backref=db.backref('friends', lazy='dynamic'), secondary=Friend, primaryjoin=id==Friend.c.user_id or id==Friend.c.sender_id, secondaryjoin=id==Friend.c.sender_id)
+  # friendships = db.relationship('User', backref='friends', secondary=Friend, primaryjoin=id==Friend.c.user_id,accepted=Friend.c.accepted)
   
 
   def addfriend(self, friend):
     if friend not in self.friendships:
       self.friendships.append(User.query.get(friend))
+      # User.query.get(friend).friendships.append(self)
+
+  def confirmfriend(self, friend):
+    if friend in self.friendships:
       User.query.get(friend).friendships.append(self)
+      self.friendships.accepted(True)
 
   def unfriend(self, friend):
     if friend in self.friendships:
@@ -63,6 +71,7 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
       "favsList": [fav.to_dict() for fav in self.favsList],
+      # 'accepted': accepted
     }
 
 
@@ -75,5 +84,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "visitedRestaurants": [restaurant.to_dict() for restaurant in self.visitedRestaurant],
       "favsList": [fav.to_dict() for fav in self.favsList],
+      # "friends": [friend.to_original_dict() for friend in self.friendships]
       "friends": [friend.to_original_dict() for friend in self.friendships]
     }

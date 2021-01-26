@@ -15,8 +15,9 @@
     width: 50%;
     justify-content: space-around;
     border-radius: 20px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     cursor: pointer;
+    margin: 20px;
 }
 
 .friends img {

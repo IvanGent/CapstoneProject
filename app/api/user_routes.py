@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 import requests
 import os
-from app.models import db, User
+from app.models import db, User, Friend
 
 user_routes = Blueprint('users', __name__)
 api_key = os.environ.get("API_KEY")
@@ -16,7 +16,7 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-@login_required
+# @login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
@@ -36,17 +36,30 @@ def update_user(id):
 
 
 @user_routes.route('/friend', methods=["POST"])
-@login_required
+# @login_required
 def add_friend():
     # try:
     data = request.json
     print('THIS IS DATA', data)
     print('AFTER DATA')
-    user = User.query.get(data['sender_id'])
+    user = User.query.get(data['user_id'])
     print('USER', user)
-    user.addfriend(data['user_id'])
+    user.addfriend(data['sender_id'])
     print('THIS IS USER', user)
     db.session.commit()
     return {'message': 'Success'}
     # except Exception as e:
     #     return {'errors': 'Problem adding friend.'}
+
+
+@user_routes.route('/friend', methods=["PUT"])
+def confirm_friend():
+    data = request.json
+    user = User.query.get(data['user_id'])
+    user.confirmfriend(data['sender_id'])
+    # user = Friend.query.filter(
+    #     Friend.user_id == data['user_id'],
+    #     Friend.sender_id == data['sender_id'])
+    # user.accepted = True
+    db.session.commit()
+    return {'message': 'Success'}
