@@ -9,7 +9,6 @@ visitedRestaurant_routes = Blueprint('visitedRestaurant', __name__)
 @visitedRestaurant_routes.route('/', methods=["POST"])
 # @login_required
 def add_a_restaurant():
-    print('THIS IS CURRENT USER', current_user.get_id())
     data = request.json
     res = VisitedRestaurant(
         res_id=data['res_id'],
@@ -24,9 +23,7 @@ def add_a_restaurant():
 def delete_a_restaurant():
     try:
         data = request.json
-        print('THIS IS DATA', data)
         res = VisitedRestaurant.query.get(data['id'])
-        print('THIS IS THE RES', res)
         db.session.delete(res)
         db.session.commit()
         return {'message': 'Success'}
