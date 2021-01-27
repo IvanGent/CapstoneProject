@@ -7,16 +7,16 @@ const resLis = {
     visible: (i) => ({
         y: 0,
         // x: 0,
-        opacity: 1,
+        // opacity: 1,
         transition: {
             // duration: .5,
-            delay: 0.25 * i
+            delay: [0.35 * i]
         }
     }),
     hidden: {
-        y: 500,
+        y: 1000,
         // x: 500,
-        opacity: 0,
+        // opacity: 0,
     },
     tap: {
         scale: .9,
@@ -32,7 +32,7 @@ const resLis = {
 const lis = {
     visible: {
         y:0,
-        opacity: 1
+        // opacity: 1
     },
     unchecked: {
         scale: .5,
@@ -230,6 +230,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                 initial='hidden'
                 animate='visible'
                 onSubmit={handleSelection}>
+                    <h2>Deselect the restaurants you don't want</h2>
                 <motion.fieldset
                     variants={ActualRoller}
                     initial='hidden'
