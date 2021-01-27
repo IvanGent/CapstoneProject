@@ -24,10 +24,6 @@
         padding: 20px 0 70px 0;
     }
 
-    .randomRollerCont > div{
-        /* background-color: rgba(0, 0, 0, 0.9); */
-    }
-
     .randomRollerCont fieldset {
         display: flex;
         flex-direction: row;
