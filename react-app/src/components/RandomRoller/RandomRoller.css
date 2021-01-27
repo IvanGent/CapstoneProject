@@ -49,10 +49,12 @@
     }
 
     .randomRollerCont h2 {
+        position: absolute;
         color: #fff;
         font-size: 50px;
         font-family: 'Staatliches';
-        margin-bottom: 10px;
+        /* margin-bottom: 10px; */
+        top: 15%;
     }
 
     .mainHolder {

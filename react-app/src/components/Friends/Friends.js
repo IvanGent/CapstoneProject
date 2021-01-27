@@ -5,13 +5,13 @@ import './Friends.css'
 
 function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {
     const [friendsList, setFriendsList] = useState([]);
-    const [user, setUser] = useState();
+    // const [user, setUser] = useState();
     const userId = localStorage.getItem('userId');
     useEffect(() => {
         (async () => {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
-            setUser(user);
+            // setUser(user);
             setFriendsList(user.friends);
             // user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
             // console.log(user.friends)

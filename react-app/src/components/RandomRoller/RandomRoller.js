@@ -114,7 +114,7 @@ const ActualRoller = {
         opacity: 1,
         y: 0,
         transition: {
-            delay: 1
+            delay: .25
         }
     },
     hidden: {
@@ -337,12 +337,11 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                                                 variants={resLis}
                                                 initial='hidden'
                                                 animate='visible'
-                                                // whileTap='tap'
-                                                // whileHover='hover'
+                                                whileTap='tap'
+                                                whileHover='hover'
                                                 custom={i}
                                                 key={i}
                                                 className='mainHolder'
-                                                // onClick={handleChecks}
                                             >
                                                 <motion.div
                                                     id={i}
