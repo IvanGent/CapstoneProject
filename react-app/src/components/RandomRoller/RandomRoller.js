@@ -67,12 +67,24 @@ const RandomCont = {
 }
 
 const shift = {
-    'visible': {
+    visible: {
         opacity: 1,
+        x: 0,
+        // y: -100,
+        rotate: 360,
+        transition: {
+            repeat: Infinity,
+            duration: .5
+        }
     },
-    'hidden': {
-        opacity: 0,
+    hidden: {
+        // x: 1000
     },
+    rollStop: {
+        opacity: 1,
+        scale: .5,
+        x: 0
+    }
 }
 
 const Reroll = {
@@ -129,10 +141,22 @@ const ActualRoller = {
 
 const RollerImg = {
     visible: {
-        
+        // x: 0,
+        // y: 30,
+        // rotate: 360,
+        // transition: {
+        //     repeat: Infinity,
+        //     duration: .001
+        // }
     },
     hidden: {
-
+        x: 0,
+        y: -600
+    },
+    rollStop: {
+        // scale: 2,
+        x: 0,
+        y: 0
     }
 }
 
@@ -302,16 +326,20 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                     <motion.div 
                         variants={shift}
                         initial='hidden'
-                        animate='visible'
+                        animate={!showReroll ? 'visible' : 'rollStop'}
                         className='labels randomSelect'
                     >
                         <motion.img 
                             variants={RollerImg}
+                            initial='hidden'
+                            animate={!showReroll ? 'visible': 'rollStop'}
                             src={currRes.logo} 
                             alt='logo' 
                             />
                         <motion.h5
                             variant={RollerImg}
+                            initial='hidden'
+                            animate={!showReroll ? 'visible' : 'rollStop'}
                         >{currRes.name}</motion.h5>
                     </motion.div>
                     {showReroll ? (
