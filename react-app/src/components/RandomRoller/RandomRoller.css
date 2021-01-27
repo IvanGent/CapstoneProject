@@ -25,7 +25,7 @@
     }
 
     .randomRollerCont > div{
-        background-color: rgba(0, 0, 0, 0.9);
+        /* background-color: rgba(0, 0, 0, 0.9); */
     }
 
     .randomRollerCont fieldset {
@@ -38,9 +38,10 @@
         max-height: 460px;
         border-radius: 20px;
         border: none;
+        overflow: scroll;
     }
 
-    .randomRollerCont img {
+    .mainHolder img {
         z-index: 10;
         position: relative;
         border-radius: 10px;
@@ -49,12 +50,10 @@
     }
 
     .randomRollerCont h2 {
-        position: absolute;
         color: #fff;
         font-size: 50px;
         font-family: 'Staatliches';
-        /* margin-bottom: 10px; */
-        top: 15%;
+        margin-bottom: 5%;
     }
 
     .mainHolder {
@@ -83,28 +82,28 @@
     }
 
     .randomSelect1 {
-        width: 800px;
-        height: 500px;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 300px;
-        border: thin black solid;
+        /* margin-bottom: 300px; */
+        /* border: thin black solid; */
         /* background-color: white; */
-        background-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0px 0px 50px 5px black;
-        border-radius: 150px;
+        /* background-color: rgba(255, 255, 255, 0.25); */
+        /* box-shadow: 0px 0px 50px 5px black; */
+        /* border-radius: 150px; */
     }
 
     .randomSelect {
-        width: 250px;
+        display: flex;
+        flex-direction: column;
+        /* width: 250px; */
         height: 300px;
         padding: 20px;
         margin: 10px;
         padding: 10px;
         border-radius: 10px;
-        background-color: white
+        background-color: white 
     }
 
     .randomCont {
@@ -116,8 +115,11 @@
     }
 
     .randomSelect img {
-        margin: 0;
-        padding: 20px;
+        max-height: 300px;
+        border-radius: 20px;
+        /* width: 300px; */
+        /* margin: 0; */
+        /* padding: 20px; */
     }
 
     .randomSelect h5 {
@@ -174,7 +176,7 @@
         width: 80px;
         border: none;
         outline: none;
-        box-shadow: 0px 0px 5px 7px black;
+        box-shadow: 0px 5px 5px 7px black;
         margin-top: 50px;
     }
 

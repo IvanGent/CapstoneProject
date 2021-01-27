@@ -26,6 +26,10 @@ const resLis = {
     },
     hover: {
         scale: 1.05,
+    },
+    exit: {
+        scale: 1.5,
+        rotate: 780
     }
 }
 
@@ -123,6 +127,15 @@ const ActualRoller = {
     }
 }
 
+const RollerImg = {
+    visible: {
+        
+    },
+    hidden: {
+
+    }
+}
+
 function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited, setShowFriends}) {
     const res = restaurants
     const checks = new Array(res.length).fill(true);
@@ -133,7 +146,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
     const curr = localStorage.getItem('currUser')
     const user = localStorage.getItem('userId')
 
-
+// Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
         e.preventDefault()
         const newSet = []
@@ -245,6 +258,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                           animate='visible'
                           whileTap='tap'
                           whileHover='hover'
+                          exit={'exit'}
                           custom={i}
                           key={i} 
                         //   onClick={handleChecks}
@@ -291,8 +305,14 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                         animate='visible'
                         className='labels randomSelect'
                     >
-                        <img src={currRes.logo} alt='logo' />
-                        <h5>{currRes.name}</h5>
+                        <motion.img 
+                            variants={RollerImg}
+                            src={currRes.logo} 
+                            alt='logo' 
+                            />
+                        <motion.h5
+                            variant={RollerImg}
+                        >{currRes.name}</motion.h5>
                     </motion.div>
                     {showReroll ? (
                         <div className='buttonHolder'>
