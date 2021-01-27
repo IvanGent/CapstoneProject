@@ -6,23 +6,23 @@ import './RandomRoller.css';
 const resLis = {
     visible: (i) => ({
         y: 0,
-        x: 0,
+        // x: 0,
         opacity: 1,
-        rotate: 360,
         transition: {
-            duration: .5,
+            // duration: .5,
             delay: 0.25 * i
         }
     }),
     hidden: {
         y: 500,
-        x: 500,
+        // x: 500,
         opacity: 0,
     },
     tap: {
-        scale: .7,
+        scale: .9,
         opacity: 0.5,
         // rotate: 20,
+        x: 50
     },
     hover: {
         scale: 1.05,
@@ -31,6 +31,7 @@ const resLis = {
 
 const lis = {
     visible: {
+        y:0,
         opacity: 1
     },
     unchecked: {
@@ -42,9 +43,10 @@ const lis = {
         opacity: 1
     },
     tap: {
-        scale: .7,
+        scale: .9,
         opacity: 0.5,
-        rotate: 20,
+        // rotate: 20,
+        x: 20
     },
     hover: {
         scale: 1.05,
@@ -236,11 +238,15 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                 {res.map((ele, i) => {
                     return (
                         <motion.div
+                          id={i}
                           variants={resLis}
                           initial='hidden'
                           animate='visible'
+                          whileTap='tap'
+                          whileHover='hover'
                           custom={i}
                           key={i} 
+                        //   onClick={handleChecks}
                           className='mainHolder'
                          >
                             <motion.div
@@ -254,7 +260,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                                 <img id={i} src={ele.logo} alt='logo' />
                                 <h5 id={i} >{ele.name}</h5>
                             </motion.div>
-                        </motion.div>
+                         </motion.div>
                     )
                 })}
                 </motion.fieldset>

@@ -68,7 +68,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         if ('errors' in result2) {
             const res = await fetch(`/api/restaurants/details/${placeId}`)
             const {result} = await res.json()
-            console.log(result)
+            // console.log(result)
             if(result.website) {
                 let web = result.website.split('.')
                 for (let i = 0; i < web.length; i++) {
@@ -116,12 +116,12 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         const res = await fetch(`/api/restaurants/${lat}/${lng}`)
         const { results } = await res.json()
         // const results = restData.results
-        console.log(results)
+        // console.log(results)
         let newData = {}
 
         await results.filter(ele => {
             if (!ele.types.includes('gas_station') && ele.business_status !== "CLOSED_TEMPORARILY") {
-                console.log(ele)
+                // console.log(ele)
                 newData[ele.name] = ele;
             }
             return ele;
