@@ -53,10 +53,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
     setShowHomePage(true);
   }
 
-  // const goHome = () => {
-  //   setShowHomePage(true);
-  //   setShowProfilePage(false);
-  // }
 
   return (
       <AnimatePresence>
@@ -102,21 +98,9 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
       ) : (
         <div className='nav'>
           <h1 onClick={handleClick}>What-To-Bite</h1>
-          {/* <ul className='navMenu'> */}
-            {/* <li> */}
-              {/* <NavLink to="/" exact={true} activeClassName="active" onClick={handleClick}>
-                Home
-            </NavLink> */}
-            {/* </li> */}
             {!authenticated ? (
               <>
                   <h1 onClick={handleClick}>What-To-Bite</h1>
-                {/* <li>
-                  <h3 onClick={handleLoginClick}>Login</h3>
-                </li>
-                <li>
-                  <h3 onClick={handleSignupClick}>Sign Up</h3>
-                </li> */}
               </>
             ) : (
                 <>
@@ -136,7 +120,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                   </li>
                 </>
               )}
-          {/* </ul> */}
         </div>
       )}
     </motion.nav>

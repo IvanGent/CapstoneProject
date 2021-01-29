@@ -1,10 +1,9 @@
 import React from "react";
-// import { AnimatePresence, motion } from 'framer-motion'
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
 import Friends from '../Friends/Friends';
 import './Listing.css'
-// import FavIcon from '../../images/Fav.png'
+
 
 const liInfo = {
     visible: (i) => ({

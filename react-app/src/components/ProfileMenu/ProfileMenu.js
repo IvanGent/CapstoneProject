@@ -2,40 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 import { logout } from '../../services/auth'
 import './ProfileMenu.css'
-// import NavProfile from '../../images/NavProfile.png'
 import MenuIcon from  '../../images/MobileMenu.png'
 import Cross from '../../images/Cross.png'
 
-
-// const Menu = {
-//     closed: {
-//         x: 0,
-//         width: "50px",
-//         height: "50px",
-//         borderRadius: '50%',
-
-//     },
-//     opened: {
-//         transition: {
-//             type: 'spring',
-//             stiffness: 100,
-//         },
-//         y: {stiffness: 1000},
-//         x: 0,
-//         borderRadius: '25px',
-//         position:'absolute',
-//         height: "30vh",
-//         width: '300px'
-//     },
-//     exit: {
-//         transition: {
-//             delay: .4
-//         },
-//         width: "50px",
-//         height: "50px",
-//         borderRadius: '50%',
-//     }
-// }
 
 const MenuChilds = {
     show: {
@@ -48,20 +17,6 @@ const MenuChilds = {
         opacity: 0
     }
 }
-
-// const Button = {
-//     visible: {
-//         width: '100px',
-//         height: '100px',
-//     },
-//     initial: {
-//         width: '50px',
-//         height: '50px',
-//         transition: {
-//             delay: .3
-//         }
-//     }
-// }
 
 const Item = {
     hidden: {
@@ -184,18 +139,11 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                     delay: .4
                 },
                 opacity: 0,
-                // width: "90px",
-                // height: "90px",
-                // borderRadius: '50%',
             }
         }
     }
     
 
-    // const openMenu = (e) => {
-    //     if (showMenu) return;
-    //     setShowMenu(true);
-    // }
 
     useEffect(() => {
         if (!showMenu) return;
@@ -237,13 +185,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         setShowHomePage(true);
     }
 
-    // const handleFriends = () => {
-    //     setShowHomePage(false);
-    //     setShowVisited(false);
-    //     localStorage.setItem('userId', currUser)
-    //     setShowProfilePage(true);
-    //     setShowFriends(true);
-    // }
 
     const handleFaves = () => {
         setShowHomePage(false);
@@ -256,7 +197,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
     return (
         <div className='outerMenu'>
         <motion.img 
-            // initial={{opacity: 1}} 
             animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
             src={MenuIcon} 
             alt='menu' 
@@ -274,24 +214,14 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
             onClick={() => setShowMenu(!showMenu)}
             className='profileMenu'>
             
-            {/* {!mobileSize ? ( */}
                 <>
                 <AnimatePresence>
-                    {/* <motion.img
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                        src={NavProfile}
-                        onClick={openMenu}
-                        className='NavImg'
-                    /> */}
                 </AnimatePresence>
                 <AnimatePresence>
                 {showMenu && (
                     <motion.div
                     variants={Menu}
                     animate={showMenu ? 'opened' : 'closed'}
-                    // whileTap={!showMenu ? 'tap' : null}
-                    // whileHover={!showMenu ? 'hover' : null}
                     exit='exit'
                     className='menu'
                     >
@@ -301,68 +231,23 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                             animate='show'
                             className='menuHolder'
                         >
-                        {/* <motion.menu initial={{opacity:0, y: -15}} animate={{opacity:1, y: 0}} exit={{opacity:0, height: 0, transition: { duration: .5 }}} className='innerProfileMenu'> */}
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={1}>
                                 <h3 onClick={goHome}>Home</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={2}>
                                 <h3 onClick={handleClick}>Profile</h3>
                             </motion.li>
-                            {/* <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={3}>
-                                <h3 onClick={handleFriends}>Friends</h3>
-                            </motion.li> */}
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
                                 <h3 onClick={handleFaves}>Favorites List</h3>
                             </motion.li>
-                            
-                            {/* <li>
-                                <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
-                            </li> */}
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={5}>
                                 <h3 id='logout' onClick={onLogout}>Logout</h3>
                             </motion.li>
-                        {/* </motion.menu> */}
                         </motion.ul>
                     </motion.div>
                 )}
                         </AnimatePresence>
                 </>
-            {/* ) : ( */}
-                {/* <>
-                <AnimatePresence>
-                    <motion.img
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.8 }}
-                        src={process.env.PUBLIC_URL + '/MobileMenu.png'}
-                        onClick={openMenu}
-                        className='NavImg'
-                    />
-                    </AnimatePresence>
-                    {showMenu && (
-                        <AnimatePresence>
-                        <ul>
-                            <motion.menu initial={{ opacity: 0, y: -15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className='innerProfileMenu'>
-                                <li>
-                                    <div onClick={handleClick}>Profile</div>
-                                </li> */}
-                                {/* <li>
-                            <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
-                        </li> */}
-                                {/* <li>
-                                    <div id='logout' onClick={onLogout}>Logout</div>
-                                </li>
-                            </motion.menu>
-                        </ul>
-                </AnimatePresence>
-                    )}
-                </> */}
-            {/* )} */}
         </motion.div>
         </div>
     )

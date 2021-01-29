@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion} from 'framer-motion';
 import './RandomRoller.css';
 
@@ -7,22 +7,16 @@ import './RandomRoller.css';
 const resLis = {
     visible: (i) => ({
         y: 0,
-        // x: 0,
-        // opacity: 1,
         transition: {
-            // duration: .5,
             delay: [0.35 * i]
         }
     }),
     hidden: {
         y: 1000,
-        // x: 500,
-        // opacity: 0,
     },
     tap: {
         scale: .9,
         opacity: 0.5,
-        // rotate: 20,
         x: 50
     },
     hover: {
@@ -37,7 +31,6 @@ const resLis = {
 const lis = {
     visible: {
         y:0,
-        // opacity: 1
     },
     unchecked: {
         scale: .5,
@@ -50,7 +43,6 @@ const lis = {
     tap: {
         scale: .9,
         opacity: 0.5,
-        // rotate: 20,
         x: 20
     },
     hover: {
@@ -70,21 +62,11 @@ const RandomCont = {
 const shift = {
     visible: {
         opacity: 1,
-        // x: 0,
-        // y: -100,
-        // rotate: 1000000,
-        // transition: {
-        //     repeat: Infinity,
-        //     duration: .5
-        // }
     },
     hidden: {
-        // x: 1000
     },
     rollStop: {
         opacity: 1,
-        // scale: [.5, .8],
-        // x: 0
     }
 }
 
@@ -143,22 +125,18 @@ const ActualRoller = {
 const RollerImg = {
     visible: {
         x: [2000, -2000],
-        // y: 30,
-        // rotate: 360,
         transition: {
             repeat: Infinity,
             duration: .15
         }
     },
     hidden: {
-        // opacity: 0,
         x: [1000, 0, -1000],
         y: 0
     },
     rollStop: {
         scale: 1.5,
         x: 0,
-        // y: 300
     }
 }
 
@@ -184,10 +162,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
     const curr = localStorage.getItem('currUser')
     const user = localStorage.getItem('userId')
 
-    useEffect(() => {
-        console.log(res)
-    }, [res])
-
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
         e.preventDefault()
@@ -211,7 +185,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
     }
 // Taking care of showing what is selected and what is not.
     const handleChecks = (e) => {
-        console.log(e.target.id)
         const res = document.getElementById(e.target.id);
         if (res.classList.contains('unchecked')) {
             res.classList.remove('unchecked');
@@ -273,7 +246,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
 
     return (
         <AnimatePresence>
-            {/* {!mobileSize ? ( */}
         <motion.div 
             variants={Roller}
             initial='hidden'
@@ -303,7 +275,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                           exit={'exit'}
                           custom={i}
                           key={i} 
-                        //   onClick={handleChecks}
                           className='mainHolder'
                          >
                             <motion.div
@@ -396,100 +367,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                 </motion.div>
             )}
         </motion.div>
-            {/* ) : ( */}
-                    {/* <motion.div className='randomRollerCont'>
-                        {showSelect ? (
-                            <form onSubmit={handleSelection}>
-                                <fieldset>
-                                    {res.map((ele, i) => {
-                                        return (
-                                            <motion.div
-                                                id={i}
-                                                variants={resLis}
-                                                initial='hidden'
-                                                animate='visible'
-                                                whileTap='tap'
-                                                whileHover='hover'
-                                                custom={i}
-                                                key={i}
-                                                className='mainHolder'
-                                            >
-                                                <motion.div
-                                                    id={i}
-                                                    variants={lis}
-                                                    whileTap='tap'
-                                                    whileHover='hover'
-                                                    className='labels'
-                                                    onClick={handleChecks}
-                                                >
-                                                    <img id={i} src={ele.logo} alt='logo' />
-                                                    <h5 id={i} >{ele.name}</h5>
-                                                </motion.div>
-                                            </motion.div>
-                                        )
-                                    })}
-                                </fieldset>
-                                <motion.button
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1, transition: { duration: .5 } }}
-                                    whileHover={{ scale: 1.2 }}
-                                    whileTap={{ scale: 0.8, rotate: 360 }}
-                                    type='submit'
-                                    id='MainButton'
-                                >
-                                    ROLL
-                  </motion.button>
-                            </form>
-                        ) : (
-                                <motion.div
-                                    variants={RandomCont}
-                                    initial='hidden'
-                                    animate='visible'
-                                    exit={{ opacity: 0 }}
-                                    className='randomCont'
-                                >
-                                    <div className='randomSelect1'>
-                                        <motion.div
-                                            variants={shift}
-                                            initial='hidden'
-                                            animate='visible'
-                                            className='labels randomSelect'
-                                        >
-                                            <img src={currRes.logo} alt='logo' />
-                                            <h5>{currRes.name}</h5>
-                                        </motion.div>
-                                        {showReroll ? (
-                                            <div className='buttonHolder'>
-                                                <motion.button
-                                                    variants={Reroll}
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    whileHover='hover'
-                                                    whileTap='tap'
-                                                    exit={{ opacity: 0 }}
-                                                    id='reroll'
-                                                    onClick={handleReRoll}
-                                                >
-                                                    Reroll
-                                                </motion.button>
-                                                <motion.button
-                                                    variants={Reroll}
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    whileHover='hover'
-                                                    whileTap='tap'
-                                                    id='addToVis'
-                                                    onClick={handleAddRes}
-                                                >
-                                                    Add to Visited
-                                                </motion.button>
-                                            </div>
-                                        ) : null}
-                                    </div>
-                                </motion.div>
-                            )}
-                    </motion.div> */}
-            {/* )} */}
         </AnimatePresence>
     )
 };

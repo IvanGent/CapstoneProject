@@ -54,7 +54,6 @@ function FavsList({curr, liInfo, svgVar}) {
                 })
             })
             const newRes = await res.json();
-            console.log(newRes)
             favs.push(newRes)
         }
     }

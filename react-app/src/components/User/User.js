@@ -36,11 +36,9 @@ const FavsRoll = {
     opacity: 1,
     transition: {
       delay: .5,
-      // duration: .5
     }
   },
   hidden: {
-    // rotate: 360,
     width: 0,
     opacity: 0
   },
@@ -58,11 +56,10 @@ const FavsMobile = {
     opacity: 1,
     transition: {
       delay: .5,
-      // duration: .5
     }
   },
   hidden: {
-    // rotate: 360,
+
     width: 0,
     opacity: 0
   },
@@ -258,7 +255,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showVisited ? 'show':'close'}
               whileHover='hover'
-              // style={showVisited ? {borderBottom: 'thick solid red' } : {borderBottom: 'none'}}
               onClick={handleVisited}
             >
               Visited Restaurants
@@ -267,7 +263,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showFaves ? 'show' : 'close'}
               whileHover='hover'
-              // style={showFaves ? { borderBottom: 'thick solid red' } : { borderBottom: 'none' }}
               onClick={handleFaves}
             >
               Favorites List
@@ -361,7 +356,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
                       initial='hidden'
                       animate='visible'
                       className='tabs'>
-                      {/* <VerticalTabs authenticated={authenticated} /> */}
                     </motion.div>
                   </motion.div>
                 </div>

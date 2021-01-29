@@ -48,7 +48,7 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
         setErrors(user.errors);
       }
     } else {
-      console.log(errors)
+      // console.log(errors)
       setErrors(['Password and Confirm Password need to match'])
     }
   };

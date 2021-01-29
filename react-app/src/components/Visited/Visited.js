@@ -15,9 +15,6 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
             const response = await fetch(`/api/users/${userId}`);
             const user = await response.json();
             setFavs(user.favsList)
-            // user.favsList.forEach(ele => {
-
-            // })
             setRes(user.visitedRestaurants)
         })()
     }, [userId, res.length])
@@ -60,16 +57,12 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                 })
             })
             const newRes = await res.json();
-            console.log(newRes)
             favs.push(newRes)
         }
     }
 
     const removeRes = async (e) => {
         e.persist()
-        // console.log(e.target.id)
-        // console.log(res)
-        // console.log(e.target.id)
         let id = e.target.id
         const result = await fetch(`/api/visited/`, {
             method: "DELETE",
@@ -82,7 +75,6 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
         await result.json()
         let del = document.getElementById(id)
         del.remove()
-        console.log(res)
     }
 
 
@@ -145,20 +137,6 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                                                     alt='Fav Icon'
                                                     onClick={favHandle}
                                                 />
-                                                {/* <motion.svg
-                                        id={ele.restaurant.id}
-                                        className='list'
-                                        variants={svgVar}
-                                        initial='hidden'
-                                        animate='visible'
-                                        whileTap='tap'
-                                        whileHover='hover'
-                                        style={{fill: fill}}
-                                        onClick={favHandle}
-                                        version="1.0" viewBox="0 0 24 24" 
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.4 6c2 0 3.6 1.6 3.6 3.6s-3.9 6.4-8 9.8c-4.1-3.5-8-7.9-8-9.8C4 7.6 5.6 6 7.6 6 10 6 12 9 12 9s1.9-3 4.4-3m0-2c-1.8 0-3.4.9-4.4 2.3C11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z" />
-                                    </motion.svg> */}
                                                 <p id='add'
                                                 >Favorite</p>
                                             </motion.div>

@@ -7,7 +7,7 @@ import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 
 
 const main = {

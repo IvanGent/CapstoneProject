@@ -19,7 +19,6 @@ function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {
     }, [userId])
 
     const handleUserClick = (e) => {
-        console.log(e.target)
         localStorage.setItem('userId', e.target.id);
         setShowFriends(false);
         setShowVisited(true);
