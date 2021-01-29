@@ -106,13 +106,12 @@
         margin-right: 150px;
     }
     
-    .nav h3 {
-        font-size:px;
+    /* .nav h3 {
+        font-size: px;
         cursor: pointer;
-    }
+    } */
 
     .nav h1 {
-
         font-size: 70px;
     }
 }

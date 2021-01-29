@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion} from 'framer-motion';
 import './RandomRoller.css';
+
 
 // Framer-motion variants
 const resLis = {
@@ -69,21 +70,21 @@ const RandomCont = {
 const shift = {
     visible: {
         opacity: 1,
-        x: 0,
+        // x: 0,
         // y: -100,
-        rotate: 360,
-        transition: {
-            repeat: Infinity,
-            duration: .5
-        }
+        // rotate: 1000000,
+        // transition: {
+        //     repeat: Infinity,
+        //     duration: .5
+        // }
     },
     hidden: {
         // x: 1000
     },
     rollStop: {
         opacity: 1,
-        scale: .5,
-        x: 0
+        // scale: [.5, .8],
+        // x: 0
     }
 }
 
@@ -141,22 +142,35 @@ const ActualRoller = {
 
 const RollerImg = {
     visible: {
-        // x: 0,
+        x: [2000, -2000],
         // y: 30,
         // rotate: 360,
-        // transition: {
-        //     repeat: Infinity,
-        //     duration: .001
-        // }
+        transition: {
+            repeat: Infinity,
+            duration: .15
+        }
     },
     hidden: {
-        x: 0,
-        y: -600
+        // opacity: 0,
+        x: [1000, 0, -1000],
+        y: 0
     },
     rollStop: {
-        // scale: 2,
+        scale: 1.5,
         x: 0,
-        y: 0
+        // y: 300
+    }
+}
+
+const RollerName = {
+    visible: {
+        opacity: 0
+    },
+    hidden: {
+        opacity: 0
+    },
+    rollStop: {
+        opacity: 1
     }
 }
 
@@ -169,6 +183,10 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
     const [showReroll, setShowReroll] = useState(false);
     const curr = localStorage.getItem('currUser')
     const user = localStorage.getItem('userId')
+
+    useEffect(() => {
+        console.log(res)
+    }, [res])
 
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
@@ -255,7 +273,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
 
     return (
         <AnimatePresence>
-            {!mobileSize ? (
+            {/* {!mobileSize ? ( */}
         <motion.div 
             variants={Roller}
             initial='hidden'
@@ -328,19 +346,24 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                         initial='hidden'
                         animate={!showReroll ? 'visible' : 'rollStop'}
                         className='labels randomSelect'
+                        id='label'
                     >
                         <motion.img 
                             variants={RollerImg}
                             initial='hidden'
                             animate={!showReroll ? 'visible': 'rollStop'}
                             src={currRes.logo} 
-                            alt='logo' 
+                            alt='logo'
+                            id='lblimage'
                             />
-                        <motion.h5
-                            variant={RollerImg}
-                            initial='hidden'
-                            animate={!showReroll ? 'visible' : 'rollStop'}
-                        >{currRes.name}</motion.h5>
+                            <motion.div
+                                variant={RollerName}
+                                initial='hidden'
+                                animate={!showReroll ? 'visible' : 'rollStop'}
+                                className='holdingResName'
+                            >
+                                <h5>{currRes.name}</h5>
+                            </motion.div>
                     </motion.div>
                     {showReroll ? (
                         <div className='buttonHolder'>
@@ -373,8 +396,8 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                 </motion.div>
             )}
         </motion.div>
-            ) : (
-                    <motion.div className='randomRollerCont'>
+            {/* ) : ( */}
+                    {/* <motion.div className='randomRollerCont'>
                         {showSelect ? (
                             <form onSubmit={handleSelection}>
                                 <fieldset>
@@ -465,8 +488,8 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                                     </div>
                                 </motion.div>
                             )}
-                    </motion.div>
-            )}
+                    </motion.div> */}
+            {/* )} */}
         </AnimatePresence>
     )
 };

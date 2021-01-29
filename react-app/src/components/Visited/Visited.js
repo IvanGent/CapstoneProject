@@ -19,9 +19,6 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
 
             // })
             setRes(user.visitedRestaurants)
-            console.log(user.visitedRestaurants)
-            const use = user.visitedRestaurants
-            console.log(use)
         })()
     }, [userId, res.length])
 
@@ -85,21 +82,6 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
         await result.json()
         let del = document.getElementById(id)
         del.remove()
-        // res.reverse().splice(index, 1).reverse()
-        // let newRes = [];
-        // for(let i = res.length - 1; i > 0; i--) {
-        //     if(res[i].created_at === created_at) {
-        //         newRes.push(res[i - 1])
-        //         continue
-        //     }
-        //     newRes.push(res[i]);
-        // }
-        // console.log(index)a
-        // let newRes = res.filter(ele => ele.id !== id)
-        // res.splice(index, 1)
-        // setRes(newRes)
-        // console.log(newRes)
-        // setRes(res)
         console.log(res)
     }
 

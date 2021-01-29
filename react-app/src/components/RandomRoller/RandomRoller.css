@@ -82,27 +82,31 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        /* margin-bottom: 300px; */
-        /* border: thin black solid; */
-        /* background-color: white; */
-        /* background-color: rgba(255, 255, 255, 0.25); */
-        /* box-shadow: 0px 0px 50px 5px black; */
-        /* border-radius: 150px; */
+        width: 100%;
     }
 
     .randomSelect {
+        /* --d: 6.5em;
+        --rel: 1;
+        --r: calc(.5*(1 + let(--rel))*let(--d)/ let(--tan));
+        --s: calc(2*let(--r) + let(--d));
+        position: relative;
+        width: let(--s);
+        height: let(--s);
+        background-color: silver; */
         display: flex;
         flex-direction: column;
-        /* width: 250px; */
-        height:1000px;
-        width: 1000px;
+        justify-content: flex-start;
+        width: 100%;
+        height:60%;
+        /* width: 1000px; */
         padding: 20px;
         margin: 10px;
         padding: 10px;
-        border-radius: 50%;
-
-        background-color: white 
+        /* border-radius: 50%; */
+        /* background-color: white */
     }
+    
 
     .randomCont {
         width: 100%;
@@ -115,6 +119,7 @@
     .randomSelect img {
         max-height: 300px;
         border-radius: 20px;
+        margin-bottom: 70px;
         /* width: 300px; */
         /* margin: 0; */
         /* padding: 20px; */
@@ -122,7 +127,7 @@
 
     .randomSelect h5 {
         font-family: "Lato";
-        font-size: 20px;
+        font-size: 30px;
     }
 
 
@@ -207,6 +212,12 @@
     .buttonHolder {
         padding: 10px
     }
+
+    .holdingResName {
+        /* background-color: red; */
+        margin-bottom: 20px;
+        color: white;
+    }
 }
 
 @media screen and (max-device-width: 900px){
@@ -220,22 +231,21 @@
         flex-wrap: wrap;
         z-index: 20;
         background-color: rgba(0, 0, 0, 0.638);
-        /* margin-top: 500px; */
-        /* margin-left: 100px; */
+    }
+
+    .randomRollerCont h2 {
+        color: white;
+        margin-top: 20%;
+        font-size: 3em;
     }
     
     .randomRollerCont form {
-        /* position: relative; */
-        margin-top: 80px;
         display: flex;
-        /* justify-content: center; */
         flex-direction: column;
+        /* justify-content: center; */
         align-items: center;
-        width: 100vw;
-        height: 100vh;
-        /* background-color: white; */
-        /* background-color: rgba(0, 0, 0, 0.638); */
-        padding: 20px 0 70px 0;
+        width: 100%;
+        /* padding: 20px 0 70px 0; */
     }
     
     .randomRollerCont > div{
@@ -243,58 +253,52 @@
     }
     
     .randomRollerCont fieldset {
-        box-shadow: 0px 5px 100px 6px rgba(0, 0, 0, 0.638);
-        height: auto;
+       margin-top: 20%;
+        overflow: scroll;
         display: flex;
-        width: 91vw;
-        height: 75vh;
-        /* align-content: center; */
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
+        /* padding: 0 200px; */
         flex-wrap: wrap;
-        margin-top: 100px;
+        height: 50%;
+        width: 80%;
         border-radius: 20px;
-        background-color: rgba(0, 0, 0, 0.8);
+        border: none;
         overflow: scroll;
     }
     
     .randomRollerCont img {
         z-index: 10;
         position: relative;
-
-        /* padding: 20px; */
+        border-radius: 10px;
+        width: 120px;
+        height: auto;
     }
     
     .mainHolder {
-        /* background-color: red; */
-        background-color: white;
-        width: 420px;
-        height: 250px;
-        padding: 20px;
-        margin: 10px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-    
-    /* .labels {
-        width: 100%;
-        height: 100%;
-    } */
-    
-    .labels h5 {
         display: flex;
-        justify-content: center;
-        font-size: 1.7em;
-
-        /* height: 60px; */
-    
+        background-color: white;
+        width: 100%;
+        height: 13%;
+        margin: 15px;
+        border-radius: 20px;
+        /* flex-direction: column; */
+        justify-content: space-around;
     }
     
     .randomRollerCont .labels {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         /* padding: 100px; */
+        width: 100%;
         margin-top: 10px;
+    }
+
+    .labels h5 {
+        font-size: 4em;
     }
     
     
@@ -312,16 +316,31 @@
         background-color: rgba(255, 255, 255, 0.25);
         box-shadow: 0px 0px 50px 5px black;
         border-radius: 150px;
+        
     }
     
-    .randomSelect {
+    /* .randomSelect {
         width: 80vw;
         height: 60vh;
-        padding: 50px;
-        margin: 10px;
+        padding: 50px; */
+        /* margin: 10px; */
         /* padding: 10px; */
-        border-radius: 50px;
-        background-color: white
+        /* border-radius: 50px; */
+        /* background-color: white */
+    /* } */
+
+    #label {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: flex-start; */
+        justify-content: center;
+        width: 100%;
+        height:60%;
+    }
+    
+    #lblimage {
+        width: 40%;
+        height: auto;
     }
     
     .randomCont {
@@ -333,9 +352,9 @@
     }
     
     .randomSelect img {
-        margin-top: 200px;
+        /* margin-top: 200px; */
         padding: 20px;
-        width: 400px;
+        width: 40%;
         height: auto;
     }
     

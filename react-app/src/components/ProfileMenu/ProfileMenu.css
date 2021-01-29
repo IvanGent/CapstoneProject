@@ -95,7 +95,7 @@
 
 
 @media screen and (max-device-width: 900px) {
-    .profileMenu {
+    /* .profileMenu {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -112,11 +112,10 @@
         margin-top: 70px;
         right: 0;
         width: 100vw;
-        /* margin-left: 10px;
-        margin-top: 15px; */
+
         position: absolute;
         padding: 30px 20px;
-        /* border-radius: thin solid black; */
+
         background-color: rgba(0,0, 0, 0.9);
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
@@ -127,7 +126,6 @@
         padding: 20px;
         font-size: 2em;
         border-bottom: thin solid gray;
-        /* margin-bottom: 5px; */
     }
 
     .innerProfileMenu li a {
@@ -141,12 +139,108 @@
     }
     
     .NavImg {
-        /* background-color: whitesmoke; */
+
         background-color: rgba(255,255, 255, 0.3);
-        /* border-radius: 50%; */
+
         border-radius: 10px;
         width: 70px;
         height: 70px;
+
+    } */
+    .profileMenu {
+    position: absolute;
+    background-color: #fff;
+    top:15px;
+    right: 100px;
+    /* width: 300px;
+    height: 300px; */
+    border-radius: 50%;
+    z-index: 999;
+    cursor: pointer;
+    }
+
+    .menuHolder h3 {
+        padding: 3px
+    }
+
+    .outerMenu img {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        right: 110px;
+        top: 25px;
+        border-radius:30%;
+        background-color: #fff;
+        z-index: 9999;
+        cursor: pointer;
+    }
+
+    .profileMenu img {
+        background-color: burlywood;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        z-index: 0;
+    }
+
+    .menu {
+        position: absolute;
+        /* top: 0; */
+        right: 0;
+        /* bottom: 0; */
+        /* width: 300px; */
+        /* width: 50px;
+        height: 50px; */
+        background-color: #fff;
+        color: black;
+    }
+
+    .menu h3 {
+        font-size: 130px;
+    }
+
+    .menuHolder {
+        display: flex;
+        flex-direction: column;
+        /* background-color: red; */
+        height: 100%;
+        margin-top: 50px;
+        font-size: 30px;
+        padding: 0 30px;
+    }
+
+
+    .profileMenu div{
+        font-size: 100px;
+    }
+
+    .innerProfileMenu {
+        margin-left: 10px;
+        margin-top: 15px;
+        position: absolute;
+        padding: 10px 8px;
+        /* border-radius: thin solid black; */
+        background-color: rgba(0,0, 0, 0.9);
+        z-index: 99;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .innerProfileMenu li {
+        padding: 5px;
+        border-bottom: thin solid gray;
+        /* margin-bottom: 5px; */
+    }
+
+    #logout {
+        cursor: pointer;
+    }
+
+    .NavImg {
+        background-color: whitesmoke;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
         /* border: thin white solid */
     }
 }

@@ -226,7 +226,7 @@ function App() {
       {/* <Route path="/users/:userId" exact={true} authenticated={authenticated}> */}
       {/* </Route> */}
     </div>
-    <Footer mobileSize={mobileSize} />
+    {/* <Footer /> */}
     </BrowserRouter>
   );
 }

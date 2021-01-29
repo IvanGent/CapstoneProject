@@ -7,35 +7,35 @@ import MenuIcon from  '../../images/MobileMenu.png'
 import Cross from '../../images/Cross.png'
 
 
-const Menu = {
-    closed: {
-        x: 0,
-        width: "50px",
-        height: "50px",
-        borderRadius: '50%',
+// const Menu = {
+//     closed: {
+//         x: 0,
+//         width: "50px",
+//         height: "50px",
+//         borderRadius: '50%',
 
-    },
-    opened: {
-        transition: {
-            type: 'spring',
-            stiffness: 100,
-        },
-        y: {stiffness: 1000},
-        x: 0,
-        borderRadius: '25px',
-        position:'absolute',
-        height: "30vh",
-        width: '300px'
-    },
-    exit: {
-        transition: {
-            delay: .4
-        },
-        width: "50px",
-        height: "50px",
-        borderRadius: '50%',
-    }
-}
+//     },
+//     opened: {
+//         transition: {
+//             type: 'spring',
+//             stiffness: 100,
+//         },
+//         y: {stiffness: 1000},
+//         x: 0,
+//         borderRadius: '25px',
+//         position:'absolute',
+//         height: "30vh",
+//         width: '300px'
+//     },
+//     exit: {
+//         transition: {
+//             delay: .4
+//         },
+//         width: "50px",
+//         height: "50px",
+//         borderRadius: '50%',
+//     }
+// }
 
 const MenuChilds = {
     show: {
@@ -49,19 +49,19 @@ const MenuChilds = {
     }
 }
 
-const Button = {
-    visible: {
-        width: '100px',
-        height: '100px',
-    },
-    initial: {
-        width: '50px',
-        height: '50px',
-        transition: {
-            delay: .3
-        }
-    }
-}
+// const Button = {
+//     visible: {
+//         width: '100px',
+//         height: '100px',
+//     },
+//     initial: {
+//         width: '50px',
+//         height: '50px',
+//         transition: {
+//             delay: .3
+//         }
+//     }
+// }
 
 const Item = {
     hidden: {
@@ -99,12 +99,103 @@ const Item = {
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
     const [showMenu, setShowMenu] = useState(false);
     const currUser = localStorage.getItem('currUser')
+    let Button;
+    let Menu;
 
+    if (!mobileSize) {
+        Button = {
+            visible: {
+                width: '100px',
+                height: '100px',
+            },
+            initial: {
+                width: '50px',
+                height: '50px',
+                transition: {
+                    delay: .3
+                }
+            }
+        }
+        Menu = {
+            closed: {
+                x: 0,
+                width: "50px",
+                height: "50px",
+                borderRadius: '50%',
 
-    const openMenu = (e) => {
-        if (showMenu) return;
-        setShowMenu(true);
+            },
+            opened: {
+                transition: {
+                    type: 'spring',
+                    stiffness: 100,
+                },
+                y: { stiffness: 1000 },
+                x: 0,
+                borderRadius: '25px',
+                position: 'absolute',
+                height: "30vh",
+                width: '300px'
+            },
+            exit: {
+                transition: {
+                    delay: .4
+                },
+                width: "50px",
+                height: "50px",
+                borderRadius: '50%',
+            }
+        }
+    } else {
+        Button = {
+            visible: {
+                width: '100px',
+                height: '100px',
+            },
+            initial: {
+                width: '100px',
+                height: '100px',
+                transition: {
+                    delay: .3
+                }
+            }
+        }
+        Menu = {
+            closed: {
+                x: 0,
+                width: "95px",
+                height: "95px",
+                borderRadius: '50%',
+
+            },
+            opened: {
+                transition: {
+                    type: 'spring',
+                    stiffness: 100,
+                },
+                y: { stiffness: 1000 },
+                x: 0,
+                borderRadius: '25px',
+                position: 'absolute',
+                height: "50vh",
+                width: '80vw'
+            },
+            exit: {
+                transition: {
+                    delay: .4
+                },
+                opacity: 0,
+                // width: "90px",
+                // height: "90px",
+                // borderRadius: '50%',
+            }
+        }
     }
+    
+
+    // const openMenu = (e) => {
+    //     if (showMenu) return;
+    //     setShowMenu(true);
+    // }
 
     useEffect(() => {
         if (!showMenu) return;
@@ -146,13 +237,13 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         setShowHomePage(true);
     }
 
-    const handleFriends = () => {
-        setShowHomePage(false);
-        setShowVisited(false);
-        localStorage.setItem('userId', currUser)
-        setShowProfilePage(true);
-        setShowFriends(true);
-    }
+    // const handleFriends = () => {
+    //     setShowHomePage(false);
+    //     setShowVisited(false);
+    //     localStorage.setItem('userId', currUser)
+    //     setShowProfilePage(true);
+    //     setShowFriends(true);
+    // }
 
     const handleFaves = () => {
         setShowHomePage(false);
@@ -183,7 +274,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
             onClick={() => setShowMenu(!showMenu)}
             className='profileMenu'>
             
-            {!mobileSize ? (
+            {/* {!mobileSize ? ( */}
                 <>
                 <AnimatePresence>
                     {/* <motion.img
@@ -217,9 +308,9 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={2}>
                                 <h3 onClick={handleClick}>Profile</h3>
                             </motion.li>
-                            <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={3}>
+                            {/* <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={3}>
                                 <h3 onClick={handleFriends}>Friends</h3>
-                            </motion.li>
+                            </motion.li> */}
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
                                 <h3 onClick={handleFaves}>Favorites List</h3>
                             </motion.li>
@@ -239,8 +330,8 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                 )}
                         </AnimatePresence>
                 </>
-            ) : (
-                <>
+            {/* ) : ( */}
+                {/* <>
                 <AnimatePresence>
                     <motion.img
                         whileHover={{ scale: 1.1 }}
@@ -256,22 +347,22 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
                             <motion.menu initial={{ opacity: 0, y: -15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className='innerProfileMenu'>
                                 <li>
                                     <div onClick={handleClick}>Profile</div>
-                                </li>
+                                </li> */}
                                 {/* <li>
                             <NavLink to={`/users/${user}/friendsList`}>Friends List</NavLink>
                         </li>
                         <li>
                             <NavLink to={`/users/${user}/groups`}>Groups</NavLink>
                         </li> */}
-                                <li>
+                                {/* <li>
                                     <div id='logout' onClick={onLogout}>Logout</div>
                                 </li>
                             </motion.menu>
                         </ul>
                 </AnimatePresence>
                     )}
-                </>
-            )}
+                </> */}
+            {/* )} */}
         </motion.div>
         </div>
     )

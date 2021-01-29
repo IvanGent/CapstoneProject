@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-// import VerticalTabs from '../Tabs/Tabs';
 import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
 import ProfileAv from "../../images/ProfileAvatar.png";
 
-// Framer-motion props
+// Framer-motion variants
 const ProfileInfo = {
   visible: {
     opacity: 1,
@@ -91,7 +90,8 @@ const tabs = {
 function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited, setShowProfilePage }) {
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
-  const favs = [];
+  const [favs, setFavs] = useState([]);
+  // let favs = [];
   // userId is the user you're looking at
   const userId = localStorage.getItem('userId')
   // currUser is the user that is signed in
@@ -106,12 +106,11 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
         setUser(user);
-        user.favsList.forEach(ele => {
-          favs.push(ele.restaurant)
-        })
+        let favPrep = [];
+        user.favsList.forEach(ele => favPrep.push(ele.restaurant))
+        setFavs(favPrep);
         user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
       })();
-    
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, favs.length]);
   
@@ -162,7 +161,10 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   }
 
 
-  const handleFavsRoll = () => {
+  const handleFavsRoll = async() => {
+    // const response = await fetch(`/api/users/${userId}`);
+    // const user = await response.json(); 
+    // favs.push(user.favsList.forEach(ele => ele.restaurants))
     if (favs.length === 0) {
       alert('No Favorites To Roll');
       return;
@@ -185,11 +187,11 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowFaves(true)
   }
 
-  const handleFriends = () => {
-    setShowVisited(false)
-    setShowFaves(false)
-    setShowFriends(true)
-  }
+  // const handleFriends = () => {
+  //   setShowVisited(false)
+  //   setShowFaves(false)
+  //   setShowFriends(true)
+  // }
   
   return (
     <>
@@ -270,7 +272,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             >
               Favorites List
             </motion.li>
-            <motion.li
+            {/* <motion.li
               variants={tabs}
               animate={showFriends ? 'show' : 'close'}
               whileHover='hover'
@@ -278,7 +280,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               onClick={handleFriends}
             >
               Friends
-            </motion.li>
+            </motion.li> */}
           </ul>
         </div>
           <AnimatePresence>
