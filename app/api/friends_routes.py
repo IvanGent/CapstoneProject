@@ -8,14 +8,11 @@ friends_routes = Blueprint('friend', __name__)
 @friends_routes.route('/', methods=["POST"])
 def add_friend():
     try:
-        print("HELLO")
         data = request.json
-        print(data)
         newFriend = Friend(
             user_id=data['user_id'],
             sender_id=data['sender_id']
         )
-        print(newFriend)
         db.session.add(newFriend)
         db.session.commit()
         return {'message': 'Success'}

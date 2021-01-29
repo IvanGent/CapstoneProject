@@ -40,12 +40,8 @@ def update_user(id):
 def add_friend():
     # try:
     data = request.json
-    print('THIS IS DATA', data)
-    print('AFTER DATA')
     user = User.query.get(data['user_id'])
-    print('USER', user)
     user.addfriend(data['sender_id'])
-    print('THIS IS USER', user)
     db.session.commit()
     return {'message': 'Success'}
     # except Exception as e:
@@ -57,9 +53,5 @@ def confirm_friend():
     data = request.json
     user = User.query.get(data['user_id'])
     user.confirmfriend(data['sender_id'])
-    # user = Friend.query.filter(
-    #     Friend.user_id == data['user_id'],
-    #     Friend.sender_id == data['sender_id'])
-    # user.accepted = True
     db.session.commit()
     return {'message': 'Success'}
