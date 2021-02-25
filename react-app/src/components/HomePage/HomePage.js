@@ -4,6 +4,7 @@ import './HomePage.css'
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { AnimatePresence, motion } from 'framer-motion';
+import ResIcon from '../../images/Restaurant.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,15 +78,14 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
                         const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
                         const data = await logoRes.json();
                         if (!data.length) {
-                            result.logo = '/Restaurant.png'
+                            result.logo = '../../images/Restaurant.png'
                         }
                     }
                 }
             } else {
-                result.logo = '/Restaurant.png'
+                result.logo = '../../images/Restaurant.png'
 
             }
-            // console.log(result)
             const addedRes = await addingRestaurant(result.name, result.logo)
             return addedRes
         }

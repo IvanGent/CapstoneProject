@@ -26,7 +26,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
   useEffect(() => {
     setUser(localStorage.getItem('userId'))
-
   }, [])
 
 
