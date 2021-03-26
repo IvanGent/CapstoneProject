@@ -103,7 +103,7 @@ function App() {
       case 'ShowVisited':
         setShowVisited(!showVisited);
         break;
-      case 'showFaves':
+      case 'ShowFaves':
         setShowFaves(!showFaves);
         break;
       default:
