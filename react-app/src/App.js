@@ -7,9 +7,9 @@ import HomePage from './components/HomePage/HomePage';
 import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-// import Footer from "./components/Footer/Footer";
 
 
+// Framer Motion animations
 const main = {
   visible: {
     opacity: 1,
@@ -85,6 +85,31 @@ function App() {
       setMobileSize(true);
     }
   }, []);
+
+  const HandleModals = (type) => {
+    switch(type) {
+      case 'ShowForms':
+        setShowForms(!showForms);
+        break;
+      case 'ShowRoll':
+        setShowRoll(!showRoll);
+        break;
+      case 'ShowProfile':
+        setShowProfilePage(!showProfilePage);
+        break;
+      case 'ShowFriends':
+        setShowFriends(!showFriends);
+        break;
+      case 'ShowVisited':
+        setShowVisited(!showVisited);
+        break;
+      case 'showFaves':
+        setShowFaves(!showFaves);
+        break;
+      default:
+        break;
+    }
+  }
 
 
   const handleLogin = () => {
