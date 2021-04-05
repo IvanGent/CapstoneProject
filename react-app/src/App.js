@@ -87,31 +87,6 @@ function App() {
     }
   }, []);
 
-  // const HandleModals = (type) => {
-  //   switch(type) {
-  //     case 'ShowForms':
-  //       setShowForms(!showForms);
-  //       break;
-  //     case 'ShowRoll':
-  //       setShowRoll(!showRoll);
-  //       break;
-  //     case 'ShowProfile':
-  //       setShowProfilePage(!showProfilePage);
-  //       break;
-  //     case 'ShowFriends':
-  //       setShowFriends(!showFriends);
-  //       break;
-  //     case 'ShowVisited':
-  //       setShowVisited(!showVisited);
-  //       break;
-  //     case 'ShowFaves':
-  //       setShowFaves(!showFaves);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
-
 
   const handleLogin = () => {
     setShowForms(true)
@@ -147,31 +122,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
-      <ProtectedRoute path='/' exact={true} >
-      {showButton && !authenticated ? (
-        <div>
-          {!mobileSize ? (
-        <motion.div className='splash'>
-          <motion.h1
-            variants={main}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            Not Sure What To Eat? We'll Pick For You
-          </motion.h1>
-          <motion.button 
-            variants={mainButton}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-            whileHover='hover'
-            whileTap='tap' 
-            onClick={handleLogin}>Get Started?</motion.button>
-        </motion.div>
-          ) : (
-          <div className='splash'>
+      <Route path='/' exact={true} >
+      {!authenticated && !authenticated ? (
+        <div className='splash'>
             <motion.h1
               variants={main}
               initial='hidden'
@@ -179,7 +132,7 @@ function App() {
               exit='exit'
             >
               Not Sure What To Eat? We'll Pick For You
-          </motion.h1>
+            </motion.h1>
               <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: .5 } }}
@@ -187,12 +140,9 @@ function App() {
                 // whileHover={{ scale: 1. }}
                 whileTap={{ scale: 1.5 }}
                 onClick={handleLogin}>Get Started?</motion.button>
-            </div>
-          )}
         </div>
       ) : (
-        null
-      )}
+        <>
       {showHomePage && (
           <HomePage 
             showRoll={showRoll} 
@@ -233,10 +183,12 @@ function App() {
         </motion.div> 
         </AnimatePresence>
       )}
+      </>
+      )}
         {/* {authenticated && showHomePage ? (
           <HomePage />
         ): null} */}
-        {showProfilePage && 
+        {/* {showProfilePage && 
         <User 
           authenticated={authenticated} 
           showRoll={showRoll} 
@@ -250,12 +202,9 @@ function App() {
           setShowVisited={setShowVisited}
           setShowProfilePage={setShowProfilePage}
           />
-        }
-      </ProtectedRoute>
-      <Route path="/users/:userId" exact={true} authenticated={authenticated}>
+        } */}
       </Route>
     </div>
-    {/* <Footer /> */}
     </BrowserRouter>
   );
 }
