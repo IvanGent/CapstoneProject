@@ -30,7 +30,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
 
   const theStart = () => {
-    setShowButton(false)
+    // setShowButton(false)
     setShowForms(true)
   }
 
@@ -81,7 +81,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                 user={user} 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
-                setShowButton={setShowButton}
+                // setShowButton={setShowButton}
                 setShowRoll={setShowRoll}
                 setShowProfilePage={setShowProfilePage}
                 mobileSize={mobileSize}
@@ -108,7 +108,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                       user={user}
                       setAuthenticated={setAuthenticated}
                       setShowHomePage={setShowHomePage}
-                      setShowButton={setShowButton}
+                      // setShowButton={setShowButton}
                       setShowRoll={setShowRoll}
                       setShowProfilePage={setShowProfilePage}
                       mobileSize={mobileSize}

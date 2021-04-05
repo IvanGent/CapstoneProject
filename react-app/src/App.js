@@ -55,7 +55,7 @@ const mainButton = {
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [showButton, setShowButton] = useState(true);
+  // const [showButton, setShowButton] = useState(true);
   const [showHomePage, setShowHomePage] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -74,10 +74,7 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
         setShowHomePage(true);
-        setShowButton(false)
-      } else {
-        setShowButton(true);
-      }
+      } 
     })();
     setLoaded(true);
     setShowRoll(false)
@@ -90,7 +87,7 @@ function App() {
 
   const handleLogin = () => {
     setShowForms(true)
-    setShowButton(false)
+    // setShowButton(false)
     setShowLogin(true)
   }
 
@@ -105,7 +102,7 @@ function App() {
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 
         setShowForms={setShowForms}
-        setShowButton={setShowButton}
+        // setShowButton={setShowButton}
         showLogin={showLogin}
         setShowLogin={setShowLogin}
         setShowSignUp={setShowSignUp}

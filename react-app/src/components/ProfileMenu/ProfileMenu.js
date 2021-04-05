@@ -161,7 +161,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         await logout();
         setAuthenticated(false);
         setShowHomePage(false);
-        setShowButton(true);
+        // setShowButton(true);
         setShowRoll(false);
         setShowProfilePage(false)
         localStorage.removeItem('userId');
