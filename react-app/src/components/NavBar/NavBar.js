@@ -20,7 +20,7 @@ const Nav = {
 }
 
 
-const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowVisited, setShowFaves }) => {
+const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowVisited, setShowFaves }) => {
   const [user, setUser] = useState("");
   
 
@@ -30,7 +30,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
 
 
   const theStart = () => {
-    // setShowButton(false)
     setShowForms(true)
   }
 
@@ -81,7 +80,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                 user={user} 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
-                // setShowButton={setShowButton}
                 setShowRoll={setShowRoll}
                 setShowProfilePage={setShowProfilePage}
                 mobileSize={mobileSize}
@@ -108,7 +106,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowButton, setShowLogin, 
                       user={user}
                       setAuthenticated={setAuthenticated}
                       setShowHomePage={setShowHomePage}
-                      // setShowButton={setShowButton}
                       setShowRoll={setShowRoll}
                       setShowProfilePage={setShowProfilePage}
                       mobileSize={mobileSize}

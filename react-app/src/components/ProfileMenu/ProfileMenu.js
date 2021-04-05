@@ -51,7 +51,7 @@ const Item = {
     })
 }
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
     const [showMenu, setShowMenu] = useState(false);
     const currUser = localStorage.getItem('currUser')
     let Button;
@@ -161,7 +161,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowButton, setShow
         await logout();
         setAuthenticated(false);
         setShowHomePage(false);
-        // setShowButton(true);
         setShowRoll(false);
         setShowProfilePage(false)
         localStorage.removeItem('userId');
