@@ -123,8 +123,8 @@ function App() {
           <User />
         </ProtectedRoute>
       <Route path='/' exact={true} >
-      {showHomePage && !authenticated ? (
-        <div className='splash'>
+      {(showHomePage && !authenticated) && (
+      <div className='splash'>
           <motion.h1
             variants={main}
             initial='hidden'
@@ -142,7 +142,7 @@ function App() {
             onClick={handleLogin}>Get Started?
           </motion.button>
         </div>
-      ) : (
+      )}
         <>
       {showHomePage && (
           <HomePage 
@@ -185,7 +185,6 @@ function App() {
         </AnimatePresence>
       )}
       </>
-      )}
         {/* {authenticated && showHomePage ? (
           <HomePage />
         ): null} */}
