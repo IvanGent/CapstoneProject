@@ -55,17 +55,16 @@ const mainButton = {
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  // const [showButton, setShowButton] = useState(true);
   const [showHomePage, setShowHomePage] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
   const [mobileSize, setMobileSize] = useState(false);
-  const [showProfilePage, setShowProfilePage] = useState(false);
-  const [showFriends, setShowFriends] = useState(false);
-  const [showVisited, setShowVisited] = useState(false);
-  const [showFaves, setShowFaves] = useState(false);
+  // JUST COMMENTED OUT TO REMIND FOR REDUX
+  // const [showFriends, setShowFriends] = useState(false);
+  // const [showVisited, setShowVisited] = useState(false);
+  // const [showFaves, setShowFaves] = useState(false);
 
 
   useEffect(() => {
