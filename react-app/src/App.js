@@ -123,7 +123,7 @@ function App() {
           <User />
         </ProtectedRoute>
       <Route path='/' exact={true} >
-      {!authenticated && !authenticated ? (
+      {showHomePage && !authenticated ? (
         <div className='splash'>
           <motion.h1
             variants={main}
