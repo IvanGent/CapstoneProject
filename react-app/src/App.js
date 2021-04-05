@@ -109,10 +109,6 @@ function App() {
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
         mobileSize={mobileSize}
-        setShowProfilePage={setShowProfilePage}
-        setShowFriends={setShowFriends}
-        setShowFaves={setShowFaves}
-        setShowVisited={setShowVisited}
         />
       <div id='background'>
         <ProtectedRoute path='/users/:userId' authenticated={authenticated}>
@@ -146,9 +142,6 @@ function App() {
             setShowRoll={setShowRoll} 
             mobileSize={mobileSize} 
             setShowHomePage={setShowHomePage}
-            setShowProfilePage={setShowProfilePage}
-            setShowVisited={setShowVisited}
-            setShowFriends={setShowFriends}
             />
       )}
       {showForms && (
