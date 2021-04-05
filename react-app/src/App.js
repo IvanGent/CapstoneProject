@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
@@ -142,9 +143,12 @@ function App() {
         setShowFaves={setShowFaves}
         setShowVisited={setShowVisited}
         />
-    <div id='background'>
+      <div id='background'>
+        <ProtectedRoute path='/users/:userId' authenticated={authenticated}>
+          <User />
+        </ProtectedRoute>
         {/* <img id='background' src={process.env.PUBLIC_URL + '/NewBack.jpg'} alt='Background' /> */}
-      <Route path='/' exact={true} >
+      <ProtectedRoute path='/' exact={true} >
       {showButton && !authenticated ? (
         <div>
           {!mobileSize ? (
@@ -247,9 +251,9 @@ function App() {
           setShowProfilePage={setShowProfilePage}
           />
         }
+      </ProtectedRoute>
+      <Route path="/users/:userId" exact={true} authenticated={authenticated}>
       </Route>
-      {/* <Route path="/users/:userId" exact={true} authenticated={authenticated}> */}
-      {/* </Route> */}
     </div>
     {/* <Footer /> */}
     </BrowserRouter>
