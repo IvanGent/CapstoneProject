@@ -123,7 +123,7 @@ function App() {
           <User />
         </ProtectedRoute>
       <Route path='/' exact={true} >
-      {(showHomePage && !authenticated) && (
+      {!showForms && !authenticated && (
       <div className='splash'>
           <motion.h1
             variants={main}
@@ -143,7 +143,8 @@ function App() {
           </motion.button>
         </div>
       )}
-        <>
+      
+        {/* <>
       {showHomePage && (
           <HomePage 
             showRoll={showRoll} 
@@ -184,7 +185,7 @@ function App() {
         </motion.div> 
         </AnimatePresence>
       )}
-      </>
+      </> */}
         {/* {authenticated && showHomePage ? (
           <HomePage />
         ): null} */}
@@ -210,3 +211,67 @@ function App() {
 }
 
 export default App;
+
+
+// {showHomePage && !authenticated ? (
+//   <div className='splash'>
+//     <motion.h1
+//       variants={main}
+//       initial='hidden'
+//       animate='visible'
+//       exit='exit'
+//     >
+//       Not Sure What To Eat? We'll Pick For You
+//     </motion.h1>
+//     <motion.button
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1, transition: { duration: .5 } }}
+//       exit={{ opacity: 0 }}
+//       // whileHover={{ scale: 1. }}
+//       whileTap={{ scale: 1.5 }}
+//       onClick={handleLogin}>Get Started?
+//     </motion.button>
+//   </div>
+// ):(
+//   <>
+//   {showHomePage && !showForm ? (
+//     <HomePage 
+//       showRoll={showRoll} 
+//       setShowRoll={setShowRoll} 
+//       mobileSize={mobileSize} 
+//       setShowHomePage={setShowHomePage}
+//       setShowProfilePage={setShowProfilePage}
+//       setShowVisited={setShowVisited}
+//       setShowFriends={setShowFriends}
+//     />
+//   ):(
+//     <AnimatePresence>
+//       <motion.div 
+//         initial={{ opacity: 0}}
+//         animate={{ opacity: 1}}
+//         exit={{ opacity: 0}}
+//         className='formContainer'
+//       >
+//         <LoginForm 
+//           authenticated={authenticated}
+//           setAuthenticated={setAuthenticated} 
+//           showLogin={showLogin} 
+//           setShowLogin={setShowLogin}
+//           setShowSignUp={setShowSignUp}
+//           setShowForms={setShowForms}
+//           setShowHomePage={setShowHomePage}
+//           />
+//         <SignUpForm
+//           authenticated={authenticated}
+//           setAuthenticated={setAuthenticated}
+//           setShowLogin={setShowLogin}
+//           setShowSignUp={setShowSignUp}
+//           showSignUp={showSignUp}
+//           setShowForms={setShowForms}
+//           setShowHomePage={setShowHomePage}
+//         />
+//       </motion.div> 
+//     </AnimatePresence>
+//   )}
+//   </>
+// )}
