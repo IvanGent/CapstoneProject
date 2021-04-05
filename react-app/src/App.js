@@ -125,21 +125,22 @@ function App() {
       <Route path='/' exact={true} >
       {!authenticated && !authenticated ? (
         <div className='splash'>
-            <motion.h1
-              variants={main}
-              initial='hidden'
-              animate='visible'
-              exit='exit'
-            >
-              Not Sure What To Eat? We'll Pick For You
-            </motion.h1>
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: .5 } }}
-                exit={{ opacity: 0 }}
-                // whileHover={{ scale: 1. }}
-                whileTap={{ scale: 1.5 }}
-                onClick={handleLogin}>Get Started?</motion.button>
+          <motion.h1
+            variants={main}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+          >
+            Not Sure What To Eat? We'll Pick For You
+          </motion.h1>
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: .5 } }}
+            exit={{ opacity: 0 }}
+            // whileHover={{ scale: 1. }}
+            whileTap={{ scale: 1.5 }}
+            onClick={handleLogin}>Get Started?
+          </motion.button>
         </div>
       ) : (
         <>
