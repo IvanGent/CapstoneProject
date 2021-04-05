@@ -143,8 +143,7 @@ function App() {
           </motion.button>
         </div>
       )}
-      
-        {/* <>
+
       {showHomePage && (
           <HomePage 
             showRoll={showRoll} 
@@ -185,7 +184,6 @@ function App() {
         </motion.div> 
         </AnimatePresence>
       )}
-      </> */}
         {/* {authenticated && showHomePage ? (
           <HomePage />
         ): null} */}
