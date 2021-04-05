@@ -86,30 +86,30 @@ function App() {
     }
   }, []);
 
-  const HandleModals = (type) => {
-    switch(type) {
-      case 'ShowForms':
-        setShowForms(!showForms);
-        break;
-      case 'ShowRoll':
-        setShowRoll(!showRoll);
-        break;
-      case 'ShowProfile':
-        setShowProfilePage(!showProfilePage);
-        break;
-      case 'ShowFriends':
-        setShowFriends(!showFriends);
-        break;
-      case 'ShowVisited':
-        setShowVisited(!showVisited);
-        break;
-      case 'ShowFaves':
-        setShowFaves(!showFaves);
-        break;
-      default:
-        break;
-    }
-  }
+  // const HandleModals = (type) => {
+  //   switch(type) {
+  //     case 'ShowForms':
+  //       setShowForms(!showForms);
+  //       break;
+  //     case 'ShowRoll':
+  //       setShowRoll(!showRoll);
+  //       break;
+  //     case 'ShowProfile':
+  //       setShowProfilePage(!showProfilePage);
+  //       break;
+  //     case 'ShowFriends':
+  //       setShowFriends(!showFriends);
+  //       break;
+  //     case 'ShowVisited':
+  //       setShowVisited(!showVisited);
+  //       break;
+  //     case 'ShowFaves':
+  //       setShowFaves(!showFaves);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
 
   const handleLogin = () => {
