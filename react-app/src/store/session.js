@@ -8,3 +8,8 @@ const setUser = (user) => {
     };
 };
 
+const removeUser = () => {
+    return {
+        type: REMOVE_USER
+    };
+};
