@@ -32,3 +32,19 @@ export const restoreUser = () => async (dispatch) => {
     dispatch(setUser(res.data.user));
     return res;
 }
+
+export const signup = (user) => async (dispatch) => {
+    const { userName, firstName, password, email} = user;
+    const res = await fetch('/api/users', {
+        method: 'POST',
+        body: JSON.stringify({
+            userName,
+            firstName,
+            email,
+            password
+        })
+    })
+    dispatch(setUser(res.data.user));
+    return res;
+}
+
