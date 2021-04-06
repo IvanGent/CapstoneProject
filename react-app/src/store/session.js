@@ -13,3 +13,16 @@ const removeUser = () => {
         type: REMOVE_USER
     };
 };
+
+export const login = (user) => async (dispatch) => {
+    const { credentials, password } = user;
+    const res = await fetch('/api/session', {
+        method: 'POST',
+        body: JSON.stringify({
+            credentials,
+            password,
+        })
+    })
+    dispatch(setUser(res.data.user));
+    return res;
+}
