@@ -48,3 +48,31 @@ export const signup = (user) => async (dispatch) => {
     return res;
 }
 
+export const logout = () => async (dispatch) => {
+    const res = await fetch('/api/session', {
+        method: 'DELETE'
+    })
+    dispatch(removeUser());
+    return res;
+}
+
+const initialState = { user: null};
+
+const sessionReducer = (state = initialState, {type, payload}) => {
+    let newState;
+    switch(type) {
+        case SET_USER:
+            newState = Object.assign({}, state);
+            newState.user = payload;
+            return newState;
+        case REMOVE_USER:
+            newState = Object.assign({}, state);
+            newState.user = payload;
+            return newState;
+        default:
+            return state;
+    };
+};
+
+
+export default sessionReducer;
