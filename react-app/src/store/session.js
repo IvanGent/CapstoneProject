@@ -26,3 +26,9 @@ export const login = (user) => async (dispatch) => {
     dispatch(setUser(res.data.user));
     return res;
 }
+
+export const restoreUser = () => async (dispatch) => {
+    const res = await fetch('/api/session');
+    dispatch(setUser(res.data.user));
+    return res;
+}
