@@ -51,7 +51,7 @@ const Item = {
     })
 }
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
     const [showMenu, setShowMenu] = useState(false);
     const currUser = localStorage.getItem('currUser')
     let Button;
@@ -162,7 +162,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, setShowPr
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
-        setShowProfilePage(false)
         localStorage.removeItem('userId');
         localStorage.removeItem('currUser')
         return;
@@ -173,13 +172,11 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, setShowPr
         setShowHomePage(false)
         setShowFaves(false)
         localStorage.setItem('userId', currUser)
-        setShowProfilePage(true)
         setShowVisited(true)
     }
 
     const goHome = () => {
         setShowRoll(false);
-        setShowProfilePage(false);
         localStorage.setItem('userId', currUser)
         setShowHomePage(true);
     }
@@ -189,7 +186,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, setShowPr
         setShowHomePage(false);
         setShowVisited(false)
         localStorage.setItem('userId', currUser)
-        setShowProfilePage(true);
         setShowFaves(true);
     }
 
