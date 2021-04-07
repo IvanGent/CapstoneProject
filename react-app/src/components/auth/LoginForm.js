@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import * as sessionActions from '../../store/session';
 import { login } from "../../services/auth";
 import './LoginForm.css'
 
@@ -35,13 +36,15 @@ const LoginButton = {
 }
 
 const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await login(email, password);
+    // const user = await login(email, password);
+    const user = await dispatchEvent(sessionActions.login({email, password}))
     if (!user.errors) {
       setAuthenticated(true);
       setShowLogin(false)
@@ -69,7 +72,8 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
 
   const LoginDemo = async (e) => {
     e.preventDefault();
-    const user = await login('demo@aa.io', 'password')
+    // const user = await login('demo@aa.io', 'password')
+    const user = await dispatchEvent(u)
     setAuthenticated(true);
     setShowLogin(false)
     setShowForms(false)
