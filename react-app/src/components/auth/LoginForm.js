@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import * as sessionActions from '../../store/session';
-import { login } from "../../services/auth";
+// import { login } from "../../services/auth";
 import './LoginForm.css'
 
 const background = {
