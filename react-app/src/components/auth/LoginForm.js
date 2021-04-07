@@ -45,7 +45,7 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const onLogin = async (e) => {
     e.preventDefault();
     // const user = await login(email, password);
-    const user = await dispatchEvent(sessionActions.login({email, password}))
+    const user = await dispatch(sessionActions.login({email, password}))
     if (!user.errors) {
       setAuthenticated(true);
       setShowLogin(false)
@@ -74,7 +74,7 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const LoginDemo = async (e) => {
     e.preventDefault();
     // const user = await login('demo@aa.io', 'password')
-    const user = await dispatchEvent(u)
+    const user = await dispatch(sessionActions.login({email, password}))
     setAuthenticated(true);
     setShowLogin(false)
     setShowForms(false)
