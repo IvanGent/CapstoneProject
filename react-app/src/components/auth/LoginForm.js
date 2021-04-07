@@ -38,6 +38,7 @@ const LoginButton = {
 
 const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
