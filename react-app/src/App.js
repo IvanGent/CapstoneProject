@@ -149,24 +149,28 @@ function App() {
           exit={{ opacity: 0}}
           className='formContainer'
         >
-          <LoginForm 
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated} 
-            showLogin={showLogin} 
-            setShowLogin={setShowLogin}
-            setShowSignUp={setShowSignUp}
-            setShowForms={setShowForms}
-            setShowHomePage={setShowHomePage}
+          {showLogin && (
+            <LoginForm 
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated} 
+              showLogin={showLogin} 
+              setShowLogin={setShowLogin}
+              setShowSignUp={setShowSignUp}
+              setShowForms={setShowForms}
+              setShowHomePage={setShowHomePage}
             />
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            setShowLogin={setShowLogin}
-            setShowSignUp={setShowSignUp}
-            showSignUp={showSignUp}
-            setShowForms={setShowForms}
-            setShowHomePage={setShowHomePage}
-          />
+          )}
+          {showSignUp && (
+            <SignUpForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+              setShowLogin={setShowLogin}
+              setShowSignUp={setShowSignUp}
+              showSignUp={showSignUp}
+              setShowForms={setShowForms}
+              setShowHomePage={setShowHomePage}
+            />
+          )}
         </motion.div> 
         </AnimatePresence>
       )}

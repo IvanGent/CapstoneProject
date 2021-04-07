@@ -46,7 +46,7 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const onLogin = async (e) => {
     e.preventDefault();
     // const user = await login(email, password);
-    const user = await dispatch(sessionActions.login({email, password}))
+    const user = dispatch(sessionActions.login({email, password}))
     if (!user.errors) {
       setAuthenticated(true);
       setShowLogin(false)
