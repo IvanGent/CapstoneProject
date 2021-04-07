@@ -26,7 +26,7 @@ export const login = (user) => async (dispatch) => {
             password,
         })
     })
-    dispatch(setUser(res.data.user));
+    dispatch(setUser(res.user));
     return res;
 }
 
