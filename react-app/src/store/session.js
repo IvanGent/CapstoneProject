@@ -15,14 +15,14 @@ const removeUser = () => {
 };
 
 export const login = (user) => async (dispatch) => {
-    const { credentials, password } = user;
+    const { email, password } = user;
     const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            credentials,
+            email,
             password,
         })
     })
