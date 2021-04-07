@@ -6,10 +6,20 @@ import configureStore from './store';
 import './index.css';
 import App from './App';
 
+const store = configureStore();
+
+
+const Root = () => {
+  return(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById('root')
 );
