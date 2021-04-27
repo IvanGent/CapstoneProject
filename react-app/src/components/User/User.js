@@ -185,12 +185,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowVisited(false)
     setShowFaves(true)
   }
-
-  // const handleFriends = () => {
-  //   setShowVisited(false)
-  //   setShowFaves(false)
-  //   setShowFriends(true)
-  // }
   
   return (
     <>
