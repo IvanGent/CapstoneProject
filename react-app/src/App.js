@@ -83,6 +83,15 @@ function App() {
     // }
   }, []);
 
+  const homeBody = (
+    <HomePage 
+      showRoll={showRoll} 
+      setShowRoll={setShowRoll} 
+      mobileSize={mobileSize} 
+      setShowHomePage={setShowHomePage}
+    />
+  )
+
 
   const handleLogin = () => {
     setShowForms(true)
@@ -113,7 +122,7 @@ function App() {
           <User />
         </ProtectedRoute>
       <Route path='/' exact={true} >
-      {!showForms && !authenticated && (
+      {!showForms && !authenticated ? (
       <div className='splash'>
           <motion.h1
             variants={main}
@@ -135,16 +144,20 @@ function App() {
             Get Started?
           </motion.button>
         </div>
+      ) : (
+        <>
+          {homeBody}
+        </>
       )}
 
-      {showHomePage && (
+      {/* {showHomePage && (
           <HomePage 
             showRoll={showRoll} 
             setShowRoll={setShowRoll} 
             mobileSize={mobileSize} 
             setShowHomePage={setShowHomePage}
             />
-      )}
+      )} */}
       {showForms && (
         <AnimatePresence>
         <motion.div 

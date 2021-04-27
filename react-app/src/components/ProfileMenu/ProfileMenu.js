@@ -162,12 +162,12 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
     }, [showMenu]);
 
     const onLogout = async (e) => {
-        await dispatch(sessionActions.logout());
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
         localStorage.removeItem('userId');
         localStorage.removeItem('currUser')
+        await dispatch(sessionActions.logout());
         return;
     };
 
