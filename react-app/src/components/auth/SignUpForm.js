@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion";
-import { signUp } from '../../services/auth';
 import * as sessionActions from '../../store/session';
 import './SignUpForm.css';
 
@@ -39,7 +38,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      // const user = await signUp(username, firstName, email, password);
       const user = await dispatch(sessionActions.signup({username, firstName, email, password}));
       if (!user.errors) {
         setAuthenticated(true);
