@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import Listing from '../Listing/Listing'
 import './User.css';
@@ -85,12 +86,13 @@ const tabs = {
 
 
 function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited, setShowProfilePage }) {
+  const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
   // let favs = [];
   // userId is the user you're looking at
-  const userId = localStorage.getItem('userId')
+  const userId = id
   // currUser is the user that is signed in
   const currUser = localStorage.getItem('currUser')
 
@@ -183,12 +185,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowVisited(false)
     setShowFaves(true)
   }
-
-  // const handleFriends = () => {
-  //   setShowVisited(false)
-  //   setShowFaves(false)
-  //   setShowFriends(true)
-  // }
   
   return (
     <>

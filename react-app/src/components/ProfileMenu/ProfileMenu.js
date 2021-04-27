@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import { logout } from '../../services/auth'
+import * as sessionActions from '../../store/session';
+// import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 import MenuIcon from  '../../images/MobileMenu.png'
 import Cross from '../../images/Cross.png'
@@ -52,6 +55,8 @@ const Item = {
 }
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
     const currUser = localStorage.getItem('currUser')
     let Button;
@@ -158,7 +163,8 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
     }, [showMenu]);
 
     const onLogout = async (e) => {
-        await logout();
+        await dispatch(sessionActions.logout());
+        // await logout();
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
@@ -167,12 +173,13 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
         return;
     };
 
-    const handleClick = () => {
+    const handleProfileClick = () => {
         setShowRoll(false);
-        setShowHomePage(false)
-        setShowFaves(false)
-        localStorage.setItem('userId', currUser)
-        setShowVisited(true)
+        setShowHomePage(false);
+        // setShowFaves(false)
+        localStorage.setItem('userId', currUser);
+        history.push(`/profile/${currUser}`);
+        // setShowVisited(true)
     }
 
     const goHome = () => {
@@ -184,9 +191,9 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
 
     const handleFaves = () => {
         setShowHomePage(false);
-        setShowVisited(false)
+        // setShowVisited(false)
         localStorage.setItem('userId', currUser)
-        setShowFaves(true);
+        // setShowFaves(true);
     }
 
     return (
@@ -230,7 +237,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
                                 <h3 onClick={goHome}>Home</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={2}>
-                                <h3 onClick={handleClick}>Profile</h3>
+                                <h3 onClick={handleProfileClick}>Profile</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
                                 <h3 onClick={handleFaves}>Favorites List</h3>
