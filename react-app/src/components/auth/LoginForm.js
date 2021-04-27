@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { motion, AnimatePresence } from "framer-motion";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {motion, AnimatePresence} from "framer-motion";
 import * as sessionActions from '../../store/session';
-// import { login } from "../../services/auth";
 import './LoginForm.css'
 
 const background = {
@@ -38,21 +37,25 @@ const LoginButton = {
 
 const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const user = dispatch(sessionActions.login({email, password}))
-    if (!user.errors) {
+  const handleGoodLogin = (user) => {
       setAuthenticated(true);
       setShowLogin(false)
       setShowForms(false)
       setShowHomePage(true)
       localStorage.setItem("userId", user.id)
       localStorage.setItem("currUser", user.id)
+  }
+
+  const onLogin = async (e) => {
+    e.preventDefault();
+    console.log('THIS IS FOR THE BUTTON ID', e)
+    const user = await dispatch(sessionActions.login({email, password}))
+    if (!user.errors) {
+      handleGoodLogin(user);
     } else {
       setErrors(user.errors);
     }
@@ -75,13 +78,7 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
     e.preventDefault();
     const demoCredentials = {email: 'demo@aa.io', password: 'password'}
     const user = await dispatch(sessionActions.login(demoCredentials))
-    console.log('THIS IS FOR THE USER', user)
-    setAuthenticated(true);
-    setShowLogin(false)
-    setShowForms(false)
-    setShowHomePage(true)
-    localStorage.setItem("userId", user.id)
-    localStorage.setItem("currUser", user.id)
+    handleGoodLogin(user);
   }
 
   return (
