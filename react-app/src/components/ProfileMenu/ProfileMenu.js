@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
-import { logout } from '../../services/auth'
+// import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 import MenuIcon from  '../../images/MobileMenu.png'
 import Cross from '../../images/Cross.png'
@@ -52,6 +53,7 @@ const Item = {
 }
 
 function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
+    const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const currUser = localStorage.getItem('currUser')
     let Button;
