@@ -78,9 +78,9 @@ function App() {
     setLoaded(true);
     setShowRoll(false)
     setMobileSize(false)
-    if(Number(window.screen.width) < 900) {
-      setMobileSize(true);
-    }
+    // if(Number(window.screen.width) < 900) {
+    //   setMobileSize(true);
+    // }
   }, []);
 
 
@@ -124,11 +124,15 @@ function App() {
             Not Sure What To Eat? We'll Pick For You
           </motion.h1>
           <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: .5 } }}
-            exit={{ opacity: 0 }}
-            whileTap={{ scale: 1.5 }}
-            onClick={handleLogin}>Get Started?
+            variants={mainButton}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            whileTap='tap'
+            whileHover='hover'
+            onClick={handleLogin}
+          >
+            Get Started?
           </motion.button>
         </div>
       )}
