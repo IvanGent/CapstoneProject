@@ -109,7 +109,7 @@ function App() {
         mobileSize={mobileSize}
         />
       <div id='background'>
-        <ProtectedRoute path='/users/:userId' authenticated={authenticated}>
+        <ProtectedRoute path='/users/:id' authenticated={authenticated}>
           <User />
         </ProtectedRoute>
       <Route path='/' exact={true} >

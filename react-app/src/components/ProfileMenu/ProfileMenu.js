@@ -178,7 +178,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
         setShowHomePage(false);
         // setShowFaves(false)
         localStorage.setItem('userId', currUser);
-        history.push('/profile');
+        history.push(`/profile/${currUser}`);
         // setShowVisited(true)
     }
 
