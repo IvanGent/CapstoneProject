@@ -43,11 +43,8 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(sessionUser)
-
   const onLogin = async (e) => {
     e.preventDefault();
-    // const user = await login(email, password);
     const user = dispatch(sessionActions.login({email, password}))
     if (!user.errors) {
       setAuthenticated(true);
@@ -76,7 +73,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
 
   const LoginDemo = async (e) => {
     e.preventDefault();
-    // const user = await login('demo@aa.io', 'password')
     const demoCredentials = {email: 'demo@aa.io', password: 'password'}
     const user = await dispatch(sessionActions.login(demoCredentials))
     console.log('THIS IS FOR THE USER', user)
@@ -90,7 +86,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
 
   return (
     <AnimatePresence exitBeforeEnter>
-    {/* <> */}
       {showLogin && (
           <motion.div className='loginModal'
             variants={background}
@@ -102,12 +97,10 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
               <div className='innerLogin'>
               <div className='errors'>
                 {errors.map((error, i) => (
-                  // console.log(error)
                   <div key={i}>{error}</div>
                   
                 ))}
               </div>
-                {/* <label htmlFor="email">Email</label> */}
               <div>
                 <input
                   name="email"
@@ -117,7 +110,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
                   onChange={updateEmail}
                 />
               </div>
-                {/* <label htmlFor="password">Password</label> */}
               <div>
                 <input
                   name="password"
@@ -145,12 +137,10 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
                   >
                     Login Demo
                   </motion.button>
-                {/* <button type="submit">Login</button> */}
               <div id='signupClick' onClick={handleSignupClick}>Don't have an account? Sign Up</div>
               </div>
             </form>
           </motion.div>
-        // </motion.div>
       )}
     </AnimatePresence>
   );
