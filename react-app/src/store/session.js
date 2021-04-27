@@ -16,6 +16,7 @@ const removeUser = () => {
 
 export const login = (user) => async (dispatch) => {
     const { email, password } = user;
+    console.log(user);
     const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -27,7 +28,7 @@ export const login = (user) => async (dispatch) => {
         })
     })
     dispatch(setUser(res.user));
-    return res;
+    return res.json();
 }
 
 // export const restoreUser = () => async (dispatch) => {
@@ -73,7 +74,7 @@ const sessionReducer = (state = initialState, {type, payload}) => {
             return newState;
         case REMOVE_USER:
             newState = Object.assign({}, state);
-            newState.user = payload;
+            newState.user = null;
             return newState;
         default:
             return state;

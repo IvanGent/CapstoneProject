@@ -75,7 +75,9 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const LoginDemo = async (e) => {
     e.preventDefault();
     // const user = await login('demo@aa.io', 'password')
-    const user = await dispatch(sessionActions.login({email, password}))
+    const demoCredentials = {email: 'demo@aa.io', password: 'password'}
+    const user = await dispatch(sessionActions.login(demoCredentials))
+    console.log('THIS IS FOR THE USER', user)
     setAuthenticated(true);
     setShowLogin(false)
     setShowForms(false)
