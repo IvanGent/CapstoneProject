@@ -43,6 +43,8 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log(sessionUser)
+
   const onLogin = async (e) => {
     e.preventDefault();
     // const user = await login(email, password);
