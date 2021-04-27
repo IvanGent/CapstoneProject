@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion";
-import { signUp } from '../../services/auth';
+import * as sessionActions from '../../store/session';
 import './SignUpForm.css';
 
 const background = {
@@ -26,6 +27,7 @@ const background = {
 }
 
 const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [errors, setErrors] = useState([]);
@@ -36,7 +38,7 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, firstName, email, password);
+      const user = await dispatch(sessionActions.signup({username, firstName, email, password}));
       if (!user.errors) {
         setAuthenticated(true);
         setShowSignUp(false);
@@ -48,7 +50,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
         setErrors(user.errors);
       }
     } else {
-      // console.log(errors)
       setErrors(['Password and Confirm Password need to match'])
     }
   };
@@ -80,7 +81,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
 
   return (
     <AnimatePresence exitBeforeEnter>
-      {/* <> */}
       {showSignUp && (
         <motion.div className='signupModal'
           variants={background}
@@ -90,15 +90,12 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
-              {/* {err && ( */}
             <div className='errors'>
               {errors.map((error, i) => (
                 <div key={i}>{error}</div>
               ))}
             </div>
-              {/* )} */}
             <div>
-              {/* <label>Username</label> */}
               <input
                 type="text"
                 name="username"
@@ -108,7 +105,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
               ></input>
             </div>
             <div>
-              {/* <label>First Name</label> */}
               <input
                 type="text"
                 name="first_name"
@@ -118,7 +114,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
               ></input>
             </div>
             <div>
-              {/* <label>Email</label> */}
               <input
                 type="text"
                 name="email"
@@ -128,7 +123,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
               ></input>
             </div>
             <div>
-              {/* <label>Password</label> */}
               <input
                 type="password"
                 name="password"
@@ -138,7 +132,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
               ></input>
             </div>
             <div>
-              {/* <label>Confirm Password</label> */}
               <input
                 type="password"
                 name="repeat_password"
@@ -153,10 +146,8 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
             </div>
           </form>
         </motion.div>
-      // </motion.div>
       )}
     </AnimatePresence>
-    // {/* </> */}
   );
 };
 
