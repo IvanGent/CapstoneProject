@@ -3,7 +3,6 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as sessionActions from '../../store/session';
-// import { logout } from '../../services/auth'
 import './ProfileMenu.css'
 import MenuIcon from  '../../images/MobileMenu.png'
 import Cross from '../../images/Cross.png'
@@ -163,37 +162,33 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
     }, [showMenu]);
 
     const onLogout = async (e) => {
-        await dispatch(sessionActions.logout());
-        // await logout();
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
         localStorage.removeItem('userId');
         localStorage.removeItem('currUser')
+        await dispatch(sessionActions.logout());
         return;
     };
 
     const handleProfileClick = () => {
+        localStorage.setItem('userId', currUser);
         setShowRoll(false);
         setShowHomePage(false);
-        // setShowFaves(false)
-        localStorage.setItem('userId', currUser);
         history.push(`/profile/${currUser}`);
-        // setShowVisited(true)
     }
 
     const goHome = () => {
-        setShowRoll(false);
         localStorage.setItem('userId', currUser)
+        setShowRoll(false);
         setShowHomePage(true);
+        history.push('/');
     }
 
 
     const handleFaves = () => {
         setShowHomePage(false);
-        // setShowVisited(false)
         localStorage.setItem('userId', currUser)
-        // setShowFaves(true);
     }
 
     return (

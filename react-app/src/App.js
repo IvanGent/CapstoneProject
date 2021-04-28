@@ -83,6 +83,15 @@ function App() {
     // }
   }, []);
 
+  const homeBody = (
+    <HomePage 
+      showRoll={showRoll} 
+      setShowRoll={setShowRoll} 
+      mobileSize={mobileSize} 
+      setShowHomePage={setShowHomePage}
+    />
+  )
+
 
   const handleLogin = () => {
     setShowForms(true)
@@ -137,14 +146,7 @@ function App() {
         </div>
       )}
 
-      {showHomePage && (
-          <HomePage 
-            showRoll={showRoll} 
-            setShowRoll={setShowRoll} 
-            mobileSize={mobileSize} 
-            setShowHomePage={setShowHomePage}
-            />
-      )}
+      {showHomePage && homeBody}
       {showForms && (
         <AnimatePresence>
         <motion.div 
@@ -161,7 +163,7 @@ function App() {
               setShowLogin={setShowLogin}
               setShowSignUp={setShowSignUp}
               setShowForms={setShowForms}
-              setShowHomePage={setShowHomePage}
+              // setShowHomePage={setShowHomePage}
             />
           )}
           {showSignUp && (
@@ -172,7 +174,7 @@ function App() {
               setShowSignUp={setShowSignUp}
               showSignUp={showSignUp}
               setShowForms={setShowForms}
-              setShowHomePage={setShowHomePage}
+              // setShowHomePage={setShowHomePage}
             />
           )}
         </motion.div> 
@@ -185,3 +187,5 @@ function App() {
 }
 
 export default App;
+
+// trying to fix up some state and get the profile menu working
