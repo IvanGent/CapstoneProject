@@ -187,3 +187,5 @@ function App() {
 }
 
 export default App;
+
+// trying to fix up some state and get the profile menu working
