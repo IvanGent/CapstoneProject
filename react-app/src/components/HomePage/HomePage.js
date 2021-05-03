@@ -135,13 +135,28 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     }
     
 // Handling the current location with an api call to googles geolocation api.
+    // const handleClick = async () => {
+    //     setShowLoader(true)
+    //         const coords = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`, {
+    //             method: "POST"
+    //         })
+    //         const data = await coords.json()
+    //         console.log(data)
+    //         await gettingResturants(data.location.lat, data.location.lng)
+    // }
+
+    // changing how to get coords to using JS API instead of googles geolocation api.
     const handleClick = async () => {
         setShowLoader(true)
-            const coords = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`, {
-                method: "POST"
+        if('geolocation' in navigator) {
+            console.log('Available')
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                console.log(position)
+                await gettingResturants(position.coords.latitude, position.coords.longitude)
             })
-            const data = await coords.json()
-            await gettingResturants(data.location.lat, data.location.lng)
+        } else {
+            console.log('Unavailable')
+        }
     }
 
     const updateZipCode = (e) => {
