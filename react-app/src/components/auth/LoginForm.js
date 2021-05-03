@@ -43,7 +43,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
 
   const handleGoodLogin = (user) => {
       setAuthenticated(true);
-      setShowLogin(false)
       setShowForms(false)
       setShowHomePage(true)
       localStorage.setItem("userId", user.id)
