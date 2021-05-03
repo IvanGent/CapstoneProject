@@ -149,13 +149,13 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     const handleClick = async () => {
         setShowLoader(true)
         if('geolocation' in navigator) {
-            console.log('Available')
+            // console.log('Available')
             navigator.geolocation.getCurrentPosition(async (position) => {
-                console.log(position)
+                // console.log(position)
                 await gettingResturants(position.coords.latitude, position.coords.longitude)
             })
         } else {
-            console.log('Unavailable')
+            // console.log('Unavailable')
         }
     }
 
@@ -233,7 +233,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
                                             Submit
                                         </motion.button>
                                     </AnimatePresence>
-                                    {/* <button type='submit'>Submit</button> */}
                                 </form>
                             </div>
                         </div>
