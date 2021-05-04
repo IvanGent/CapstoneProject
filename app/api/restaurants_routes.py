@@ -4,8 +4,11 @@ from flask_login import login_required
 import requests
 from app.models import db, Restaurant
 from sqlalchemy.exc import SQLAlchemyError
+from decouple import config
 
-api_key = os.environ.get("API_KEY")
+# api_key = config("API_KEY")
+# api_key=os.environ.get("API_KEY")
+api_key = os.getenv('API_KEY')
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -18,21 +21,22 @@ def get_check():
 @restaurant_routes.route('/<lat>/<long>')
 # @login_required
 def get_restaurants(lat, long):
-    res = requests.get(f'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{long}&radius=8000&type=restaurant&key=AIzaSyCAplwP5FEZd5bQSUlWSBh3rOTbL4tLG_8')
+    res = requests.get(f'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{long}&radius=8000&type=restaurant&key={api_key}')
     print(res.json())
     return (res.json())
 
 # getting latitude and longitude from zipcode.
 @restaurant_routes.route('/<zipcode>')
 def get_location_zip(zipcode):
-    res = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB0kFjSrYYNIkFvEDGcn4RaFgLm-HsXStc&components=postal_code:{zipcode}')
+    res = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?key={api_key}&components=postal_code:{zipcode}')
+    print(res.json())
     return (res.json())
 
 # getting details for a restaurant. I'm using this to get the website to make another call on the frontend
 # to get the logo.
 @restaurant_routes.route('/details/<placeId>')
 def get_place_details(placeId):
-    res = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&fields=name,website&key=AIzaSyCAplwP5FEZd5bQSUlWSBh3rOTbL4tLG_8')
+    res = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&fields=name,website&key={api_key}')
     return (res.json())
 
 # checking if a restaurant exist in the database.
