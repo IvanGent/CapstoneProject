@@ -163,7 +163,7 @@ function App() {
               setShowLogin={setShowLogin}
               setShowSignUp={setShowSignUp}
               setShowForms={setShowForms}
-              // setShowHomePage={setShowHomePage}
+              setShowHomePage={setShowHomePage}
             />
           )}
           {showSignUp && (
@@ -174,7 +174,7 @@ function App() {
               setShowSignUp={setShowSignUp}
               showSignUp={showSignUp}
               setShowForms={setShowForms}
-              // setShowHomePage={setShowHomePage}
+              setShowHomePage={setShowHomePage}
             />
           )}
         </motion.div> 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import ProfileAv from "../../images/ProfileAvatar.png";
+// import ProfileAv from "../../images/ProfileAvatar.png";
 import './Friends.css'
 
 function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {
@@ -33,7 +33,7 @@ function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {
                             console.log(ele)
                         return (
                         <div key={ele.id} id={ele.id} className='friends' onClick={handleUserClick}>
-                            <img src={ele.avatar ? ele.avatar : ProfileAv} alt='avatar' id={ele.id}/>
+                            <img src={ele.avatar ? ele.avatar : '/images/ProfileAvatar.png'} alt='avatar' id={ele.id}/>
                             <h3 id={ele.id} >Username: {ele.username}</h3>
                         </div>
                     )})}

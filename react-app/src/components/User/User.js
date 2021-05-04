@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
-import ProfileAv from "../../images/ProfileAvatar.png";
+// import ProfileAv from "../../images/ProfileAvatar.png";
 
 // Framer-motion variants
 const ProfileInfo = {
@@ -108,7 +108,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         let favPrep = [];
         user.favsList.forEach(ele => favPrep.push(ele.restaurant))
         setFavs(favPrep);
-        user.avatar ? setAvatar(user.avatar) : setAvatar(ProfileAv)
+        user.avatar ? setAvatar(user.avatar) : setAvatar('/images/ProfileAvatar.png')
       })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, favs.length]);

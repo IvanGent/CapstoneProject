@@ -14,7 +14,7 @@ restaurant_routes = Blueprint('restaurants', __name__)
 @restaurant_routes.route('/<lat>/<long>')
 # @login_required
 def get_restaurants(lat, long):
-    res = requests.get(f'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{long}&radius=8000&type=restaurant&key=AIzaSyB0kFjSrYYNIkFvEDGcn4RaFgLm-HsXStc')
+    res = requests.get(f'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat},{long}&radius=8000&type=restaurant&key=AIzaSyCAplwP5FEZd5bQSUlWSBh3rOTbL4tLG_8')
     print(res.json())
     return (res.json())
 
@@ -28,7 +28,7 @@ def get_location_zip(zipcode):
 # to get the logo.
 @restaurant_routes.route('/details/<placeId>')
 def get_place_details(placeId):
-    res = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&fields=name,website&key=AIzaSyB0kFjSrYYNIkFvEDGcn4RaFgLm-HsXStc')
+    res = requests.get(f'https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}&fields=name,website&key=AIzaSyCAplwP5FEZd5bQSUlWSBh3rOTbL4tLG_8')
     return (res.json())
 
 # checking if a restaurant exist in the database.
