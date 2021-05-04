@@ -1,14 +1,18 @@
-# import os
+import os
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 import requests
 from app.models import db, Restaurant
 from sqlalchemy.exc import SQLAlchemyError
 
-
-# api_key = os.environ.get("API_KEY")
+api_key = os.environ.get("API_KEY")
 
 restaurant_routes = Blueprint('restaurants', __name__)
+
+# YOU ARE HERE CHECKING IF YOU CAN GET THE API KEY FROM .env FILE (IT WORKS NOW TRY TO PUT IT IN THE LINE FOR GOOGLE REQUESTS)
+@restaurant_routes.route('/checking')
+def get_check():
+    return jsonify(api_key)
 
 # getting nearby restaurants.
 @restaurant_routes.route('/<lat>/<long>')
