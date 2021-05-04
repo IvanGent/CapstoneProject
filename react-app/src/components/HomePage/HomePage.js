@@ -78,12 +78,12 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
                         const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
                         const data = await logoRes.json();
                         if (!data.length) {
-                            result.logo = '../../images/Restaurant.png'
+                            result.logo = '/images/Restaurant.png'
                         }
                     }
                 }
             } else {
-                result.logo = '../../images/Restaurant.png'
+                result.logo = '/images/Restaurant.png'
 
             }
             const addedRes = await addingRestaurant(result.name, result.logo)
