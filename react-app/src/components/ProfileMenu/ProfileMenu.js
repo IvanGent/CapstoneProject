@@ -61,7 +61,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
     let Button;
     let Menu;
 
-    if (!mobileSize) {
+    // if (!mobileSize) {
         Button = {
             visible: {
                 width: '100px',
@@ -104,48 +104,48 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
                 borderRadius: '50%',
             }
         }
-    } else {
-        Button = {
-            visible: {
-                width: '100px',
-                height: '100px',
-            },
-            initial: {
-                width: '100px',
-                height: '100px',
-                transition: {
-                    delay: .3
-                }
-            }
-        }
-        Menu = {
-            closed: {
-                x: 0,
-                width: "95px",
-                height: "95px",
-                borderRadius: '50%',
+    // } else {
+        // Button = {
+        //     visible: {
+        //         width: '100px',
+        //         height: '100px',
+        //     },
+        //     initial: {
+        //         width: '100px',
+        //         height: '100px',
+        //         transition: {
+        //             delay: .3
+        //         }
+        //     }
+        // }
+        // Menu = {
+        //     closed: {
+        //         x: 0,
+        //         width: "95px",
+        //         height: "95px",
+        //         borderRadius: '50%',
 
-            },
-            opened: {
-                transition: {
-                    type: 'spring',
-                    stiffness: 100,
-                },
-                y: { stiffness: 1000 },
-                x: 0,
-                borderRadius: '25px',
-                position: 'absolute',
-                height: "50vh",
-                width: '80vw'
-            },
-            exit: {
-                transition: {
-                    delay: .4
-                },
-                opacity: 0,
-            }
-        }
-    }
+        //     },
+        //     opened: {
+        //         transition: {
+        //             type: 'spring',
+        //             stiffness: 100,
+        //         },
+        //         y: { stiffness: 1000 },
+        //         x: 0,
+        //         borderRadius: '25px',
+        //         position: 'absolute',
+        //         height: "50vh",
+        //         width: '80vw'
+        //     },
+        //     exit: {
+        //         transition: {
+        //             delay: .4
+        //         },
+        //         opacity: 0,
+        //     }
+        // }
+    // }
     
 
 
