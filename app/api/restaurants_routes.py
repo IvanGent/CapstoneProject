@@ -4,11 +4,10 @@ from flask_login import login_required
 import requests
 from app.models import db, Restaurant
 from sqlalchemy.exc import SQLAlchemyError
-from decouple import config
+# from decouple import config
 
 # api_key = config("API_KEY")
-# api_key=os.environ.get("API_KEY")
-api_key = os.getenv('API_KEY')
+api_key=os.environ.get("API_KEY")
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
