@@ -261,6 +261,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                     variants={ActualRoller}
                     initial='hidden'
                     animate='visible'
+                    
                 >
                 {res.map((ele, i) => {
                     return (
