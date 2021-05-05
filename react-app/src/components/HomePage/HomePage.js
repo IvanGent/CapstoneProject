@@ -170,7 +170,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         if (zipcode.length > 4) {
             setShowLoader(true);
             const coords = await fetch(`/api/restaurants/${zipcode}`)
-            const { results } = await coords.json()
+            const {results} = await coords.json()
             console.log(results)
             await gettingResturants(results[0].geometry.location.lat, results[0].geometry.location.lng)
         } else {
@@ -187,7 +187,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         animate='visible'
         exit='exit'
         className='homepage'>
-            {/* {!mobileSize ? ( */}
                 <>
                 {data.length || showRoll ? (
                     <RandomRoller 

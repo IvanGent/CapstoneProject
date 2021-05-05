@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
-// import ProfileAv from "../../images/ProfileAvatar.png";
 
 // Framer-motion variants
 const ProfileInfo = {
