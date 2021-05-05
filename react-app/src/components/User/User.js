@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Listing from '../Listing/Listing'
 import './User.css';
 import RandomRoller from "../RandomRoller/RandomRoller";
+// import ProfileAv from "../../images/ProfileAvatar.png";
 
 // Framer-motion variants
 const ProfileInfo = {
@@ -186,11 +187,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   }
   
   return (
-    <>
-    {!mobileSize ? (
-
-    <>
-    {!showRoll ? (
     <AnimatePresence>
     <div className='profile'>
       <motion.div 
@@ -291,77 +287,182 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
       </motion.div>
     </div>
       </AnimatePresence>
-    ): (
-      
-      <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
-    )}
-      </>
-    ) : (
-      <>
-            {!showRoll ? (
-              <AnimatePresence>
-                <div className='profile'>
-                  <motion.div
-                    variants={ProfileInfo}
-                    initial='hidden'
-                    animate='visible'
-                    className='innerProfile'
-                  >
-                    <motion.div
-                      variants={ProfileInfo}
-                      initial='hidden'
-                      animate='visible'
-                      className='profileInfo'>
-                      <img id='avatar' src={avatar} alt='avatar' />
-                      {currUser === userId ? (
-                        <div className='editCont'>
-                          <img
-                            src={process.env.PUBLIC_URL + '/EditIcon.png'}
-                            alt='edit'
-                            id='editIcon'
-                          />
-                          <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
-                        </div>
-                      ) : null}
-                      <motion.ul className='userInfo'>
-                        <li initial='hidden'
-                          animate='visible'>
-                          <strong>Username:</strong> {user.username}
-                        </li>
-                        <li>
-                          <strong>Name:</strong> {user.first_name}
-                        </li>
-                        <li>
-                          <motion.button
-                            id='FavsRoll'
-                            variants={FavsMobile}
-                            initial='hidden'
-                            animate='visible'
-                            whileTap='tap'
-                            whileHover='hover'
-                            onClick={handleFavsRoll}
-                          >
-                            Roll With Favorites
-                        </motion.button>
-                        </li>
-                      </motion.ul>
-                    </motion.div>
-                    <motion.div
-                      variants={Tabs}
-                      initial='hidden'
-                      animate='visible'
-                      className='tabs'>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </AnimatePresence>
-            ) : (
+    // <>
+    // {!mobileSize ? (
 
-                <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
-              )}
-      </>
-    )}
-    </>
+    // <>
+    // {!showRoll ? (
+    // <AnimatePresence>
+    // <div className='profile'>
+    //   <motion.div 
+    //     variants={ProfileInfo}
+    //     initial='hidden'
+    //     animate='visible'
+    //     className='innerProfile'
+    //   >
+    //     <motion.div
+    //       variants={ProfileInfo}
+    //       initial='hidden'
+    //       animate='visible'
+    //       className='profileInfo'>
+    //         <img id='avatar' src={avatar} alt='avatar' />
+    //         {currUser === userId ? (
+    //         <div className='editCont'>
+    //           <motion.label 
+    //             whileHover={{ scale: 1.1 }}
+    //             whileTap={{ scale: .9 }}
+    //             className='photoInput'>
+    //             Update Profile Photo
+    //           <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
+    //           </motion.label>
+    //         </div>
+    //         ) : null}
+    //       <motion.ul className='userInfo'>
+    //         <li initial='hidden'
+    //           animate='visible'>
+    //           <strong>Username:</strong> {user.username}
+    //         </li>
+    //         <li>
+    //           <strong>Name:</strong> {user.first_name}
+    //         </li>
+    //         <li>
+    //           <motion.button
+    //               id='FavsRoll'
+    //               variants={FavsRoll}
+    //               initial='hidden'
+    //               animate='visible'
+    //               whileTap='tap'
+    //               whileHover='hover'
+    //               onClick={handleFavsRoll}
+    //           >
+    //             Roll With Favorites
+    //           </motion.button>
+    //         </li>
+    //       </motion.ul>
+    //     </motion.div>
+    //   <motion.div 
+    //     variants={Tabs}
+    //     initial='hidden'
+    //     animate='visible'
+    //     className='tabs'>
+    //     <div>
+    //       <ul className='tabLabels'>
+    //         <motion.li
+    //           variants={tabs}
+    //           animate={showVisited ? 'show':'close'}
+    //           whileHover='hover'
+    //           onClick={handleVisited}
+    //         >
+    //           Visited Restaurants
+    //         </motion.li>
+    //         <motion.li
+    //           variants={tabs}
+    //           animate={showFaves ? 'show' : 'close'}
+    //           whileHover='hover'
+    //           onClick={handleFaves}
+    //         >
+    //           Favorites List
+    //         </motion.li>
+    //         {/* <motion.li
+    //           variants={tabs}
+    //           animate={showFriends ? 'show' : 'close'}
+    //           whileHover='hover'
+    //           // style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
+    //           onClick={handleFriends}
+    //         >
+    //           Friends
+    //         </motion.li> */}
+    //       </ul>
+    //     </div>
+    //       <AnimatePresence>
+    //         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
+    //           <Listing 
+    //             authenticated={authenticated} 
+    //             showVisited={showVisited} 
+    //             showFaves={showFaves} 
+    //             showFriends={showFriends} 
+    //             // setShowFaves={setShowFaves}
+    //             setShowFriends={setShowFriends}
+    //             setShowVisited={setShowVisited}
+    //             setShowProfilePage={setShowProfilePage}
+    //             />
+    //         </motion.div>
+    //       </AnimatePresence>
+    //   </motion.div>
+    //   </motion.div>
+    // </div>
+    //   </AnimatePresence>
+    // ): (
+      
+    //   <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
+    // )}
+    //   </>
+    // ) : (
+    //   <>
+    //         {!showRoll ? (
+    //           <AnimatePresence>
+    //             <div className='profile'>
+    //               <motion.div
+    //                 variants={ProfileInfo}
+    //                 initial='hidden'
+    //                 animate='visible'
+    //                 className='innerProfile'
+    //               >
+    //                 <motion.div
+    //                   variants={ProfileInfo}
+    //                   initial='hidden'
+    //                   animate='visible'
+    //                   className='profileInfo'>
+    //                   <img id='avatar' src={avatar} alt='avatar' />
+    //                   {currUser === userId ? (
+    //                     <div className='editCont'>
+    //                       <img
+    //                         src={process.env.PUBLIC_URL + '/EditIcon.png'}
+    //                         alt='edit'
+    //                         id='editIcon'
+    //                       />
+    //                       <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
+    //                     </div>
+    //                   ) : null}
+    //                   <motion.ul className='userInfo'>
+    //                     <li initial='hidden'
+    //                       animate='visible'>
+    //                       <strong>Username:</strong> {user.username}
+    //                     </li>
+    //                     <li>
+    //                       <strong>Name:</strong> {user.first_name}
+    //                     </li>
+    //                     <li>
+    //                       <motion.button
+    //                         id='FavsRoll'
+    //                         variants={FavsMobile}
+    //                         initial='hidden'
+    //                         animate='visible'
+    //                         whileTap='tap'
+    //                         whileHover='hover'
+    //                         onClick={handleFavsRoll}
+    //                       >
+    //                         Roll With Favorites
+    //                     </motion.button>
+    //                     </li>
+    //                   </motion.ul>
+    //                 </motion.div>
+    //                 <motion.div
+    //                   variants={Tabs}
+    //                   initial='hidden'
+    //                   animate='visible'
+    //                   className='tabs'>
+    //                 </motion.div>
+    //               </motion.div>
+    //             </div>
+    //           </AnimatePresence>
+    //         ) : (
+
+    //             <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
+    //           )}
+    //   </>
+    // )}
+    // </>
   );
 }
 export default User;
