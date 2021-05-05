@@ -1,6 +1,5 @@
 
 .randomRollerCont {
-    /* background-color: teal; */
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -9,8 +8,6 @@
     flex-wrap: wrap;
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.638);
-    /* margin-top: 500px; */
-    /* margin-left: 100px; */
 }
 
 .randomRollerCont form {
@@ -19,8 +16,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* background-color: white; */
-    /* background-color: rgba(0, 0, 0, 0.638); */
     padding: 20px 0 70px 0;
 }
 
@@ -56,8 +51,6 @@
     background-color: red;
     display: flex;
     justify-content: center;
-    /* background-color: white; */
-    /* width: 300px; */
     width: 20em;
     height: 3.8rem;
     margin: 10px;
@@ -65,10 +58,7 @@
 }
 
 .labels {
-    /* background-color: red; */
     display: flex;
-    /* width: 100%; */
-    /* height: 70px;  */
     align-items: center;
     justify-content: center;
 }
@@ -90,25 +80,14 @@
 }
 
 .randomSelect {
-    /* --d: 6.5em;
-    --rel: 1;
-    --r: calc(.5*(1 + let(--rel))*let(--d)/ let(--tan));
-    --s: calc(2*let(--r) + let(--d));
-    position: relative;
-    width: let(--s);
-    height: let(--s);
-    background-color: silver; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
     height:60%;
-    /* width: 1000px; */
     padding: 20px;
     margin: 10px;
     padding: 10px;
-    /* border-radius: 50%; */
-    /* background-color: white */
 }
 
 .randomCont {
@@ -116,16 +95,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(255, 255, 255, 0.9); */
 }
 
 .randomSelect img {
     max-height: 300px;
     border-radius: 20px;
     margin-bottom: 70px;
-    /* width: 300px; */
-    /* margin: 0; */
-    /* padding: 20px; */
 }
 
 .randomSelect h5 {
@@ -134,21 +109,14 @@
 }
 
 .unchecked {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px; */
     opacity: 0.5;
     display: flex;
-    /* background-color: white; */
     background-color: rgba(255, 255, 255, 1);
     justify-content: center;
     align-items: center;
     align-content: center;
     align-self: center;
-    /* width: 300px; */
     width: 28%;
-    /* height: 70px; */
     height: 3.8rem;
     margin: 10px;
     border-radius: 20px;
@@ -162,17 +130,8 @@
     font-family: "Lato";
     display: flex;
     justify-content: center;
-    /* font-size: 15px; */
-    /* width: 150px; */
-    /* height: 50px; */
     opacity: 0.5;
-    /* display: flex;
-    justify-content: center; */
     font-size: 20px;
-    /* width: 180px; */
-    /* width: 20%; */
-    /* font-size: 20px; */
-    /* width: 180px; */
 }
 
 #MainButton {
