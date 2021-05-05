@@ -1,438 +1,225 @@
-@media screen and (min-device-width: 901px){
-    .randomRollerCont {
-        /* background-color: teal; */
-        position: relative;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.638);
-        /* margin-top: 500px; */
-        /* margin-left: 100px; */
-    }
 
-    .randomRollerCont form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        /* background-color: white; */
-        /* background-color: rgba(0, 0, 0, 0.638); */
-        padding: 20px 0 70px 0;
-    }
-
-    .randomRollerCont fieldset {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 0 200px;
-        flex-wrap: wrap;
-        max-height: 460px;
-        border-radius: 20px;
-        border: none;
-        overflow: scroll;
-    }
-
-    .mainHolder img {
-        z-index: 10;
-        position: relative;
-        border-radius: 10px;
-        max-width: 55px;
-        max-height: 55px;
-    }
-
-    .randomRollerCont h2 {
-        color: #fff;
-        font-size: 50px;
-        font-family: 'Staatliches';
-        margin-bottom: 5%;
-    }
-
-    .mainHolder {
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        /* background-color: white; */
-        /* width: 300px; */
-        width: 20em;
-        height: 3.8rem;
-        margin: 10px;
-        border-radius: 20px;
-    }
-
-    .labels {
-        /* background-color: red; */
-        display: flex;
-        /* width: 100%; */
-        /* height: 70px;  */
-        align-items: center;
-        justify-content: center;
-    }
-
-    .mainHolder h5 {
-        display: flex;
-        justify-content: center;
-        font-size: 1.2em;
-        width: 12em;
-        font-family: 'Lato';
-    }
-
-    .randomSelect1 {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .randomSelect {
-        /* --d: 6.5em;
-        --rel: 1;
-        --r: calc(.5*(1 + let(--rel))*let(--d)/ let(--tan));
-        --s: calc(2*let(--r) + let(--d));
-        position: relative;
-        width: let(--s);
-        height: let(--s);
-        background-color: silver; */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 100%;
-        height:60%;
-        /* width: 1000px; */
-        padding: 20px;
-        margin: 10px;
-        padding: 10px;
-        /* border-radius: 50%; */
-        /* background-color: white */
-    }
-    
-
-    .randomCont {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* background-color: rgba(255, 255, 255, 0.9); */
-    }
-
-    .randomSelect img {
-        max-height: 300px;
-        border-radius: 20px;
-        margin-bottom: 70px;
-        /* width: 300px; */
-        /* margin: 0; */
-        /* padding: 20px; */
-    }
-
-    .randomSelect h5 {
-        font-family: "Lato";
-        font-size: 30px;
-    }
-
-
-    .unchecked {
-        /* display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px; */
-        opacity: 0.5;
-        display: flex;
-        /* background-color: white; */
-        background-color: rgba(255, 255, 255, 1);
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        align-self: center;
-        /* width: 300px; */
-        width: 28%;
-        /* height: 70px; */
-        height: 3.8rem;
-        margin: 10px;
-        border-radius: 20px;
-    }
-
-    .unchecked img {
-        opacity: 0.2;
-    }
-
-    .unchecked h5 {
-        font-family: "Lato";
-        display: flex;
-        justify-content: center;
-        /* font-size: 15px; */
-        /* width: 150px; */
-        /* height: 50px; */
-        opacity: 0.5;
-        /* display: flex;
-        justify-content: center; */
-        font-size: 20px;
-        /* width: 180px; */
-        /* width: 20%; */
-        /* font-size: 20px; */
-        /* width: 180px; */
-    }
-
-    #MainButton {
-        background-color: red;
-        border: thin solid black;
-        border-radius: 50%;
-        height: 80px;
-        font-size: 24px;
-        width: 80px;
-        border: none;
-        outline: none;
-        box-shadow: 0px 5px 5px 7px black;
-        margin-top: 50px;
-    }
-
-    #reroll {
-        width: 150px;
-        background-color: rgba(12, 190, 255, 0.939);
-        outline: none;
-        border-radius: 10px;
-        border: none;
-        padding: 5px;
-        margin-right: 10px;
-        font-family: "Staatliches";
-        font-size: 2em;
-        box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
-    }
-
-    #addToVis {
-        width: 180px;
-        background-color: rgba(12, 190, 255, 0.939);
-        outline: none;
-        border-radius: 10px;
-        border: none;
-        padding: 5px;
-        margin-left: 10px;
-        font-size: 2em;
-        font-family: "Staatliches";
-        box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
-    }
-
-    .buttonHolder {
-        padding: 10px
-    }
-
-    .holdingResName {
-        /* background-color: red; */
-        margin-bottom: 20px;
-        color: white;
-    }
+.randomRollerCont {
+    /* background-color: teal; */
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.638);
+    /* margin-top: 500px; */
+    /* margin-left: 100px; */
 }
 
-@media screen and (max-device-width: 900px){
-    .randomRollerCont {
-        /* background-color: teal; */
-        position: relative;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.638);
-    }
+.randomRollerCont form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* background-color: white; */
+    /* background-color: rgba(0, 0, 0, 0.638); */
+    padding: 20px 0 70px 0;
+}
 
-    .randomRollerCont h2 {
-        color: white;
-        margin-top: 20%;
-        font-size: 3em;
-    }
-    
-    .randomRollerCont form {
-        display: flex;
-        flex-direction: column;
-        /* justify-content: center; */
-        align-items: center;
-        width: 100%;
-        /* padding: 20px 0 70px 0; */
-    }
-    
-    .randomRollerCont > div{
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-    
-    .randomRollerCont fieldset {
-       margin-top: 20%;
-        overflow: scroll;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        /* padding: 0 200px; */
-        flex-wrap: wrap;
-        height: 50%;
-        width: 80%;
-        border-radius: 20px;
-        border: none;
-        overflow: scroll;
-    }
-    
-    .randomRollerCont img {
-        z-index: 10;
-        position: relative;
-        border-radius: 10px;
-        width: 120px;
-        height: auto;
-    }
-    
-    .mainHolder {
-        display: flex;
-        background-color: white;
-        width: 100%;
-        height: 13%;
-        margin: 15px;
-        border-radius: 20px;
-        /* flex-direction: column; */
-        justify-content: space-around;
-    }
-    
-    .randomRollerCont .labels {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        /* padding: 100px; */
-        width: 100%;
-        margin-top: 10px;
-    }
+.randomRollerCont fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 200px;
+    flex-wrap: wrap;
+    max-height: 460px;
+    border-radius: 20px;
+    border: none;
+    overflow: scroll;
+}
 
-    .labels h5 {
-        font-size: 4em;
-    }
-    
-    
-    .randomSelect1 {
-        /* width: 100%; */
-        width: 95vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 300px;
-        border: thin black solid;
-        /* background-color: white; */
-        background-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0px 0px 50px 5px black;
-        border-radius: 150px;
-        
-    }
-    
-    /* .randomSelect {
-        width: 80vw;
-        height: 60vh;
-        padding: 50px; */
-        /* margin: 10px; */
-        /* padding: 10px; */
-        /* border-radius: 50px; */
-        /* background-color: white */
-    /* } */
+.mainHolder img {
+    z-index: 10;
+    position: relative;
+    border-radius: 10px;
+    max-width: 55px;
+    max-height: 55px;
+}
 
-    #label {
-        display: flex;
-        flex-direction: column;
-        /* justify-content: flex-start; */
-        justify-content: center;
-        width: 100%;
-        height:60%;
-    }
-    
-    #lblimage {
-        width: 40%;
-        height: auto;
-    }
-    
-    .randomCont {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* background-color: rgba(255, 255, 255, 0.9); */
-    }
-    
-    .randomSelect img {
-        /* margin-top: 200px; */
-        padding: 20px;
-        width: 40%;
-        height: auto;
-    }
-    
-    .randomSelect h5 {
-        font-family: "Lato";
-        font-size: 4em;
-    }
-    
-    
-    .unchecked {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-        opacity: 0.5;
-    }
-    
-    .unchecked img {
-        opacity: 0.5;
-    }
-    
-    .unchecked h5 {
-        font-family: "Lato";
-        display: flex;
-        justify-content: center;
-        font-size: 15px;
-        width: 150px;
-        height: 50px;
-        opacity: 0.5;
-    }
-    
-    #MainButton {
-        background-color: red;
-        border: thin solid black;
-        border-radius: 50%;
-        height: 130px;
-        font-size: 40px;
-        width: 130px;
-        border: none;
-        outline: none;
-        box-shadow: 0px 5px 20px 7px black;
-        margin-top: 40px;
-    }
-    
-    #reroll {
-        width: 300px;
-        background-color: rgba(12, 190, 255, 0.939);
-        outline: none;
-        border-radius: 10px;
-        border: none;
-        padding: 5px;
-        margin-right: 10px;
-        font-size: 3em;
-        font-family: "Staatliches";
-    }
-    
-    #addToVis {
-        width: 300px;
-        background-color: rgba(12, 190, 255, 0.939);
-        outline: none;
-        border-radius: 10px;
-        border: none;
-        padding: 5px;
-        margin-left: 10px;
-        font-family: "Staatliches";
-        font-size: 3em;
-    }
-    
-    .buttonHolder {
-        padding: 10px
-    }
+.randomRollerCont h2 {
+    color: #fff;
+    font-size: 50px;
+    font-family: 'Staatliches';
+    margin-bottom: 5%;
+}
 
+.mainHolder {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    /* background-color: white; */
+    /* width: 300px; */
+    width: 20em;
+    height: 3.8rem;
+    margin: 10px;
+    border-radius: 20px;
+}
 
+.labels {
+    /* background-color: red; */
+    display: flex;
+    /* width: 100%; */
+    /* height: 70px;  */
+    align-items: center;
+    justify-content: center;
+}
+
+.mainHolder h5 {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2em;
+    width: 12em;
+    font-family: 'Lato';
+}
+
+.randomSelect1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.randomSelect {
+    /* --d: 6.5em;
+    --rel: 1;
+    --r: calc(.5*(1 + let(--rel))*let(--d)/ let(--tan));
+    --s: calc(2*let(--r) + let(--d));
+    position: relative;
+    width: let(--s);
+    height: let(--s);
+    background-color: silver; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height:60%;
+    /* width: 1000px; */
+    padding: 20px;
+    margin: 10px;
+    padding: 10px;
+    /* border-radius: 50%; */
+    /* background-color: white */
+}
+
+.randomCont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.9); */
+}
+
+.randomSelect img {
+    max-height: 300px;
+    border-radius: 20px;
+    margin-bottom: 70px;
+    /* width: 300px; */
+    /* margin: 0; */
+    /* padding: 20px; */
+}
+
+.randomSelect h5 {
+    font-family: "Lato";
+    font-size: 30px;
+}
+
+.unchecked {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; */
+    opacity: 0.5;
+    display: flex;
+    /* background-color: white; */
+    background-color: rgba(255, 255, 255, 1);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    /* width: 300px; */
+    width: 28%;
+    /* height: 70px; */
+    height: 3.8rem;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.unchecked img {
+    opacity: 0.2;
+}
+
+.unchecked h5 {
+    font-family: "Lato";
+    display: flex;
+    justify-content: center;
+    /* font-size: 15px; */
+    /* width: 150px; */
+    /* height: 50px; */
+    opacity: 0.5;
+    /* display: flex;
+    justify-content: center; */
+    font-size: 20px;
+    /* width: 180px; */
+    /* width: 20%; */
+    /* font-size: 20px; */
+    /* width: 180px; */
+}
+
+#MainButton {
+    background-color: red;
+    border: thin solid black;
+    border-radius: 50%;
+    height: 80px;
+    font-size: 24px;
+    width: 80px;
+    border: none;
+    outline: none;
+    box-shadow: 0px 5px 5px 7px black;
+    margin-top: 50px;
+}
+
+#reroll {
+    width: 150px;
+    background-color: rgba(12, 190, 255, 0.939);
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+    font-family: "Staatliches";
+    font-size: 2em;
+    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
+}
+
+#addToVis {
+    width: 180px;
+    background-color: rgba(12, 190, 255, 0.939);
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 2em;
+    font-family: "Staatliches";
+    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
+}
+
+.buttonHolder {
+    padding: 10px
+}
+
+.holdingResName {
+    /* background-color: red; */
+    margin-bottom: 20px;
+    color: white;
 }
