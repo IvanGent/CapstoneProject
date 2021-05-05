@@ -32,7 +32,7 @@ const lis = {
         y:0,
     },
     unchecked: {
-        scale: .5,
+        scale: .9,
         opacity: 0
     },
     checked: {
@@ -284,7 +284,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                               className='labels'
                               onClick={handleChecks}
                              >
-                                <img id={i} src={ele.logo} alt='logo' />
+                                <img id={i} src={ele.logo} alt='logo' onClick={handleChecks} />
                                 <h5 id={i} >{ele.name}</h5>
                             </motion.div>
                          </motion.div>

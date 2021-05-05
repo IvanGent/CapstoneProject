@@ -1,4 +1,3 @@
-
 .randomRollerCont {
     position: relative;
     height: 100vh;
@@ -24,7 +23,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0 200px;
+    padding: 0 13rem;
     flex-wrap: wrap;
     max-height: 460px;
     border-radius: 20px;
@@ -178,7 +177,6 @@
 }
 
 .holdingResName {
-    /* background-color: red; */
     margin-bottom: 20px;
     color: white;
 }
