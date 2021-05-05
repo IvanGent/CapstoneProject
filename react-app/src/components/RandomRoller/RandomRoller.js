@@ -39,14 +39,6 @@ const lis = {
         scale: 1,
         opacity: 1
     },
-    tap: {
-        scale: .9,
-        opacity: 0.5,
-        x: 20
-    },
-    hover: {
-        scale: 1.05,
-    }
 }
 
 const RandomCont = {
@@ -280,8 +272,6 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                             <motion.div
                               id={i}
                               variants={lis}
-                              whileTap='tap'
-                              whileHover='hover'
                               className='labels'
                               onClick={handleChecks}
                              >

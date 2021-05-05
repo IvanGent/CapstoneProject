@@ -46,7 +46,7 @@
 }
 
 .mainHolder {
-    background-color: red;
+    background-color: white;
     display: flex;
     justify-content: center;
     width: 20em;
@@ -56,6 +56,7 @@
 }
 
 .labels {
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
