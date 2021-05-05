@@ -16,7 +16,6 @@ const removeUser = () => {
 
 export const login = (user) => async (dispatch) => {
     const { email, password } = user;
-    console.log(user);
     const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {

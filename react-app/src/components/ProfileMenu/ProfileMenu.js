@@ -175,7 +175,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
         localStorage.setItem('userId', currUser);
         setShowRoll(false);
         setShowHomePage(false);
-        history.push(`/profile/${currUser}`);
+        history.push(`/users/${currUser}`);
     }
 
     const goHome = () => {
