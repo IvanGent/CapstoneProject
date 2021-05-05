@@ -60,7 +60,7 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
-    const  API_KEY = process.env.REACT_APP_API_URL;
+    // const  API_KEY = process.env.REACT_APP_API_URL;
     
 // Getting the website for every place found to make an api call to clearbit to get the logo.
     const gettingDetails = async (placeId, name) => {
@@ -170,7 +170,8 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         if (zipcode.length > 4) {
             setShowLoader(true);
             const coords = await fetch(`/api/restaurants/${zipcode}`)
-            const { results } = await coords.json()
+            const {results} = await coords.json()
+            console.log(results)
             await gettingResturants(results[0].geometry.location.lat, results[0].geometry.location.lng)
         } else {
             setZipError('Invalid ZipCode')
@@ -186,7 +187,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         animate='visible'
         exit='exit'
         className='homepage'>
-            {/* {!mobileSize ? ( */}
                 <>
                 {data.length || showRoll ? (
                     <RandomRoller 
