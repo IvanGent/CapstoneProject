@@ -17,7 +17,6 @@ const resLis = {
     tap: {
         scale: .9,
         opacity: 0.5,
-        x: 50
     },
     hover: {
         scale: 1.05,
