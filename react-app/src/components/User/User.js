@@ -258,15 +258,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             >
               Favorites List
             </motion.li>
-            {/* <motion.li
-              variants={tabs}
-              animate={showFriends ? 'show' : 'close'}
-              whileHover='hover'
-              // style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
-              onClick={handleFriends}
-            >
-              Friends
-            </motion.li> */}
           </ul>
         </div>
           <AnimatePresence>
