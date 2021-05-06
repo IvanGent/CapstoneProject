@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch,useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
+import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
-import RandomRoller from "../RandomRoller/RandomRoller";
+// import RandomRoller from "../RandomRoller/RandomRoller";
 // import ProfileAv from "../../images/ProfileAvatar.png";
+
+// TODO
+// Working on using redux store to handle modals showing
+//   - I have visited showing, just need to work on showing favs and also
+//   handling their clicks
+//  - need to work on that unnecessary rerender in useEffect
 
 // Framer-motion variants
 const ProfileInfo = {
@@ -51,26 +59,26 @@ const FavsRoll = {
   }
 }
 
-const FavsMobile = {
-  visible: {
-    width: 700,
-    opacity: 1,
-    transition: {
-      delay: .5,
-    }
-  },
-  hidden: {
+// const FavsMobile = {
+//   visible: {
+//     width: 700,
+//     opacity: 1,
+//     transition: {
+//       delay: .5,
+//     }
+//   },
+//   hidden: {
 
-    width: 0,
-    opacity: 0
-  },
-  tap: {
-    scale: .9
-  },
-  hover: {
-    scale: 1.2
-  }
-}
+//     width: 0,
+//     opacity: 0
+//   },
+//   tap: {
+//     scale: .9
+//   },
+//   hover: {
+//     scale: 1.2
+//   }
+// }
 
 const tabs = {
   show: {
@@ -85,11 +93,13 @@ const tabs = {
 }
 
 
-function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited, setShowProfilePage }) {
+function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
+  const disptach = useDispatch();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
+  const showVisited = useSelector(state => state.sections.showVisited);
   // let favs = [];
   // userId is the user you're looking at
   const userId = id
@@ -98,6 +108,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
 
   
   useEffect(() => {
+    console.log(showVisited);
     if (!userId) {
       return
     }
@@ -174,17 +185,17 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowRoll(true)
   }
 
-  const handleVisited = () => {
-    setShowFaves(false)
-    setShowFriends(false)
-    setShowVisited(true)
-  }
+  // const handleVisited = () => {
+  //   setShowFaves(false)
+  //   setShowFriends(false)
+  //   setShowVisited(true)
+  // }
 
-  const handleFaves = () => {
-    setShowFriends(false)
-    setShowVisited(false)
-    setShowFaves(true)
-  }
+  // const handleFaves = () => {
+  //   setShowFriends(false)
+  //   setShowVisited(false)
+  //   setShowFaves(true)
+  // }
   
   return (
     <AnimatePresence>
@@ -246,7 +257,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showVisited ? 'show':'close'}
               whileHover='hover'
-              onClick={handleVisited}
+              // onClick={handleVisited}
             >
               Visited Restaurants
             </motion.li>
@@ -254,7 +265,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showFaves ? 'show' : 'close'}
               whileHover='hover'
-              onClick={handleFaves}
+              // onClick={handleFaves}
             >
               Favorites List
             </motion.li>
@@ -266,9 +277,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
                 authenticated={authenticated} 
                 showVisited={showVisited} 
                 showFaves={showFaves} 
-                showFriends={showFriends} 
-                // setShowFaves={setShowFaves}
-                setShowFriends={setShowFriends}
+                // showFriends={showFriends} 
+                setShowFaves={setShowFaves}
+                // setShowFriends={setShowFriends}
                 setShowVisited={setShowVisited}
                 setShowProfilePage={setShowProfilePage}
                 />
