@@ -1,4 +1,5 @@
 import React from "react";
+import {useSelector} from 'react-redux';
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
 import Friends from '../Friends/Friends';
@@ -53,11 +54,13 @@ const svgVar = {
     },
 }
 
-function Listing({ showVisited, showFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
+function Listing( ) {
     // curr is the user that is signed in
     const curr = localStorage.getItem('userId')
     // userId is the user you're looking at
     const userId = localStorage.getItem('currUser')
+    const showVisited = useSelector(state => state.sections.showVisited);
+    const showFavs = useSelector(state => state.sections.showFavs)
 
 
     return (
@@ -65,10 +68,10 @@ function Listing({ showVisited, showFaves, showFriends, setShowFriends, setShowV
             {showVisited ? (
                 <Visited userId={userId} curr={curr} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
             ) : null }
-            {showFaves ? (
+            {showFavs ? (
                 <FavsList userId={userId} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             ): null }
-            {showFriends && 
+            {/* {showFriends && 
                 <Friends 
                     curr={curr} 
                     userId={userId} 
@@ -76,7 +79,7 @@ function Listing({ showVisited, showFaves, showFriends, setShowFriends, setShowV
                     setShowVisited={setShowVisited} 
                     setShowProfilePage={setShowProfilePage}
                     />
-            }
+            } */}
         </div>
     )
 }
