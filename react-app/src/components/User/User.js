@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch,useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
+import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
-import RandomRoller from "../RandomRoller/RandomRoller";
+// import RandomRoller from "../RandomRoller/RandomRoller";
 // import ProfileAv from "../../images/ProfileAvatar.png";
+
+// TODO
+// Working on using redux store to handle modals showing
+//   - I have visited showing, just need to work on showing favs and also
+//   handling their clicks
+//  - need to work on that unnecessary rerender in useEffect
 
 // Framer-motion variants
 const ProfileInfo = {
@@ -51,26 +59,26 @@ const FavsRoll = {
   }
 }
 
-const FavsMobile = {
-  visible: {
-    width: 700,
-    opacity: 1,
-    transition: {
-      delay: .5,
-    }
-  },
-  hidden: {
+// const FavsMobile = {
+//   visible: {
+//     width: 700,
+//     opacity: 1,
+//     transition: {
+//       delay: .5,
+//     }
+//   },
+//   hidden: {
 
-    width: 0,
-    opacity: 0
-  },
-  tap: {
-    scale: .9
-  },
-  hover: {
-    scale: 1.2
-  }
-}
+//     width: 0,
+//     opacity: 0
+//   },
+//   tap: {
+//     scale: .9
+//   },
+//   hover: {
+//     scale: 1.2
+//   }
+// }
 
 const tabs = {
   show: {
@@ -85,11 +93,13 @@ const tabs = {
 }
 
 
-function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, showVisited, setShowVisited, setShowProfilePage }) {
+function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
+  const dispatch = useDispatch();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
+  const showVisited = useSelector(state => state.sections.showVisited);
   // let favs = [];
   // userId is the user you're looking at
   const userId = id
@@ -98,6 +108,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
 
   
   useEffect(() => {
+    console.log(showVisited);
     if (!userId) {
       return
     }
@@ -175,15 +186,17 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   }
 
   const handleVisited = () => {
-    setShowFaves(false)
-    setShowFriends(false)
-    setShowVisited(true)
+    // setShowFaves(false)
+    // setShowFriends(false)
+    // setShowVisited(true)
+    dispatch(sectionsActions.showVisited(true));
   }
 
   const handleFaves = () => {
-    setShowFriends(false)
-    setShowVisited(false)
-    setShowFaves(true)
+    // setShowFriends(false)
+    // setShowVisited(false)
+    // setShowFaves(true)
+    dispatch(sectionsActions.showFavs(true));
   }
   
   return (
@@ -266,9 +279,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
                 authenticated={authenticated} 
                 showVisited={showVisited} 
                 showFaves={showFaves} 
-                showFriends={showFriends} 
-                // setShowFaves={setShowFaves}
-                setShowFriends={setShowFriends}
+                // showFriends={showFriends} 
+                setShowFaves={setShowFaves}
+                // setShowFriends={setShowFriends}
                 setShowVisited={setShowVisited}
                 setShowProfilePage={setShowProfilePage}
                 />
@@ -278,182 +291,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
       </motion.div>
     </div>
       </AnimatePresence>
-    // <>
-    // {!mobileSize ? (
-
-    // <>
-    // {!showRoll ? (
-    // <AnimatePresence>
-    // <div className='profile'>
-    //   <motion.div 
-    //     variants={ProfileInfo}
-    //     initial='hidden'
-    //     animate='visible'
-    //     className='innerProfile'
-    //   >
-    //     <motion.div
-    //       variants={ProfileInfo}
-    //       initial='hidden'
-    //       animate='visible'
-    //       className='profileInfo'>
-    //         <img id='avatar' src={avatar} alt='avatar' />
-    //         {currUser === userId ? (
-    //         <div className='editCont'>
-    //           <motion.label 
-    //             whileHover={{ scale: 1.1 }}
-    //             whileTap={{ scale: .9 }}
-    //             className='photoInput'>
-    //             Update Profile Photo
-    //           <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
-    //           </motion.label>
-    //         </div>
-    //         ) : null}
-    //       <motion.ul className='userInfo'>
-    //         <li initial='hidden'
-    //           animate='visible'>
-    //           <strong>Username:</strong> {user.username}
-    //         </li>
-    //         <li>
-    //           <strong>Name:</strong> {user.first_name}
-    //         </li>
-    //         <li>
-    //           <motion.button
-    //               id='FavsRoll'
-    //               variants={FavsRoll}
-    //               initial='hidden'
-    //               animate='visible'
-    //               whileTap='tap'
-    //               whileHover='hover'
-    //               onClick={handleFavsRoll}
-    //           >
-    //             Roll With Favorites
-    //           </motion.button>
-    //         </li>
-    //       </motion.ul>
-    //     </motion.div>
-    //   <motion.div 
-    //     variants={Tabs}
-    //     initial='hidden'
-    //     animate='visible'
-    //     className='tabs'>
-    //     <div>
-    //       <ul className='tabLabels'>
-    //         <motion.li
-    //           variants={tabs}
-    //           animate={showVisited ? 'show':'close'}
-    //           whileHover='hover'
-    //           onClick={handleVisited}
-    //         >
-    //           Visited Restaurants
-    //         </motion.li>
-    //         <motion.li
-    //           variants={tabs}
-    //           animate={showFaves ? 'show' : 'close'}
-    //           whileHover='hover'
-    //           onClick={handleFaves}
-    //         >
-    //           Favorites List
-    //         </motion.li>
-    //         {/* <motion.li
-    //           variants={tabs}
-    //           animate={showFriends ? 'show' : 'close'}
-    //           whileHover='hover'
-    //           // style={showFriends ? { borderBottom: 'thick solid red'} : { borderBottom: 'none'}}
-    //           onClick={handleFriends}
-    //         >
-    //           Friends
-    //         </motion.li> */}
-    //       </ul>
-    //     </div>
-    //       <AnimatePresence>
-    //         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-    //           <Listing 
-    //             authenticated={authenticated} 
-    //             showVisited={showVisited} 
-    //             showFaves={showFaves} 
-    //             showFriends={showFriends} 
-    //             // setShowFaves={setShowFaves}
-    //             setShowFriends={setShowFriends}
-    //             setShowVisited={setShowVisited}
-    //             setShowProfilePage={setShowProfilePage}
-    //             />
-    //         </motion.div>
-    //       </AnimatePresence>
-    //   </motion.div>
-    //   </motion.div>
-    // </div>
-    //   </AnimatePresence>
-    // ): (
-      
-    //   <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
-    // )}
-    //   </>
-    // ) : (
-    //   <>
-    //         {!showRoll ? (
-    //           <AnimatePresence>
-    //             <div className='profile'>
-    //               <motion.div
-    //                 variants={ProfileInfo}
-    //                 initial='hidden'
-    //                 animate='visible'
-    //                 className='innerProfile'
-    //               >
-    //                 <motion.div
-    //                   variants={ProfileInfo}
-    //                   initial='hidden'
-    //                   animate='visible'
-    //                   className='profileInfo'>
-    //                   <img id='avatar' src={avatar} alt='avatar' />
-    //                   {currUser === userId ? (
-    //                     <div className='editCont'>
-    //                       <img
-    //                         src={process.env.PUBLIC_URL + '/EditIcon.png'}
-    //                         alt='edit'
-    //                         id='editIcon'
-    //                       />
-    //                       <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
-    //                     </div>
-    //                   ) : null}
-    //                   <motion.ul className='userInfo'>
-    //                     <li initial='hidden'
-    //                       animate='visible'>
-    //                       <strong>Username:</strong> {user.username}
-    //                     </li>
-    //                     <li>
-    //                       <strong>Name:</strong> {user.first_name}
-    //                     </li>
-    //                     <li>
-    //                       <motion.button
-    //                         id='FavsRoll'
-    //                         variants={FavsMobile}
-    //                         initial='hidden'
-    //                         animate='visible'
-    //                         whileTap='tap'
-    //                         whileHover='hover'
-    //                         onClick={handleFavsRoll}
-    //                       >
-    //                         Roll With Favorites
-    //                     </motion.button>
-    //                     </li>
-    //                   </motion.ul>
-    //                 </motion.div>
-    //                 <motion.div
-    //                   variants={Tabs}
-    //                   initial='hidden'
-    //                   animate='visible'
-    //                   className='tabs'>
-    //                 </motion.div>
-    //               </motion.div>
-    //             </div>
-    //           </AnimatePresence>
-    //         ) : (
-
-    //             <RandomRoller restaurants={favs} setShowRoll={setShowRoll} />
-    //           )}
-    //   </>
-    // )}
-    // </>
   );
 }
 export default User;
