@@ -63,9 +63,7 @@ export const signup = (user) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-    const response = await fetch('/api/auth/logout', {
-        method: 'DELETE'
-    })
+    const response = await fetch('/api/auth/logout')
     const res = await response.json();
     dispatch(removeUser());
     console.log(res);
