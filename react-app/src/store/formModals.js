@@ -24,7 +24,7 @@ export const showSignUp = () => (dispatch) => {
 }
 
 const initialState = {
-    showLogin: true,
+    showLogin: false,
     showSignUp: false,
 }
 

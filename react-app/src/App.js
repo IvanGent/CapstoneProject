@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import { BrowserRouter, Route} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import * as sessionActions from './store/session';
@@ -58,11 +58,13 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [showHomePage, setShowHomePage] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
+  const showLogin = useSelector(state => state.forms.showLogin);
+  const showSignUp = useSelector(state => state.forms.showSignUp);
+  // const [showLogin, setShowLogin] = useState(false);
+  // const [showSignUp, setShowSignUp] = useState(false);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
-  const [mobileSize, setMobileSize] = useState(false);
+  // const [mobileSize, setMobileSize] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -74,22 +76,22 @@ function App() {
     })();
     setLoaded(true);
     setShowRoll(false)
-    setMobileSize(false)
+    // setMobileSize(false)
   }, [dispatch]);
 
   const homeBody = (
     <HomePage 
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
-      mobileSize={mobileSize} 
+      // mobileSize={mobileSize} 
       setShowHomePage={setShowHomePage}
     />
   )
 
 
-  const handleLogin = () => {
+  const handleForms = () => {
     setShowForms(true)
-    setShowLogin(true)
+    // setShowLogin(true)
   }
 
 
@@ -103,13 +105,13 @@ function App() {
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 
         setShowForms={setShowForms}
-        showLogin={showLogin}
-        setShowLogin={setShowLogin}
-        setShowSignUp={setShowSignUp}
-        showSignUp={showSignUp}
+        // showLogin={showLogin}
+        // setShowLogin={setShowLogin}
+        // setShowSignUp={setShowSignUp}
+        // showSignUp={showSignUp}
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
-        mobileSize={mobileSize}
+        // mobileSize={mobileSize}
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>
@@ -133,7 +135,7 @@ function App() {
             exit='exit'
             whileTap='tap'
             whileHover='hover'
-            onClick={handleLogin}
+            onClick={handleForms}
           >
             Get Started?
           </motion.button>
@@ -153,9 +155,9 @@ function App() {
             <LoginForm 
               authenticated={authenticated}
               setAuthenticated={setAuthenticated} 
-              showLogin={showLogin} 
-              setShowLogin={setShowLogin}
-              setShowSignUp={setShowSignUp}
+              // showLogin={showLogin} 
+              // setShowLogin={setShowLogin}
+              // setShowSignUp={setShowSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />
@@ -164,9 +166,9 @@ function App() {
             <SignUpForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
-              setShowLogin={setShowLogin}
-              setShowSignUp={setShowSignUp}
-              showSignUp={showSignUp}
+              // setShowLogin={setShowLogin}
+              // setShowSignUp={setShowSignUp}
+              // showSignUp={showSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />
