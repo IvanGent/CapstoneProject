@@ -3,6 +3,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import { BrowserRouter, Route} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import * as sessionActions from './store/session';
+import * as formActions from './store/formModals';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
@@ -66,6 +67,9 @@ function App() {
   const [showRoll, setShowRoll] = useState(false);
   // const [mobileSize, setMobileSize] = useState(false);
 
+  // GETTING RID OF LOGIN AND SIGNUP FORMS AND ALSO MOBILE SIZES,
+  // THEY ARE COMMENTED OUT TO REMIND ME TO GO TO THOSE COMPONENTS AND FIX THEM.
+
   useEffect(() => {
     (async() => {
       const user = await dispatch(sessionActions.authenticate())
@@ -91,6 +95,7 @@ function App() {
 
   const handleForms = () => {
     setShowForms(true)
+    dispatch(formActions.showLogin());
     // setShowLogin(true)
   }
 

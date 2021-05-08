@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {motion, AnimatePresence} from "framer-motion";
 import * as sessionActions from '../../store/session';
+import * as formActions from '../../store/formModals';
 import './LoginForm.css'
 
 const background = {
@@ -35,7 +36,7 @@ const LoginButton = {
   }
 }
 
-const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, setShowForms, setShowHomePage}) => {
+const LoginForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -45,8 +46,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
       setAuthenticated(true);
       setShowForms(false)
       setShowHomePage(true)
-      // localStorage.setItem("userId", user.id)
-      // localStorage.setItem("currUser", user.id)
   }
 
   const onLogin = async (e) => {
@@ -59,18 +58,21 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  // const updateEmail = (e) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updateEmail = (e) => setEmail(e.target.value);
 
-  const handleSignupClick = () => {
-    setShowLogin(false)
-    setShowSignUp(true)
-  }
+  // const updatePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
+  const updatePassword = (e) => setPassword(e.target.value);
+
+  const handleSignupClick = () => dispatch(formActions.showSignUp());
+    // setShowLogin(false)
+    // setShowSignUp(true)
 
   const LoginDemo = async (e) => {
     e.preventDefault();
@@ -81,7 +83,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
 
   return (
     <AnimatePresence exitBeforeEnter>
-      {showLogin && (
           <motion.div className='loginModal'
             variants={background}
             initial='hidden'
@@ -136,7 +137,6 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
               </div>
             </form>
           </motion.div>
-      )}
     </AnimatePresence>
   );
 };
