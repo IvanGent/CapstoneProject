@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
-// import FavIcon from '../../images/Fav.png'
 
 
 function FavsList({curr, liInfo, svgVar}) {
