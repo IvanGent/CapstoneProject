@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as sessionActions from '../../store/session';
 import './ProfileMenu.css'
-import MenuIcon from  '../../images/MobileMenu.png'
+// import MenuIcon from  '../../images/MobileMenu.png'
 // import Cross from '../../images/Cross.png'
 
 
@@ -195,7 +195,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSiz
         <div className='outerMenu'>
         <motion.img 
             animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
-            src={MenuIcon} 
+            src='/images/MobileMenu.png'
             alt='menu' 
             onClick={() => setShowMenu(!showMenu)} 
             />
