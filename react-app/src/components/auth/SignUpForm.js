@@ -18,13 +18,6 @@ const background = {
     opacity: 0,
     x: 1000,
   },
-  exit: {
-    opacity: 0,
-    x: 1000,
-    transition: {
-      duration: .25,
-    }
-  }
 }
 
 const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
@@ -70,7 +63,6 @@ const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
           variants={background}
           initial='hidden'
           animate='visible'
-          exit='exit'
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
