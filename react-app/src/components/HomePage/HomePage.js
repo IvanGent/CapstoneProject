@@ -23,7 +23,6 @@ export function CircularIndeterminate() {
 
     return (
         <div className={classes.root}>
-            {/* <CircularProgress /> */}
             <CircularProgress color="secondary" />
         </div>
     );
@@ -60,7 +59,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
-    // const  API_KEY = process.env.REACT_APP_API_URL;
     
 // Getting the website for every place found to make an api call to clearbit to get the logo.
     const gettingDetails = async (placeId, name) => {
@@ -69,7 +67,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
         if ('errors' in result2) {
             const res = await fetch(`/api/restaurants/details/${placeId}`)
             const {result} = await res.json()
-            // console.log(result)
             if(result.website) {
                 let web = result.website.split('.')
                 for (let i = 0; i < web.length; i++) {
@@ -115,12 +112,10 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     const gettingResturants = async (lat, lng) => {
         const res = await fetch(`/api/restaurants/${lat}/${lng}`)
         const { results } = await res.json()
-        // const results = restData.results
         let newData = {}
 
         await results.filter(ele => {
             if (!ele.types.includes('gas_station') && ele.business_status !== "CLOSED_TEMPORARILY") {
-                // console.log(ele)
                 newData[ele.name] = ele;
             }
             return ele;
@@ -149,13 +144,9 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
     const handleClick = async () => {
         setShowLoader(true)
         if('geolocation' in navigator) {
-            // console.log('Available')
             navigator.geolocation.getCurrentPosition(async (position) => {
-                // console.log(position)
                 await gettingResturants(position.coords.latitude, position.coords.longitude)
             })
-        } else {
-            // console.log('Unavailable')
         }
     }
 
@@ -194,9 +185,6 @@ const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowP
                         showRoll={showRoll} 
                         setShowRoll={setShowRoll} 
                         setShowHomePage={setShowHomePage}
-                        setShowProfilePage={setShowProfilePage}
-                        setShowVisited={setShowVisited}
-                        setShowFriends={setShowFriends}
                         />
                 ): (
                     <motion.div

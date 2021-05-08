@@ -10,7 +10,7 @@ import './User.css';
 
 // TODO
 // Working on using redux store to handle modals showing
-//   - I have visited showing, just need to work on showing favs and also
+//   -(DONE) I have visited showing, just need to work on showing favs and also
 //   handling their clicks
 //  - need to work on that unnecessary rerender in useEffect
 

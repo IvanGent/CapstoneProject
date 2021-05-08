@@ -61,11 +61,6 @@ function App() {
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
   const [mobileSize, setMobileSize] = useState(false);
-  // JUST COMMENTED OUT TO REMIND FOR REDUX
-  // const [showFriends, setShowFriends] = useState(false);
-  // const [showVisited, setShowVisited] = useState(false);
-  // const [showFaves, setShowFaves] = useState(false);
-
 
   useEffect(() => {
     (async() => {
@@ -78,9 +73,6 @@ function App() {
     setLoaded(true);
     setShowRoll(false)
     setMobileSize(false)
-    // if(Number(window.screen.width) < 900) {
-    //   setMobileSize(true);
-    // }
   }, []);
 
   const homeBody = (
@@ -187,5 +179,3 @@ function App() {
 }
 
 export default App;
-
-// trying to fix up some state and get the profile menu working
