@@ -55,12 +55,11 @@ const svgVar = {
 
 function Listing( ) {
     // curr is the user that is signed in
-    const curr = localStorage.getItem('userId')
+    const curr = useSelector(state => state.session.user)
     // userId is the user you're looking at
     const userId = localStorage.getItem('currUser')
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
-
 
     return (
         <div className='listing'>

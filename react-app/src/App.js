@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch} from 'react-redux';
 import { BrowserRouter, Route} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import * as sessionActions from './store/session';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
-import { authenticate } from "./services/auth";
+// import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 
@@ -53,6 +55,7 @@ const mainButton = {
 }
 
 function App() {
+  const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [showHomePage, setShowHomePage] = useState(false);
@@ -64,7 +67,8 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      const user = await authenticate();
+      // const user = await authenticate();
+      const user = await dispatch(sessionActions.authenticate())
       if (!user.errors) {
         setAuthenticated(true);
         setShowHomePage(true);
