@@ -160,33 +160,31 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
     }, [showMenu]);
 
     const onLogout = async (e) => {
+        // THIS NEEDS TO BE FIX, BACKEND NOT TAKING LOGOUT
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
-        localStorage.removeItem('userId');
-        localStorage.removeItem('currUser')
         await dispatch(sessionActions.logout());
         return;
     };
 
     const handleProfileClick = () => {
-        localStorage.setItem('userId', currUser);
-        setShowRoll(false);
-        setShowHomePage(false);
+        // setShowRoll(false);
+        // setShowHomePage(false);
         history.push(`/users/${currUser}`);
     }
 
     const goHome = () => {
-        localStorage.setItem('userId', currUser)
-        setShowRoll(false);
-        setShowHomePage(true);
+        // localStorage.setItem('userId', currUser)
+        // setShowRoll(false);
+        // setShowHomePage(true);
         history.push('/');
     }
 
 
     const handleFaves = () => {
-        setShowHomePage(false);
-        localStorage.setItem('userId', currUser)
+        // setShowHomePage(false);
+        // localStorage.setItem('userId', currUser)
     }
 
     return (
