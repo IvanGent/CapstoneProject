@@ -4,30 +4,28 @@ const SET_FAVS = 'userSections/setFavs';
 const setVisited = (bool) => {
     return {
         type: SET_VISITED,
-        payload: bool,
     }
 }
 
 const setFavs = (bool) => {
     return {
         type: SET_FAVS,
-        payload: bool,
     }
 }
 
-export const showVisited = (bool) => (dispatch) => {
-    dispatch(setVisited(bool));
+export const showVisited = () => (dispatch) => {
+    dispatch(setVisited());
     return;
 }
 
-export const showFavs = (bool) => (dispatch) => {
-    dispatch(setFavs(bool));
+export const showFavs = () => (dispatch) => {
+    dispatch(setFavs());
     return;
 }
 
 const initialState = { showVisited: true, showFavs: false};
 
-const showSectionsReducer = (state = initialState, {type, payload}) => {
+const showSectionsReducer = (state = initialState, {type}) => {
     let newState;
     switch(type) {
         case SET_VISITED:

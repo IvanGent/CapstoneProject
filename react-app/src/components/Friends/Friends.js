@@ -1,6 +1,6 @@
+// Working on this.
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-// import ProfileAv from "../../images/ProfileAvatar.png";
 import './Friends.css'
 
 function Friends({ curr, setShowFriends, setShowVisited, setShowProfilePage}) {

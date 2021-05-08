@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion";
 import * as sessionActions from '../../store/session';
+import * as formActions from '../../store/formModals';
 import './SignUpForm.css';
 
 const background = {
@@ -17,16 +18,9 @@ const background = {
     opacity: 0,
     x: 1000,
   },
-  exit: {
-    opacity: 0,
-    x: 1000,
-    transition: {
-      duration: .25,
-    }
-  }
 }
 
-const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
+const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -41,11 +35,8 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
       const user = await dispatch(sessionActions.signup({username, firstName, email, password}));
       if (!user.errors) {
         setAuthenticated(true);
-        setShowSignUp(false);
         setShowForms(false);
         setShowHomePage(true);
-        localStorage.setItem("userId", user.id);
-        localStorage.setItem("currUser", user.id)
       } else {
         setErrors(user.errors);
       }
@@ -54,39 +45,24 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  const updateUsername = e => setUsername(e.target.value);
 
-  const updateFirstName = e => {
-    setFirstName(e.target.value);
-  }
+  const updateFirstName = e => setFirstName(e.target.value);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const updateEmail = e => setEmail(e.target.value);
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updatePassword = e => setPassword(e.target.value);
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  const updateRepeatPassword = e => setRepeatPassword(e.target.value);
 
-  const handleLoginClick = () => {
-    setShowSignUp(false)
-    setShowLogin(true)
-  }
+  const handleLoginClick = () => dispatch(formActions.showLogin());
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      {showSignUp && (
+    <AnimatePresence>
         <motion.div className='signupModal'
           variants={background}
           initial='hidden'
           animate='visible'
-          exit='exit'
           >
           <form  className='signupForm' onSubmit={onSignUp}>
             <div className='innerSignup'>
@@ -146,7 +122,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
             </div>
           </form>
         </motion.div>
-      )}
     </AnimatePresence>
   );
 };

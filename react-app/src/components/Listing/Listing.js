@@ -2,7 +2,6 @@ import React from "react";
 import {useSelector} from 'react-redux';
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
-import Friends from '../Friends/Friends';
 import './Listing.css'
 
 
@@ -56,12 +55,11 @@ const svgVar = {
 
 function Listing( ) {
     // curr is the user that is signed in
-    const curr = localStorage.getItem('userId')
+    const curr = useSelector(state => state.session.user)
     // userId is the user you're looking at
     const userId = localStorage.getItem('currUser')
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
-
 
     return (
         <div className='listing'>
@@ -71,15 +69,6 @@ function Listing( ) {
             {showFavs ? (
                 <FavsList userId={userId} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             ): null }
-            {/* {showFriends && 
-                <Friends 
-                    curr={curr} 
-                    userId={userId} 
-                    setShowFriends={setShowFriends} 
-                    setShowVisited={setShowVisited} 
-                    setShowProfilePage={setShowProfilePage}
-                    />
-            } */}
         </div>
     )
 }

@@ -1,15 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
-import showSectionsReducer from './userSections'
+import showSectionsReducer from './userSections';
+import showFormModalsReducer from './formModals';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     sections: showSectionsReducer,
+    forms: showFormModalsReducer,
 })
 
-
-///// THIS IS FOR REDUX LOGGER
 let enhancer;
 
 if(process.env.NODE_ENV === 'production') {

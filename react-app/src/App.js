@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch,useSelector} from 'react-redux';
 import { BrowserRouter, Route} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import * as sessionActions from './store/session';
+import * as formActions from './store/formModals';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
-import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 
@@ -53,18 +55,22 @@ const mainButton = {
 }
 
 function App() {
+  const dispatch = useDispatch();
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [showHomePage, setShowHomePage] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
+  const showLogin = useSelector(state => state.forms.showLogin);
+  const showSignUp = useSelector(state => state.forms.showSignUp);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
-  const [mobileSize, setMobileSize] = useState(false);
+
+  //            MAIN THING TO TAKE CARE OF
+  // Session has user and user info so if late you add friends, check the session id against
+  // the url param and if they === then just use the data from session instead of make a fetch call.
 
   useEffect(() => {
     (async() => {
-      const user = await authenticate();
+      const user = await dispatch(sessionActions.authenticate())
       if (!user.errors) {
         setAuthenticated(true);
         setShowHomePage(true);
@@ -72,22 +78,20 @@ function App() {
     })();
     setLoaded(true);
     setShowRoll(false)
-    setMobileSize(false)
-  }, []);
+  }, [dispatch]);
 
   const homeBody = (
+    // HOMEPAGE NEEDS TO BE FIXED WHEN IT COMES TO MOBILE
     <HomePage 
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
-      mobileSize={mobileSize} 
       setShowHomePage={setShowHomePage}
     />
   )
 
-
-  const handleLogin = () => {
+  const handleForms = () => {
     setShowForms(true)
-    setShowLogin(true)
+    return dispatch(formActions.showLogin());
   }
 
 
@@ -97,17 +101,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar 
+    {/* NAVBAR NEEDS TO BE WORKED WITH MOBILE SIZE */}
+      <NavBar
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 
         setShowForms={setShowForms}
-        showLogin={showLogin}
-        setShowLogin={setShowLogin}
-        setShowSignUp={setShowSignUp}
-        showSignUp={showSignUp}
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
-        mobileSize={mobileSize}
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>
@@ -131,7 +131,7 @@ function App() {
             exit='exit'
             whileTap='tap'
             whileHover='hover'
-            onClick={handleLogin}
+            onClick={handleForms}
           >
             Get Started?
           </motion.button>
@@ -151,9 +151,6 @@ function App() {
             <LoginForm 
               authenticated={authenticated}
               setAuthenticated={setAuthenticated} 
-              showLogin={showLogin} 
-              setShowLogin={setShowLogin}
-              setShowSignUp={setShowSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />
@@ -162,9 +159,6 @@ function App() {
             <SignUpForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
-              setShowLogin={setShowLogin}
-              setShowSignUp={setShowSignUp}
-              showSignUp={showSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />
