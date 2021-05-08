@@ -52,32 +52,20 @@ const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
+  const updateUsername = e => setUsername(e.target.value);
 
-  const updateFirstName = e => {
-    setFirstName(e.target.value);
-  }
+  const updateFirstName = e => setFirstName(e.target.value);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+  const updateEmail = e => setEmail(e.target.value);
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const updatePassword = e => setPassword(e.target.value);
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  const updateRepeatPassword = e => setRepeatPassword(e.target.value);
 
   const handleLoginClick = () => dispatch(formActions.showLogin());
-    // setShowSignUp(false)
-    // setShowLogin(true)
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
         <motion.div className='signupModal'
           variants={background}
           initial='hidden'
