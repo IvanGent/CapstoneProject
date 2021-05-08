@@ -64,8 +64,9 @@ function App() {
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
 
-  // GETTING RID OF LOGIN AND SIGNUP FORMS AND ALSO MOBILE SIZES,
-  // THEY ARE COMMENTED OUT TO REMIND ME TO GO TO THOSE COMPONENTS AND FIX THEM.
+  //            MAIN THING TO TAKE CARE OF
+  // Session has user and user info so if late you add friends, check the session id against
+  // the url param and if they === then just use the data from session instead of make a fetch call.
 
   useEffect(() => {
     (async() => {
