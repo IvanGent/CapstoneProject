@@ -160,7 +160,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
     }, [showMenu]);
 
     const onLogout = async (e) => {
-        // THIS NEEDS TO BE FIX, BACKEND NOT TAKING LOGOUT
         setAuthenticated(false);
         setShowHomePage(false);
         setShowRoll(false);
@@ -169,15 +168,10 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
     };
 
     const handleProfileClick = () => {
-        // setShowRoll(false);
-        // setShowHomePage(false);
         history.push(`/users/${currUser}`);
     }
 
     const goHome = () => {
-        // localStorage.setItem('userId', currUser)
-        // setShowRoll(false);
-        // setShowHomePage(true);
         history.push('/');
     }
 

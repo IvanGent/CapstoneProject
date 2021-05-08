@@ -44,7 +44,6 @@ export const login = (user) => async (dispatch) => {
 
 
 export const signup = (user) => async (dispatch) => {
-    console.log(user);
     const { username, first_name, password, email} = user;
     const avatar = '/images/ProfileAvatar.png';
     const response = await fetch('/api/auth/signup', {
@@ -61,7 +60,6 @@ export const signup = (user) => async (dispatch) => {
         })
     })
     const res = await response.json();
-    console.log(res);
     dispatch(setUser(res.user));
     return res;
 }
