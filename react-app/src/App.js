@@ -77,7 +77,7 @@ function App() {
     setLoaded(true);
     setShowRoll(false)
     setMobileSize(false)
-  }, []);
+  }, [dispatch]);
 
   const homeBody = (
     <HomePage 

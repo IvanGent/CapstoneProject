@@ -45,13 +45,12 @@ const LoginForm = ({ setAuthenticated, showLogin, setShowLogin, setShowSignUp, s
       setAuthenticated(true);
       setShowForms(false)
       setShowHomePage(true)
-      localStorage.setItem("userId", user.id)
-      localStorage.setItem("currUser", user.id)
+      // localStorage.setItem("userId", user.id)
+      // localStorage.setItem("currUser", user.id)
   }
 
   const onLogin = async (e) => {
     e.preventDefault();
-    console.log('THIS IS FOR THE BUTTON ID', e)
     const user = await dispatch(sessionActions.login({email, password}))
     if (!user.errors) {
       handleGoodLogin(user);

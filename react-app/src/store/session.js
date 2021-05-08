@@ -63,11 +63,13 @@ export const signup = (user) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
-    const res = await fetch('/api/auth/logout', {
+    const response = await fetch('/api/auth/logout', {
         method: 'DELETE'
     })
+    const res = await response.json();
     dispatch(removeUser());
-    return res.json();
+    console.log(res);
+    return res;
 }
 
 const initialState = { user: null};
