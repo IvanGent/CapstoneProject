@@ -94,7 +94,7 @@ const tabs = {
 
 
 function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
@@ -185,17 +185,19 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowRoll(true)
   }
 
-  // const handleVisited = () => {
-  //   setShowFaves(false)
-  //   setShowFriends(false)
-  //   setShowVisited(true)
-  // }
+  const handleVisited = () => {
+    // setShowFaves(false)
+    // setShowFriends(false)
+    // setShowVisited(true)
+    dispatch(sectionsActions.showVisited(true));
+  }
 
-  // const handleFaves = () => {
-  //   setShowFriends(false)
-  //   setShowVisited(false)
-  //   setShowFaves(true)
-  // }
+  const handleFaves = () => {
+    // setShowFriends(false)
+    // setShowVisited(false)
+    // setShowFaves(true)
+    dispatch(sectionsActions.showFavs(true));
+  }
   
   return (
     <AnimatePresence>
@@ -257,7 +259,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showVisited ? 'show':'close'}
               whileHover='hover'
-              // onClick={handleVisited}
+              onClick={handleVisited}
             >
               Visited Restaurants
             </motion.li>
@@ -265,7 +267,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
               variants={tabs}
               animate={showFaves ? 'show' : 'close'}
               whileHover='hover'
-              // onClick={handleFaves}
+              onClick={handleFaves}
             >
               Favorites List
             </motion.li>
