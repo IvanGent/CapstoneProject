@@ -7,7 +7,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import NavBar from "./components/NavBar/NavBar";
 import User from "./components/User/User";
 import HomePage from './components/HomePage/HomePage';
-// import { authenticate } from "./services/auth";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 
@@ -67,7 +66,6 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      // const user = await authenticate();
       const user = await dispatch(sessionActions.authenticate())
       if (!user.errors) {
         setAuthenticated(true);
