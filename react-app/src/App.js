@@ -160,9 +160,6 @@ function App() {
             <LoginForm 
               authenticated={authenticated}
               setAuthenticated={setAuthenticated} 
-              // showLogin={showLogin} 
-              // setShowLogin={setShowLogin}
-              // setShowSignUp={setShowSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />
@@ -171,9 +168,6 @@ function App() {
             <SignUpForm
               authenticated={authenticated}
               setAuthenticated={setAuthenticated}
-              // setShowLogin={setShowLogin}
-              // setShowSignUp={setShowSignUp}
-              // showSignUp={showSignUp}
               setShowForms={setShowForms}
               setShowHomePage={setShowHomePage}
             />

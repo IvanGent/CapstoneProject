@@ -43,9 +43,9 @@ const LoginForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
   const [password, setPassword] = useState("");
 
   const handleGoodLogin = (user) => {
-      setAuthenticated(true);
-      setShowForms(false)
-      setShowHomePage(true)
+    setAuthenticated(true);
+    setShowForms(false)
+    setShowHomePage(true)
   }
 
   const onLogin = async (e) => {
@@ -83,60 +83,60 @@ const LoginForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
 
   return (
     <AnimatePresence exitBeforeEnter>
-          <motion.div className='loginModal'
-            variants={background}
-            initial='hidden'
-            animate='visible'
-            exit='exit'
-          >
-            <form className='loginForm' onSubmit={onLogin}>
-              <div className='innerLogin'>
-              <div className='errors'>
-                {errors.map((error, i) => (
-                  <div key={i}>{error}</div>
-                  
-                ))}
-              </div>
-              <div>
-                <input
-                  name="email"
-                  type="text"
-                  placeholder="Email"
-                  value={email}
-                  onChange={updateEmail}
-                />
-              </div>
-              <div>
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={updatePassword}
-                />
-              </div>
-                  <motion.button
-                    variants={LoginButton}
-                    whileHover='hover'
-                    whileTap='tap'
-                    type='submit'
-                  >
-                    Login
-                  </motion.button>
-                  <motion.button
-                    variants={LoginButton}
-                    whileHover='hover'
-                    whileTap='tap'
-                    type='submit'
-                    id='demo'
-                    onClick={LoginDemo}
-                  >
-                    Login Demo
-                  </motion.button>
-              <div id='signupClick' onClick={handleSignupClick}>Don't have an account? Sign Up</div>
-              </div>
-            </form>
-          </motion.div>
+      <motion.div className='loginModal'
+        variants={background}
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+      >
+        <form className='loginForm' onSubmit={onLogin}>
+          <div className='innerLogin'>
+            <div className='errors'>
+              {errors.map((error, i) => (
+                <div key={i}>{error}</div>
+                
+              ))}
+            </div>
+            <div>
+              <input
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+              />
+            </div>
+            <motion.button
+              variants={LoginButton}
+              whileHover='hover'
+              whileTap='tap'
+              type='submit'
+            >
+              Login
+            </motion.button>
+            <motion.button
+              variants={LoginButton}
+              whileHover='hover'
+              whileTap='tap'
+              type='submit'
+              id='demo'
+              onClick={LoginDemo}
+            >
+              Login Demo
+            </motion.button>
+            <div id='signupClick' onClick={handleSignupClick}>Don't have an account? Sign Up</div>
+          </div>
+        </form>
+      </motion.div>
     </AnimatePresence>
   );
 };

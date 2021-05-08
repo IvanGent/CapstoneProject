@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { motion, AnimatePresence } from "framer-motion";
 import * as sessionActions from '../../store/session';
+import * as formActions from '../../store/formModals';
 import './SignUpForm.css';
 
 const background = {
@@ -26,7 +27,7 @@ const background = {
   }
 }
 
-const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin, setShowForms, setShowHomePage}) => {
+const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -41,11 +42,8 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
       const user = await dispatch(sessionActions.signup({username, firstName, email, password}));
       if (!user.errors) {
         setAuthenticated(true);
-        setShowSignUp(false);
         setShowForms(false);
         setShowHomePage(true);
-        localStorage.setItem("userId", user.id);
-        localStorage.setItem("currUser", user.id)
       } else {
         setErrors(user.errors);
       }
@@ -74,14 +72,12 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
     setRepeatPassword(e.target.value);
   };
 
-  const handleLoginClick = () => {
-    setShowSignUp(false)
-    setShowLogin(true)
-  }
+  const handleLoginClick = () => dispatch(formActions.showLogin());
+    // setShowSignUp(false)
+    // setShowLogin(true)
 
   return (
     <AnimatePresence exitBeforeEnter>
-      {showSignUp && (
         <motion.div className='signupModal'
           variants={background}
           initial='hidden'
@@ -146,7 +142,6 @@ const SignUpForm = ({ setAuthenticated, showSignUp, setShowSignUp, setShowLogin,
             </div>
           </form>
         </motion.div>
-      )}
     </AnimatePresence>
   );
 };
