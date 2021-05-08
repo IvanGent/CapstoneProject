@@ -2,7 +2,6 @@ import React from "react";
 import {useSelector} from 'react-redux';
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
-import Friends from '../Friends/Friends';
 import './Listing.css'
 
 
@@ -71,15 +70,6 @@ function Listing( ) {
             {showFavs ? (
                 <FavsList userId={userId} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             ): null }
-            {/* {showFriends && 
-                <Friends 
-                    curr={curr} 
-                    userId={userId} 
-                    setShowFriends={setShowFriends} 
-                    setShowVisited={setShowVisited} 
-                    setShowProfilePage={setShowProfilePage}
-                    />
-            } */}
         </div>
     )
 }

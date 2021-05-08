@@ -100,7 +100,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
   const showVisited = useSelector(state => state.sections.showVisited);
-  // let favs = [];
   // userId is the user you're looking at
   const userId = id
   // currUser is the user that is signed in
@@ -108,7 +107,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
 
   
   useEffect(() => {
-    console.log(showVisited);
     if (!userId) {
       return
     }
@@ -125,9 +123,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   }, [userId, favs.length]);
   
 
-  if (!user) {
-    return null;
-  }
+  // if (!user) {
+  //   return null;
+  // }
   
   const handleEdit = (e) => {
     const reader = new FileReader()
