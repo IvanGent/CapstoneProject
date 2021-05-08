@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 // import FavIcon from '../../images/Fav.png';
 
@@ -7,7 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 function Visited({curr, liInfo, svgVar, RemoveBut}) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
-    const userId = localStorage.getItem('userId')
+    const userId = useSelector(state => state.session.user.id)
 
     // favsList and visitedRestaurants are fetched and set to pieces of state
     useEffect(() => {
