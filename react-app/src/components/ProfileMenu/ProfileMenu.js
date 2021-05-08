@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as sessionActions from '../../store/session';
 import './ProfileMenu.css'
@@ -51,11 +51,11 @@ const Item = {
     })
 }
 
-function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll, mobileSize, setShowFriends, setShowFaves, setShowVisited }) {
+function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [showMenu, setShowMenu] = useState(false);
-    const currUser = localStorage.getItem('currUser')
+    const currUser = useSelector(state => state.session.user.id);
     let Button;
     let Menu;
 
