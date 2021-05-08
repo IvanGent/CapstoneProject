@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import FavIcon from '../../images/Fav.png';
+// import FavIcon from '../../images/Fav.png';
 
 
 
@@ -133,7 +133,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                                                     animate='visible'
                                                     whileTap='tap'
                                                     whileHover='hover'
-                                                    src={FavIcon}
+                                                    src='/images/Fav.png'
                                                     alt='Fav Icon'
                                                     onClick={favHandle}
                                                 />
