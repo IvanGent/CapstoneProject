@@ -18,13 +18,6 @@ const background = {
     opacity: 0,
     x: -1000,
   },
-  exit: {
-    opacity: 0,
-    x: -1000,
-    transition: {
-      duration: .25,
-    }
-  }
 }
 
 const LoginButton = {
@@ -58,21 +51,11 @@ const LoginForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
     }
   };
 
-  // const updateEmail = (e) => {
-  //   setEmail(e.target.value);
-  // };
+  const updateEmail = e => setEmail(e.target.value);
 
-  const updateEmail = (e) => setEmail(e.target.value);
-
-  // const updatePassword = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
-  const updatePassword = (e) => setPassword(e.target.value);
+  const updatePassword = e => setPassword(e.target.value);
 
   const handleSignupClick = () => dispatch(formActions.showSignUp());
-    // setShowLogin(false)
-    // setShowSignUp(true)
 
   const LoginDemo = async (e) => {
     e.preventDefault();
@@ -87,7 +70,6 @@ const LoginForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
         variants={background}
         initial='hidden'
         animate='visible'
-        exit='exit'
       >
         <form className='loginForm' onSubmit={onLogin}>
           <div className='innerLogin'>
