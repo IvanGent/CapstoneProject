@@ -61,11 +61,8 @@ function App() {
   const [showHomePage, setShowHomePage] = useState(false);
   const showLogin = useSelector(state => state.forms.showLogin);
   const showSignUp = useSelector(state => state.forms.showSignUp);
-  // const [showLogin, setShowLogin] = useState(false);
-  // const [showSignUp, setShowSignUp] = useState(false);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
-  // const [mobileSize, setMobileSize] = useState(false);
 
   // GETTING RID OF LOGIN AND SIGNUP FORMS AND ALSO MOBILE SIZES,
   // THEY ARE COMMENTED OUT TO REMIND ME TO GO TO THOSE COMPONENTS AND FIX THEM.
@@ -80,23 +77,20 @@ function App() {
     })();
     setLoaded(true);
     setShowRoll(false)
-    // setMobileSize(false)
   }, [dispatch]);
 
   const homeBody = (
+    // HOMEPAGE NEEDS TO BE FIXED WHEN IT COMES TO MOBILE
     <HomePage 
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
-      // mobileSize={mobileSize} 
       setShowHomePage={setShowHomePage}
     />
   )
 
-
   const handleForms = () => {
     setShowForms(true)
-    dispatch(formActions.showLogin());
-    // setShowLogin(true)
+    return dispatch(formActions.showLogin());
   }
 
 
@@ -106,17 +100,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar 
+    {/* NAVBAR NEEDS TO BE WORKED WITH MOBILE SIZE */}
+      <NavBar
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 
         setShowForms={setShowForms}
-        // showLogin={showLogin}
-        // setShowLogin={setShowLogin}
-        // setShowSignUp={setShowSignUp}
-        // showSignUp={showSignUp}
         setShowHomePage={setShowHomePage}
         setShowRoll={setShowRoll}
-        // mobileSize={mobileSize}
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>

@@ -10,8 +10,6 @@ const rootReducer = combineReducers({
     forms: showFormModalsReducer,
 })
 
-
-///// THIS IS FOR REDUX LOGGER
 let enhancer;
 
 if(process.env.NODE_ENV === 'production') {
