@@ -60,7 +60,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, 
       animate='visible'
       exit='exit'
     >
-      {!mobileSize ? (
         <div className='nav'>
       <h1 onClick={handleClick}>What-To-Bite</h1>
       <ul className='navMenu'>
@@ -82,42 +81,12 @@ const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, 
                 setShowHomePage={setShowHomePage} 
                 setShowRoll={setShowRoll}
                 setShowProfilePage={setShowProfilePage}
-                mobileSize={mobileSize}
-                setShowFriends={setShowFriends}
-                setShowFaves={setShowFaves}
-                setShowVisited={setShowVisited}
                 />
             </li>
           </>
         )}
       </ul>
       </div>
-      ) : (
-        <div className='nav'>
-          <h1 onClick={handleClick}>What-To-Bite</h1>
-            {!authenticated ? (
-              <>
-                  <h1 onClick={handleClick}>What-To-Bite</h1>
-              </>
-            ) : (
-                <>
-                  <li>
-                    <ProfileMenu
-                      user={user}
-                      setAuthenticated={setAuthenticated}
-                      setShowHomePage={setShowHomePage}
-                      setShowRoll={setShowRoll}
-                      setShowProfilePage={setShowProfilePage}
-                      mobileSize={mobileSize}
-                      setShowFriends={setShowFriends}
-                      setShowFaves={setShowFaves}
-                      setShowVisisted={setShowVisited}
-                    />
-                  </li>
-                </>
-              )}
-        </div>
-      )}
     </motion.nav>
       </AnimatePresence>
   );
