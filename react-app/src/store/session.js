@@ -44,7 +44,8 @@ export const login = (user) => async (dispatch) => {
 
 
 export const signup = (user) => async (dispatch) => {
-    const { userName, firstName, password, email} = user;
+    console.log(user);
+    const { username, first_name, password, email} = user;
     const avatar = '/images/ProfileAvatar.png';
     const response = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -52,14 +53,15 @@ export const signup = (user) => async (dispatch) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            username,
+            first_name,
             avatar,
-            userName,
-            firstName,
             email,
             password
         })
     })
     const res = await response.json();
+    console.log(res);
     dispatch(setUser(res.user));
     return res;
 }
