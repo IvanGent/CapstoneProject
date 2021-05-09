@@ -5,13 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
-// import RandomRoller from "../RandomRoller/RandomRoller";
-// import ProfileAv from "../../images/ProfileAvatar.png";
 
 // TODO
-// Working on using redux store to handle modals showing
-//   -(DONE) I have visited showing, just need to work on showing favs and also
-//   handling their clicks
 //  - need to work on that unnecessary rerender in useEffect
 
 // Framer-motion variants
@@ -59,27 +54,6 @@ const FavsRoll = {
   }
 }
 
-// const FavsMobile = {
-//   visible: {
-//     width: 700,
-//     opacity: 1,
-//     transition: {
-//       delay: .5,
-//     }
-//   },
-//   hidden: {
-
-//     width: 0,
-//     opacity: 0
-//   },
-//   tap: {
-//     scale: .9
-//   },
-//   hover: {
-//     scale: 1.2
-//   }
-// }
-
 const tabs = {
   show: {
    scale: 1.5
@@ -103,12 +77,16 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
   // userId is the user you're looking at
   const userId = id
   // currUser is the user that is signed in
-  const currUser = localStorage.getItem('currUser')
+  const currUser = useSelector(state => state.session.user);
 
   
   useEffect(() => {
     if (!userId) {
       return
+    }
+    if(userId === currUser.id) {
+      setFavs(currUser.favsList);
+      setUser(currUser);
     }
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
@@ -119,9 +97,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         setFavs(favPrep);
         user.avatar ? setAvatar(user.avatar) : setAvatar('/images/ProfileAvatar.png')
       })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId, favs.length]);
-  
+    }, [userId, favs.length]);
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 
   // if (!user) {
   //   return null;

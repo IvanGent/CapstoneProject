@@ -32,7 +32,7 @@ const SignUpForm = ({ setAuthenticated, setShowForms, setShowHomePage}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(sessionActions.signup({username, firstName, email, password}));
+      const user = await dispatch(sessionActions.signup({username, first_name: firstName, email, password}));
       if (!user.errors) {
         setAuthenticated(true);
         setShowForms(false);

@@ -1,6 +1,8 @@
-
+import React from 'react';
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import * as formActions from '../../store/formModals';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
 
@@ -20,37 +22,23 @@ const Nav = {
 }
 
 
-const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, setShowForms, setShowHomePage, setShowRoll, setShowProfilePage, mobileSize, setShowFriends, setShowVisited, setShowFaves }) => {
-  const [user, setUser] = useState("");
-  
+const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage, setShowRoll}) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  useEffect(() => {
-    setUser(localStorage.getItem('userId'))
-  }, [])
-
-
-  const theStart = () => {
-    setShowForms(true)
-  }
+  const theStart = () => setShowForms(true)
 
   const handleSignupClick = () => {
     theStart()
-    setShowLogin(false)
-    setShowSignUp(true)
+    return dispatch(formActions.showSignUp());
   }
 
   const handleLoginClick = () => {
     theStart();
-    setShowSignUp(false);
-    setShowLogin(true);
+    return dispatch(formActions.showLogin());
   }
 
-  const handleClick = () => {
-    setShowRoll(false);
-    setShowProfilePage(false)
-    setShowHomePage(true);
-  }
-
+  const handleHomeClick = () => history.push('/');
 
   return (
       <AnimatePresence>
@@ -61,7 +49,7 @@ const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, 
       exit='exit'
     >
         <div className='nav'>
-      <h1 onClick={handleClick}>What-To-Bite</h1>
+      <h1 onClick={handleHomeClick}>What-To-Bite</h1>
       <ul className='navMenu'>
         {!authenticated ? (
           <>
@@ -76,12 +64,10 @@ const NavBar = ({ authenticated, setAuthenticated, setShowLogin, setShowSignUp, 
           <>
             <li>
               <ProfileMenu  
-                user={user} 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
                 setShowRoll={setShowRoll}
-                setShowProfilePage={setShowProfilePage}
-                />
+              />
             </li>
           </>
         )}

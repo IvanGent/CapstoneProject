@@ -44,21 +44,23 @@ export const login = (user) => async (dispatch) => {
 
 
 export const signup = (user) => async (dispatch) => {
-    const { userName, firstName, password, email} = user;
+    const { username, first_name, password, email} = user;
+    const avatar = '/images/ProfileAvatar.png';
     const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userName,
-            firstName,
+            username,
+            first_name,
+            avatar,
             email,
             password
         })
     })
     const res = await response.json();
-    dispatch(setUser(res.user));
+    dispatch(setUser(res));
     return res;
 }
 
@@ -70,7 +72,6 @@ export const logout = () => async (dispatch) => {
     })
     const res = await response.json();
     dispatch(removeUser());
-    console.log(res);
     return res;
 }
 
