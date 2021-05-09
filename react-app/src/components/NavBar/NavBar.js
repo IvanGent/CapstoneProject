@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as formActions from '../../store/formModals';
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 import './NavBar.css'
-import { useHistory } from 'react-router';
 
 const Nav = {
   visible: {
@@ -27,12 +26,6 @@ const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage
   const dispatch = useDispatch();
   const history = useHistory();
   const [user, setUser] = useState("");
-  
-
-  useEffect(() => {
-    // setUser(localStorage.getItem('userId'))
-  }, [])
-
 
   const theStart = () => setShowForms(true)
 
@@ -72,11 +65,10 @@ const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage
           <>
             <li>
               <ProfileMenu  
-                user={user} 
                 setAuthenticated={setAuthenticated} 
                 setShowHomePage={setShowHomePage} 
                 setShowRoll={setShowRoll}
-                />
+              />
             </li>
           </>
         )}

@@ -60,7 +60,7 @@ export const signup = (user) => async (dispatch) => {
         })
     })
     const res = await response.json();
-    dispatch(setUser(res.user));
+    dispatch(setUser(res));
     return res;
 }
 
@@ -72,7 +72,6 @@ export const logout = () => async (dispatch) => {
     })
     const res = await response.json();
     dispatch(removeUser());
-    console.log(res);
     return res;
 }
 
