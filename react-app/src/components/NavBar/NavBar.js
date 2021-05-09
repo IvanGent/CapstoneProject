@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -25,7 +25,6 @@ const Nav = {
 const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage, setShowRoll}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [user, setUser] = useState("");
 
   const theStart = () => setShowForms(true)
 
