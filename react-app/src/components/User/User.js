@@ -245,9 +245,7 @@ function User({setShowRoll, setShowHomePage}) {
         </div>
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-              <Listing 
-                // authenticated={authenticated} 
-                />
+              <Listing />
             </motion.div>
           </AnimatePresence>
       </motion.div>
