@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { AnimatePresence, motion} from 'framer-motion';
@@ -151,21 +151,12 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
     const history = useHistory();
     const curr = useSelector(state => state.session.user);
     const currId = curr.id;
-    const [res, setRes] = useState(restaurants);
-    if(restaurants.length === 0) setRes(curr.favsList.forEach(ele=>ele.restaurants));
-    const checks = new Array(res.length).fill(true);
+    const checks = new Array(restaurants.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
-    // console.log(curr);
 
-    useEffect(() => {
-        console.log(restaurants);
-        if(!restaurants.length) {
-            setRes(curr.favsList.forEach(ele=>ele.restaurants));
-        }
-    },[curr, restaurants]);
 
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
@@ -173,7 +164,7 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
         const newSet = []
         checks.filter((ele, i) => {
             if (ele !== false) {
-                newSet.push(res[i])
+                newSet.push(restaurants[i])
             }
             return ele;
         })
@@ -267,7 +258,7 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
                     animate='visible'
                     
                 >
-                {res.map((ele, i) => {
+                {restaurants.map((ele, i) => {
                     return (
                         <motion.div
                           id={i}
