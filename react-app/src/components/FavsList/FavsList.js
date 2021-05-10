@@ -8,12 +8,16 @@ function FavsList({id, curr, liInfo, svgVar}) {
     
     //favsList is fetched and set to a piece of state
     useEffect(() => {
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setFavs(user.favsList)
-        })()
-    }, [userId ,favs.length])
+        if(userId === curr.id) {
+            setFavs(curr.favsList);
+        } else {
+            (async () => {
+                const response = await fetch(`/api/users/${userId}`);
+                const user = await response.json();
+                setFavs(user.favsList);
+            })()
+        }
+    }, [curr, userId])
 
 
     // Handles the click for adding and removing from favorites
@@ -28,7 +32,7 @@ function FavsList({id, curr, liInfo, svgVar}) {
                 },
                 body: JSON.stringify({
                     res_id: event.target.id,
-                    user_id: curr
+                    user_id: curr.id
                 })
             })
             await res.json()
@@ -49,7 +53,7 @@ function FavsList({id, curr, liInfo, svgVar}) {
                 },
                 body: JSON.stringify({
                     res_id: event.target.id,
-                    user_id: curr
+                    user_id: curr.id
                 })
             })
             const newRes = await res.json();
@@ -94,7 +98,6 @@ function FavsList({id, curr, liInfo, svgVar}) {
                                             />
                                             <p id='add'
                                             >Favorite</p>
-                                            {/* {document.getElementById(ele.restaurant.id).style['background-color'] === 'red' ? <div>Remove From Favorites</div> : <div>Add To Favorites</div>} */}
                                         </div>
                                     </div>
                                 </motion.li>

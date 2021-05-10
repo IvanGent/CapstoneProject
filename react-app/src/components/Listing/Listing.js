@@ -55,17 +55,19 @@ const svgVar = {
 }
 
 function Listing() {
+    const {id} = useParams();
+    const curr = useSelector(state => state.session.user);
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
-    const {id} = useParams();
+    
 
     return (
         <div className='listing'>
             {showVisited &&
-                <Visited id={id} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
+                <Visited id={id} curr={curr} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
             }
             {showFavs &&
-                <FavsList id={id} liInfo={liInfo} svgVar={svgVar} />
+                <FavsList id={id} curr={curr} liInfo={liInfo} svgVar={svgVar} />
             }
         </div>
     )

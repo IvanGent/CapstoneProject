@@ -100,7 +100,7 @@ function User({authenticated, setShowRoll}) {
       })();
     }
 
-    }, []);
+    }, [userId, currUser]);
 
   if (!user) {
     return null;
