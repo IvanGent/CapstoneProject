@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
+import RandomRoller from '../RandomRoller/RandomRoller';
 import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
@@ -63,9 +64,6 @@ const tabs = {
     scale: 1.5
   },
 }
-
-// SEND USER THROUGH LISTING AND THEN VISITED AND RESTURANTS TO CUT FETCHS
-///////////////////////////////////
 
 
 function User({authenticated, setShowRoll}) {
@@ -159,7 +157,8 @@ function User({authenticated, setShowRoll}) {
       alert('Not Enough Favorites')
       return;
     }
-    setShowRoll(true)
+    console.log("This is getting Hit");
+    return <RandomRoller restaurants={favs} />
   }
 
   const handleVisited = () => dispatch(sectionsActions.showVisited(true));

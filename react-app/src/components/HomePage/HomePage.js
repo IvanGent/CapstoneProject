@@ -4,7 +4,6 @@ import './HomePage.css'
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { AnimatePresence, motion } from 'framer-motion';
-// import ResIcon from '../../images/Restaurant.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +53,7 @@ const innerHome = {
     }
 }
 
-const HomePage = ({ showRoll, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited, setShowFriends}) => {
+const HomePage = ({ showRoll, setShowRoll, setShowHomePage}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
     const [data, setData] = useState([]);

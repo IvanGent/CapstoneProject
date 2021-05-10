@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { AnimatePresence, motion} from 'framer-motion';
 import './RandomRoller.css';
 
@@ -143,15 +145,17 @@ const RollerName = {
     }
 }
 
-function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited, setShowFriends}) {
+function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
+    const history = useHistory();
     const res = restaurants
     const checks = new Array(res.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
-    const curr = localStorage.getItem('currUser')
-    const user = localStorage.getItem('userId')
+    const currId = useSelector(state => state.session.user.id);
+    // const curr = localStorage.getItem('currUser')
+    // const user = localStorage.getItem('userId')
 
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
@@ -214,6 +218,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
         setShowReroll(false)
         Random(resPicked)
     }
+
 // Adds to the Users visited and then goes to their profile to show them
     const handleAddRes = async () => {
         const res = await fetch(`/api/visited/`, {
@@ -223,16 +228,13 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
             },
             body: JSON.stringify({
                 "res_id": currRes.id,
-                "user_id": user
+                "user_id": currId
             })
         })
-        await res.json()
-        setShowHomePage(false)
-        setShowRoll(false)
-        setShowFriends(false)
-        localStorage.setItem('userId', curr)
-        setShowProfilePage(true)
-        setShowVisited(true)
+        await res.json();
+        setShowHomePage(false);
+        setShowRoll(false);
+        history.push(`/user/${currId}`);
     }
 
     return (
