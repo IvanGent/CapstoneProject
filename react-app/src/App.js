@@ -78,7 +78,6 @@ function App() {
   }, [dispatch]);
 
   const homeBody = (
-    // HOMEPAGE NEEDS TO BE FIXED WHEN IT COMES TO MOBILE
     <HomePage 
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
@@ -108,7 +107,7 @@ function App() {
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>
-          <User />
+          <User setShowHomePage={setShowHomePage} setShowRoll={setShowRoll}  />
         </ProtectedRoute>
       <Route path='/' exact={true} >
       {!showForms && !authenticated && (

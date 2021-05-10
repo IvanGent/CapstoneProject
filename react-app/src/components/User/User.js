@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams,useHistory} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
-import RandomRoller from '../RandomRoller/RandomRoller';
+// import RandomRoller from '../RandomRoller/RandomRoller';
 import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
@@ -66,8 +66,9 @@ const tabs = {
 }
 
 
-function User({authenticated, setShowRoll}) {
+function User({setShowRoll, setShowHomePage}) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
@@ -157,8 +158,11 @@ function User({authenticated, setShowRoll}) {
       alert('Not Enough Favorites')
       return;
     }
+    setShowRoll(true);
+    setShowHomePage(false);
     console.log("This is getting Hit");
-    return <RandomRoller restaurants={favs} />
+    // return <RandomRoller restaurants={favs} />
+    history.push('/');
   }
 
   const handleVisited = () => dispatch(sectionsActions.showVisited(true));
@@ -242,7 +246,7 @@ function User({authenticated, setShowRoll}) {
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
               <Listing 
-                authenticated={authenticated} 
+                // authenticated={authenticated} 
                 />
             </motion.div>
           </AnimatePresence>

@@ -154,8 +154,6 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
     const currId = useSelector(state => state.session.user.id);
-    // const curr = localStorage.getItem('currUser')
-    // const user = localStorage.getItem('userId')
 
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
@@ -328,7 +326,7 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
                                 <h5>{currRes.name}</h5>
                             </motion.div>
                     </motion.div>
-                    {showReroll ? (
+                    {showReroll &&
                         <div className='buttonHolder'>
                         <motion.button
                             variants={Reroll}
@@ -354,7 +352,7 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
                             Add to Visited
                         </motion.button>
                         </div>
-                    ) : null }
+                    }
                     </div>
                 </motion.div>
             )}
