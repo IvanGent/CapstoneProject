@@ -66,7 +66,7 @@ const tabs = {
 }
 
 
-function User({setShowRoll, setShowHomePage}) {
+function User({setShowRoll, setShowHomePage, setData}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const {id} = useParams();
@@ -158,10 +158,9 @@ function User({setShowRoll, setShowHomePage}) {
       alert('Not Enough Favorites')
       return;
     }
+    setData(favs);
     setShowRoll(true);
-    setShowHomePage(false);
-    console.log("This is getting Hit");
-    // return <RandomRoller restaurants={favs} />
+    setShowHomePage(true);
     history.push('/');
   }
 

@@ -63,6 +63,7 @@ function App() {
   const showSignUp = useSelector(state => state.forms.showSignUp);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
+  const [data, setData] = useState([]);
   
 
   useEffect(() => {
@@ -82,6 +83,8 @@ function App() {
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
       setShowHomePage={setShowHomePage}
+      data={data}
+      setData={setData}
     />
   )
 
@@ -107,7 +110,7 @@ function App() {
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>
-          <User setShowHomePage={setShowHomePage} setShowRoll={setShowRoll}  />
+          <User setShowHomePage={setShowHomePage} setShowRoll={setShowRoll} setData={setData} />
         </ProtectedRoute>
       <Route path='/' exact={true} >
       {!showForms && !authenticated && (

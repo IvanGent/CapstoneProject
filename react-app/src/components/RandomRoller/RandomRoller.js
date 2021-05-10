@@ -158,7 +158,7 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
-    console.log(curr);
+    // console.log(curr);
 
     useEffect(() => {
         console.log(restaurants);

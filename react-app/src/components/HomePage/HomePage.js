@@ -53,10 +53,10 @@ const innerHome = {
     }
 }
 
-const HomePage = ({ showRoll, setShowRoll, setShowHomePage}) => {
+const HomePage = ({ data, setData, showRoll, setShowRoll, setShowHomePage}) => {
     const [zipcode, setZipcode] = useState('');
     const [zipError, setZipError] = useState('');
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
     
 // Getting the website for every place found to make an api call to clearbit to get the logo.
