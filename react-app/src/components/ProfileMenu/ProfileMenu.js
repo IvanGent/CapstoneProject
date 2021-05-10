@@ -55,19 +55,19 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
 
     Button = {
         visible: {
-            width: '100px',
-            height: '100px',
+            width: '6rem',
+            height: '6rem',
         },
         initial: {
-            width: '50px',
-            height: '50px',
+            width: '3rem',
+            height: '3rem',
         }
     }
     Menu = {
         closed: {
             x: 0,
-            width: "50px",
-            height: "50px",
+            width: "3rem",
+            height: "3rem",
             borderRadius: '50%',
         },
         opened: {
@@ -77,14 +77,14 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
             },
             y: { stiffness: 1000 },
             x: 0,
-            borderRadius: '25px',
+            borderRadius: '5%',
             position: 'absolute',
-            height: "30vh",
-            width: '300px'
+            height: "23vh",
+            width: '13rem'
         },
         exit: {
-            width: "50px",
-            height: "50px",
+            width: "3rem",
+            height: "3rem",
             borderRadius: '50%',
         }
     }
@@ -118,11 +118,6 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
         history.push('/');
     }
 
-
-    const handleFaves = () => {
-        // setShowHomePage(false);
-        // localStorage.setItem('userId', currUser)
-    }
 
     return (
         <div className='outerMenu'>
