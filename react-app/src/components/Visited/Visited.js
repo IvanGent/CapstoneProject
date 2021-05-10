@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 
 function Visited({liInfo, svgVar, RemoveBut}) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
-    // const userId = useSelector(state => state.session.user.id)
+    const {id} = useParams();
+    const userId = id;
+    const curr = useSelector(state => state.session.user.id);
 
     // favsList and visitedRestaurants are fetched and set to pieces of state
     useEffect(() => {
@@ -16,7 +19,7 @@ function Visited({liInfo, svgVar, RemoveBut}) {
             setFavs(user.favsList)
             setRes(user.visitedRestaurants)
         })()
-    }, [userId, res.length])
+    }, [userId])
 
 
     const favHandle = async (event) => {
@@ -44,7 +47,6 @@ function Visited({liInfo, svgVar, RemoveBut}) {
 
         } else {
             event.target.style['background-color'] = 'red'
-            // const find = await fetch(`/api/${name}`)
             const res = await fetch('/api/favs/', {
                 method: "POST",
                 headers: {
@@ -136,8 +138,7 @@ function Visited({liInfo, svgVar, RemoveBut}) {
                                                     alt='Fav Icon'
                                                     onClick={favHandle}
                                                 />
-                                                <p id='add'
-                                                >Favorite</p>
+                                                <p id='add'>Favorite</p>
                                             </motion.div>
                                         </div>
                                     </motion.li>

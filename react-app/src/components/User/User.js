@@ -84,8 +84,10 @@ function User({authenticated, setShowRoll}) {
   
   useEffect(() => {
     if(userId === currUser.id) {
-      setFavs(currUser.favsList);
       setUser(currUser);
+      let favPrep = [];
+      currUser.favsList.forEach(ele => favPrep.push(ele.restaurant))
+      setFavs(favPrep);
     } else {
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
@@ -97,8 +99,8 @@ function User({authenticated, setShowRoll}) {
         user.avatar ? setAvatar(user.avatar) : setAvatar('/images/ProfileAvatar.png')
       })();
     }
-    }, [userId, currUser]);
 
+    }, []);
 
   if (!user) {
     return null;
@@ -179,7 +181,7 @@ function User({authenticated, setShowRoll}) {
           animate='visible'
           className='profileInfo'>
             <img id='avatar' src={avatar} alt='avatar' />
-            {currUser === userId ? (
+            {currUser.id === userId ? (
             <div className='editCont'>
               <motion.label 
                 whileHover={{ scale: 1.1 }}
@@ -241,9 +243,7 @@ function User({authenticated, setShowRoll}) {
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
               <Listing 
-                user={user}
                 authenticated={authenticated} 
-                // showVisited={showVisited} 
                 />
             </motion.div>
           </AnimatePresence>

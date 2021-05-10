@@ -53,17 +53,17 @@ const svgVar = {
     },
 }
 
-function Listing({user}) {
+function Listing() {
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
 
     return (
         <div className='listing'>
             {showVisited &&
-                <Visited user={user} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
+                <Visited liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
             }
             {showFavs &&
-                <FavsList user={user} liInfo={liInfo} svgVar={svgVar} />
+                <FavsList liInfo={liInfo} svgVar={svgVar} />
             }
         </div>
     )
