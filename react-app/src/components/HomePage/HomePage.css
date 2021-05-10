@@ -14,30 +14,29 @@
     align-items: center;
 }
 
-    .choices strong {
-        font-family: "Lato";
-        font-size: 20px;
-        color: blue;
-        cursor: pointer;
-        padding-right: 25px;
-        height: 100px;
-        display: flex;
-        align-items: center;
-    }
+.choices strong {
+    font-family: "Lato";
+    font-size: 1.2em;
+    color: blue;
+    cursor: pointer;
+    padding-right: 2rem;
+    display: flex;
+    align-items: center;
+}
 
-    .choices form {
-        margin-top: 20px;
-        margin-left: 25px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    } 
+.choices form {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
 
-    .choices form label {
-        font-family: "Lato";
-        font-weight: 400;
-        margin-bottom: 10px;
-    }
+.choices form label {
+    font-family: "Lato";
+    font-weight: 400;
+    margin-bottom: 1em;
+}
 
 .choices input {
     outline: none;
@@ -55,9 +54,7 @@
 }
 
 .homeCont {
-    /* background-color: white; */
     background-color: rgba(255, 255, 255, 0.8);
-    /* width: 500px; */
     width: 50rem;
     height: 19rem;
     padding: 3.5em;
@@ -77,8 +74,6 @@
 }
 
 .innerHome {
-    /* background-color: teal; */
-    /* width: 510px; */
     width: 33rem;
     height: 20rem;
     display: flex;
