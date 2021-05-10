@@ -53,10 +53,10 @@ const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage
       <ul className='navMenu'>
         {!authenticated ? (
           <>
-        <li>
+        <li className="beforeAuth">
           <h3 onClick={handleLoginClick}>Login</h3>
         </li>
-        <li>
+        <li className="beforeAuth">
           <h3 onClick={handleSignupClick}>Sign Up</h3>
         </li>
         </>

@@ -1,18 +1,18 @@
-@media screen and (min-device-width: 901px) {
-    .profileMenu {
-    position: absolute;
-    background-color: #fff;
-    top:15px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    z-index: 999;
-    cursor: pointer;
-    }
+/* @media screen and (min-device-width: 901px) { */
+.profileMenu {
+position: absolute;
+background-color: #fff;
+top: 1rem;
+right: .7rem;
+width: 1em;
+height: 1em;
+border-radius: 1em;
+/* z-index: 999; */
+cursor: pointer;
+}
 
-    .menuHolder h3 {
-        padding: 3px
+    .menuHolder li {
+        list-style-type: none;
     }
 
     .outerMenu img {
@@ -84,17 +84,21 @@
         cursor: pointer;
     }
 
+    .menuHolder a {
+        text-decoration: none;
+        color: black;
+    }
+
     .NavImg {
         background-color: whitesmoke;
         border-radius: 50%;
         width: 30px;
         height: 30px;
-        /* border: thin white solid */
     }
-}
+/* } */
 
 
-@media screen and (max-device-width: 900px) {
+/* @media screen and (max-device-width: 900px) { */
     /* .profileMenu {
         display: flex;
         justify-content: flex-end;
@@ -147,13 +151,12 @@
         height: 70px;
 
     } */
-    .profileMenu {
+    /* .profileMenu {
     position: absolute;
     background-color: #fff;
     top:15px;
     right: 100px;
-    /* width: 300px;
-    height: 300px; */
+
     border-radius: 50%;
     z-index: 999;
     cursor: pointer;
@@ -185,12 +188,7 @@
 
     .menu {
         position: absolute;
-        /* top: 0; */
         right: 0;
-        /* bottom: 0; */
-        /* width: 300px; */
-        /* width: 50px;
-        height: 50px; */
         background-color: #fff;
         color: black;
     }
@@ -202,7 +200,6 @@
     .menuHolder {
         display: flex;
         flex-direction: column;
-        /* background-color: red; */
         height: 100%;
         margin-top: 50px;
         font-size: 30px;
@@ -219,7 +216,6 @@
         margin-top: 15px;
         position: absolute;
         padding: 10px 8px;
-        /* border-radius: thin solid black; */
         background-color: rgba(0,0, 0, 0.9);
         z-index: 99;
         border-bottom-left-radius: 20px;
@@ -229,7 +225,6 @@
     .innerProfileMenu li {
         padding: 5px;
         border-bottom: thin solid gray;
-        /* margin-bottom: 5px; */
     }
 
     #logout {
@@ -241,6 +236,5 @@
         border-radius: 50%;
         width: 30px;
         height: 30px;
-        /* border: thin white solid */
-    }
-}
+    } */
+/* } */
