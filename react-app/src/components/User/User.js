@@ -243,7 +243,7 @@ function User({authenticated, setShowRoll}) {
               <Listing 
                 user={user}
                 authenticated={authenticated} 
-                showVisited={showVisited} 
+                // showVisited={showVisited} 
                 />
             </motion.div>
           </AnimatePresence>
