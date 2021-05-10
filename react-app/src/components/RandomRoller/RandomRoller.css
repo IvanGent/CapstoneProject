@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px 0 70px 0;
+    padding: 1em 0 2em 0;
 }
 
 .randomRollerCont fieldset {
@@ -33,14 +33,14 @@
 .mainHolder img {
     z-index: 10;
     position: relative;
-    border-radius: 10px;
-    max-width: 55px;
-    max-height: 55px;
+    border-radius: 1rem;
+    max-width: 3rem;
+    max-height: 3rem;
 }
 
 .randomRollerCont h2 {
     color: #fff;
-    font-size: 50px;
+    font-size: 3.5rem;
     font-family: 'Staatliches';
     margin-bottom: 5%;
 }
@@ -51,8 +51,8 @@
     justify-content: center;
     width: 20em;
     height: 3.8rem;
-    margin: 10px;
-    border-radius: 20px;
+    margin: .7rem;
+    border-radius: 1rem;
 }
 
 .labels {
@@ -77,6 +77,8 @@
     align-items: center;
     width: 100%;
 }
+
+/* HERE */
 
 .randomSelect {
     display: flex;
