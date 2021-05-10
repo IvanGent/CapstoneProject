@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px 0 70px 0;
+    padding: 1em 0 2em 0;
 }
 
 .randomRollerCont fieldset {
@@ -33,14 +33,14 @@
 .mainHolder img {
     z-index: 10;
     position: relative;
-    border-radius: 10px;
-    max-width: 55px;
-    max-height: 55px;
+    border-radius: 1rem;
+    max-width: 3rem;
+    max-height: 3rem;
 }
 
 .randomRollerCont h2 {
     color: #fff;
-    font-size: 50px;
+    font-size: 3.5rem;
     font-family: 'Staatliches';
     margin-bottom: 5%;
 }
@@ -51,8 +51,8 @@
     justify-content: center;
     width: 20em;
     height: 3.8rem;
-    margin: 10px;
-    border-radius: 20px;
+    margin: .7rem;
+    border-radius: 1rem;
 }
 
 .labels {
@@ -78,15 +78,15 @@
     width: 100%;
 }
 
+/* HERE */
+
 .randomSelect {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
-    height:60%;
-    padding: 20px;
-    margin: 10px;
-    padding: 10px;
+    width: 35rem;
+    height: 15rem;
+    margin: 1em;
 }
 
 .randomCont {
@@ -97,14 +97,14 @@
 }
 
 .randomSelect img {
-    max-height: 300px;
-    border-radius: 20px;
-    margin-bottom: 70px;
+    max-height: 6rem;
+    border-radius: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .randomSelect h5 {
     font-family: "Lato";
-    font-size: 30px;
+    font-size: 2rem;
 }
 
 .unchecked {
@@ -115,8 +115,6 @@
     align-items: center;
     align-content: center;
     align-self: center;
-    margin: 10px;
-    border-radius: 20px;
 }
 
 .unchecked img {
@@ -128,7 +126,6 @@
     display: flex;
     justify-content: center;
     opacity: 0.5;
-    font-size: 20px;
 }
 
 #MainButton {
@@ -145,36 +142,31 @@
 }
 
 #reroll {
-    width: 150px;
+    width: 9.5rem;
     background-color: rgba(12, 190, 255, 0.939);
     outline: none;
-    border-radius: 10px;
+    border-radius: .5rem;
     border: none;
-    padding: 5px;
-    margin-right: 10px;
+    padding: .3rem;
+    margin-right: 1em;
     font-family: "Staatliches";
     font-size: 2em;
     box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
 }
 
 #addToVis {
-    width: 180px;
+    width: 11.5rem;
     background-color: rgba(12, 190, 255, 0.939);
     outline: none;
-    border-radius: 10px;
+    border-radius: .5rem;
     border: none;
-    padding: 5px;
-    margin-left: 10px;
+    padding: .3rem;
+    margin-left: 1em;
     font-size: 2em;
     font-family: "Staatliches";
     box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.638);
 }
 
 .buttonHolder {
-    padding: 10px
-}
-
-.holdingResName {
-    margin-bottom: 20px;
-    color: white;
+    padding: 1em;
 }

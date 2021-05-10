@@ -1,246 +1,47 @@
-@media screen and (min-device-width: 901px) {
-    .profileMenu {
+.profileMenu {
     position: absolute;
     background-color: #fff;
-    top:15px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    z-index: 999;
+    top: 1rem;
+    right: .7rem;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
     cursor: pointer;
-    }
+}
 
-    .menuHolder h3 {
-        padding: 3px
-    }
+.menuHolder li {
+    list-style-type: none;
+}
 
-    .outerMenu img {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        right: 20px;
-        top: 25px;
-        border-radius:30%;
-        background-color: #fff;
-        z-index: 9999;
-        cursor: pointer;
-    }
+.outerMenu img {
+    position: absolute;
+    height: 2rem;
+    right: 1.2rem;
+    top: 1.5rem;
+    background-color: #fff;
+    z-index: 9999;
+    cursor: pointer;
+}
 
-    .profileMenu img {
-        background-color: burlywood;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        z-index: 0;
-    }
+.menu {
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    background-color: #fff;
+    color: black;
+}
 
-    .menu {
-        position: absolute;
-        /* top: 0; */
-        right: 0;
-        /* bottom: 0; */
-        /* width: 300px; */
-        width: 50px;
-        height: 50px;
-        background-color: #fff;
-        color: black;
-    }
-
-    .menuHolder {
-        display: flex;
-        flex-direction: column;
-        /* background-color: red; */
-        height: 100%;
-        margin-top: 50px;
-        font-size: 30px;
-        padding: 0 30px;
-    }
-
-
-    .profileMenu div{
-        font-size: 20px;
-    }
-
-    .innerProfileMenu {
-        margin-left: 10px;
-        margin-top: 15px;
-        position: absolute;
-        padding: 10px 8px;
-        /* border-radius: thin solid black; */
-        background-color: rgba(0,0, 0, 0.9);
-        z-index: 99;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
-
-    .innerProfileMenu li {
-        padding: 5px;
-        border-bottom: thin solid gray;
-        /* margin-bottom: 5px; */
-    }
-
-    #logout {
-        cursor: pointer;
-    }
-
-    .NavImg {
-        background-color: whitesmoke;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        /* border: thin white solid */
-    }
+.menuHolder {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 1em;
+    font-size: 1.9rem;
+    padding: 0 1em;
 }
 
 
-@media screen and (max-device-width: 900px) {
-    /* .profileMenu {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        width: 50vw;
-        height: 100%;
-    }
-
-    
-    .profileMenu div{
-        font-size: 20px;
-    }
-    
-    .innerProfileMenu {
-        margin-top: 70px;
-        right: 0;
-        width: 100vw;
-
-        position: absolute;
-        padding: 30px 20px;
-
-        background-color: rgba(0,0, 0, 0.9);
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-        z-index: 99;
-    }
-    
-    .innerProfileMenu li {
-        padding: 20px;
-        font-size: 2em;
-        border-bottom: thin solid gray;
-    }
-
-    .innerProfileMenu li a {
-        font-size: 2em;
-    }
-
-    
-    #logout {
-        font-size: 2em;
-        cursor: pointer;
-    }
-    
-    .NavImg {
-
-        background-color: rgba(255,255, 255, 0.3);
-
-        border-radius: 10px;
-        width: 70px;
-        height: 70px;
-
-    } */
-    .profileMenu {
-    position: absolute;
-    background-color: #fff;
-    top:15px;
-    right: 100px;
-    /* width: 300px;
-    height: 300px; */
-    border-radius: 50%;
-    z-index: 999;
+#logout {
     cursor: pointer;
-    }
-
-    .menuHolder h3 {
-        padding: 3px
-    }
-
-    .outerMenu img {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        right: 110px;
-        top: 25px;
-        border-radius:30%;
-        background-color: #fff;
-        z-index: 9999;
-        cursor: pointer;
-    }
-
-    .profileMenu img {
-        background-color: burlywood;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        z-index: 0;
-    }
-
-    .menu {
-        position: absolute;
-        /* top: 0; */
-        right: 0;
-        /* bottom: 0; */
-        /* width: 300px; */
-        /* width: 50px;
-        height: 50px; */
-        background-color: #fff;
-        color: black;
-    }
-
-    .menu h3 {
-        font-size: 130px;
-    }
-
-    .menuHolder {
-        display: flex;
-        flex-direction: column;
-        /* background-color: red; */
-        height: 100%;
-        margin-top: 50px;
-        font-size: 30px;
-        padding: 0 30px;
-    }
-
-
-    .profileMenu div{
-        font-size: 100px;
-    }
-
-    .innerProfileMenu {
-        margin-left: 10px;
-        margin-top: 15px;
-        position: absolute;
-        padding: 10px 8px;
-        /* border-radius: thin solid black; */
-        background-color: rgba(0,0, 0, 0.9);
-        z-index: 99;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
-
-    .innerProfileMenu li {
-        padding: 5px;
-        border-bottom: thin solid gray;
-        /* margin-bottom: 5px; */
-    }
-
-    #logout {
-        cursor: pointer;
-    }
-
-    .NavImg {
-        background-color: whitesmoke;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        /* border: thin white solid */
-    }
 }
