@@ -64,6 +64,9 @@ const tabs = {
   },
 }
 
+// SEND USER THROUGH LISTING AND THEN VISITED AND RESTURANTS TO CUT FETCHS
+///////////////////////////////////
+
 
 function User({authenticated, setShowRoll}) {
   const dispatch = useDispatch();
@@ -238,6 +241,7 @@ function User({authenticated, setShowRoll}) {
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
               <Listing 
+                user={user}
                 authenticated={authenticated} 
                 showVisited={showVisited} 
                 />

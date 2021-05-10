@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
 import './Listing.css'
@@ -57,7 +58,8 @@ function Listing( ) {
     // curr is the user that is signed in
     const curr = useSelector(state => state.session.user)
     // userId is the user you're looking at
-    const userId = localStorage.getItem('currUser')
+    const {id} = useParams();
+    const userId = id;
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
 
