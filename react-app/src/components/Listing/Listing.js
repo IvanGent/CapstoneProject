@@ -59,12 +59,12 @@ function Listing({user}) {
 
     return (
         <div className='listing'>
-            {showVisited ? (
+            {showVisited &&
                 <Visited user={user} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
-            ) : null }
-            {showFavs ? (
-                <FavsList liInfo={liInfo} svgVar={svgVar} />
-            ): null }
+            }
+            {showFavs &&
+                <FavsList user={user} liInfo={liInfo} svgVar={svgVar} />
+            }
         </div>
     )
 }
