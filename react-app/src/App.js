@@ -63,11 +63,7 @@ function App() {
   const showSignUp = useSelector(state => state.forms.showSignUp);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
-
-  //            MAIN THING TO TAKE CARE OF
-  // Session has user and user info so if late you add friends, check the session id against
-  // the url param and if they === then just use the data from session instead of make a fetch call.
-  // Work on the nav bar to click on login and signup
+  
 
   useEffect(() => {
     (async() => {

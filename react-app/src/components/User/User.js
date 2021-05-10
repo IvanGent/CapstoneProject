@@ -6,8 +6,6 @@ import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
 
-// TODO
-//  - need to work on that unnecessary rerender in useEffect
 
 // Framer-motion variants
 const ProfileInfo = {
@@ -66,14 +64,18 @@ const tabs = {
   },
 }
 
+// SEND USER THROUGH LISTING AND THEN VISITED AND RESTURANTS TO CUT FETCHS
+///////////////////////////////////
 
-function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, setShowFaves, showFriends, setShowFriends, setShowVisited, setShowProfilePage }) {
+
+function User({authenticated, setShowRoll}) {
   const dispatch = useDispatch();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
   const [favs, setFavs] = useState([]);
   const showVisited = useSelector(state => state.sections.showVisited);
+  const showFavs = useSelector(state => state.sections.showFavs);
   // userId is the user you're looking at
   const userId = id
   // currUser is the user that is signed in
@@ -81,13 +83,12 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
 
   
   useEffect(() => {
-    if (!userId) {
-      return
-    }
     if(userId === currUser.id) {
-      setFavs(currUser.favsList);
       setUser(currUser);
-    }
+      let favPrep = [];
+      currUser.favsList.forEach(ele => favPrep.push(ele.restaurant))
+      setFavs(favPrep);
+    } else {
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
         const user = await response.json();
@@ -97,13 +98,13 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
         setFavs(favPrep);
         user.avatar ? setAvatar(user.avatar) : setAvatar('/images/ProfileAvatar.png')
       })();
-    }, [userId, favs.length]);
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
 
-  // if (!user) {
-  //   return null;
-  // }
+    }, [userId, currUser]);
+
+  if (!user) {
+    return null;
+  }
   
   const handleEdit = (e) => {
     const reader = new FileReader()
@@ -161,19 +162,9 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
     setShowRoll(true)
   }
 
-  const handleVisited = () => {
-    // setShowFaves(false)
-    // setShowFriends(false)
-    // setShowVisited(true)
-    dispatch(sectionsActions.showVisited(true));
-  }
+  const handleVisited = () => dispatch(sectionsActions.showVisited(true));
 
-  const handleFaves = () => {
-    // setShowFriends(false)
-    // setShowVisited(false)
-    // setShowFaves(true)
-    dispatch(sectionsActions.showFavs(true));
-  }
+  const handleFaves = () => dispatch(sectionsActions.showFavs(true));
   
   return (
     <AnimatePresence>
@@ -190,7 +181,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
           animate='visible'
           className='profileInfo'>
             <img id='avatar' src={avatar} alt='avatar' />
-            {currUser === userId ? (
+            {currUser.id === userId ? (
             <div className='editCont'>
               <motion.label 
                 whileHover={{ scale: 1.1 }}
@@ -241,7 +232,7 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             </motion.li>
             <motion.li
               variants={tabs}
-              animate={showFaves ? 'show' : 'close'}
+              animate={showFavs ? 'show' : 'close'}
               whileHover='hover'
               onClick={handleFaves}
             >
@@ -253,13 +244,6 @@ function User({ authenticated, showRoll, setShowRoll, mobileSize, showFaves, set
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
               <Listing 
                 authenticated={authenticated} 
-                showVisited={showVisited} 
-                showFaves={showFaves} 
-                // showFriends={showFriends} 
-                setShowFaves={setShowFaves}
-                // setShowFriends={setShowFriends}
-                setShowVisited={setShowVisited}
-                setShowProfilePage={setShowProfilePage}
                 />
             </motion.div>
           </AnimatePresence>

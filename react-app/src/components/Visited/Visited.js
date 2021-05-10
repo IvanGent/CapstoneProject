@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import {useSelector} from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
-// import FavIcon from '../../images/Fav.png';
 
 
-
-function Visited({curr, liInfo, svgVar, RemoveBut}) {
+function Visited({id, curr, liInfo, svgVar, RemoveBut}) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
-    const userId = useSelector(state => state.session.user.id)
+    const userId = id;
 
     // favsList and visitedRestaurants are fetched and set to pieces of state
     useEffect(() => {
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setFavs(user.favsList)
-            setRes(user.visitedRestaurants)
-        })()
-    }, [userId, res.length])
+        if(userId === curr.id) {
+            setFavs(curr.favsList);
+            setRes(curr.visitedRestaurants);
+        } else {
+            (async () => {
+                const response = await fetch(`/api/users/${userId}`);
+                const user = await response.json();
+                setFavs(user.favsList)
+                setRes(user.visitedRestaurants)
+            })()
+        }
+    }, [userId, curr])
 
 
     const favHandle = async (event) => {
         event.persist()
         if (event.target.style['background-color'] === 'red') {
             event.target.style['background-color'] = null
-            const res = await fetch('/api/favs/del', {
+            const response = await fetch('/api/favs/del', {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     res_id: event.target.id,
-                    user_id: curr
+                    user_id: curr.id
                 })
             })
-            await res.json()
+            const res = await response.json();
             let newFavs = [];
             favs.forEach(ele => {
                 if (ele.res_id !== event.target.id) {
@@ -43,10 +45,8 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                 }
             })
             setFavs(newFavs)
-
         } else {
             event.target.style['background-color'] = 'red'
-            // const find = await fetch(`/api/${name}`)
             const res = await fetch('/api/favs/', {
                 method: "POST",
                 headers: {
@@ -54,7 +54,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                 },
                 body: JSON.stringify({
                     res_id: event.target.id,
-                    user_id: curr
+                    user_id: curr.id
                 })
             })
             const newRes = await res.json();
@@ -70,7 +70,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
             headers: { "Content-Type": 'application/json' },
             body: JSON.stringify({
                 "id": id,
-                "user_id": curr,
+                "user_id": curr.id,
             })
         })
         await result.json()
@@ -138,8 +138,7 @@ function Visited({curr, liInfo, svgVar, RemoveBut}) {
                                                     alt='Fav Icon'
                                                     onClick={favHandle}
                                                 />
-                                                <p id='add'
-                                                >Favorite</p>
+                                                <p id='add'>Favorite</p>
                                             </motion.div>
                                         </div>
                                     </motion.li>
