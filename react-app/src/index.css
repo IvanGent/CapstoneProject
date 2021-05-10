@@ -5,6 +5,31 @@
     box-sizing: border-box;
 }
 
+.splash h1 {
+    border-radius: .25em;
+    padding: 1rem;
+    /* border: thin solid black; */
+    color: white;
+    font-size: 4em;
+    /* margin-top: 100px; */
+    margin-bottom: 10rem;
+    font-family: "Staatliches";
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.splash button {
+    font-size: 1.2rem;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: rgba(220, 0, 0, 0.9);
+    color: white;
+    outline: none;
+    width: 12rem;
+    box-shadow: -.2rem -.2rem 1em .8em whitesmoke;
+}
+
 @media screen and (min-width: 1500px) {
     #background {
         background-image: url('./images/mainPage.jpg');
@@ -18,30 +43,6 @@
         z-index: -1;
     }
 
-    .splash h1 {
-        border-radius: 20px;
-        padding: 10px;
-        /* border: thin solid black; */
-        color: white;
-        font-size: 4em;
-        margin-top: 100px;
-        margin-bottom: 200px;
-        font-family: "Staatliches";
-        background-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .splash button {
-        font-size: 1.2rem;
-        padding: 20px;
-        border-radius: 20px;
-        border: none;
-        background-color: rgba(220, 0, 0, 0.9);
-        color: white;
-        outline: none;
-        width: 200px;
-        box-shadow: -3px -5px 20px 10px whitesmoke;
-    }
 }
 
 @media screen and (max-width: 1499px){
@@ -56,31 +57,6 @@
         min-height: 100%;
         z-index: -1;
     }
-
-    .splash h1 {
-        border-radius: 20px;
-        padding: 10px;
-        /* border: thin solid black; */
-        color: white;
-        font-size: 4em;
-        margin-top: 100px;
-        margin-bottom: 200px;
-        font-family: "Staatliches";
-        background-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .splash button {
-        font-size: 1.2rem;
-        padding: 20px;
-        border-radius: 20px;
-        border: none;
-        background-color: rgba(220, 0, 0, 0.9);
-        color: white;
-        outline: none;
-        width: 200px;
-        box-shadow: -3px -5px 20px 10px whitesmoke;
-    }
 }
 
 @media screen and (max-device-width: 900px) {
@@ -94,32 +70,6 @@
         height: 100%;
         min-height: 100%;
         z-index: -1;
-    }
-
-    .splash h1 {
-        border-radius: 20px;
-        padding: 10px;
-        /* border: thin solid black; */
-        color: white;
-        font-size: 10em;
-        margin-top: 100px;
-        margin-bottom: 200px;
-        font-family: "Staatliches";
-        background-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .splash button {
-        font-size: 4rem;
-        padding: 20px;
-        border-radius: 20px;
-        border: none;
-        background-color: rgba(220, 0, 0, 0.9);
-        color: white;
-        outline: none;
-        width: 450px;
-        /* width: 200px; */
-        box-shadow: -3px -5px 20px 10px whitesmoke;
     }
 
 }
@@ -148,15 +98,3 @@ div.formContainer {
     height: 100%;
     background-color:rgba(0, 0, 0, 0.0);
 }
-
-/* .splash h1 {
-    border-radius: 20px;
-    padding: 10px;
-    color: white;
-    font-size: 4em;
-    margin-top: 100px;
-    margin-bottom: 200px;
-    font-family: "Staatliches";
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
-} */
