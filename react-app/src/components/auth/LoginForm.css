@@ -27,7 +27,7 @@
 }
 
 .loginModal input {
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     font-size: 1rem;
     outline: none;
     width: 15rem;
@@ -55,6 +55,7 @@
     justify-content: center;
     z-index: 10;
     width: 19.5rem;
+    height: 22rem;
     background-color: rgba(0, 0, 0, 0.3);
     box-shadow: 0px 1px 20px 5px rgba(0, 0, 0, 0.9);
 }
