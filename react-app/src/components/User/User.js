@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {useParams,useHistory} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
@@ -64,12 +64,10 @@ const tabs = {
   },
 }
 
-// SEND USER THROUGH LISTING AND THEN VISITED AND RESTURANTS TO CUT FETCHS
-///////////////////////////////////
 
-
-function User({authenticated, setShowRoll}) {
+function User({setShowRoll, setShowHomePage, setData}) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const {id} = useParams();
   const [user, setUser] = useState({});
   const [avatar, setAvatar] = useState();
@@ -149,9 +147,6 @@ function User({authenticated, setShowRoll}) {
 
 
   const handleFavsRoll = async() => {
-    // const response = await fetch(`/api/users/${userId}`);
-    // const user = await response.json(); 
-    // favs.push(user.favsList.forEach(ele => ele.restaurants))
     if (favs.length === 0) {
       alert('No Favorites To Roll');
       return;
@@ -159,7 +154,10 @@ function User({authenticated, setShowRoll}) {
       alert('Not Enough Favorites')
       return;
     }
-    setShowRoll(true)
+    setData(favs);
+    setShowRoll(true);
+    setShowHomePage(true);
+    history.push('/');
   }
 
   const handleVisited = () => dispatch(sectionsActions.showVisited(true));
@@ -242,9 +240,7 @@ function User({authenticated, setShowRoll}) {
         </div>
           <AnimatePresence>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: .07 } }} exit={{ opacity: 0 }}>
-              <Listing 
-                authenticated={authenticated} 
-                />
+              <Listing />
             </motion.div>
           </AnimatePresence>
       </motion.div>

@@ -63,6 +63,7 @@ function App() {
   const showSignUp = useSelector(state => state.forms.showSignUp);
   const [showForms, setShowForms] = useState(false);
   const [showRoll, setShowRoll] = useState(false);
+  const [data, setData] = useState([]);
   
 
   useEffect(() => {
@@ -78,11 +79,12 @@ function App() {
   }, [dispatch]);
 
   const homeBody = (
-    // HOMEPAGE NEEDS TO BE FIXED WHEN IT COMES TO MOBILE
     <HomePage 
       showRoll={showRoll} 
       setShowRoll={setShowRoll} 
       setShowHomePage={setShowHomePage}
+      data={data}
+      setData={setData}
     />
   )
 
@@ -98,7 +100,6 @@ function App() {
 
   return (
     <BrowserRouter>
-    {/* NAVBAR NEEDS TO BE WORKED WITH MOBILE SIZE */}
       <NavBar
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 
@@ -108,7 +109,7 @@ function App() {
         />
       <div id='background'>
         <ProtectedRoute path='/users/:id' authenticated={authenticated}>
-          <User />
+          <User setShowHomePage={setShowHomePage} setShowRoll={setShowRoll} setData={setData} />
         </ProtectedRoute>
       <Route path='/' exact={true} >
       {!showForms && !authenticated && (

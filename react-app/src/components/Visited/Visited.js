@@ -37,7 +37,7 @@ function Visited({id, curr, liInfo, svgVar, RemoveBut}) {
                     user_id: curr.id
                 })
             })
-            const res = await response.json();
+            await response.json();
             let newFavs = [];
             favs.forEach(ele => {
                 if (ele.res_id !== event.target.id) {

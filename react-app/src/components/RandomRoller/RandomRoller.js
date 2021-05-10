@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { AnimatePresence, motion} from 'framer-motion';
 import './RandomRoller.css';
 
@@ -143,15 +145,18 @@ const RollerName = {
     }
 }
 
-function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, setShowProfilePage, setShowVisited, setShowFriends}) {
-    const res = restaurants
-    const checks = new Array(res.length).fill(true);
+// Work on the Random Roller to show from the user button
+
+function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
+    const history = useHistory();
+    const curr = useSelector(state => state.session.user);
+    const currId = curr.id;
+    const checks = new Array(restaurants.length).fill(true);
     const [resPicked, setResPicked] = useState([]);
     const [showSelect, setShowSelect] = useState(true);
     const [currRes, setCurrRes] = useState({})
     const [showReroll, setShowReroll] = useState(false);
-    const curr = localStorage.getItem('currUser')
-    const user = localStorage.getItem('userId')
+
 
 // Handles the submission of the selected restaurants to roll
     const handleSelection = (e) => {
@@ -159,7 +164,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
         const newSet = []
         checks.filter((ele, i) => {
             if (ele !== false) {
-                newSet.push(res[i])
+                newSet.push(restaurants[i])
             }
             return ele;
         })
@@ -214,6 +219,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
         setShowReroll(false)
         Random(resPicked)
     }
+
 // Adds to the Users visited and then goes to their profile to show them
     const handleAddRes = async () => {
         const res = await fetch(`/api/visited/`, {
@@ -223,16 +229,13 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
             },
             body: JSON.stringify({
                 "res_id": currRes.id,
-                "user_id": user
+                "user_id": currId
             })
         })
-        await res.json()
-        setShowHomePage(false)
-        setShowRoll(false)
-        setShowFriends(false)
-        localStorage.setItem('userId', curr)
-        setShowProfilePage(true)
-        setShowVisited(true)
+        await res.json();
+        setShowHomePage(false);
+        setShowRoll(false);
+        history.push(`/users/${currId}`);
     }
 
     return (
@@ -255,7 +258,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                     animate='visible'
                     
                 >
-                {res.map((ele, i) => {
+                {restaurants.map((ele, i) => {
                     return (
                         <motion.div
                           id={i}
@@ -326,7 +329,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                                 <h5>{currRes.name}</h5>
                             </motion.div>
                     </motion.div>
-                    {showReroll ? (
+                    {showReroll &&
                         <div className='buttonHolder'>
                         <motion.button
                             variants={Reroll}
@@ -352,7 +355,7 @@ function RandomRoller({ restaurants, setShowRoll, mobileSize, setShowHomePage, s
                             Add to Visited
                         </motion.button>
                         </div>
-                    ) : null }
+                    }
                     </div>
                 </motion.div>
             )}
