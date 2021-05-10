@@ -1,117 +1,34 @@
-@media screen and (min-device-width: 901px) {
-    .nav {
-        background-color: rgb(0, 0, 0);
-        width: 100vw;
-        display: flex;
-        justify-content: space-between;
-        padding: 20px;
-        color: whitesmoke;
-        box-shadow: 0px 5px 15px 5px black;
-        z-index: 20;
-        font-family: 'Staatliches';
-    }
-    .nav h1 {
-        cursor: pointer;
-    }
-    
-    .nav ul {
-        display: flex;
-    
-    }
-    
-    .nav li {
-        padding: 0 10px;
-        list-style-type: none;
-    }
-    
-    .nav a {
-        text-decoration: none;
-        color: whitesmoke;
-        font-size: 20px;
-    }
-    
-    .nav button {
-        padding: 5px 10px;
-        background-color: rgb(141, 0, 0);
-        border: none;
-        cursor: pointer;
-        color: whitesmoke;
-        font-size: 15px;
-        outline: none;
-        transition-duration: 500ms;
-    }
-    
-    .nav button:target {
-        box-shadow: 0px 1px 1px 1px black;
-        /* background-color: teal; */
-    }
-    
-    .navMenu {
-        margin-right: 150px;
-    }
-    
-    .nav h3 {
-        cursor: pointer;
-    }
-    
+.nav {
+    background-color: rgb(0, 0, 0);
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2em;
+    color: whitesmoke;
+    box-shadow: 0 .25rem .5rem .25rem black;
+    z-index: 20;
+    font-family: 'Staatliches';
 }
 
-@media screen and (max-device-width: 900px) {
-    .nav {
-        background-color: rgb(0, 0, 0);
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-        height: 140px;
-        color: whitesmoke;
-        box-shadow: 0px 5px 15px 5px black;
-        z-index: 20;
-        font-family: 'Staatliches';
-    }
-    
-    .nav ul {
-        display: flex;
-    
-    }
-    
-    .nav li {
-        padding: 0 10px;
-        list-style-type: none;
-    }
-    
-    .nav a {
-        text-decoration: none;
-        color: whitesmoke;
-        font-size: 20px;
-    }
-    
-    .nav button {
-        padding: 5px 10px;
-        background-color: rgb(141, 0, 0);
-        border: none;
-        cursor: pointer;
-        color: whitesmoke;
-        font-size: 15px;
-        outline: none;
-        transition-duration: 500ms;
-    }
-    
-    .nav button:target {
-        box-shadow: 0px 1px 1px 1px black;
-        /* background-color: teal; */
-    }
-    
-    .navMenu {
-        margin-right: 150px;
-    }
-    
-    /* .nav h3 {
-        font-size: px;
-        cursor: pointer;
-    } */
+.nav h1 {
+    cursor: pointer;
+}
 
-    .nav h1 {
-        font-size: 70px;
-    }
+.nav ul {
+    display: flex;
+}
+
+.nav li {
+    padding: 0em 1em;
+    list-style-type: none;
+}
+
+.nav a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 1em;
+}
+
+.nav h3 {
+    cursor: pointer;
 }

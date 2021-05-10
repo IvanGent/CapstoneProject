@@ -28,7 +28,9 @@
     outline: none;
     width: 12rem;
     box-shadow: -.2rem -.2rem 1em .8em whitesmoke;
+    cursor: pointer;
 }
+
 
 @media screen and (min-width: 1500px) {
     #background {
