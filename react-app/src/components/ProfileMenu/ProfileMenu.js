@@ -165,7 +165,7 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
                                 <h3 id='logout' onClick={onLogout}>Logout</h3>
                             </motion.li>
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
-                                <a href="https://github.com/IvanGent/CapstoneProject">About</a>
+                                <a style={{color: 'black', fontSize: '2.2rem'}}href="https://github.com/IvanGent/CapstoneProject">About</a>
                             </motion.li>
                         </motion.ul>
                     </motion.div>
