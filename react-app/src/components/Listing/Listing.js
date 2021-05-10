@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import FavsList from '../FavsList/FavsList';
 import Visited from '../Visited/Visited';
 import './Listing.css'
@@ -56,14 +57,15 @@ const svgVar = {
 function Listing() {
     const showVisited = useSelector(state => state.sections.showVisited);
     const showFavs = useSelector(state => state.sections.showFavs)
+    const {id} = useParams();
 
     return (
         <div className='listing'>
             {showVisited &&
-                <Visited liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
+                <Visited id={id} liInfo={liInfo} RemoveBut={RemoveBut} svgVar={svgVar} />
             }
             {showFavs &&
-                <FavsList liInfo={liInfo} svgVar={svgVar} />
+                <FavsList id={id} liInfo={liInfo} svgVar={svgVar} />
             }
         </div>
     )

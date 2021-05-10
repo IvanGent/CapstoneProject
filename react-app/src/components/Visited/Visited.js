@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
-import {useParams} from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 
-function Visited({liInfo, svgVar, RemoveBut}) {
+function Visited({id, liInfo, svgVar, RemoveBut}) {
     const [res, setRes] = useState([]);
     const [favs, setFavs] = useState([]);
-    const {id} = useParams();
     const userId = id;
     const curr = useSelector(state => state.session.user.id);
 
