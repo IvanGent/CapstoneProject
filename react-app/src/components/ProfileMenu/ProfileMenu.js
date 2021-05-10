@@ -41,13 +41,7 @@ const Item = {
     }),
     exit: (i) =>  ({
         opacity: 0,
-        y: 50,
-        transition: {
-            delay: .25,
-            y: {
-                stiffness: 1000,
-            }
-        }
+        y: -1000,
     })
 }
 
@@ -59,92 +53,41 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
     let Button;
     let Menu;
 
-    // if (!mobileSize) {
-        Button = {
-            visible: {
-                width: '100px',
-                height: '100px',
-            },
-            initial: {
-                width: '50px',
-                height: '50px',
-                transition: {
-                    delay: .3
-                }
-            }
+    Button = {
+        visible: {
+            width: '100px',
+            height: '100px',
+        },
+        initial: {
+            width: '50px',
+            height: '50px',
         }
-        Menu = {
-            closed: {
-                x: 0,
-                width: "50px",
-                height: "50px",
-                borderRadius: '50%',
-
+    }
+    Menu = {
+        closed: {
+            x: 0,
+            width: "50px",
+            height: "50px",
+            borderRadius: '50%',
+        },
+        opened: {
+            transition: {
+                type: 'spring',
+                stiffness: 100,
             },
-            opened: {
-                transition: {
-                    type: 'spring',
-                    stiffness: 100,
-                },
-                y: { stiffness: 1000 },
-                x: 0,
-                borderRadius: '25px',
-                position: 'absolute',
-                height: "30vh",
-                width: '300px'
-            },
-            exit: {
-                transition: {
-                    delay: .4
-                },
-                width: "50px",
-                height: "50px",
-                borderRadius: '50%',
-            }
+            y: { stiffness: 1000 },
+            x: 0,
+            borderRadius: '25px',
+            position: 'absolute',
+            height: "30vh",
+            width: '300px'
+        },
+        exit: {
+            width: "50px",
+            height: "50px",
+            borderRadius: '50%',
         }
-    // } else {
-        // Button = {
-        //     visible: {
-        //         width: '100px',
-        //         height: '100px',
-        //     },
-        //     initial: {
-        //         width: '100px',
-        //         height: '100px',
-        //         transition: {
-        //             delay: .3
-        //         }
-        //     }
-        // }
-        // Menu = {
-        //     closed: {
-        //         x: 0,
-        //         width: "95px",
-        //         height: "95px",
-        //         borderRadius: '50%',
-
-        //     },
-        //     opened: {
-        //         transition: {
-        //             type: 'spring',
-        //             stiffness: 100,
-        //         },
-        //         y: { stiffness: 1000 },
-        //         x: 0,
-        //         borderRadius: '25px',
-        //         position: 'absolute',
-        //         height: "50vh",
-        //         width: '80vw'
-        //     },
-        //     exit: {
-        //         transition: {
-        //             delay: .4
-        //         },
-        //         opacity: 0,
-        //     }
-        // }
-    // }
-    
+    }
 
 
     useEffect(() => {
@@ -224,9 +167,9 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={2}>
                                 <h3 onClick={handleProfileClick}>Profile</h3>
                             </motion.li>
-                            <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
+                            {/* <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
                                 <h3 onClick={handleFaves}>Favorites List</h3>
-                            </motion.li>
+                            </motion.li> */}
                             <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={5}>
                                 <h3 id='logout' onClick={onLogout}>Logout</h3>
                             </motion.li>
