@@ -4,7 +4,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as sessionActions from '../../store/session';
 import './ProfileMenu.css'
-
+// FIX ABOUT LINK IN MENU
 
 const MenuChilds = {
     show: {
@@ -121,27 +121,23 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
 
     return (
         <div className='outerMenu'>
-        <motion.img 
-            animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
-            src='/images/MobileMenu.png'
-            alt='menu' 
-            onClick={() => setShowMenu(!showMenu)} 
+            <motion.img 
+                animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
+                src='/images/MobileMenu.png'
+                alt='menu' 
+                onClick={() => setShowMenu(!showMenu)} 
             />
-        <motion.img 
-            src='/images/Cross.png'
-            alt='menu'
+            <motion.img 
+                src='/images/Cross.png'
+                alt='menu'
                 animate={showMenu ? { opacity: 1, transition: { delay: .3 } } : { opacity: 0}}
             onClick={() => setShowMenu(!showMenu)}
-        />  
-        <motion.div 
-            variants={Button}
-            animate={showMenu ? 'visible' : 'initial'}
-            onClick={() => setShowMenu(!showMenu)}
-            className='profileMenu'>
-            
-                <>
-                <AnimatePresence>
-                </AnimatePresence>
+            />  
+            <motion.div 
+                variants={Button}
+                animate={showMenu ? 'visible' : 'initial'}
+                onClick={() => setShowMenu(!showMenu)}
+                className='profileMenu'>    
                 <AnimatePresence>
                 {showMenu && (
                     <motion.div
@@ -165,14 +161,16 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
                             {/* <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
                                 <h3 onClick={handleFaves}>Favorites List</h3>
                             </motion.li> */}
-                            <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={5}>
+                            <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={3}>
                                 <h3 id='logout' onClick={onLogout}>Logout</h3>
+                            </motion.li>
+                            <motion.li variants={Item} initial='hidden' animate='show' exit='exit' custom={4}>
+                                <a href="https://github.com/IvanGent/CapstoneProject">About</a>
                             </motion.li>
                         </motion.ul>
                     </motion.div>
                 )}
-                        </AnimatePresence>
-                </>
+            </AnimatePresence>
         </motion.div>
         </div>
     )
