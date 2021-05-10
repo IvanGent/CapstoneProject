@@ -78,15 +78,13 @@
     width: 100%;
 }
 
-/* HERE */
-
 .randomSelect {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     width: 35rem;
     height: 15rem;
     margin: 1em;
+    border-radius: 1.5rem;
 }
 
 .randomCont {
