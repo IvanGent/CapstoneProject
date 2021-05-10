@@ -100,7 +100,6 @@ function App() {
 
   return (
     <BrowserRouter>
-    {/* NAVBAR NEEDS TO BE WORKED WITH MOBILE SIZE */}
       <NavBar
         authenticated={authenticated} 
         setAuthenticated={setAuthenticated} 

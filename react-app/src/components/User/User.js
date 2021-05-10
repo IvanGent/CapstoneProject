@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {useDispatch,useSelector} from 'react-redux';
 import {useParams,useHistory} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
-// import RandomRoller from '../RandomRoller/RandomRoller';
 import * as sectionsActions from '../../store/userSections';
 import Listing from '../Listing/Listing'
 import './User.css';
@@ -148,9 +147,6 @@ function User({setShowRoll, setShowHomePage, setData}) {
 
 
   const handleFavsRoll = async() => {
-    // const response = await fetch(`/api/users/${userId}`);
-    // const user = await response.json(); 
-    // favs.push(user.favsList.forEach(ele => ele.restaurants))
     if (favs.length === 0) {
       alert('No Favorites To Roll');
       return;
