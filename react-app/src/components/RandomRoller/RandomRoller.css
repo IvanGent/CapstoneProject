@@ -27,7 +27,7 @@
     flex-wrap: wrap;
     max-height: 27rem;
     border: none;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .mainHolder img {
