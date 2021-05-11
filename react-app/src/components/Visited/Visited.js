@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import FavIcon from '../../images/Fav.png';
+import ResIcon from '../../images/Restaurant.png';
 
 
 function Visited({id, curr, liInfo, svgVar, RemoveBut}) {
@@ -104,7 +106,7 @@ function Visited({id, curr, liInfo, svgVar, RemoveBut}) {
                                     >
                                         <div className='innerLi'>
                                             <div>
-                                                <img src={ele.restaurant.logo} alt='logo' />
+                                                <img src={ele.restaurant.logo ? ele.restaurant.logo : ResIcon} alt='logo' />
                                             </div>
                                             <div className='holdingName'>
                                                 <span>
@@ -134,7 +136,7 @@ function Visited({id, curr, liInfo, svgVar, RemoveBut}) {
                                                     animate='visible'
                                                     whileTap='tap'
                                                     whileHover='hover'
-                                                    src='/images/Fav.png'
+                                                    src={FavIcon}
                                                     alt='Fav Icon'
                                                     onClick={favHandle}
                                                 />
