@@ -66,7 +66,7 @@ function FavsList({id, curr, liInfo, svgVar}) {
             {favs.length ? (
                 <AnimatePresence>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <ul>
+                        <ul className='favsList'>
                             {favs.map((ele, i) => (
                                 <motion.li
                                     variants={liInfo}
