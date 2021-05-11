@@ -3,6 +3,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {useParams,useHistory} from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import * as sectionsActions from '../../store/userSections';
+import UserAvatar from '../../images/ProfileAvatar.png';
 import Listing from '../Listing/Listing'
 import './User.css';
 
@@ -86,6 +87,7 @@ function User({setShowRoll, setShowHomePage, setData}) {
       let favPrep = [];
       currUser.favsList.forEach(ele => favPrep.push(ele.restaurant))
       setFavs(favPrep);
+      setAvatar(currUser.avatar);
     } else {
       (async () => {
         const response = await fetch(`/api/users/${userId}`);
@@ -94,10 +96,9 @@ function User({setShowRoll, setShowHomePage, setData}) {
         let favPrep = [];
         user.favsList.forEach(ele => favPrep.push(ele.restaurant))
         setFavs(favPrep);
-        user.avatar ? setAvatar(user.avatar) : setAvatar('/images/ProfileAvatar.png')
+        setAvatar(user.avatar)
       })();
     }
-
     }, [userId, currUser]);
 
   if (!user) {
@@ -178,7 +179,7 @@ function User({setShowRoll, setShowHomePage, setData}) {
           initial='hidden'
           animate='visible'
           className='profileInfo'>
-            <img id='avatar' src={avatar} alt='avatar' />
+            <img id='avatar' src={avatar ? avatar : UserAvatar} alt='avatar' />
             <div className='editCont'>
               <motion.label 
                 whileHover={{ scale: 1.1 }}

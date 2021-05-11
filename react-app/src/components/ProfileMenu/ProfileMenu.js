@@ -3,8 +3,9 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as sessionActions from '../../store/session';
+import MenuIcon from '../../images/MobileMenu.png';
+import CrossIcon from '../../images/Cross.png';
 import './ProfileMenu.css'
-// FIX ABOUT LINK IN MENU
 
 const MenuChilds = {
     show: {
@@ -123,12 +124,12 @@ function ProfileMenu({ setAuthenticated, setShowHomePage, setShowRoll}) {
         <div className='outerMenu'>
             <motion.img 
                 animate={showMenu ? {opacity: 0} : {opacity: 1, transition: {delay: .3}} } 
-                src='/images/MobileMenu.png'
+                src={MenuIcon}
                 alt='menu' 
                 onClick={() => setShowMenu(!showMenu)} 
             />
             <motion.img 
-                src='/images/Cross.png'
+                src={CrossIcon}
                 alt='menu'
                 animate={showMenu ? { opacity: 1, transition: { delay: .3 } } : { opacity: 0}}
             onClick={() => setShowMenu(!showMenu)}
