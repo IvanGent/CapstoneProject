@@ -11,8 +11,7 @@
 
 .innerProfile {
     display: flex;
-    width: 60%;
-    max-width: 1500px;
+    width: 70rem;
     padding: 1rem;
     border-radius: 1.5rem;
     background-color: rgba(255, 255, 255, .7);
@@ -108,7 +107,6 @@
 }
 
 #FavsRoll {
-    /* padding: 10px; */
     height: 2.5rem;
     border-radius: 2em;
     background-color: rgba(0, 0, 0, .6);
@@ -118,8 +116,11 @@
     outline: none;
 }
 
-/* @media screen and (max-width: 900px) {
-    .profile {
-        
+@media screen and (max-width: 900px) {
+    .innerProfile {
+       display: flex;
+       flex-direction: column; 
+       align-items: center;
+       margin-top: 25rem;
     }
-} */
+}
