@@ -69,22 +69,22 @@ const HomePage = ({ data, setData, showRoll, setShowRoll, setShowHomePage}) => {
                 let web = result.website.split('.')
                 for (let i = 0; i < web.length; i++) {
                     if (web[i].startsWith('com')) {
-                        result.logo = '//logo.clearbit.com/' + web[i - 1] + '.com'
-                        const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`)
+                        result.logo = '//logo.clearbit.com/' + web[i - 1] + '.com';
+                        const logoRes = await fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${web[i - 1]}`);
                         const data = await logoRes.json();
                         if (!data.length) {
-                            result.logo = '/images/Restaurant.png'
+                            result.logo = null;
                         }
                     }
                 }
             } else {
-                result.logo = '/images/Restaurant.png'
+                result.logo = null;
 
             }
-            const addedRes = await addingRestaurant(result.name, result.logo)
-            return addedRes
+            const addedRes = await addingRestaurant(result.name, result.logo);
+            return addedRes;
         }
-        return result2
+        return result2;
     }
 
 
@@ -100,8 +100,8 @@ const HomePage = ({ data, setData, showRoll, setShowRoll, setShowHomePage}) => {
                 "logo": logo
             })
         })
-        const res = await newRes.json()
-        return res
+        const res = await newRes.json();
+        return res;
     }
 
 // Getting all the nearby restaurants and filtering out the gas stations and also 
