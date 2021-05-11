@@ -71,38 +71,6 @@
     background-color: rgba(0, 0, 0, .0);
 }
 
-/* .MuiTabs-scroller {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    background-color: rgba(0, 0, 0, .1);
-} */
-
-/* .makeStyles-root-1 {
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, .1);
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
-    opacity: .8;
-} */
-
-/* .MuiTabs-root {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    background-color: rgba(0, 0, 0, .1);
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);
-} */
-
-/* .MuiBox-root {
-    background-color: rgba(0, 0, 0, .1);
-} */
-
-/* #vertical-tabpanel-0 {
-    background-color: rgba(0, 0, 0, .1);
-} */
-
-/* #vertical-tabpanel-1 {
-    background-color: rgba(0, 0, 0, .1);
-} */
-
 img.list {
     width: 2rem;
     height: 2rem;
@@ -121,10 +89,10 @@ img.list {
     font-size: .8rem;
 }
 
-/* .AddFavs {
-    margin-left: 10px;
-} */
-
 .FavListInfo {
     margin-left: 2rem;
+}
+
+.favsList {
+    width: 30rem;
 }
