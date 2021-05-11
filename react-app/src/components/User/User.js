@@ -179,7 +179,6 @@ function User({setShowRoll, setShowHomePage, setData}) {
           animate='visible'
           className='profileInfo'>
             <img id='avatar' src={avatar} alt='avatar' />
-            {/* {currUser.id === userId ? (  */}
             <div className='editCont'>
               <motion.label 
                 whileHover={{ scale: 1.1 }}
@@ -189,7 +188,6 @@ function User({setShowRoll, setShowHomePage, setData}) {
               <input type='file' id='newPhoto' onChange={handleEdit} accept='.jpg, .jpeg, .png' />
               </motion.label>
             </div>
-            {/* ) : null} */}
           <motion.ul className='userInfo'>
             <li initial='hidden'
               animate='visible'>
