@@ -233,8 +233,6 @@ function RandomRoller({ restaurants, setShowRoll, setShowHomePage}) {
             })
         })
         await res.json();
-        setShowHomePage(false);
-        setShowRoll(false);
         history.push(`/users/${currId}`);
     }
 
