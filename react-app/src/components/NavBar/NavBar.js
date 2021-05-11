@@ -38,8 +38,9 @@ const NavBar = ({ authenticated, setAuthenticated, setShowForms, setShowHomePage
     return dispatch(formActions.showLogin());
   }
 
-  const handleHomeClick = () => history.push('/');
-
+  const handleHomeClick = () => {
+    history.push('/');
+  }
   return (
       <AnimatePresence>
     <motion.nav
