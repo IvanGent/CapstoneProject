@@ -96,3 +96,10 @@ img.list {
 .favsList {
     width: 30rem;
 }
+
+@media screen and (max-width: 900px) {
+    .listing {
+        height: 25rem;
+        width: 33rem;
+    }
+}
