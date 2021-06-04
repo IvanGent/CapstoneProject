@@ -140,11 +140,11 @@ const HomePage = ({ data, setData, showRoll, setShowRoll, setShowHomePage}) => {
 
     // changing how to get coords to using JS API instead of googles geolocation api.
     const handleClick = async () => {
-        setShowLoader(true)
+        setShowLoader(true);
         if('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 await gettingResturants(position.coords.latitude, position.coords.longitude)
-            })
+            });
         }
     }
 

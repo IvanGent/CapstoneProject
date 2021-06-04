@@ -43,7 +43,7 @@ The first complication I came across was getting someone's location. My initial 
 
 ```js
 const handleClick = async () => {
-        setShowLoader(true)
+        // setShowLoader(true) FOR STATE IN APP
         if('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 await gettingResturants(position.coords.latitude, position.coords.longitude)
@@ -53,3 +53,16 @@ const handleClick = async () => {
 ```
 grabbing the coordinates from navigator would be the best way to get a users location.
 At first it would grab the location but then lose it and reset the latitude and longitude, I think it was my machine more than something wrong with the code but without those coordinates, the use current location wouldn't work. My alternate decision was using Googles geolocation api: 
+
+```js
+ const handleClick = async () => {
+    // setShowLoader(true) FOR STATE IN APP
+    const coords = await fetch(`https://www.googleapis.com/geolocationgeolocate?key=${API_KEY}`, {
+        method: "POST"
+    })
+    const data = await coords.json();
+    await gettingResturants(data.location.lat, data.location.lng);
+	}
+```
+Using this API would give me the latitude and longitude needed to pass through a function to the nearby restaurants:
+
