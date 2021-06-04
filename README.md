@@ -37,4 +37,19 @@ RESTful APIs are used to query the database for the information aswell as calls
 being made to Google's API to get information aswell.
 
 
-## 
+## Early Complications
+
+The first complication I came across was getting someone's location. My initial approach was: 
+
+```js
+const handleClick = async () => {
+        setShowLoader(true)
+        if('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                await gettingResturants(position.coords.latitude, position.coords.longitude)
+            })
+        }
+    }
+```
+grabbing the coordinates from navigator would be the best way to get a users location.
+At first it would grab the location but then lose it and reset the latitude and longitude, I think it was my machine more than something wrong with the code but without those coordinates, the use current location wouldn't work. My alternate decision was using Googles geolocation api: 
