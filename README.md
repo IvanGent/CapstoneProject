@@ -88,3 +88,9 @@ const gettingResturants = async (lat, lng) => {
 }
 ```
 When originally getting nearby restaurants, it was also getting ones that were temporarily closed and gas stations. When the restaurants come in, this function checks if the types doesn't include 'gas_station' and if the status is not 'CLOSED_TEMPORARILY', if both of them don't exist then the restaurant is added to a newData object to get details. The database is just storing restaurants names and logos, the logos are using clearbit API. The reason I did that is to get the restaurants website since clearbit uses that for their logos, so if I save the website then I don't have to make so many calls to Googles Places API, just grab from my own DB if it's there and if not then make a fetch call to Googles API and save the info for when that restaurant comes up as a result again.
+
+## Conclusion
+
+I had a lot of fun with this project, working with Googles Cloud Platform was a little challenging at first but I got through it. I will say that I found myself writing a lot of unnecessary code which I went back through my entire project and rewrote a lot of it to get it to this state now. I enjoyed going through it and cleaning up and I will continue to do so with this and projects in the future.
+
+Thank you for reading!
