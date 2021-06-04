@@ -1,42 +1,40 @@
-# CapstoneProject
+# What-To-Bite (https://what-to-bite.herokuapp.com/)
 
--Routes
-	- “/“
-	-“/login”
-	-“/signup”
-	-“/users/{usersId}“
-	-“/users/groups”
-	-“‘/users/favs/{favsId}”
-	-“/groups/{groupId}”
-  
-  
- -MVP
-	-“Reviews”
-    -create/edit/delete reviews
-	-“Favs List”
-    -create/edit/delete resturants on the list
-	-“Ratings”
-    -create/delete ratings
-	-“Friendships”
-    -create/delete friends
-	-“Groups”
-    -create/edit/delete groups
+**Table of Contents**
+- What-To-Bite
+	- [Description](#description)
+	- [Technologies](#technologies)
+	- [Frontend Overview](#frontend-overview)
+	- [Backend Overview](#backend-overview)
+	- [Early Complication](#early-complications)
+	- [Conclusion, Next Steps](#conclusion,-next-steps)
 
 
--DB
-	“Users”
-	“Reviews”
-	“Ratings”
-	“Favs List”
-	“Friendships”
-	“Groups”	
+## Description
 
-	-Table relationships:
+* What-To-Bite is an application that randomly chooses a place to eat when you're
+indecisive. The application takes your current location and uses Googles Places API
+to get nearby restaurants to randomly pick one.
 
-	“Users” one to many “Favs List”
-	“Users” many to many “Groups.userId”
-	“Users” one to many “Groups.admin_id”
-	“Users” one to many “Reviews.userId”
-	“Users” one to many “Ratings.userId”
-	“Users” many to many “Friendships.usersId”
-	“Users” many to many “Friendships.senderId”
+
+## Technologies
+	- JavaScript
+	- React
+	- Redux
+	- PostgreSQL
+	- Python
+	- Flask
+
+## Frontend Overview
+
+What-To-Bite uses React which only updates the components that need to be updated.
+Keeps the user engaged with the site. Things that need to be updated are done with AJAX to get the information so there is no need for the page to refresh.
+
+
+## Backend Overview
+
+RESTful APIs are used to query the database for the information aswell as calls 
+being made to Google's API to get information aswell.
+
+
+## 
