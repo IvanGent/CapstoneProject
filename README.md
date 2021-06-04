@@ -52,7 +52,7 @@ const handleClick = async () => {
     }
 ```
 grabbing the coordinates from navigator would be the best way to get a users location.
-At first it would grab the location but then lose it and reset the latitude and longitude, I think it was my machine more than something wrong with the code but without those coordinates, the use current location wouldn't work. My alternate decision was using Googles geolocation api: 
+At first it would grab the location but then lose it and reset the latitude and longitude, I think it was my machine more than something wrong with the code but without those coordinates, the 'use current location' wouldn't work. My alternate decision was using Googles geolocation api (not being used now since navigator is working): 
 
 ```js
  const handleClick = async () => {
@@ -66,3 +66,25 @@ At first it would grab the location but then lose it and reset the latitude and 
 ```
 Using this API would give me the latitude and longitude needed to pass through a function to the nearby restaurants:
 
+```js
+const gettingResturants = async (lat, lng) => {
+  const res = await fetch(`/api/restaurants/${lat}/${lng}`)
+  const { results } = await res.json()
+  let newData = {}
+
+  await results.filter(ele => {
+      if (!ele.types.includes('gas_station') && ele.business_status !"CLOSED_TEMPORARILY") {
+          newData[ele.name] = ele;
+      }
+      return ele;
+  });
+
+  let arrayData = []
+  for (let key in newData) {
+      arrayData.push(await gettingDetails(newData[key].place_id, newData[kename));
+  };
+
+  setData(arrayData)
+}
+```
+When originally getting nearby restaurants, it was also getting ones that were temporarily closed and gas stations. When the restaurants come in, this function checks if the types doesn't include 'gas_station' and if the status is not 'CLOSED_TEMPORARILY', if both of them don't exist then the restaurant is added to a newData object to get details. The database is just storing restaurants names and logos, the logos are using clearbit API. The reason I did that is to get the restaurants website since clearbit uses that for their logos, so if I save the website then I don't have to make so many calls to Googles Places API, just grab from my own DB if it's there and if not then make a fetch call to Googles API and save the info for when that restaurant comes up as a result again.
